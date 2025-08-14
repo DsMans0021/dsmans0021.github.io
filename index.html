@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Abdelaziz | STEM & Game Dev Mentor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #6366f1, #06b6d4, #a21caf);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .neon {
+            text-shadow: 0 0 8px #818cf8, 0 0 16px #06b6d4;
+        }
+        
+        .icon-bg {
+            background: linear-gradient(135deg, #818cf8 40%, #06b6d4 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-gray-900">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-20 top-0 left-0 bg-white/80 backdrop-blur shadow-sm">
+        <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
+            <div class="flex items-center gap-2">
+                <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-10 h-10 rounded-full border-2 border-indigo-400" />
+                <span class="font-bold text-indigo-700 text-lg">Mohamed Abdelaziz</span>
+            </div>
+            <div class="space-x-6 text-indigo-700 font-semibold hidden md:inline-block">
+                <a href="#about" class="hover:text-cyan-600 transition">About</a>
+                <a href="#skills" class="hover:text-cyan-600 transition">Skills</a>
+                <a href="#projects" class="hover:text-cyan-600 transition">Projects</a>
+                <a href="#achievements" class="hover:text-cyan-600 transition">Achievements</a>
+                <a href="#device-info" class="hover:text-cyan-600 transition">Device Info</a>
+                <a href="#contact" class="hover:text-cyan-600 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-700 via-blue-600 to-purple-700 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div class="relative z-10 flex flex-col items-center text-center px-4 py-20">
+            <div class="w-36 h-36 rounded-full glass flex items-center justify-center mb-8 shadow-2xl border-4 border-white animate-bounce-slow">
+                <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-400 shadow-lg" />
+            </div>
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-3 gradient-text neon drop-shadow-lg">Mohamed Abdelaziz</h1>
+            <p class="text-2xl md:text-3xl font-medium mb-8 drop-shadow animate-fadeIn">STEM & Game Development Mentor <span class="inline-block ml-2 animate-wiggle">🇪🇬</span></p>
+            <a href="#contact" class="inline-flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-cyan-400 to-indigo-600 text-white font-bold rounded-full shadow-xl hover:scale-105 hover:from-indigo-500 hover:to-cyan-400 transition-all duration-300 text-lg">
+                <i class="fa-solid fa-paper-plane animate-pulse"></i> Contact Me
+            </a>
+        </div>
+        <!-- Decorative Blobs -->
+        <div class="absolute top-0 left-0 w-80 h-80 bg-purple-400 opacity-30 rounded-full blur-3xl -z-10 animate-blob"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400 opacity-30 rounded-full blur-3xl -z-10 animate-blob animation-delay-2000"></div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="py-20 px-4 bg-white relative">
+        <div class="max-w-3xl mx-auto text-center glass p-10 shadow-xl">
+            <h2 class="text-4xl font-bold mb-4 gradient-text neon">About Me</h2>
+            <p class="text-lg text-gray-700 leading-relaxed animate-fadeIn">
+                I'm <span class="font-semibold text-indigo-600">Mohamed Abdelaziz</span>, a mentor at <span class="font-semibold text-cyan-600">Hack Club STEM October</span>, passionate about <span class="text-purple-600">game development</span>,
+                <span class="text-blue-600">technology</span>, and empowering young coders. I love building cool projects and sharing knowledge!
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 px-4 bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl font-bold mb-10 text-center gradient-text neon">Skills</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="glass p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-3xl">
+                        <i class="fa-brands fa-unity"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-600">C# & Unity</h3>
+                    <p class="text-gray-700 text-center">Unity game development, OOP, interactive apps, and fun gameplay mechanics.</p>
+                </div>
+                <div class="glass p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-3xl bg-gradient-to-br from-green-400 to-blue-400">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-green-600">Python</h3>
+                    <p class="text-gray-700 text-center">Automation, scripting, Raspberry Pi, and building creative tools for productivity.</p>
+                </div>
+                <div class="glass p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-3xl bg-gradient-to-br from-purple-400 to-pink-400">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-purple-600">Cybersecurity</h3>
+                    <p class="text-gray-700 text-center">Cisco certified, ethical hacking, and a strong foundation in security principles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-10 text-center gradient-text neon">Projects</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="glass p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4 text-3xl icon-bg shadow-lg">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-indigo-700">Unity Games</h3>
+                    <p class="text-gray-700 text-center">2D/3D games built with Unity and C#. Fun, interactive, and creative!</p>
+                </div>
+                <div class="glass p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4 text-3xl bg-gradient-to-br from-green-400 to-blue-400 shadow-lg text-white">
+                        <i class="fa-brands fa-raspberry-pi"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-green-700">Raspberry Pi Experiments</h3>
+                    <p class="text-gray-700 text-center">IoT, automation, and STEM projects using Raspberry Pi and Python.</p>
+                </div>
+                <div class="glass p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4 text-3xl bg-gradient-to-br from-blue-400 to-purple-400 shadow-lg text-white">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-blue-700">Python Tools</h3>
+                    <p class="text-gray-700 text-center">Video/audio converters, productivity scripts, and automation tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="py-20 px-4 bg-gradient-to-br from-purple-50 via-indigo-50 to-cyan-50">
+        <div class="max-w-4xl mx-auto glass p-10 shadow-xl">
+            <h2 class="text-4xl font-bold mb-8 text-center gradient-text neon">Achievements</h2>
+            <ul class="space-y-6 text-lg text-gray-700">
+                <li>
+                    <span class="font-semibold text-indigo-600">Built a Personal AI Assistant on Raspberry Pi Zero 2 W:</span> Created a smart voice assistant similar to Siri or Alexa, running on a resource-constrained Raspberry Pi Zero 2 W. Demonstrated
+                    ability to build functional AI tools on limited hardware.
+                </li>
+                <li>
+                    <span class="font-semibold text-green-600">Developed a Video Converter & Media Player in Python:</span> Combined Tkinter, MoviePy, OpenCV, and Pygame to make a desktop app that converts MP4 to MP3 and plays media, showing skills in
+                    GUI and media processing.
+                </li>
+                <li>
+                    <span class="font-semibold text-purple-600">Created a Two-Stage Air Filtration System (CO₂ Reducer Project):</span> Engineered a prototype that filters air using water and calcium hydroxide to absorb CO₂, applying scientific methods
+                    for environmental impact.
+                </li>
+                <li>
+                    <span class="font-semibold text-blue-600">Made Games for itch.io Game Jams:</span> Participated in online game jams, submitting complete Unity/C# games under tight deadlines, reflecting creativity and real-world indie game experience.
+                </li>
+                <li>
+                    <span class="font-semibold text-cyan-600">Customized a Smart MP3 and Video Player for Local Media Use:</span> Built a media interface with GUI controls, image previews (PIL), and responsive design, focusing on user experience beyond
+                    basic playback.
+                </li>
+                <li>
+                    <span class="font-semibold text-pink-600">Overclocked and Optimized Raspberry Pi Zero 2 W for Gaming & Projects:</span> Modified configs, safely overclocked, and tested OSes to boost performance, running games like Doom and exploring
+                    retro consoles on a small board.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Device Info -->
+    <section id="device-info" class="py-20 px-4 bg-white">
+        <div class="max-w-3xl mx-auto glass p-10 shadow-xl">
+            <h2 class="text-4xl font-bold mb-6 text-center gradient-text neon">My Device Info</h2>
+            <ul class="text-lg text-gray-700 space-y-2">
+                <li><span class="font-semibold text-indigo-600">Operating System:</span> Windows 11 Pro 64-bit (10.0, Build 26100)</li>
+                <li><span class="font-semibold text-blue-600">Language:</span> English (Regional Setting: English)</li>
+                <li><span class="font-semibold text-cyan-600">System Manufacturer:</span> HP</li>
+                <li><span class="font-semibold text-purple-600">System Model:</span> HP ProBook 650 G4</li>
+                <li><span class="font-semibold text-green-600">BIOS:</span> Q83 Ver. 01.24.00</li>
+                <li><span class="font-semibold text-pink-600">Processor:</span> Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (8 CPUs), ~2.1GHz</li>
+                <li><span class="font-semibold text-yellow-600">Memory:</span> 16384MB RAM</li>
+                <li><span class="font-semibold text-red-600">Page file:</span> 8939MB used, 8311MB available</li>
+                <li><span class="font-semibold text-indigo-400">DirectX Version:</span> DirectX 12</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-20 px-4 bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50">
+        <div class="max-w-xl mx-auto glass p-10 shadow-2xl">
+            <h2 class="text-4xl font-bold mb-8 text-center gradient-text neon">Contact Me</h2>
+            <form class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2" for="name">Name</label>
+                    <div class="relative">
+                        <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10" type="text" id="name" name="name" required>
+                        <span class="absolute left-3 top-3 text-indigo-400"><i class="fa-solid fa-user"></i></span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2" for="email">Email</label>
+                    <div class="relative">
+                        <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10" type="email" id="email" name="email" required>
+                        <span class="absolute left-3 top-3 text-cyan-400"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2" for="message">Message</label>
+                    <div class="relative">
+                        <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10" id="message" name="message" rows="4" required></textarea>
+                        <span class="absolute left-3 top-3 text-purple-400"><i class="fa-solid fa-comment-dots"></i></span>
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-cyan-400 text-white font-bold rounded-lg hover:from-cyan-400 hover:to-indigo-600 transition duration-300 shadow-lg text-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-indigo-800 to-cyan-700 text-white py-8">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+            <div class="mb-4 md:mb-0 text-center md:text-left text-lg">
+                &copy; 2024 Mohamed Abdelaziz. All rights reserved.
+            </div>
+            <div class="flex space-x-8 text-2xl">
+                <a href="https://github.com/DsMans0021" target="_blank" class="hover:text-cyan-300 transition" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/" target="_blank" class="hover:text-cyan-300 transition" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://hackclub.com/" target="_blank" class="hover:text-cyan-300 transition" aria-label="Hack Club">
+                    <i class="fa-solid fa-code"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth scroll for anchor links -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 1.2s cubic-bezier(.4, 0, .2, 1) both;
+        }
+        
+        @keyframes wiggle {
+            0%,
+            100% {
+                transform: rotate(-8deg);
+            }
+            50% {
+                transform: rotate(8deg);
+            }
+        }
+        
+        .animate-wiggle {
+            animation: wiggle 1.2s infinite;
+        }
+        
+        @keyframes bounce-slow {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce-slow 2.5s infinite;
+        }
+        
+        @keyframes blob {
+            0%,
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+            33% {
+                transform: scale(1.1) translate(30px, -20px);
+            }
+            66% {
+                transform: scale(0.9) translate(-20px, 30px);
+            }
+        }
+        
+        .animate-blob {
+            animation: blob 12s infinite;
+        }
+        
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+    </style>
+</body>
+
+</html>
