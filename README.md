@@ -74,6 +74,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 🙋‍♂️ About Me
 
-Hi! I'm [Your Name](https://github.com/DsMans0021). Explore my projects, connect with me, and let's create something awesome together!
+Hi! I'm [DsMans0021](https://github.com/DsMans0021). Explore my projects, connect with me, and let's create something awesome together!
 
 ---
