@@ -35,12 +35,9 @@
                 <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-indigo-400" />
                 <span class="font-bold text-indigo-700 text-base sm:text-lg">Mohamed Abdelaziz</span>
             </div>
-            <div class="space-x-4 lg:space-x-6 text-indigo-700 font-semibold hidden lg:flex">
-                <a href="index.html#about" class="hover:text-cyan-600 transition">About</a>
-                <a href="index.html#projects" class="hover:text-cyan-600 transition">Projects</a>
-                <a href="index.html#contact" class="hover:text-cyan-600 transition">Contact</a>
-                <a href="tools.html" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-indigo-600 text-white rounded-full shadow">
-                    <i class="fa-solid fa-toolbox"></i> My Tools
+            <div class="hidden lg:flex">
+                <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-indigo-600 text-white rounded-full shadow hover:scale-105 transition">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Home
                 </a>
             </div>
             <a href="index.html" class="lg:hidden text-indigo-700 text-xl" aria-label="Back">
@@ -49,57 +46,100 @@
         </div>
     </nav>
 
-    <main class="pt-24 pb-16 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 text-center gradient-text">My Tools</h1>
-            <p class="text-center text-gray-700 max-w-2xl mx-auto mb-10">A curated set of utilities I built or use often. More coming soon.</p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <a href="#" class="glass p-6 sm:p-8 flex flex-col items-center text-center hover:scale-105 transition">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-white text-2xl sm:text-3xl bg-gradient-to-br from-blue-500 to-indigo-500 shadow-lg">
-                        <i class="fa-solid fa-file-audio"></i>
+    <main class="pt-24 px-4 pb-16">
+        <div class="max-w-2xl mx-auto">
+            <div class="glass p-6 sm:p-8 lg:p-10 shadow-2xl bg-white/70 border border-indigo-200">
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-center gradient-text mb-3">Search for anime by a scene tool</h1>
+                <p class="text-center text-gray-700 mb-6">Upload a screenshot from an anime scene and search for the source using trace.moe.</p>
+                <form id="trace-form" action="https://api.trace.moe/search" method="POST" enctype="multipart/form-data" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Choose image</label>
+                        <input name="image" type="file" class="block w-full text-sm text-gray-700 border border-dashed border-indigo-300 rounded-lg p-3 bg-white/80 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
                     </div>
-                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-indigo-700">Video → MP3 Converter</h3>
-                    <p class="text-sm sm:text-base text-gray-700">Convert video files to audio. Web version coming soon.</p>
-                </a>
-
-                <a href="#" class="glass p-6 sm:p-8 flex flex-col items-center text-center hover:scale-105 transition">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-white text-2xl sm:text-3xl bg-gradient-to-br from-green-500 to-cyan-500 shadow-lg">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-green-700">Security Checklist</h3>
-                    <p class="text-sm sm:text-base text-gray-700">Quick tips to harden your device and accounts.</p>
-                </a>
-
-                <a href="#" class="glass p-6 sm:p-8 flex flex-col items-center text-center hover:scale-105 transition">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-white text-2xl sm:text-3xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg">
-                        <i class="fa-solid fa-microchip"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-700">Raspberry Pi Helper</h3>
-                    <p class="text-sm sm:text-base text-gray-700">Common commands and setup notes for Pi projects.</p>
-                </a>
+                    <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-white font-bold shadow-xl bg-gradient-to-r from-indigo-600 via-cyan-500 to-purple-600 hover:from-purple-600 hover:via-indigo-600 hover:to-cyan-500 transition-transform transform hover:scale-105">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search Scene
+                    </button>
+                </form>
+                <div id="status" class="text-center text-sm text-gray-600 mt-4 hidden">Uploading and searching...</div>
+                <div id="results" class="mt-6 grid grid-cols-1 gap-4"></div>
             </div>
         </div>
     </main>
+    <script>
+        const form = document.getElementById('trace-form');
+        const resultsEl = document.getElementById('results');
+        const statusEl = document.getElementById('status');
 
-    <footer class="bg-gradient-to-r from-indigo-800 to-cyan-700 text-white py-6 sm:py-8">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between px-4">
-            <div class="mb-4 md:mb-0 text-center md:text-left text-sm sm:text-base lg:text-lg">
-                &copy; 2024 Mohamed Abdelaziz. All rights reserved.
-            </div>
-            <div class="flex space-x-6 sm:space-x-8 text-xl sm:text-2xl">
-                <a href="https://github.com/DsMans0021" target="_blank" class="hover:text-cyan-300 transition" aria-label="GitHub">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="https://linktr.ee/DsMans0021/" target="_blank" class="hover:text-cyan-300 transition" aria-label="Linktree">
-                    <i class="fa-solid fa-tree"></i>
-                </a>
-                <a href="https://hackclub.com/" target="_blank" class="hover:text-cyan-300 transition" aria-label="Hack Club">
-                    <i class="fa-solid fa-code"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            resultsEl.innerHTML = '';
+            statusEl.classList.remove('hidden');
+            statusEl.textContent = 'Uploading and searching...';
+
+            const formData = new FormData(form);
+            const file = formData.get('image');
+            if (!file || (file instanceof File && file.size === 0)) {
+                statusEl.textContent = 'Please choose an image first.';
+                return;
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Search request failed');
+                }
+
+                const data = await response.json();
+                const results = (data && (data.result || data.results)) || [];
+
+                if (!Array.isArray(results) || results.length === 0) {
+                    statusEl.textContent = 'No matches found.';
+                    return;
+                }
+
+                statusEl.classList.add('hidden');
+                results.slice(0, 5).forEach((item) => {
+                    const similarity = typeof item.similarity === 'number' ? Math.round(item.similarity * 100) : null;
+                    const episode = item.episode != null ? item.episode : '—';
+                    const from = item.from != null ? Math.floor(item.from) : null;
+                    const to = item.to != null ? Math.ceil(item.to) : null;
+                    const imageUrl = item.image || '';
+                    const videoUrl = item.video || '';
+                    const title = item.filename || item.title || `Episode ${episode}`;
+
+                    const card = document.createElement('div');
+                    card.className = 'glass p-4 sm:p-5 bg-white/70 border border-indigo-100 rounded-2xl shadow';
+                    card.innerHTML = `
+                        <div class="flex flex-col sm:flex-row gap-4 items-start">
+                            <div class="sm:w-48 w-full flex-shrink-0">
+                                ${imageUrl ? `<img src="${imageUrl}" alt="preview" class="w-full h-auto max-h-32 object-contain rounded-lg border bg-white" />` : ''}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-start justify-between mb-1 gap-2">
+                                    <h3 class="font-semibold text-indigo-800 text-sm sm:text-base break-words">${title}</h3>
+                                    ${similarity !== null ? `<span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700 whitespace-nowrap">${similarity}%</span>` : ''}
+                                </div>
+                                <p class="text-xs text-gray-600 mb-2">Episode: <span class="font-medium">${episode}</span>${from !== null && to !== null ? ` • ${from}s–${to}s` : ''}</p>
+                                <div class="flex flex-wrap gap-2">
+                                    ${videoUrl ? `<a href="${videoUrl}" target="_blank" class="text-xs inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-cyan-500 hover:to-indigo-600">Preview</a>` : ''}
+                                    ${imageUrl ? `<a href="${imageUrl}" target="_blank" class="text-xs inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-indigo-200 text-indigo-700 hover:bg-indigo-50">Image</a>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    resultsEl.appendChild(card);
+                });
+            } catch (err) {
+                statusEl.textContent = 'Something went wrong. Please try again.';
+            }
+        });
+    </script>
 
 </body>
 
