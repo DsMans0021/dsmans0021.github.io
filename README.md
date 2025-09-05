@@ -46,7 +46,7 @@ cd Personal_Website
 
 ## ✨ Live Demo
 
-[Check out the live site here](https://DsMans0021.github.io/Personal_Website) <!-- Update as needed -->
+[Check out the live site here](https://github.com/DsMans0021/dsmans0021.github.io) <!-- Update as needed -->
 
 ---
 
