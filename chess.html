@@ -20,7 +20,7 @@
         .dark { background-color: #b58863; }
         .board-grid { display: flex; flex-wrap: wrap; border-radius: 0.75rem; overflow: hidden; border: 2px solid rgba(0,0,0,0.1); }
         .tag { font-variant-numeric: tabular-nums; }
-        .piece-img { position: absolute; inset: 0; background-size: 90% 90%; background-repeat: no-repeat; background-position: center; pointer-events: none; }
+        .piece-img { position: absolute; inset: 0; background-size: 88% 88%; background-repeat: no-repeat; background-position: center; pointer-events: none; }
         .hl-selected { outline: 3px solid rgba(99,102,241,0.9); box-shadow: inset 0 0 0 9999px rgba(99,102,241,0.12); }
         .hl-dot::after { content: ''; position: absolute; top: 50%; left: 50%; width: 22%; height: 22%; transform: translate(-50%, -50%); border-radius: 999px; background: rgba(16,185,129,0.9); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); }
         .hl-capture::after { background: rgba(239,68,68,0.9); box-shadow: 0 0 0 4px rgba(239,68,68,0.2); }
@@ -84,13 +84,14 @@
                         </div>
                         <div class="mb-3 flex items-center justify-between text-sm">
                             <span id="status-1" class="text-gray-700">Idle</span>
-                            <div class="flex gap-2">
-                                <button data-board="1" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
-                                <button data-board="1" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
-                                <button data-board="1" class="flip-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Flip</button>
-                                <button data-board="1" class="offer-draw-btn px-3 py-1.5 rounded-full text-white bg-emerald-600 hover:bg-emerald-700">Offer Draw</button>
-                                <button data-board="1" class="offer-takeback-btn px-3 py-1.5 rounded-full text-white bg-amber-600 hover:bg-amber-700">Takeback</button>
-                                <button data-board="1" class="resign-btn px-3 py-1.5 rounded-full text-white bg-rose-600 hover:bg-rose-700">Resign</button>
+                            <div class="flex items-center gap-1 bg-white/70 backdrop-blur border border-indigo-100 rounded-full p-1 shadow-sm">
+                                <button data-board="1" class="join-btn w-8 h-8 grid place-items-center rounded-full text-white bg-indigo-600 hover:bg-indigo-700" title="Start/Join" aria-label="Start/Join"><i class="fa-solid fa-user-plus text-xs"></i></button>
+                                <button data-board="1" class="leave-btn w-8 h-8 grid place-items-center rounded-full text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-100" title="Leave" aria-label="Leave"><i class="fa-solid fa-door-open text-xs"></i></button>
+                                <span class="w-px h-5 bg-indigo-100 mx-1"></span>
+                                <button data-board="1" class="flip-btn w-8 h-8 grid place-items-center rounded-full text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-100" title="Flip Board" aria-label="Flip Board"><i class="fa-solid fa-arrows-rotate text-xs"></i></button>
+                                <button data-board="1" class="offer-draw-btn w-8 h-8 grid place-items-center rounded-full text-white bg-emerald-600 hover:bg-emerald-700" title="Offer Draw" aria-label="Offer Draw"><i class="fa-solid fa-handshake text-xs"></i></button>
+                                <button data-board="1" class="offer-takeback-btn w-8 h-8 grid place-items-center rounded-full text-white bg-amber-600 hover:bg-amber-700" title="Request Takeback" aria-label="Request Takeback"><i class="fa-solid fa-rotate-left text-xs"></i></button>
+                                <button data-board="1" class="resign-btn w-8 h-8 grid place-items-center rounded-full text-white bg-rose-600 hover:bg-rose-700" title="Resign" aria-label="Resign"><i class="fa-solid fa-flag text-xs"></i></button>
                             </div>
                         </div>
                         <div class="mb-2 text-xs" id="offer-area-1"></div>
@@ -117,13 +118,14 @@
                         </div>
                         <div class="mb-3 flex items-center justify-between text-sm">
                             <span id="status-2" class="text-gray-700">Idle</span>
-                            <div class="flex gap-2">
-                                <button data-board="2" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
-                                <button data-board="2" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
-                                <button data-board="2" class="flip-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Flip</button>
-                                <button data-board="2" class="offer-draw-btn px-3 py-1.5 rounded-full text-white bg-emerald-600 hover:bg-emerald-700">Offer Draw</button>
-                                <button data-board="2" class="offer-takeback-btn px-3 py-1.5 rounded-full text-white bg-amber-600 hover:bg-amber-700">Takeback</button>
-                                <button data-board="2" class="resign-btn px-3 py-1.5 rounded-full text-white bg-rose-600 hover:bg-rose-700">Resign</button>
+                            <div class="flex items-center gap-1 bg-white/70 backdrop-blur border border-indigo-100 rounded-full p-1 shadow-sm">
+                                <button data-board="2" class="join-btn w-8 h-8 grid place-items-center rounded-full text-white bg-indigo-600 hover:bg-indigo-700" title="Start/Join" aria-label="Start/Join"><i class="fa-solid fa-user-plus text-xs"></i></button>
+                                <button data-board="2" class="leave-btn w-8 h-8 grid place-items-center rounded-full text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-100" title="Leave" aria-label="Leave"><i class="fa-solid fa-door-open text-xs"></i></button>
+                                <span class="w-px h-5 bg-indigo-100 mx-1"></span>
+                                <button data-board="2" class="flip-btn w-8 h-8 grid place-items-center rounded-full text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-100" title="Flip Board" aria-label="Flip Board"><i class="fa-solid fa-arrows-rotate text-xs"></i></button>
+                                <button data-board="2" class="offer-draw-btn w-8 h-8 grid place-items-center rounded-full text-white bg-emerald-600 hover:bg-emerald-700" title="Offer Draw" aria-label="Offer Draw"><i class="fa-solid fa-handshake text-xs"></i></button>
+                                <button data-board="2" class="offer-takeback-btn w-8 h-8 grid place-items-center rounded-full text-white bg-amber-600 hover:bg-amber-700" title="Request Takeback" aria-label="Request Takeback"><i class="fa-solid fa-rotate-left text-xs"></i></button>
+                                <button data-board="2" class="resign-btn w-8 h-8 grid place-items-center rounded-full text-white bg-rose-600 hover:bg-rose-700" title="Resign" aria-label="Resign"><i class="fa-solid fa-flag text-xs"></i></button>
                             </div>
                         </div>
                         <div class="mb-2 text-xs" id="offer-area-2"></div>
@@ -150,13 +152,14 @@
                         </div>
                         <div class="mb-3 flex items-center justify-between text-sm">
                             <span id="status-3" class="text-gray-700">Idle</span>
-                            <div class="flex gap-2">
-                                <button data-board="3" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
-                                <button data-board="3" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
-                                <button data-board="3" class="flip-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Flip</button>
-                                <button data-board="3" class="offer-draw-btn px-3 py-1.5 rounded-full text-white bg-emerald-600 hover:bg-emerald-700">Offer Draw</button>
-                                <button data-board="3" class="offer-takeback-btn px-3 py-1.5 rounded-full text-white bg-amber-600 hover:bg-amber-700">Takeback</button>
-                                <button data-board="3" class="resign-btn px-3 py-1.5 rounded-full text-white bg-rose-600 hover:bg-rose-700">Resign</button>
+                            <div class="flex items-center gap-1 bg-white/70 backdrop-blur border border-indigo-100 rounded-full p-1 shadow-sm">
+                                <button data-board="3" class="join-btn w-8 h-8 grid place-items-center rounded-full text-white bg-indigo-600 hover:bg-indigo-700" title="Start/Join" aria-label="Start/Join"><i class="fa-solid fa-user-plus text-xs"></i></button>
+                                <button data-board="3" class="leave-btn w-8 h-8 grid place-items-center rounded-full text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-100" title="Leave" aria-label="Leave"><i class="fa-solid fa-door-open text-xs"></i></button>
+                                <span class="w-px h-5 bg-indigo-100 mx-1"></span>
+                                <button data-board="3" class="flip-btn w-8 h-8 grid place-items-center rounded-full text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-100" title="Flip Board" aria-label="Flip Board"><i class="fa-solid fa-arrows-rotate text-xs"></i></button>
+                                <button data-board="3" class="offer-draw-btn w-8 h-8 grid place-items-center rounded-full text-white bg-emerald-600 hover:bg-emerald-700" title="Offer Draw" aria-label="Offer Draw"><i class="fa-solid fa-handshake text-xs"></i></button>
+                                <button data-board="3" class="offer-takeback-btn w-8 h-8 grid place-items-center rounded-full text-white bg-amber-600 hover:bg-amber-700" title="Request Takeback" aria-label="Request Takeback"><i class="fa-solid fa-rotate-left text-xs"></i></button>
+                                <button data-board="3" class="resign-btn w-8 h-8 grid place-items-center rounded-full text-white bg-rose-600 hover:bg-rose-700" title="Resign" aria-label="Resign"><i class="fa-solid fa-flag text-xs"></i></button>
                             </div>
                         </div>
                         <div class="mb-2 text-xs" id="offer-area-3"></div>
@@ -183,13 +186,14 @@
                         </div>
                         <div class="mb-3 flex items-center justify-between text-sm">
                             <span id="status-4" class="text-gray-700">Idle</span>
-                            <div class="flex gap-2">
-                                <button data-board="4" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
-                                <button data-board="4" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
-                                <button data-board="4" class="flip-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Flip</button>
-                                <button data-board="4" class="offer-draw-btn px-3 py-1.5 rounded-full text-white bg-emerald-600 hover:bg-emerald-700">Offer Draw</button>
-                                <button data-board="4" class="offer-takeback-btn px-3 py-1.5 rounded-full text-white bg-amber-600 hover:bg-amber-700">Takeback</button>
-                                <button data-board="4" class="resign-btn px-3 py-1.5 rounded-full text-white bg-rose-600 hover:bg-rose-700">Resign</button>
+                            <div class="flex items-center gap-1 bg-white/70 backdrop-blur border border-indigo-100 rounded-full p-1 shadow-sm">
+                                <button data-board="4" class="join-btn w-8 h-8 grid place-items-center rounded-full text-white bg-indigo-600 hover:bg-indigo-700" title="Start/Join" aria-label="Start/Join"><i class="fa-solid fa-user-plus text-xs"></i></button>
+                                <button data-board="4" class="leave-btn w-8 h-8 grid place-items-center rounded-full text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-100" title="Leave" aria-label="Leave"><i class="fa-solid fa-door-open text-xs"></i></button>
+                                <span class="w-px h-5 bg-indigo-100 mx-1"></span>
+                                <button data-board="4" class="flip-btn w-8 h-8 grid place-items-center rounded-full text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-100" title="Flip Board" aria-label="Flip Board"><i class="fa-solid fa-arrows-rotate text-xs"></i></button>
+                                <button data-board="4" class="offer-draw-btn w-8 h-8 grid place-items-center rounded-full text-white bg-emerald-600 hover:bg-emerald-700" title="Offer Draw" aria-label="Offer Draw"><i class="fa-solid fa-handshake text-xs"></i></button>
+                                <button data-board="4" class="offer-takeback-btn w-8 h-8 grid place-items-center rounded-full text-white bg-amber-600 hover:bg-amber-700" title="Request Takeback" aria-label="Request Takeback"><i class="fa-solid fa-rotate-left text-xs"></i></button>
+                                <button data-board="4" class="resign-btn w-8 h-8 grid place-items-center rounded-full text-white bg-rose-600 hover:bg-rose-700" title="Resign" aria-label="Resign"><i class="fa-solid fa-flag text-xs"></i></button>
                             </div>
                         </div>
                         <div class="mb-2 text-xs" id="offer-area-4"></div>
@@ -270,6 +274,8 @@
             BOARD_IDS.forEach(id => {
                 const boardEl = document.getElementById(`board-${id}`);
                 buildBoardSquares(boardEl);
+                // Ensure pieces render even before realtime events
+                renderFenToBoard(boardEl, 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR');
             });
         }
 
