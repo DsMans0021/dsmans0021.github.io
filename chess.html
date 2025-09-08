@@ -76,6 +76,13 @@
                                 <a id="invite-1" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
                             </div>
                         </div>
+                        <div class="mb-3 flex items-center justify-between text-sm">
+                            <span id="status-1" class="text-gray-700">Idle</span>
+                            <div class="flex gap-2">
+                                <button data-board="1" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
+                                <button data-board="1" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
+                            </div>
+                        </div>
                         <div class="relative">
                             <div id="board-1" class="board-grid aspect-square bg-white"></div>
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -95,6 +102,13 @@
                             <div class="text-sm text-gray-600 flex items-center gap-3">
                                 <span><i class="fa-solid fa-eye"></i> <span id="watchers-2">0</span></span>
                                 <a id="invite-2" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
+                            </div>
+                        </div>
+                        <div class="mb-3 flex items-center justify-between text-sm">
+                            <span id="status-2" class="text-gray-700">Idle</span>
+                            <div class="flex gap-2">
+                                <button data-board="2" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
+                                <button data-board="2" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
                             </div>
                         </div>
                         <div class="relative">
@@ -118,6 +132,13 @@
                                 <a id="invite-3" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
                             </div>
                         </div>
+                        <div class="mb-3 flex items-center justify-between text-sm">
+                            <span id="status-3" class="text-gray-700">Idle</span>
+                            <div class="flex gap-2">
+                                <button data-board="3" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
+                                <button data-board="3" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
+                            </div>
+                        </div>
                         <div class="relative">
                             <div id="board-3" class="board-grid aspect-square bg-white"></div>
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -137,6 +158,13 @@
                             <div class="text-sm text-gray-600 flex items-center gap-3">
                                 <span><i class="fa-solid fa-eye"></i> <span id="watchers-4">0</span></span>
                                 <a id="invite-4" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
+                            </div>
+                        </div>
+                        <div class="mb-3 flex items-center justify-between text-sm">
+                            <span id="status-4" class="text-gray-700">Idle</span>
+                            <div class="flex gap-2">
+                                <button data-board="4" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
+                                <button data-board="4" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
                             </div>
                         </div>
                         <div class="relative">
@@ -237,6 +265,9 @@
                     const inner = document.createElement('div');
                     const isLight = (row + col) % 2 === 0;
                     inner.className = isLight ? 'light' : 'dark';
+                    const file = String.fromCharCode('a'.charCodeAt(0) + col);
+                    const rank = 8 - row;
+                    inner.dataset.square = `${file}${rank}`;
                     square.appendChild(inner);
                     container.appendChild(square);
                 }
@@ -322,6 +353,34 @@
                 btn.addEventListener('click', () => {
                     const id = parseInt(btn.getAttribute('data-board'), 10);
                     setActiveBoard(id);
+                });
+            });
+            document.querySelectorAll('.join-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.getAttribute('data-board'), 10);
+                    handleJoinBoard(id);
+                });
+            });
+            document.querySelectorAll('.leave-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.getAttribute('data-board'), 10);
+                    handleLeaveBoard(id);
+                });
+            });
+            // Allow moving by clicking two squares when active and joined
+            BOARD_IDS.forEach(id => {
+                const el = document.getElementById(`board-${id}`);
+                let selected = null;
+                el.addEventListener('click', async (e) => {
+                    const cell = e.target.closest('[data-square]');
+                    if (!cell) return;
+                    if (getActiveBoard() !== id) return;
+                    if (!realtime.enabled) return; // online only
+                    const sq = cell.dataset.square;
+                    if (!selected) { selected = sq; cell.classList.add('ring-2','ring-indigo-500'); return; }
+                    const from = selected; const to = sq; selected = null;
+                    el.querySelectorAll('[data-square]').forEach(c=>c.classList.remove('ring-2','ring-indigo-500'));
+                    await tryMakeMoveRealtime(id, from, to);
                 });
             });
         }
@@ -439,6 +498,107 @@
                 const set = new Set(Object.keys(val).map(n => parseInt(n,10)));
                 setBusyBoards(set); // also mirrors to local cache
             });
+        }
+
+        // Minimal online match state
+        function boardRef(id) {
+            return firebase.database().ref(`boards/${id}`);
+        }
+        function handleJoinBoard(id) {
+            if (!realtime.enabled) {
+                alert('Enable Firebase to play online. You can still spectate.');
+                return;
+            }
+            const statusEl = document.getElementById(`status-${id}`);
+            const ref = boardRef(id);
+            ref.transaction(current => {
+                current = current || {};
+                current.players = current.players || {};
+                // assign color
+                if (!current.players.white) current.players.white = realtime.myId;
+                else if (!current.players.black) current.players.black = realtime.myId;
+                current.fen = current.fen || 'start';
+                current.turn = current.turn || 'w';
+                current.updatedAt = Date.now();
+                return current;
+            }).then(() => {
+                statusEl.textContent = 'Joined. Waiting for opponent or playing...';
+                listenBoardState(id);
+            }).catch(() => {
+                alert('Failed to join board.');
+            });
+        }
+        function handleLeaveBoard(id) {
+            if (!realtime.enabled) return;
+            const statusEl = document.getElementById(`status-${id}`);
+            const ref = boardRef(id).child('players');
+            ref.transaction(players => {
+                if (!players) return players;
+                Object.keys(players).forEach(color => {
+                    if (players[color] === realtime.myId) players[color] = null;
+                });
+                return players;
+            }).finally(() => {
+                statusEl.textContent = 'Idle';
+            });
+        }
+        function listenBoardState(id) {
+            if (!realtime.enabled) return;
+            boardRef(id).on('value', snap => {
+                const v = snap.val() || {};
+                const statusEl = document.getElementById(`status-${id}`);
+                const players = (v.players)||{};
+                const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
+                statusEl.textContent = `Players: ${players.white? 'W✓':'W·'} ${players.black? 'B✓':'B·'}${myColor? ' • You: '+(myColor==='w'?'White':'Black'):''}`;
+                // render pieces if fen present
+                if (v.fen && v.fen !== 'start') {
+                    const boardEl = document.getElementById(`board-${id}`);
+                    renderFenToBoard(boardEl, v.fen);
+                } else if (v.fen === 'start') {
+                    const boardEl = document.getElementById(`board-${id}`);
+                    renderFenToBoard(boardEl, 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR');
+                }
+            });
+        }
+
+        function renderFenToBoard(container, fen) {
+            // Clear existing pieces
+            container.querySelectorAll('.piece').forEach(p => p.remove());
+            const rows = fen.split(' ')[0].split('/');
+            for (let r = 0; r < 8; r++) {
+                let fileIndex = 0;
+                for (const ch of rows[r]) {
+                    if (/\d/.test(ch)) { fileIndex += parseInt(ch,10); continue; }
+                    const fileChar = String.fromCharCode('a'.charCodeAt(0) + fileIndex);
+                    const rank = 8 - r;
+                    const sq = `${fileChar}${rank}`;
+                    const cell = container.querySelector(`[data-square="${sq}"]`);
+                    if (cell) {
+                        const span = document.createElement('div');
+                        span.className = 'piece select-none text-2xl sm:text-3xl md:text-4xl flex items-center justify-center';
+                        span.textContent = pieceChar(ch);
+                        cell.appendChild(span);
+                    }
+                    fileIndex += 1;
+                }
+            }
+        }
+        function pieceChar(ch) {
+            const map = { p:'♟', r:'♜', n:'♞', b:'♝', q:'♛', k:'♚', P:'♙', R:'♖', N:'♘', B:'♗', Q:'♕', K:'♔' };
+            return map[ch] || '';
+        }
+        async function tryMakeMoveRealtime(id, from, to) {
+            // naive server-less move validation; last-write-wins
+            const ref = boardRef(id);
+            const snap = await ref.get();
+            const v = snap.exists() ? snap.val() : {};
+            const fen = v.fen && v.fen !== 'start' ? v.fen : 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
+            // Use a tiny in-page FEN updater (we do not fully validate chess rules here)
+            // For MVP: just write a "pseudo-move" marker to force sync; real validation would use server or chess.js with turns.
+            v.lastMove = { from, to, t: Date.now() };
+            v.fen = fen; // keep existing until a full engine is added
+            v.turn = v.turn === 'w' ? 'b' : 'w';
+            await ref.set(v);
         }
 
         // Initialize
