@@ -20,6 +20,7 @@
         .dark { background-color: #b58863; }
         .board-grid { display: flex; flex-wrap: wrap; border-radius: 0.75rem; overflow: hidden; border: 2px solid rgba(0,0,0,0.1); }
         .tag { font-variant-numeric: tabular-nums; }
+        .piece-img { position: absolute; inset: 0; background-size: 90% 90%; background-repeat: no-repeat; background-position: center; pointer-events: none; }
     </style>
 </head>
 
@@ -51,7 +52,7 @@
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
                         <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold gradient-text">Chess Arena</h1>
-                        <p class="text-gray-700">Play up to four matches at once. Invite friends, spectate one board at a time, and join the queue if all boards are busy.</p>
+                        <p class="text-gray-700">Chess Arena — four live boards, instant invites, real‑time play, and a slick spectator mode. Claim a seat, reveal a board, and battle in style.</p>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <button id="bookSlotBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 via-cyan-500 to-purple-600 hover:from-purple-600 hover:via-indigo-600 hover:to-cyan-500 shadow">
@@ -64,7 +65,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <!-- Boards 1..4 -->
                     <div id="board-card-1" class="glass p-4 bg-white/70 border border-indigo-100">
                         <div class="flex items-start justify-between mb-3">
                             <div class="flex items-center gap-2">
@@ -178,16 +178,14 @@
                     </div>
                 </div>
 
-                <div class="mt-8 text-sm text-gray-600">
-                    <p>
-                        Notes: This is a front-end prototype. Spectator counts and queues are stored in your browser only. Invite links include a board id and will select that board upon opening.
-                    </p>
+                <div class="mt-8 text-sm text-gray-700">
+                    <p class="text-center">Tip: Copy an invite from any board to bring a friend straight into that match.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Firebase config for compat SDK (provided by user) -->
+    
     <script>
         window.FIREBASE_CONFIG = {
           apiKey: "AIzaSyCDfFDf8PCKKKCBWFPhpRX_ln-qnU61oFk",
@@ -199,7 +197,7 @@
           appId: "1:917845016237:web:a2f7ad1d637823cc409024"
         };
     </script>
-    <!-- Chess rules engine -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -221,6 +219,8 @@
             myId: null,
             currentWatching: null
         };
+        const boardHasTwoPlayers = new Map();
+        const boardMyColor = new Map();
 
         (function tryInitFirebase(){
             try {
@@ -330,10 +330,13 @@
             const active = getActiveBoard();
             BOARD_IDS.forEach(id => {
                 const boardEl = document.getElementById(`board-${id}`);
-                if (active === id) {
-                    boardEl.classList.remove('board-blur');
-                } else {
-                    boardEl.classList.add('board-blur');
+                const two = boardHasTwoPlayers.get(id) === true;
+                const shouldReveal = realtime.enabled ? (two && active === id) : (active === id);
+                const btn = document.querySelector(`#board-card-${id} .reveal-btn`);
+                if (shouldReveal) boardEl.classList.remove('board-blur'); else boardEl.classList.add('board-blur');
+                // Hide reveal button once clicked (active board); show on others
+                if (btn) {
+                    if (active === id) btn.classList.add('hidden'); else btn.classList.remove('hidden');
                 }
             });
         }
@@ -343,6 +346,7 @@
                 btn.addEventListener('click', () => {
                     const id = parseInt(btn.getAttribute('data-board'), 10);
                     setActiveBoard(id);
+                    btn.classList.add('hidden');
                 });
             });
             document.querySelectorAll('.join-btn').forEach(btn => {
@@ -366,6 +370,7 @@
                     if (!cell) return;
                     if (getActiveBoard() !== id) return;
                     if (!realtime.enabled) return; // online only
+                    if (!boardMyColor.get(id)) return; // must be seated
                     const sq = cell.dataset.square;
                     if (!selected) { selected = sq; cell.classList.add('ring-2','ring-indigo-500'); return; }
                     const from = selected; const to = sq; selected = null;
@@ -528,8 +533,16 @@
                     if (players[color] === realtime.myId) players[color] = null;
                 });
                 return players;
-            }).finally(() => {
+            }).finally(async () => {
                 statusEl.textContent = 'Idle';
+                // If less than 2 players remain, blur board again
+                try {
+                    const snap = await boardRef(id).child('players').get();
+                    const p = snap.val() || {};
+                    const two = Boolean(p.white) && Boolean(p.black);
+                    boardHasTwoPlayers.set(id, two);
+                    applyBlurStates();
+                } catch {}
             });
         }
         function listenBoardState(id) {
@@ -540,6 +553,10 @@
                 const players = (v.players)||{};
                 const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
                 statusEl.textContent = `Players: ${players.white? 'W✓':'W·'} ${players.black? 'B✓':'B·'}${myColor? ' • You: '+(myColor==='w'?'White':'Black'):''}`;
+                boardMyColor.set(id, myColor);
+                const two = Boolean(players.white) && Boolean(players.black);
+                boardHasTwoPlayers.set(id, two);
+                applyBlurStates();
                 // render pieces if fen present
                 if (v.fen && v.fen !== 'start') {
                     const boardEl = document.getElementById(`board-${id}`);
@@ -554,6 +571,7 @@
         function renderFenToBoard(container, fen) {
             // Clear existing pieces
             container.querySelectorAll('.piece').forEach(p => p.remove());
+            container.querySelectorAll('.piece-img').forEach(p => p.remove());
             const rows = fen.split(' ')[0].split('/');
             for (let r = 0; r < 8; r++) {
                 let fileIndex = 0;
@@ -564,18 +582,21 @@
                     const sq = `${fileChar}${rank}`;
                     const cell = container.querySelector(`[data-square="${sq}"]`);
                     if (cell) {
-                        const span = document.createElement('div');
-                        span.className = 'piece select-none text-2xl sm:text-3xl md:text-4xl flex items-center justify-center';
-                        span.textContent = pieceChar(ch);
-                        cell.appendChild(span);
+                        const img = document.createElement('div');
+                        img.className = 'piece-img';
+                        img.style.backgroundImage = `url(${pieceImageUrl(ch)})`;
+                        cell.appendChild(img);
                     }
                     fileIndex += 1;
                 }
             }
         }
-        function pieceChar(ch) {
-            const map = { p:'♟', r:'♜', n:'♞', b:'♝', q:'♛', k:'♚', P:'♙', R:'♖', N:'♘', B:'♗', Q:'♕', K:'♔' };
-            return map[ch] || '';
+        function pieceImageUrl(ch) {
+            const base = 'https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/img/chesspieces/wikipedia';
+            const isWhite = ch === ch.toUpperCase();
+            const type = ch.toUpperCase();
+            const file = (isWhite ? 'w' : 'b') + type + '.png';
+            return `${base}/${file}`;
         }
         async function tryMakeMoveRealtime(id, from, to) {
             if (!realtime.enabled) return;
