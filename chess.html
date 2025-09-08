@@ -187,30 +187,20 @@
         </div>
     </main>
 
-    <!-- Optional: Paste your Firebase config below to enable realtime sync -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
+    <!-- Firebase config for compat SDK (provided by user) -->
+    <script>
+        window.FIREBASE_CONFIG = {
           apiKey: "AIzaSyCDfFDf8PCKKKCBWFPhpRX_ln-qnU61oFk",
           authDomain: "chess-0021.firebaseapp.com",
+          databaseURL: "https://chess-0021-default-rtdb.europe-west1.firebasedatabase.app/",
           projectId: "chess-0021",
           storageBucket: "chess-0021.firebasestorage.app",
           messagingSenderId: "917845016237",
-          appId: "1:917845016237:web:a2f7ad1d637823cc409024",
-          measurementId: "G-1WJ5EE56D6"
+          appId: "1:917845016237:web:a2f7ad1d637823cc409024"
         };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
+    </script>
+    <!-- Chess rules engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <script>
@@ -517,7 +507,7 @@
                 // assign color
                 if (!current.players.white) current.players.white = realtime.myId;
                 else if (!current.players.black) current.players.black = realtime.myId;
-                current.fen = current.fen || 'start';
+                current.fen = current.fen || 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
                 current.turn = current.turn || 'w';
                 current.updatedAt = Date.now();
                 return current;
@@ -588,17 +578,27 @@
             return map[ch] || '';
         }
         async function tryMakeMoveRealtime(id, from, to) {
-            // naive server-less move validation; last-write-wins
+            if (!realtime.enabled) return;
             const ref = boardRef(id);
             const snap = await ref.get();
             const v = snap.exists() ? snap.val() : {};
-            const fen = v.fen && v.fen !== 'start' ? v.fen : 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
-            // Use a tiny in-page FEN updater (we do not fully validate chess rules here)
-            // For MVP: just write a "pseudo-move" marker to force sync; real validation would use server or chess.js with turns.
-            v.lastMove = { from, to, t: Date.now() };
-            v.fen = fen; // keep existing until a full engine is added
-            v.turn = v.turn === 'w' ? 'b' : 'w';
-            await ref.set(v);
+            const players = v.players || {};
+            const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
+            if (!myColor) { alert('Join this board first.'); return; }
+            if ((v.turn || 'w') !== myColor) { alert('Not your turn.'); return; }
+
+            const game = new Chess();
+            const startFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+            try { game.load(v.fen || startFen); } catch { game.load(startFen); }
+
+            const move = game.move({ from, to, promotion: 'q' });
+            if (!move) { alert('Illegal move.'); return; }
+
+            await ref.update({
+                fen: game.fen(),
+                turn: game.turn(),
+                lastMove: { from, to, t: Date.now() }
+            });
         }
 
         // Initialize
