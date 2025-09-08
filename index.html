@@ -4,457 +4,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess Arena | Mohamed Abdelaziz</title>
+    <title>Mohamed Abdelaziz | DsMans0021</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="icon" href="https://avatars.githubusercontent.com/u/136956569?v=4" />
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255,255,255,0.15); box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37); backdrop-filter: blur(8px); border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.18); }
-        .gradient-text { background: linear-gradient(90deg, #6366f1, #06b6d4, #a21caf); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-        .board-blur { filter: blur(10px) grayscale(40%); pointer-events: none; }
-        .square { width: 12.5%; padding-bottom: 12.5%; position: relative; }
-        .square > div { position: absolute; inset: 0; }
-        .light { background-color: #f0d9b5; }
-        .dark { background-color: #b58863; }
-        .board-grid { display: flex; flex-wrap: wrap; border-radius: 0.75rem; overflow: hidden; border: 2px solid rgba(0,0,0,0.1); }
-        .tag { font-variant-numeric: tabular-nums; }
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #6366f1, #06b6d4, #a21caf);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .neon {
+            text-shadow: 0 0 8px #818cf8, 0 0 16px #06b6d4;
+        }
+        
+        .icon-bg {
+            background: linear-gradient(135deg, #818cf8 40%, #06b6d4 100%);
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .responsive-iframe {
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+        }
+
+        @media (min-width: 640px) {
+            .responsive-iframe {
+                min-height: 300px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .responsive-iframe {
+                min-height: 400px;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-gray-900">
 
+    <!-- Navigation -->
     <nav class="fixed w-full z-20 top-0 left-0 bg-white/80 backdrop-blur shadow-sm">
         <div class="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
             <div class="flex items-center gap-2">
                 <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-indigo-400" />
                 <span class="font-bold text-indigo-700 text-base sm:text-lg">Mohamed Abdelaziz</span>
             </div>
-            <div class="hidden lg:flex gap-3">
-                <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-indigo-600 text-white rounded-full shadow hover:scale-105 transition">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Home
-                </a>
-                <a href="tools.html" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-indigo-700 border border-indigo-200 rounded-full shadow hover:bg-indigo-50 transition">
-                    <i class="fa-solid fa-toolbox"></i> Tools
-                </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="space-x-4 lg:space-x-6 text-indigo-700 font-semibold hidden lg:flex">
+                <a href="#about" class="hover:text-cyan-600 transition">About</a>
+                <a href="#skills" class="hover:text-cyan-600 transition">Skills</a>
+                <a href="#projects" class="hover:text-cyan-600 transition">Projects</a>
+                <a href="#achievements" class="hover:text-cyan-600 transition">Achievements</a>
+                <a href="#music" class="hover:text-cyan-600 transition">Music</a>
+                <a href="#games" class="hover:text-cyan-600 transition">Games</a>
+                <a href="#device-info" class="hover:text-cyan-600 transition">Device Info</a>
+                <a href="#contact" class="hover:text-cyan-600 transition">Contact</a>
             </div>
-            <a href="index.html" class="lg:hidden text-indigo-700 text-xl" aria-label="Back">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-indigo-700 text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white/95 backdrop-blur shadow-xl lg:hidden">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <span class="font-bold text-indigo-700 text-lg">Menu</span>
+                    <button id="close-mobile-menu" class="text-indigo-700 text-xl">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <div class="max-w-4xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
+                        <a href="#about" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">About</a>
+                        <a href="#skills" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Skills</a>
+                        <a href="#projects" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Projects</a>
+                        <a href="#achievements" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Achievements</a>
+                        <a href="#music" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Music</a>
+                        <a href="#games" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Games</a>
+                        <a href="#device-info" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Device Info</a>
+                        <a href="#contact" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Contact</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main class="pt-24 px-4 pb-16">
-        <div class="max-w-6xl mx-auto">
-            <div class="glass p-6 sm:p-8 lg:p-10 shadow-2xl bg-white/70 border border-indigo-200">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold gradient-text">Chess Arena</h1>
-                        <p class="text-gray-700">Play up to four matches at once. Invite friends, spectate one board at a time, and join the queue if all boards are busy.</p>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-700 via-blue-600 to-purple-700 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div class="relative z-10 flex flex-col items-center text-center px-4 py-20">
+            <div class="w-24 h-24 sm:w-36 sm:h-36 rounded-full glass flex items-center justify-center mb-6 sm:mb-8 shadow-2xl border-4 border-white animate-bounce-slow">
+                <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-20 h-20 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-indigo-400 shadow-lg" />
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 gradient-text neon drop-shadow-lg">Mohamed Abdelaziz</h1>
+            <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium mb-6 sm:mb-8 drop-shadow animate-fadeIn">STEM & Game Development Mentor <span class="inline-block ml-2 animate-wiggle">🇪🇬</span></p>
+            <a href="#contact" class="inline-flex items-center gap-2 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-cyan-400 to-indigo-600 text-white font-bold rounded-full shadow-xl hover:scale-105 hover:from-indigo-500 hover:to-cyan-400 transition-all duration-300 text-base sm:text-lg">
+                <i class="fa-solid fa-paper-plane animate-pulse"></i> Contact Me
+            </a>
+        </div>
+        <!-- Decorative Blobs -->
+        <div class="absolute top-0 left-0 w-40 h-40 sm:w-80 sm:h-80 bg-purple-400 opacity-30 rounded-full blur-3xl -z-10 animate-blob"></div>
+        <div class="absolute bottom-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-cyan-400 opacity-30 rounded-full blur-3xl -z-10 animate-blob animation-delay-2000"></div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="py-12 sm:py-16 lg:py-20 px-4 bg-white relative">
+        <div class="max-w-3xl mx-auto text-center glass p-6 sm:p-8 lg:p-10 shadow-xl">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 gradient-text neon">About Me</h2>
+            <p class="text-base sm:text-lg text-gray-700 leading-relaxed animate-fadeIn">
+                I'm <span class="font-semibold text-indigo-600">Mohamed Abdelaziz</span>, a mentor at <span class="font-semibold text-cyan-600">Hack Club STEM October</span>, passionate about <span class="text-purple-600">game development</span>,
+                <span class="text-blue-600">technology</span>, and empowering young coders. I love building cool projects and sharing knowledge!
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10 text-center gradient-text neon">Skills</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="icon-bg w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-2xl sm:text-3xl">
+                        <i class="fa-brands fa-unity"></i>
                     </div>
-                    <div class="flex flex-wrap gap-2">
-                        <button id="bookSlotBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 via-cyan-500 to-purple-600 hover:from-purple-600 hover:via-indigo-600 hover:to-cyan-500 shadow">
-                            <i class="fa-solid fa-clock"></i> Book a Match
-                        </button>
-                        <button id="clearLocalBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">
-                            <i class="fa-solid fa-broom"></i> Reset (local)
-                        </button>
-                    </div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-blue-600">C# & Unity</h3>
+                    <p class="text-sm sm:text-base text-gray-700 text-center">Unity game development, OOP, interactive apps, and fun gameplay mechanics.</p>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <!-- Boards 1..4 -->
-                    <div id="board-card-1" class="glass p-4 bg-white/70 border border-indigo-100">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold tag">1</span>
-                                <h2 class="font-semibold text-indigo-800">Board 1</h2>
-                            </div>
-                            <div class="text-sm text-gray-600 flex items-center gap-3">
-                                <span><i class="fa-solid fa-eye"></i> <span id="watchers-1">0</span></span>
-                                <a id="invite-1" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <div id="board-1" class="board-grid aspect-square bg-white"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <button data-board="1" class="reveal-btn inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow">
-                                    <i class="fa-solid fa-eye"></i> Reveal this match
-                                </button>
-                            </div>
-                        </div>
+                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="icon-bg w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-2xl sm:text-3xl bg-gradient-to-br from-green-400 to-blue-400">
+                        <i class="fa-brands fa-python"></i>
                     </div>
-
-                    <div id="board-card-2" class="glass p-4 bg-white/70 border border-indigo-100">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold tag">2</span>
-                                <h2 class="font-semibold text-indigo-800">Board 2</h2>
-                            </div>
-                            <div class="text-sm text-gray-600 flex items-center gap-3">
-                                <span><i class="fa-solid fa-eye"></i> <span id="watchers-2">0</span></span>
-                                <a id="invite-2" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <div id="board-2" class="board-grid aspect-square bg-white"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <button data-board="2" class="reveal-btn inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow">
-                                    <i class="fa-solid fa-eye"></i> Reveal this match
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="board-card-3" class="glass p-4 bg-white/70 border border-indigo-100">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold tag">3</span>
-                                <h2 class="font-semibold text-indigo-800">Board 3</h2>
-                            </div>
-                            <div class="text-sm text-gray-600 flex items-center gap-3">
-                                <span><i class="fa-solid fa-eye"></i> <span id="watchers-3">0</span></span>
-                                <a id="invite-3" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <div id="board-3" class="board-grid aspect-square bg-white"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <button data-board="3" class="reveal-btn inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow">
-                                    <i class="fa-solid fa-eye"></i> Reveal this match
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="board-card-4" class="glass p-4 bg-white/70 border border-indigo-100">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold tag">4</span>
-                                <h2 class="font-semibold text-indigo-800">Board 4</h2>
-                            </div>
-                            <div class="text-sm text-gray-600 flex items-center gap-3">
-                                <span><i class="fa-solid fa-eye"></i> <span id="watchers-4">0</span></span>
-                                <a id="invite-4" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <div id="board-4" class="board-grid aspect-square bg-white"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <button data-board="4" class="reveal-btn inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow">
-                                    <i class="fa-solid fa-eye"></i> Reveal this match
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-green-600">Python</h3>
+                    <p class="text-sm sm:text-base text-gray-700 text-center">Automation, scripting, Raspberry Pi, and building creative tools for productivity.</p>
                 </div>
-
-                <div class="mt-8 text-sm text-gray-600">
-                    <p>
-                        Notes: This is a front-end prototype. Spectator counts and queues are stored in your browser only. Invite links include a board id and will select that board upon opening.
-                    </p>
+                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300 sm:col-span-2 lg:col-span-1">
+                    <div class="icon-bg w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-2xl sm:text-3xl bg-gradient-to-br from-purple-400 to-pink-400">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600">Cybersecurity</h3>
+                    <p class="text-sm sm:text-base text-gray-700 text-center">Cisco certified, ethical hacking, and a strong foundation in security principles.</p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Optional: Paste your Firebase config below to enable realtime sync -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyCDfFDf8PCKKKCBWFPhpRX_ln-qnU61oFk",
-          authDomain: "chess-0021.firebaseapp.com",
-          projectId: "chess-0021",
-          storageBucket: "chess-0021.firebasestorage.app",
-          messagingSenderId: "917845016237",
-          appId: "1:917845016237:web:a2f7ad1d637823cc409024",
-          measurementId: "G-1WJ5EE56D6"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+    <!-- Projects -->
+    <section id="projects" class="py-12 sm:py-16 lg:py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10 text-center gradient-text neon">Projects</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl icon-bg shadow-lg">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h3 class="font-semibold text-base sm:text-lg mb-2 text-indigo-700">Unity Games</h3>
+                    <p class="text-sm sm:text-base text-gray-700 text-center">2D/3D games built with Unity and C#. Fun, interactive, and creative!</p>
+                </div>
+                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl bg-gradient-to-br from-green-400 to-blue-400 shadow-lg text-white">
+                        <i class="fa-brands fa-raspberry-pi"></i>
+                    </div>
+                    <h3 class="font-semibold text-base sm:text-lg mb-2 text-green-700">Raspberry Pi Experiments</h3>
+                    <p class="text-sm sm:text-base text-gray-700 text-center">IoT, automation, and STEM projects using Raspberry Pi and Python.</p>
+                </div>
+                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300 sm:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl bg-gradient-to-br from-blue-400 to-purple-400 shadow-lg text-white">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="font-semibold text-base sm:text-lg mb-2 text-blue-700">Python Tools</h3>
+                    <p class="text-sm sm:text-base text-gray-700 text-center">Video/audio converters, productivity scripts, and automation tools.</p>
+                </div>
+            </div>
+            <div class="mt-10 flex justify-center gap-4 flex-wrap">
+                <a href="tools.html" class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-white text-base sm:text-lg font-bold shadow-xl bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 hover:from-amber-500 hover:via-rose-500 hover:to-orange-500 transition-transform transform hover:scale-105">
+                    <i class="fa-solid fa-toolbox"></i> Explore My Tools
+                </a>
+                <a href="chess.html" class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-white text-base sm:text-lg font-bold shadow-xl bg-gradient-to-r from-indigo-600 via-cyan-500 to-purple-600 hover:from-purple-600 hover:via-indigo-600 hover:to-cyan-500 transition-transform transform hover:scale-105">
+                    <i class="fa-solid fa-chess"></i> Chess Arena
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-purple-50 via-indigo-50 to-cyan-50">
+        <div class="max-w-4xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center gradient-text neon">Achievements</h2>
+            <ul class="space-y-4 sm:space-y-6 text-sm sm:text-base lg:text-lg text-gray-700">
+                <li>
+                    <span class="font-semibold text-indigo-600">Built a Personal AI Assistant on Raspberry Pi Zero 2 W:</span> Created a smart voice assistant similar to Siri or Alexa, running on a resource-constrained Raspberry Pi Zero 2 W. Demonstrated
+                    ability to build functional AI tools on limited hardware.
+                </li>
+                <li>
+                    <span class="font-semibold text-green-600">Developed a Video Converter & Media Player in Python:</span> Combined Tkinter, MoviePy, OpenCV, and Pygame to make a desktop app that converts MP4 to MP3 and plays media, showing skills in
+                    GUI and media processing.
+                </li>
+                <li>
+                    <span class="font-semibold text-purple-600">Created a Two-Stage Air Filtration System (CO₂ Reducer Project):</span> Engineered a prototype that filters air using water and calcium hydroxide to absorb CO₂, applying scientific methods
+                    for environmental impact.
+                </li>
+                <li>
+                    <span class="font-semibold text-blue-600">Made Games for itch.io Game Jams:</span> Participated in online game jams, submitting complete Unity/C# games under tight deadlines, reflecting creativity and real-world indie game experience.
+                </li>
+                <li>
+                    <span class="font-semibold text-cyan-600">Customized a Smart MP3 and Video Player for Local Media Use:</span> Built a media interface with GUI controls, image previews (PIL), and responsive design, focusing on user experience beyond
+                    basic playback.
+                </li>
+                <li>
+                    <span class="font-semibold text-pink-600">Overclocked and Optimized Raspberry Pi Zero 2 W for Gaming & Projects:</span> Modified configs, safely overclocked, and tested OSes to boost performance, running games like Doom and exploring
+                    retro consoles on a small board.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    
+<!-- Music Info -->
+    <section id="music" class="py-12 sm:py-16 lg:py-20 px-4 bg-white">
+        <div class="max-w-3xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-center gradient-text neon">My Music Taste</h2>
+            <div class="responsive-iframe">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2RAfvrJZQ7uq9Wcwbv9AU8?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+     <!-- Games -->
+    <section id="games" class="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-purple-50 via-indigo-50 to-cyan-50">
+        <div class="max-w-4xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center gradient-text neon">Games</h2>
+            <div class="responsive-iframe">
+                <iframe frameborder="0" src="https://itch.io/embed-upload/13451657?color=333333" allowfullscreen="" width="100%" height="450"><a href="https://itskareem.itch.io/maya">Play Maya on itch.io</a></iframe>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Device Info -->
+    <section id="device-info" class="py-12 sm:py-16 lg:py-20 px-4 bg-white">
+        <div class="max-w-3xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-center gradient-text neon">My Device Info</h2>
+            <ul class="text-sm sm:text-base lg:text-lg text-gray-700 space-y-2">
+                <li><span class="font-semibold text-indigo-600">Operating System:</span> Windows 11 Pro 64-bit (10.0, Build 26100)</li>
+                <li><span class="font-semibold text-blue-600">Language:</span> English (Regional Setting: English)</li>
+                <li><span class="font-semibold text-cyan-600">System Manufacturer:</span> HP</li>
+                <li><span class="font-semibold text-purple-600">System Model:</span> HP ProBook 650 G4</li>
+                <li><span class="font-semibold text-green-600">BIOS:</span> Q83 Ver. 01.24.00</li>
+                <li><span class="font-semibold text-pink-600">Processor:</span> Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (8 CPUs), ~2.1GHz</li>
+                <li><span class="font-semibold text-yellow-600">Memory:</span> 16384MB RAM</li>
+                <li><span class="font-semibold text-red-600">Page file:</span> 8939MB used, 8311MB available</li>
+                <li><span class="font-semibold text-indigo-400">DirectX Version:</span> DirectX 12</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50">
+        <div class="max-w-xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-2xl">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center gradient-text neon">Contact Me</h2>
+            <form class="space-y-4 sm:space-y-6">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base" for="name">Name</label>
+                    <div class="relative">
+                        <input class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10 text-sm sm:text-base" type="text" id="name" name="name" required>
+                        <span class="absolute left-3 top-2 sm:top-3 text-indigo-400"><i class="fa-solid fa-user"></i></span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base" for="email">Email</label>
+                    <div class="relative">
+                        <input class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10 text-sm sm:text-base" type="email" id="email" name="email" required>
+                        <span class="absolute left-3 top-2 sm:top-3 text-cyan-400"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base" for="message">Message</label>
+                    <div class="relative">
+                        <textarea class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10 text-sm sm:text-base" id="message" name="message" rows="4" required></textarea>
+                        <span class="absolute left-3 top-2 sm:top-3 text-purple-400"><i class="fa-solid fa-comment-dots"></i></span>
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-2 sm:py-3 bg-gradient-to-r from-indigo-600 to-cyan-400 text-white font-bold rounded-lg hover:from-cyan-400 hover:to-indigo-600 transition duration-300 shadow-lg text-sm sm:text-base lg:text-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-indigo-800 to-cyan-700 text-white py-6 sm:py-8">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+            <div class="mb-4 md:mb-0 text-center md:text-left text-sm sm:text-base lg:text-lg">
+                &copy; 2024 Mohamed Abdelaziz. All rights reserved.
+            </div>
+            <div class="flex space-x-6 sm:space-x-8 text-xl sm:text-2xl">
+                <a href="https://github.com/DsMans0021" target="_blank" class="hover:text-cyan-300 transition" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://linktr.ee/DsMans0021/" target="_blank" class="hover:text-cyan-300 transition" aria-label="Linktree">
+                    <i class="fa-solid fa-tree"></i>
+                </a>
+                <a href="https://hackclub.com/" target="_blank" class="hover:text-cyan-300 transition" aria-label="Hack Club">
+                    <i class="fa-solid fa-code"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth scroll for anchor links -->
     <script>
-        // Build static chessboard UI (no engine) and handle reveal/watch logic
-        const BOARD_IDS = [1,2,3,4];
-        const STORAGE_KEYS = {
-            activeBoard: 'chess_active_board',
-            watchersPrefix: 'chess_watchers_',
-            queue: 'chess_queue',
-            busyBoards: 'chess_busy_boards'
-        };
-
-        // Realtime (Firebase) setup: dual-mode
-        const realtime = {
-            enabled: false,
-            app: null,
-            db: null,
-            myId: null,
-            currentWatching: null
-        };
-
-        (function tryInitFirebase(){
-            try {
-                if (window.FIREBASE_CONFIG && firebase?.initializeApp) {
-                    realtime.app = firebase.initializeApp(window.FIREBASE_CONFIG);
-                    realtime.db = firebase.database();
-                    realtime.enabled = true;
-                    realtime.myId = localStorage.getItem('chess_client_id') || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
-                    localStorage.setItem('chess_client_id', realtime.myId);
-                    subscribeBusyBoardsRealtime();
-                    BOARD_IDS.forEach(id => subscribeWatchersRealtime(id));
-                }
-            } catch (e) {
-                // stay in local-only mode
-            }
-        })();
-
-        function initBoards() {
-            BOARD_IDS.forEach(id => {
-                const boardEl = document.getElementById(`board-${id}`);
-                buildBoardSquares(boardEl);
-            });
-        }
-
-        function buildBoardSquares(container) {
-            container.innerHTML = '';
-            container.classList.add('rounded-xl', 'overflow-hidden');
-            for (let row = 0; row < 8; row++) {
-                for (let col = 0; col < 8; col++) {
-                    const square = document.createElement('div');
-                    square.className = 'square';
-                    const inner = document.createElement('div');
-                    const isLight = (row + col) % 2 === 0;
-                    inner.className = isLight ? 'light' : 'dark';
-                    square.appendChild(inner);
-                    container.appendChild(square);
-                }
-            }
-        }
-
-        function getQueue() {
-            try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.queue) || '[]'); } catch { return []; }
-        }
-        function setQueue(q) {
-            localStorage.setItem(STORAGE_KEYS.queue, JSON.stringify(q));
-        }
-        function getBusyBoards() {
-            if (realtime.enabled) {
-                // In realtime mode, local getter is unused by subscribers; fallback to local cache
-                try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEYS.busyBoards) || '[]')); } catch { return new Set(); }
-            } else {
-                try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEYS.busyBoards) || '[]')); } catch { return new Set(); }
-            }
-        }
-        function setBusyBoards(set) {
-            localStorage.setItem(STORAGE_KEYS.busyBoards, JSON.stringify(Array.from(set)));
-            if (realtime.enabled) {
-                const obj = {};
-                Array.from(set).forEach(id => obj[id] = true);
-                // write full state (simple cooperative demo)
-                firebase.database().ref('busyBoards').set(obj).catch(()=>{});
-            }
-        }
-
-        function updateInviteLinks() {
-            BOARD_IDS.forEach(id => {
-                const url = new URL(window.location.href);
-                url.searchParams.set('board', String(id));
-                const a = document.getElementById(`invite-${id}`);
-                a.href = url.toString();
-                a.addEventListener('click', (e) => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
                     e.preventDefault();
-                    navigator.clipboard.writeText(a.href).then(() => {
-                        a.textContent = 'Copied!';
-                        setTimeout(() => { a.innerHTML = '<i class="fa-solid fa-link"></i> Invite'; }, 1200);
+                    target.scrollIntoView({
+                        behavior: 'smooth'
                     });
-                });
-            });
-        }
-
-        function getWatchers(boardId) {
-            return parseInt(localStorage.getItem(STORAGE_KEYS.watchersPrefix + boardId) || '0', 10);
-        }
-        function setWatchers(boardId, count) {
-            localStorage.setItem(STORAGE_KEYS.watchersPrefix + boardId, String(Math.max(0, count)));
-        }
-        function renderWatchers() {
-            BOARD_IDS.forEach(id => {
-                document.getElementById(`watchers-${id}`).textContent = String(getWatchers(id));
-            });
-        }
-
-        function setActiveBoard(boardId) {
-            localStorage.setItem(STORAGE_KEYS.activeBoard, String(boardId));
-            if (realtime.enabled) {
-                updateRealtimePresence(boardId);
-            }
-            applyBlurStates();
-        }
-        function getActiveBoard() {
-            return parseInt(localStorage.getItem(STORAGE_KEYS.activeBoard) || '0', 10) || null;
-        }
-        function applyBlurStates() {
-            const active = getActiveBoard();
-            BOARD_IDS.forEach(id => {
-                const boardEl = document.getElementById(`board-${id}`);
-                if (active === id) {
-                    boardEl.classList.remove('board-blur');
-                } else {
-                    boardEl.classList.add('board-blur');
-                }
-            });
-        }
-
-        function attachRevealHandlers() {
-            document.querySelectorAll('.reveal-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = parseInt(btn.getAttribute('data-board'), 10);
-                    setActiveBoard(id);
-                });
-            });
-        }
-
-        function maybeSelectBoardFromUrl() {
-            const url = new URL(window.location.href);
-            const id = parseInt(url.searchParams.get('board') || '0', 10);
-            if (id && BOARD_IDS.includes(id)) {
-                setActiveBoard(id);
-                if (!realtime.enabled) {
-                    // Bump watchers for selected board locally
-                    setWatchers(id, getWatchers(id) + 1);
-                    renderWatchers();
-                }
-            }
-        }
-
-        function setupQueueAndBooking() {
-            const bookBtn = document.getElementById('bookSlotBtn');
-            bookBtn.addEventListener('click', async () => {
-                if (realtime.enabled) {
-                    try {
-                        const snap = await firebase.database().ref('busyBoards').get();
-                        const busyMap = snap.exists() ? snap.val() : {};
-                        const busy = new Set(Object.keys(busyMap || {}).map(n => parseInt(n,10)));
-                        const free = BOARD_IDS.find(id => !busy.has(id));
-                        if (free) {
-                            busy.add(free);
-                            setBusyBoards(busy);
-                            setActiveBoard(free);
-                            alert(`You got Board ${free}. Share the invite to play!`);
-                            return;
-                        }
-                        // enqueue cooperatively
-                        const token = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
-                        const ref = firebase.database().ref('queue').push();
-                        await ref.set({ token, time: Date.now() });
-                        alert('All boards busy. You are added to the waitlist. Keep this tab open.');
-                    } catch (e) {
-                        alert('Network issue. Please try again.');
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
                     }
-                } else {
-                    const busy = getBusyBoards();
-                    const free = BOARD_IDS.find(id => !busy.has(id));
-                    if (free) {
-                        busy.add(free);
-                        setBusyBoards(busy);
-                        setActiveBoard(free);
-                        alert(`You got Board ${free}. Share the invite to play!`);
-                        return;
-                    }
-                    const q = getQueue();
-                    const token = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
-                    q.push({ token, time: Date.now() });
-                    setQueue(q);
-                    alert('All boards busy. You are added to the waitlist. Keep this tab open.');
                 }
             });
+        });
 
-            // Demo: free up a board after leaving or via reset button
-            window.addEventListener('beforeunload', () => {
-                // No-op demo; real app would signal server
-            });
-        }
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        function setupReset() {
-            document.getElementById('clearLocalBtn').addEventListener('click', () => {
-                BOARD_IDS.forEach(id => localStorage.removeItem(STORAGE_KEYS.watchersPrefix + id));
-                localStorage.removeItem(STORAGE_KEYS.activeBoard);
-                localStorage.removeItem(STORAGE_KEYS.queue);
-                localStorage.removeItem(STORAGE_KEYS.busyBoards);
-                if (realtime.enabled) {
-                    // Clear my presence
-                    updateRealtimePresence(null);
-                }
-                renderWatchers();
-                applyBlurStates();
-            });
-        }
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
 
-        // Realtime helpers
-        function updateRealtimePresence(boardId) {
-            if (!realtime.enabled) return;
-            const prev = realtime.currentWatching;
-            if (prev && prev !== boardId) {
-                const prevRef = firebase.database().ref(`boards/${prev}/watchers/${realtime.myId}`);
-                prevRef.remove().catch(()=>{});
+        closeMobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('open');
             }
-            if (boardId) {
-                const ref = firebase.database().ref(`boards/${boardId}/watchers/${realtime.myId}`);
-                ref.set(true).catch(()=>{});
-                ref.onDisconnect().remove().catch(()=>{});
-                realtime.currentWatching = boardId;
-            } else {
-                realtime.currentWatching = null;
-            }
-        }
-
-        function subscribeWatchersRealtime(boardId) {
-            if (!realtime.enabled) return;
-            const ref = firebase.database().ref(`boards/${boardId}/watchers`);
-            ref.on('value', snap => {
-                const val = snap.val() || {};
-                const count = Object.keys(val).length;
-                setWatchers(boardId, count);
-                renderWatchers();
-            });
-        }
-
-        function subscribeBusyBoardsRealtime() {
-            if (!realtime.enabled) return;
-            const ref = firebase.database().ref('busyBoards');
-            ref.on('value', snap => {
-                const val = snap.val() || {};
-                const set = new Set(Object.keys(val).map(n => parseInt(n,10)));
-                setBusyBoards(set); // also mirrors to local cache
-            });
-        }
-
-        // Initialize
-        initBoards();
-        attachRevealHandlers();
-        updateInviteLinks();
-        renderWatchers();
-        // Default: none visible until revealed or via URL
-        setActiveBoard(null);
-        maybeSelectBoardFromUrl();
-        setupQueueAndBooking();
-        setupReset();
+        });
     </script>
-
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 1.2s cubic-bezier(.4, 0, .2, 1) both;
+        }
+        
+        @keyframes wiggle {
+            0%,
+            100% {
+                transform: rotate(-8deg);
+            }
+            50% {
+                transform: rotate(8deg);
+            }
+        }
+        
+        .animate-wiggle {
+            animation: wiggle 1.2s infinite;
+        }
+        
+        @keyframes bounce-slow {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce-slow 2.5s infinite;
+        }
+        
+        @keyframes blob {
+            0%,
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+            33% {
+                transform: scale(1.1) translate(30px, -20px);
+            }
+            66% {
+                transform: scale(0.9) translate(-20px, 30px);
+            }
+        }
+        
+        .animate-blob {
+            animation: blob 12s infinite;
+        }
+        
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+    </style>
 </body>
 
+
 </html>
-
-
