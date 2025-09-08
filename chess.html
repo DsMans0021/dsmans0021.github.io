@@ -21,6 +21,7 @@
         .board-grid { display: flex; flex-wrap: wrap; border-radius: 0.75rem; overflow: hidden; border: 2px solid rgba(0,0,0,0.1); }
         .tag { font-variant-numeric: tabular-nums; }
         .piece-img { position: absolute; inset: 0; background-size: 88% 88%; background-repeat: no-repeat; background-position: center; pointer-events: none; }
+        .piece-sprite { position: absolute; inset: 0; background-repeat: no-repeat; background-position: center; background-size: 600% 200%; pointer-events: none; }
         .hl-selected { outline: 3px solid rgba(99,102,241,0.9); box-shadow: inset 0 0 0 9999px rgba(99,102,241,0.12); }
         .hl-dot::after { content: ''; position: absolute; top: 50%; left: 50%; width: 22%; height: 22%; transform: translate(-50%, -50%); border-radius: 999px; background: rgba(16,185,129,0.9); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); }
         .hl-capture::after { background: rgba(239,68,68,0.9); box-shadow: 0 0 0 4px rgba(239,68,68,0.2); }
@@ -226,6 +227,7 @@
           messagingSenderId: "917845016237",
           appId: "1:917845016237:web:a2f7ad1d637823cc409024"
         };
+        window.CHESS_SPRITE_URL = window.CHESS_SPRITE_URL || 'pieces.png';
     </script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
@@ -365,7 +367,7 @@
             BOARD_IDS.forEach(id => {
                 const boardEl = document.getElementById(`board-${id}`);
                 const two = boardHasTwoPlayers.get(id) === true;
-                const shouldReveal = realtime.enabled ? (two && active === id) : (active === id);
+                const shouldReveal = (active === id);
                 const btn = document.querySelector(`#board-card-${id} .reveal-btn`);
                 if (shouldReveal) boardEl.classList.remove('board-blur'); else boardEl.classList.add('board-blur');
                 // Hide reveal button once clicked (active board); show on others
@@ -722,6 +724,7 @@
             // Clear existing pieces
             container.querySelectorAll('.piece').forEach(p => p.remove());
             container.querySelectorAll('.piece-img').forEach(p => p.remove());
+            container.querySelectorAll('.piece-sprite').forEach(p => p.remove());
             const rows = fen.split(' ')[0].split('/');
             for (let r = 0; r < 8; r++) {
                 let fileIndex = 0;
@@ -733,13 +736,29 @@
                     const cell = container.querySelector(`[data-square="${sq}"]`);
                     if (cell) {
                         const img = document.createElement('div');
-                        img.className = 'piece-img';
-                        img.style.backgroundImage = `url(${pieceImageUrl(ch)})`;
+                        if (window.CHESS_SPRITE_URL) {
+                            img.className = 'piece-sprite';
+                            img.style.backgroundImage = `url(${window.CHESS_SPRITE_URL})`;
+                            const pos = spritePos(ch);
+                            img.style.backgroundPosition = pos;
+                        } else {
+                            img.className = 'piece-img';
+                            img.style.backgroundImage = `url(${pieceImageUrl(ch)})`;
+                        }
                         cell.appendChild(img);
                     }
                     fileIndex += 1;
                 }
             }
+        }
+        function spritePos(ch) {
+            const order = ['K','Q','R','B','N','P'];
+            const upper = ch.toUpperCase();
+            const isWhite = ch === upper;
+            const col = order.indexOf(upper);
+            const x = (col / 5) * 100; // 0..100
+            const y = isWhite ? 0 : 100;
+            return `${x}% ${y}%`;
         }
         function pieceImageUrl(ch) {
             const base = 'https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/img/chesspieces/wikipedia';
