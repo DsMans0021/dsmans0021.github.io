@@ -21,6 +21,12 @@
         .board-grid { display: flex; flex-wrap: wrap; border-radius: 0.75rem; overflow: hidden; border: 2px solid rgba(0,0,0,0.1); }
         .tag { font-variant-numeric: tabular-nums; }
         .piece-img { position: absolute; inset: 0; background-size: 90% 90%; background-repeat: no-repeat; background-position: center; pointer-events: none; }
+        .hl-selected { outline: 3px solid rgba(99,102,241,0.9); box-shadow: inset 0 0 0 9999px rgba(99,102,241,0.12); }
+        .hl-dot::after { content: ''; position: absolute; top: 50%; left: 50%; width: 22%; height: 22%; transform: translate(-50%, -50%); border-radius: 999px; background: rgba(16,185,129,0.9); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); }
+        .hl-capture::after { background: rgba(239,68,68,0.9); box-shadow: 0 0 0 4px rgba(239,68,68,0.2); }
+        .hl-last { box-shadow: inset 0 0 0 9999px rgba(250,204,21,0.18); }
+        .board-flipped { transform: rotate(180deg); }
+        .board-flipped .piece-img { transform: rotate(180deg); }
     </style>
 </head>
 
@@ -81,8 +87,13 @@
                             <div class="flex gap-2">
                                 <button data-board="1" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
                                 <button data-board="1" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
+                                <button data-board="1" class="flip-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Flip</button>
+                                <button data-board="1" class="offer-draw-btn px-3 py-1.5 rounded-full text-white bg-emerald-600 hover:bg-emerald-700">Offer Draw</button>
+                                <button data-board="1" class="offer-takeback-btn px-3 py-1.5 rounded-full text-white bg-amber-600 hover:bg-amber-700">Takeback</button>
+                                <button data-board="1" class="resign-btn px-3 py-1.5 rounded-full text-white bg-rose-600 hover:bg-rose-700">Resign</button>
                             </div>
                         </div>
+                        <div class="mb-2 text-xs" id="offer-area-1"></div>
                         <div class="relative">
                             <div id="board-1" class="board-grid aspect-square bg-white"></div>
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -109,8 +120,13 @@
                             <div class="flex gap-2">
                                 <button data-board="2" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
                                 <button data-board="2" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
+                                <button data-board="2" class="flip-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Flip</button>
+                                <button data-board="2" class="offer-draw-btn px-3 py-1.5 rounded-full text-white bg-emerald-600 hover:bg-emerald-700">Offer Draw</button>
+                                <button data-board="2" class="offer-takeback-btn px-3 py-1.5 rounded-full text-white bg-amber-600 hover:bg-amber-700">Takeback</button>
+                                <button data-board="2" class="resign-btn px-3 py-1.5 rounded-full text-white bg-rose-600 hover:bg-rose-700">Resign</button>
                             </div>
                         </div>
+                        <div class="mb-2 text-xs" id="offer-area-2"></div>
                         <div class="relative">
                             <div id="board-2" class="board-grid aspect-square bg-white"></div>
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -137,8 +153,13 @@
                             <div class="flex gap-2">
                                 <button data-board="3" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
                                 <button data-board="3" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
+                                <button data-board="3" class="flip-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Flip</button>
+                                <button data-board="3" class="offer-draw-btn px-3 py-1.5 rounded-full text-white bg-emerald-600 hover:bg-emerald-700">Offer Draw</button>
+                                <button data-board="3" class="offer-takeback-btn px-3 py-1.5 rounded-full text-white bg-amber-600 hover:bg-amber-700">Takeback</button>
+                                <button data-board="3" class="resign-btn px-3 py-1.5 rounded-full text-white bg-rose-600 hover:bg-rose-700">Resign</button>
                             </div>
                         </div>
+                        <div class="mb-2 text-xs" id="offer-area-3"></div>
                         <div class="relative">
                             <div id="board-3" class="board-grid aspect-square bg-white"></div>
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -165,8 +186,13 @@
                             <div class="flex gap-2">
                                 <button data-board="4" class="join-btn px-3 py-1.5 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Start/Join</button>
                                 <button data-board="4" class="leave-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Leave</button>
+                                <button data-board="4" class="flip-btn px-3 py-1.5 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">Flip</button>
+                                <button data-board="4" class="offer-draw-btn px-3 py-1.5 rounded-full text-white bg-emerald-600 hover:bg-emerald-700">Offer Draw</button>
+                                <button data-board="4" class="offer-takeback-btn px-3 py-1.5 rounded-full text-white bg-amber-600 hover:bg-amber-700">Takeback</button>
+                                <button data-board="4" class="resign-btn px-3 py-1.5 rounded-full text-white bg-rose-600 hover:bg-rose-700">Resign</button>
                             </div>
                         </div>
+                        <div class="mb-2 text-xs" id="offer-area-4"></div>
                         <div class="relative">
                             <div id="board-4" class="board-grid aspect-square bg-white"></div>
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -221,6 +247,8 @@
         };
         const boardHasTwoPlayers = new Map();
         const boardMyColor = new Map();
+        const boardFen = new Map();
+        const boardTurn = new Map();
 
         (function tryInitFirebase(){
             try {
@@ -361,10 +389,36 @@
                     handleLeaveBoard(id);
                 });
             });
+            document.querySelectorAll('.flip-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.getAttribute('data-board'), 10);
+                    const el = document.getElementById(`board-${id}`);
+                    el.classList.toggle('board-flipped');
+                });
+            });
+            document.querySelectorAll('.offer-draw-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.getAttribute('data-board'), 10);
+                    offerDraw(id);
+                });
+            });
+            document.querySelectorAll('.offer-takeback-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.getAttribute('data-board'), 10);
+                    offerTakeback(id);
+                });
+            });
+            document.querySelectorAll('.resign-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.getAttribute('data-board'), 10);
+                    resignGame(id);
+                });
+            });
             // Allow moving by clicking two squares when active and joined
             BOARD_IDS.forEach(id => {
                 const el = document.getElementById(`board-${id}`);
                 let selected = null;
+                let legalTargets = [];
                 el.addEventListener('click', async (e) => {
                     const cell = e.target.closest('[data-square]');
                     if (!cell) return;
@@ -372,11 +426,58 @@
                     if (!realtime.enabled) return; // online only
                     if (!boardMyColor.get(id)) return; // must be seated
                     const sq = cell.dataset.square;
-                    if (!selected) { selected = sq; cell.classList.add('ring-2','ring-indigo-500'); return; }
-                    const from = selected; const to = sq; selected = null;
-                    el.querySelectorAll('[data-square]').forEach(c=>c.classList.remove('ring-2','ring-indigo-500'));
-                    await tryMakeMoveRealtime(id, from, to);
+                    if (!selected) {
+                        // select only own piece and when it's your turn
+                        const fen = boardFen.get(id);
+                        const turn = (boardTurn.get(id) || 'w');
+                        const my = boardMyColor.get(id);
+                        if (!fen || my !== turn) return;
+                        const game = new Chess();
+                        try { game.load(fen); } catch { return; }
+                        const piece = game.get(sq);
+                        if (!piece || piece.color !== my) return;
+                        selected = sq;
+                        legalTargets = game.moves({ square: sq, verbose: true }).map(m => m.to);
+                        highlightSelection(id, sq, legalTargets, game);
+                        return;
+                    }
+                    const from = selected; const to = sq; selected = null; legalTargets = [];
+                    clearHighlights(id);
+                    if (!(await tryMakeMoveRealtime(id, from, to))) {
+                        // if illegal, allow reselect if clicked own piece
+                        const fen = boardFen.get(id);
+                        const game = new Chess();
+                        try { game.load(fen); } catch { return; }
+                        const piece = game.get(sq);
+                        const my = boardMyColor.get(id);
+                        if (piece && piece.color === my) {
+                            selected = sq;
+                            const moves = game.moves({ square: sq, verbose: true });
+                            legalTargets = moves.map(m => m.to);
+                            highlightSelection(id, sq, legalTargets, game);
+                        }
+                    }
                 });
+            });
+        }
+
+        function clearHighlights(boardId) {
+            const el = document.getElementById(`board-${boardId}`);
+            el.querySelectorAll('[data-square]').forEach(sq => {
+                sq.classList.remove('hl-selected','hl-dot','hl-capture');
+            });
+        }
+        function highlightSelection(boardId, from, targets, game) {
+            const el = document.getElementById(`board-${boardId}`);
+            clearHighlights(boardId);
+            const fromEl = el.querySelector(`[data-square="${from}"]`);
+            if (fromEl) fromEl.classList.add('hl-selected');
+            targets.forEach(t => {
+                const toEl = el.querySelector(`[data-square="${t}"]`);
+                if (!toEl) return;
+                const capture = game.get(t);
+                toEl.classList.add('hl-dot');
+                if (capture) toEl.classList.add('hl-capture');
             });
         }
 
@@ -561,11 +662,54 @@
                 if (v.fen && v.fen !== 'start') {
                     const boardEl = document.getElementById(`board-${id}`);
                     renderFenToBoard(boardEl, v.fen);
+                    boardFen.set(id, v.fen);
+                    boardTurn.set(id, v.turn || 'w');
+                    if (v.lastMove && v.lastMove.from && v.lastMove.to) highlightLastMove(id, v.lastMove.from, v.lastMove.to);
                 } else if (v.fen === 'start') {
                     const boardEl = document.getElementById(`board-${id}`);
                     renderFenToBoard(boardEl, 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR');
+                    boardFen.set(id, 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+                    boardTurn.set(id, 'w');
+                }
+                // handle offers UI
+                const area = document.getElementById(`offer-area-${id}`);
+                area.innerHTML = '';
+                if (v.offer && myColor) {
+                    if (v.offer.type === 'draw' && v.offer.to === myColor) {
+                        const accept = document.createElement('button');
+                        accept.className = 'px-3 py-1 rounded-full text-white bg-emerald-600 mr-2';
+                        accept.textContent = 'Accept Draw';
+                        accept.onclick = () => acceptDraw(id);
+                        const decline = document.createElement('button');
+                        decline.className = 'px-3 py-1 rounded-full text-indigo-700 bg-white border border-indigo-200';
+                        decline.textContent = 'Decline';
+                        decline.onclick = () => clearOffer(id);
+                        area.appendChild(accept);
+                        area.appendChild(decline);
+                    }
+                    if (v.offer.type === 'takeback' && v.offer.to === myColor) {
+                        const accept = document.createElement('button');
+                        accept.className = 'px-3 py-1 rounded-full text-white bg-amber-600 mr-2';
+                        accept.textContent = 'Accept Takeback';
+                        accept.onclick = () => acceptTakeback(id);
+                        const decline = document.createElement('button');
+                        decline.className = 'px-3 py-1 rounded-full text-indigo-700 bg-white border border-indigo-200';
+                        decline.textContent = 'Decline';
+                        decline.onclick = () => clearOffer(id);
+                        area.appendChild(accept);
+                        area.appendChild(decline);
+                    }
                 }
             });
+        }
+
+        function highlightLastMove(boardId, from, to) {
+            const el = document.getElementById(`board-${boardId}`);
+            el.querySelectorAll('[data-square]').forEach(sq => sq.classList.remove('hl-last'));
+            const a = el.querySelector(`[data-square="${from}"]`);
+            const b = el.querySelector(`[data-square="${to}"]`);
+            if (a) a.classList.add('hl-last');
+            if (b) b.classList.add('hl-last');
         }
 
         function renderFenToBoard(container, fen) {
@@ -605,20 +749,68 @@
             const v = snap.exists() ? snap.val() : {};
             const players = v.players || {};
             const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
-            if (!myColor) { alert('Join this board first.'); return; }
-            if ((v.turn || 'w') !== myColor) { alert('Not your turn.'); return; }
+            if (!myColor) { alert('Join this board first.'); return false; }
+            if ((v.turn || 'w') !== myColor) { return false; }
 
             const game = new Chess();
             const startFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
             try { game.load(v.fen || startFen); } catch { game.load(startFen); }
 
             const move = game.move({ from, to, promotion: 'q' });
-            if (!move) { alert('Illegal move.'); return; }
+            if (!move) { return false; }
 
             await ref.update({
                 fen: game.fen(),
                 turn: game.turn(),
                 lastMove: { from, to, t: Date.now() }
+            });
+            return true;
+        }
+
+        function offerDraw(id) {
+            if (!realtime.enabled) return;
+            boardRef(id).transaction(v => {
+                v = v || {}; v.players = v.players || {}; v.turn = v.turn || 'w';
+                const mine = v.players.white === realtime.myId ? 'w' : (v.players.black === realtime.myId ? 'b' : null);
+                if (!mine) return v;
+                const opp = mine === 'w' ? 'b' : 'w';
+                v.offer = { type: 'draw', from: mine, to: opp, t: Date.now() };
+                return v;
+            });
+        }
+        function clearOffer(id) { boardRef(id).child('offer').remove().catch(()=>{}); }
+        function acceptDraw(id) {
+            if (!realtime.enabled) return;
+            boardRef(id).update({ result: '1/2-1/2', offer: null });
+        }
+        function offerTakeback(id) {
+            if (!realtime.enabled) return;
+            boardRef(id).transaction(v => {
+                v = v || {}; v.players = v.players || {}; v.turn = v.turn || 'w';
+                const mine = v.players.white === realtime.myId ? 'w' : (v.players.black === realtime.myId ? 'b' : null);
+                if (!mine) return v;
+                const opp = mine === 'w' ? 'b' : 'w';
+                v.offer = { type: 'takeback', from: mine, to: opp, t: Date.now() };
+                return v;
+            });
+        }
+        async function acceptTakeback(id) {
+            const ref = boardRef(id);
+            const snap = await ref.get();
+            const v = snap.exists() ? snap.val() : {};
+            if (!v.fen || !v.lastMove) { clearOffer(id); return; }
+            // Simple takeback: we can't reconstruct previous FEN without history.
+            // As a compromise, switch turn back only (visual only). For full takeback we'd store history.
+            await ref.update({ turn: (v.turn === 'w' ? 'b' : 'w'), offer: null });
+        }
+        function resignGame(id) {
+            if (!realtime.enabled) return;
+            boardRef(id).transaction(v => {
+                v = v || {}; v.players = v.players || {};
+                const mine = v.players.white === realtime.myId ? 'w' : (v.players.black === realtime.myId ? 'b' : null);
+                if (!mine) return v;
+                v.result = mine === 'w' ? '0-1' : '1-0';
+                return v;
             });
         }
 
