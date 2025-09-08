@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Arena | Mohamed Abdelaziz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/136956569?v=4" />
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255,255,255,0.15); box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37); backdrop-filter: blur(8px); border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.18); }
+        .gradient-text { background: linear-gradient(90deg, #6366f1, #06b6d4, #a21caf); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .board-blur { filter: blur(10px) grayscale(40%); pointer-events: none; }
+        .square { width: 12.5%; padding-bottom: 12.5%; position: relative; }
+        .square > div { position: absolute; inset: 0; }
+        .light { background-color: #f0d9b5; }
+        .dark { background-color: #b58863; }
+        .board-grid { display: flex; flex-wrap: wrap; border-radius: 0.75rem; overflow: hidden; border: 2px solid rgba(0,0,0,0.1); }
+        .tag { font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-gray-900">
+
+    <nav class="fixed w-full z-20 top-0 left-0 bg-white/80 backdrop-blur shadow-sm">
+        <div class="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
+            <div class="flex items-center gap-2">
+                <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-indigo-400" />
+                <span class="font-bold text-indigo-700 text-base sm:text-lg">Mohamed Abdelaziz</span>
+            </div>
+            <div class="hidden lg:flex gap-3">
+                <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-indigo-600 text-white rounded-full shadow hover:scale-105 transition">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Home
+                </a>
+                <a href="tools.html" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-indigo-700 border border-indigo-200 rounded-full shadow hover:bg-indigo-50 transition">
+                    <i class="fa-solid fa-toolbox"></i> Tools
+                </a>
+            </div>
+            <a href="index.html" class="lg:hidden text-indigo-700 text-xl" aria-label="Back">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main class="pt-24 px-4 pb-16">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass p-6 sm:p-8 lg:p-10 shadow-2xl bg-white/70 border border-indigo-200">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold gradient-text">Chess Arena</h1>
+                        <p class="text-gray-700">Play up to four matches at once. Invite friends, spectate one board at a time, and join the queue if all boards are busy.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button id="bookSlotBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 via-cyan-500 to-purple-600 hover:from-purple-600 hover:via-indigo-600 hover:to-cyan-500 shadow">
+                            <i class="fa-solid fa-clock"></i> Book a Match
+                        </button>
+                        <button id="clearLocalBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50">
+                            <i class="fa-solid fa-broom"></i> Reset (local)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <!-- Boards 1..4 -->
+                    <div id="board-card-1" class="glass p-4 bg-white/70 border border-indigo-100">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold tag">1</span>
+                                <h2 class="font-semibold text-indigo-800">Board 1</h2>
+                            </div>
+                            <div class="text-sm text-gray-600 flex items-center gap-3">
+                                <span><i class="fa-solid fa-eye"></i> <span id="watchers-1">0</span></span>
+                                <a id="invite-1" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="board-1" class="board-grid aspect-square bg-white"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <button data-board="1" class="reveal-btn inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow">
+                                    <i class="fa-solid fa-eye"></i> Reveal this match
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="board-card-2" class="glass p-4 bg-white/70 border border-indigo-100">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold tag">2</span>
+                                <h2 class="font-semibold text-indigo-800">Board 2</h2>
+                            </div>
+                            <div class="text-sm text-gray-600 flex items-center gap-3">
+                                <span><i class="fa-solid fa-eye"></i> <span id="watchers-2">0</span></span>
+                                <a id="invite-2" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="board-2" class="board-grid aspect-square bg-white"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <button data-board="2" class="reveal-btn inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow">
+                                    <i class="fa-solid fa-eye"></i> Reveal this match
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="board-card-3" class="glass p-4 bg-white/70 border border-indigo-100">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold tag">3</span>
+                                <h2 class="font-semibold text-indigo-800">Board 3</h2>
+                            </div>
+                            <div class="text-sm text-gray-600 flex items-center gap-3">
+                                <span><i class="fa-solid fa-eye"></i> <span id="watchers-3">0</span></span>
+                                <a id="invite-3" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="board-3" class="board-grid aspect-square bg-white"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <button data-board="3" class="reveal-btn inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow">
+                                    <i class="fa-solid fa-eye"></i> Reveal this match
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="board-card-4" class="glass p-4 bg-white/70 border border-indigo-100">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 text-white font-bold tag">4</span>
+                                <h2 class="font-semibold text-indigo-800">Board 4</h2>
+                            </div>
+                            <div class="text-sm text-gray-600 flex items-center gap-3">
+                                <span><i class="fa-solid fa-eye"></i> <span id="watchers-4">0</span></span>
+                                <a id="invite-4" href="#" class="text-indigo-700 hover:underline"><i class="fa-solid fa-link"></i> Invite</a>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="board-4" class="board-grid aspect-square bg-white"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <button data-board="4" class="reveal-btn inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow">
+                                    <i class="fa-solid fa-eye"></i> Reveal this match
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-sm text-gray-600">
+                    <p>
+                        Notes: This is a front-end prototype. Spectator counts and queues are stored in your browser only. Invite links include a board id and will select that board upon opening.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Optional: Paste your Firebase config below to enable realtime sync -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCDfFDf8PCKKKCBWFPhpRX_ln-qnU61oFk",
+          authDomain: "chess-0021.firebaseapp.com",
+          projectId: "chess-0021",
+          storageBucket: "chess-0021.firebasestorage.app",
+          messagingSenderId: "917845016237",
+          appId: "1:917845016237:web:a2f7ad1d637823cc409024",
+          measurementId: "G-1WJ5EE56D6"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+    <script>
+        // Build static chessboard UI (no engine) and handle reveal/watch logic
+        const BOARD_IDS = [1,2,3,4];
+        const STORAGE_KEYS = {
+            activeBoard: 'chess_active_board',
+            watchersPrefix: 'chess_watchers_',
+            queue: 'chess_queue',
+            busyBoards: 'chess_busy_boards'
+        };
+
+        // Realtime (Firebase) setup: dual-mode
+        const realtime = {
+            enabled: false,
+            app: null,
+            db: null,
+            myId: null,
+            currentWatching: null
+        };
+
+        (function tryInitFirebase(){
+            try {
+                if (window.FIREBASE_CONFIG && firebase?.initializeApp) {
+                    realtime.app = firebase.initializeApp(window.FIREBASE_CONFIG);
+                    realtime.db = firebase.database();
+                    realtime.enabled = true;
+                    realtime.myId = localStorage.getItem('chess_client_id') || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+                    localStorage.setItem('chess_client_id', realtime.myId);
+                    subscribeBusyBoardsRealtime();
+                    BOARD_IDS.forEach(id => subscribeWatchersRealtime(id));
+                }
+            } catch (e) {
+                // stay in local-only mode
+            }
+        })();
+
+        function initBoards() {
+            BOARD_IDS.forEach(id => {
+                const boardEl = document.getElementById(`board-${id}`);
+                buildBoardSquares(boardEl);
+            });
+        }
+
+        function buildBoardSquares(container) {
+            container.innerHTML = '';
+            container.classList.add('rounded-xl', 'overflow-hidden');
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.className = 'square';
+                    const inner = document.createElement('div');
+                    const isLight = (row + col) % 2 === 0;
+                    inner.className = isLight ? 'light' : 'dark';
+                    square.appendChild(inner);
+                    container.appendChild(square);
+                }
+            }
+        }
+
+        function getQueue() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.queue) || '[]'); } catch { return []; }
+        }
+        function setQueue(q) {
+            localStorage.setItem(STORAGE_KEYS.queue, JSON.stringify(q));
+        }
+        function getBusyBoards() {
+            if (realtime.enabled) {
+                // In realtime mode, local getter is unused by subscribers; fallback to local cache
+                try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEYS.busyBoards) || '[]')); } catch { return new Set(); }
+            } else {
+                try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEYS.busyBoards) || '[]')); } catch { return new Set(); }
+            }
+        }
+        function setBusyBoards(set) {
+            localStorage.setItem(STORAGE_KEYS.busyBoards, JSON.stringify(Array.from(set)));
+            if (realtime.enabled) {
+                const obj = {};
+                Array.from(set).forEach(id => obj[id] = true);
+                // write full state (simple cooperative demo)
+                firebase.database().ref('busyBoards').set(obj).catch(()=>{});
+            }
+        }
+
+        function updateInviteLinks() {
+            BOARD_IDS.forEach(id => {
+                const url = new URL(window.location.href);
+                url.searchParams.set('board', String(id));
+                const a = document.getElementById(`invite-${id}`);
+                a.href = url.toString();
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(a.href).then(() => {
+                        a.textContent = 'Copied!';
+                        setTimeout(() => { a.innerHTML = '<i class="fa-solid fa-link"></i> Invite'; }, 1200);
+                    });
+                });
+            });
+        }
+
+        function getWatchers(boardId) {
+            return parseInt(localStorage.getItem(STORAGE_KEYS.watchersPrefix + boardId) || '0', 10);
+        }
+        function setWatchers(boardId, count) {
+            localStorage.setItem(STORAGE_KEYS.watchersPrefix + boardId, String(Math.max(0, count)));
+        }
+        function renderWatchers() {
+            BOARD_IDS.forEach(id => {
+                document.getElementById(`watchers-${id}`).textContent = String(getWatchers(id));
+            });
+        }
+
+        function setActiveBoard(boardId) {
+            localStorage.setItem(STORAGE_KEYS.activeBoard, String(boardId));
+            if (realtime.enabled) {
+                updateRealtimePresence(boardId);
+            }
+            applyBlurStates();
+        }
+        function getActiveBoard() {
+            return parseInt(localStorage.getItem(STORAGE_KEYS.activeBoard) || '0', 10) || null;
+        }
+        function applyBlurStates() {
+            const active = getActiveBoard();
+            BOARD_IDS.forEach(id => {
+                const boardEl = document.getElementById(`board-${id}`);
+                if (active === id) {
+                    boardEl.classList.remove('board-blur');
+                } else {
+                    boardEl.classList.add('board-blur');
+                }
+            });
+        }
+
+        function attachRevealHandlers() {
+            document.querySelectorAll('.reveal-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.getAttribute('data-board'), 10);
+                    setActiveBoard(id);
+                });
+            });
+        }
+
+        function maybeSelectBoardFromUrl() {
+            const url = new URL(window.location.href);
+            const id = parseInt(url.searchParams.get('board') || '0', 10);
+            if (id && BOARD_IDS.includes(id)) {
+                setActiveBoard(id);
+                if (!realtime.enabled) {
+                    // Bump watchers for selected board locally
+                    setWatchers(id, getWatchers(id) + 1);
+                    renderWatchers();
+                }
+            }
+        }
+
+        function setupQueueAndBooking() {
+            const bookBtn = document.getElementById('bookSlotBtn');
+            bookBtn.addEventListener('click', async () => {
+                if (realtime.enabled) {
+                    try {
+                        const snap = await firebase.database().ref('busyBoards').get();
+                        const busyMap = snap.exists() ? snap.val() : {};
+                        const busy = new Set(Object.keys(busyMap || {}).map(n => parseInt(n,10)));
+                        const free = BOARD_IDS.find(id => !busy.has(id));
+                        if (free) {
+                            busy.add(free);
+                            setBusyBoards(busy);
+                            setActiveBoard(free);
+                            alert(`You got Board ${free}. Share the invite to play!`);
+                            return;
+                        }
+                        // enqueue cooperatively
+                        const token = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
+                        const ref = firebase.database().ref('queue').push();
+                        await ref.set({ token, time: Date.now() });
+                        alert('All boards busy. You are added to the waitlist. Keep this tab open.');
+                    } catch (e) {
+                        alert('Network issue. Please try again.');
+                    }
+                } else {
+                    const busy = getBusyBoards();
+                    const free = BOARD_IDS.find(id => !busy.has(id));
+                    if (free) {
+                        busy.add(free);
+                        setBusyBoards(busy);
+                        setActiveBoard(free);
+                        alert(`You got Board ${free}. Share the invite to play!`);
+                        return;
+                    }
+                    const q = getQueue();
+                    const token = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
+                    q.push({ token, time: Date.now() });
+                    setQueue(q);
+                    alert('All boards busy. You are added to the waitlist. Keep this tab open.');
+                }
+            });
+
+            // Demo: free up a board after leaving or via reset button
+            window.addEventListener('beforeunload', () => {
+                // No-op demo; real app would signal server
+            });
+        }
+
+        function setupReset() {
+            document.getElementById('clearLocalBtn').addEventListener('click', () => {
+                BOARD_IDS.forEach(id => localStorage.removeItem(STORAGE_KEYS.watchersPrefix + id));
+                localStorage.removeItem(STORAGE_KEYS.activeBoard);
+                localStorage.removeItem(STORAGE_KEYS.queue);
+                localStorage.removeItem(STORAGE_KEYS.busyBoards);
+                if (realtime.enabled) {
+                    // Clear my presence
+                    updateRealtimePresence(null);
+                }
+                renderWatchers();
+                applyBlurStates();
+            });
+        }
+
+        // Realtime helpers
+        function updateRealtimePresence(boardId) {
+            if (!realtime.enabled) return;
+            const prev = realtime.currentWatching;
+            if (prev && prev !== boardId) {
+                const prevRef = firebase.database().ref(`boards/${prev}/watchers/${realtime.myId}`);
+                prevRef.remove().catch(()=>{});
+            }
+            if (boardId) {
+                const ref = firebase.database().ref(`boards/${boardId}/watchers/${realtime.myId}`);
+                ref.set(true).catch(()=>{});
+                ref.onDisconnect().remove().catch(()=>{});
+                realtime.currentWatching = boardId;
+            } else {
+                realtime.currentWatching = null;
+            }
+        }
+
+        function subscribeWatchersRealtime(boardId) {
+            if (!realtime.enabled) return;
+            const ref = firebase.database().ref(`boards/${boardId}/watchers`);
+            ref.on('value', snap => {
+                const val = snap.val() || {};
+                const count = Object.keys(val).length;
+                setWatchers(boardId, count);
+                renderWatchers();
+            });
+        }
+
+        function subscribeBusyBoardsRealtime() {
+            if (!realtime.enabled) return;
+            const ref = firebase.database().ref('busyBoards');
+            ref.on('value', snap => {
+                const val = snap.val() || {};
+                const set = new Set(Object.keys(val).map(n => parseInt(n,10)));
+                setBusyBoards(set); // also mirrors to local cache
+            });
+        }
+
+        // Initialize
+        initBoards();
+        attachRevealHandlers();
+        updateInviteLinks();
+        renderWatchers();
+        // Default: none visible until revealed or via URL
+        setActiveBoard(null);
+        maybeSelectBoardFromUrl();
+        setupQueueAndBooking();
+        setupReset();
+    </script>
+
+</body>
+
+</html>
+
+
