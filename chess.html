@@ -58,6 +58,7 @@
                         <input id="roomId" type="text" placeholder="Room ID (e.g. test123)" class="px-3 py-2 rounded-lg border border-indigo-200 bg-white/80 text-sm" />
                         <button id="joinBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-indigo-600 hover:bg-indigo-700 shadow"><i class="fa-solid fa-right-to-bracket"></i> Join</button>
                         <button id="leaveBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50"><i class="fa-solid fa-door-open"></i> Leave</button>
+                        <button id="shareBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-cyan-600 hover:bg-cyan-700"><i class="fa-solid fa-link"></i> Share</button>
                         <button id="flipBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50"><i class="fa-solid fa-arrows-rotate"></i> Flip</button>
                         <button id="resetBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-rose-600 hover:bg-rose-700"><i class="fa-solid fa-rotate-left"></i> Reset</button>
                     </div>
@@ -69,21 +70,52 @@
                     <span id="turn" class="mono">Turn: White</span>
                     <span class="w-px h-5 bg-indigo-100"></span>
                     <span id="players" class="mono">Players: W· B·</span>
-                </div>
+                    <button id="showTutorial" class="ml-auto text-indigo-700 hover:underline">Show Tutorial</button>
+                    </div>
 
                 <div class="mt-6 grid grid-cols-1 lg:grid-cols-[minmax(280px,520px)_1fr] gap-6">
                     <div>
-                        <div id="board" class="board bg-white"></div>
+                        <div class="mb-3">
+                            <div class="glass p-3 bg-white/70 border border-indigo-100">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-1">
+                                        <div class="text-xs text-gray-700 mb-2">Rooms</div>
+                                        <div class="flex flex-wrap gap-2" id="roomsList"></div>
+                            </div>
+                                    <button id="refreshRooms" class="text-xs px-2 py-1 rounded-full border border-indigo-200 text-indigo-700 hover:bg-indigo-50">Refresh</button>
+                            </div>
+                        </div>
                     </div>
+                        <div id="board" class="board bg-white"></div>
+                            </div>
                     <div class="glass p-4 bg-white/70 border border-indigo-100">
                         <h2 class="font-semibold text-indigo-800 mb-2">Moves</h2>
                         <ol id="moves" class="text-sm text-gray-800 space-y-1 max-h-[420px] overflow-auto"></ol>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
         </div>
     </main>
 
+    <!-- Tutorial Overlay -->
+    <div id="tutorial" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden">
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="glass bg-white/90 border border-indigo-200 max-w-lg w-full p-6 rounded-2xl">
+                <h3 class="text-lg font-bold text-indigo-800 mb-2">How to play</h3>
+                <ol class="list-decimal pl-5 text-sm text-gray-800 space-y-2">
+                    <li>Local play: click a piece, then a highlighted square to move.</li>
+                    <li>Online play: enter a Room ID and click Join in two browsers.</li>
+                    <li>Share: use the Share button to copy a link with your Room ID.</li>
+                    <li>Flip: rotate the board. Reset: start a new game.</li>
+                    <li>Moves: watch the SAN move list update as you play.</li>
+                </ol>
+                <div class="mt-4 flex justify-end gap-2">
+                    <button id="dismissTutorial" class="px-4 py-2 rounded-full text-white bg-indigo-600 hover:bg-indigo-700">Got it</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
     <script>
         window.FIREBASE_CONFIG = {
           apiKey: "AIzaSyCDfFDf8PCKKKCBWFPhpRX_ln-qnU61oFk",
@@ -96,7 +128,7 @@
           measurementId: "G-1WJ5EE56D6"
         };
     </script>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -110,8 +142,14 @@
             inputRoom: document.getElementById('roomId'),
             btnJoin: document.getElementById('joinBtn'),
             btnLeave: document.getElementById('leaveBtn'),
+            btnShare: document.getElementById('shareBtn'),
             btnFlip: document.getElementById('flipBtn'),
-            btnReset: document.getElementById('resetBtn')
+            btnReset: document.getElementById('resetBtn'),
+            showTutorial: document.getElementById('showTutorial'),
+            tutorial: document.getElementById('tutorial'),
+            dismissTutorial: document.getElementById('dismissTutorial'),
+            roomsList: document.getElementById('roomsList'),
+            refreshRooms: document.getElementById('refreshRooms')
         };
 
         const unicodeMap = {
@@ -129,16 +167,16 @@
         try {
             const hasFirebase = typeof firebase !== 'undefined' && firebase && typeof firebase.initializeApp === 'function';
             if (window.FIREBASE_CONFIG && hasFirebase) {
-                realtime.app = firebase.initializeApp(window.FIREBASE_CONFIG);
-                realtime.db = firebase.database();
-                realtime.enabled = true;
+                    realtime.app = firebase.initializeApp(window.FIREBASE_CONFIG);
+                    realtime.db = firebase.database();
+                    realtime.enabled = true;
                 realtime.myId = localStorage.getItem('chess_client_id') || (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
-                localStorage.setItem('chess_client_id', realtime.myId);
+                    localStorage.setItem('chess_client_id', realtime.myId);
                 ui.status.textContent = 'Idle • Realtime available';
             } else {
                 ui.status.textContent = 'Idle • Local mode';
-            }
-        } catch (e) {
+                }
+            } catch (e) {
             console.error('Realtime init failed', e);
             ui.status.textContent = 'Idle • Local mode';
         }
@@ -251,8 +289,8 @@
                 ui.status.textContent = `Joined room ${roomId}`;
                 ref.on('value', snap => {
                     const v = snap.val() || {};
-                    const players = v.players || {};
-                    const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
+            const players = v.players || {};
+            const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
                     realtime.myColor = myColor;
                     setPlayersStatus(players, myColor);
                     try { game.load(v.fen || startFen); } catch { game.load(startFen); }
@@ -290,7 +328,7 @@
                 let snap;
                 try { snap = await ref.get(); } catch (e) { console.error('Read room failed', e); return false; }
                 const v = snap.exists() ? snap.val() : {};
-                try { game.load(v.fen || startFen); } catch { game.load(startFen); }
+            try { game.load(v.fen || startFen); } catch { game.load(startFen); }
                 if ((v.turn || 'w') !== realtime.myColor) return false;
                 const move = game.move({ from, to, promotion: 'q' });
                 if (!move) return false;
@@ -323,8 +361,8 @@
                     selectedSquare = sq;
                     legalTargets = game.moves({ square: sq, verbose: true }).map(m => m.to);
                     highlightSelection(sq, legalTargets);
-                    return;
-                }
+                return;
+            }
                 const from = selectedSquare; const to = sq; selectedSquare = null; legalTargets = [];
                 clearHighlights();
                 tryMove(from, to);
@@ -359,6 +397,56 @@
             history.replaceState(null, '', u.toString());
         }
 
+        function copyInvite(roomId) {
+            const u = new URL(window.location.href);
+            u.searchParams.set('room', roomId);
+            navigator.clipboard.writeText(u.toString()).then(() => {
+                ui.status.textContent = 'Invite copied';
+                setTimeout(() => { ui.status.textContent = realtime.enabled ? 'Idle • Realtime available' : 'Idle • Local mode'; }, 1500);
+            }).catch(() => alert(u.toString()));
+        }
+
+        function addRecentRoom(id) {
+            try {
+                const key = 'recent_rooms';
+                const cur = JSON.parse(localStorage.getItem(key) || '[]');
+                const arr = [id, ...cur.filter(x => x !== id)].slice(0, 8);
+                localStorage.setItem(key, JSON.stringify(arr));
+            } catch {}
+        }
+
+        function renderRoomsList(remoteRooms) {
+            const key = 'recent_rooms';
+            let recents = [];
+            try { recents = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+            ui.roomsList.innerHTML = '';
+            const makeChip = (id, cls) => {
+                const b = document.createElement('button');
+                b.className = `text-xs px-2 py-1 rounded-full ${cls}`;
+                b.textContent = id;
+                b.onclick = () => { ui.inputRoom.value = id; ui.inputRoom.focus(); };
+                return b;
+            };
+            if (recents.length) {
+                recents.forEach(id => ui.roomsList.appendChild(makeChip(id, 'border border-indigo-200 text-indigo-700 hover:bg-indigo-50')));
+            }
+            if (Array.isArray(remoteRooms) && remoteRooms.length) {
+                remoteRooms.forEach(id => ui.roomsList.appendChild(makeChip(id, 'text-white bg-indigo-600 hover:bg-indigo-700')));
+            }
+        }
+
+        async function fetchDiscoverableRooms() {
+            if (!realtime.enabled) { renderRoomsList([]); return; }
+            try {
+                const snap = await firebase.database().ref('rooms').limitToFirst(20).get();
+                const val = snap.exists() ? snap.val() : {};
+                const ids = Object.keys(val || {}).filter(k => val[k] && val[k].players && (val[k].players.white || val[k].players.black));
+                renderRoomsList(ids.slice(0, 12));
+            } catch (e) {
+                renderRoomsList([]);
+            }
+        }
+
         buildBoard();
         game.load(startFen);
         render();
@@ -367,19 +455,31 @@
             const isFlipped = document.getElementById('board').classList.toggle('flipped');
         });
         ui.btnReset.addEventListener('click', resetPosition);
+        ui.btnShare.addEventListener('click', () => {
+            const id = (ui.inputRoom.value || '').trim();
+            if (!id) { alert('Enter a room ID to share'); return; }
+            copyInvite(id);
+        });
         ui.btnJoin.addEventListener('click', async () => {
             const id = (ui.inputRoom.value || '').trim();
             if (!id) { alert('Enter a room ID'); return; }
             setUrlRoomParam(id);
             await joinRoom(id);
+            addRecentRoom(id);
+            document.getElementById('board').scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
         ui.btnLeave.addEventListener('click', async () => {
             await leaveRoom();
             setUrlRoomParam(null);
         });
+        ui.inputRoom.addEventListener('keydown', (e) => { if (e.key === 'Enter') ui.btnJoin.click(); });
+        ui.showTutorial.addEventListener('click', () => { ui.tutorial.classList.remove('hidden'); });
+        ui.dismissTutorial.addEventListener('click', () => { ui.tutorial.classList.add('hidden'); });
+        ui.refreshRooms.addEventListener('click', fetchDiscoverableRooms);
 
         const initialRoom = (new URL(window.location.href)).searchParams.get('room');
         if (initialRoom) { ui.inputRoom.value = initialRoom; if (realtime.enabled) joinRoom(initialRoom); }
+        fetchDiscoverableRooms();
     </script>
 
 </body>
