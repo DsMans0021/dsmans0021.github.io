@@ -88,11 +88,12 @@
         window.FIREBASE_CONFIG = {
           apiKey: "AIzaSyCDfFDf8PCKKKCBWFPhpRX_ln-qnU61oFk",
           authDomain: "chess-0021.firebaseapp.com",
-          databaseURL: "https://chess-0021-default-rtdb.europe-west1.firebasedatabase.app/",
+          databaseURL: "https://chess-0021-default-rtdb.europe-west1.firebasedatabase.app",
           projectId: "chess-0021",
           storageBucket: "chess-0021.firebasestorage.app",
           messagingSenderId: "917845016237",
-          appId: "1:917845016237:web:a2f7ad1d637823cc409024"
+          appId: "1:917845016237:web:a2f7ad1d637823cc409024",
+          measurementId: "G-1WJ5EE56D6"
         };
     </script>
 
@@ -126,15 +127,19 @@
 
         const realtime = { enabled: false, app: null, db: null, myId: null, roomId: null, myColor: null, unsub: null };
         try {
-            if (window.FIREBASE_CONFIG && firebase?.initializeApp) {
+            const hasFirebase = typeof firebase !== 'undefined' && firebase && typeof firebase.initializeApp === 'function';
+            if (window.FIREBASE_CONFIG && hasFirebase) {
                 realtime.app = firebase.initializeApp(window.FIREBASE_CONFIG);
                 realtime.db = firebase.database();
                 realtime.enabled = true;
-                realtime.myId = localStorage.getItem('chess_client_id') || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+                realtime.myId = localStorage.getItem('chess_client_id') || (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
                 localStorage.setItem('chess_client_id', realtime.myId);
                 ui.status.textContent = 'Idle • Realtime available';
+            } else {
+                ui.status.textContent = 'Idle • Local mode';
             }
         } catch (e) {
+            console.error('Realtime init failed', e);
             ui.status.textContent = 'Idle • Local mode';
         }
 
@@ -228,33 +233,39 @@
         }
 
         async function joinRoom(roomId) {
-            if (!realtime.enabled) return;
+            if (!realtime.enabled) { alert('Realtime disabled. Playing locally.'); return; }
             realtime.roomId = roomId;
             if (realtime.unsub) { realtime.unsub(); realtime.unsub = null; }
             const ref = roomRef(roomId);
-            await ref.transaction(current => {
-                current = current || {};
-                current.players = current.players || {};
-                if (!current.players.white) current.players.white = realtime.myId;
-                else if (!current.players.black) current.players.black = realtime.myId;
-                current.fen = current.fen || startFen;
-                current.turn = current.turn || 'w';
-                current.updatedAt = Date.now();
-                return current;
-            });
-            ui.status.textContent = `Joined room ${roomId}`;
-            ref.on('value', snap => {
-                const v = snap.val() || {};
-                const players = v.players || {};
-                const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
-                realtime.myColor = myColor;
-                setPlayersStatus(players, myColor);
-                try { game.load(v.fen || startFen); } catch { game.load(startFen); }
-                render();
-                clearHighlights();
-                if (v.lastMove && v.lastMove.from && v.lastMove.to) highlightLastMove(v.lastMove.from, v.lastMove.to);
-            });
-            realtime.unsub = () => ref.off();
+            try {
+                await ref.transaction(current => {
+                    current = current || {};
+                    current.players = current.players || {};
+                    if (!current.players.white) current.players.white = realtime.myId;
+                    else if (!current.players.black) current.players.black = realtime.myId;
+                    current.fen = current.fen || startFen;
+                    current.turn = current.turn || 'w';
+                    current.updatedAt = Date.now();
+                    return current;
+                });
+                ui.status.textContent = `Joined room ${roomId}`;
+                ref.on('value', snap => {
+                    const v = snap.val() || {};
+                    const players = v.players || {};
+                    const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
+                    realtime.myColor = myColor;
+                    setPlayersStatus(players, myColor);
+                    try { game.load(v.fen || startFen); } catch { game.load(startFen); }
+                    render();
+                    clearHighlights();
+                    if (v.lastMove && v.lastMove.from && v.lastMove.to) highlightLastMove(v.lastMove.from, v.lastMove.to);
+                });
+                realtime.unsub = () => ref.off();
+            } catch (err) {
+                console.error('Join room failed', err);
+                alert('Failed to join room. Check Firebase Database rules or try again.');
+                realtime.roomId = null;
+            }
         }
 
         async function leaveRoom() {
@@ -276,13 +287,20 @@
         async function tryMove(from, to) {
             if (realtime.enabled && realtime.roomId && realtime.myColor) {
                 const ref = roomRef(realtime.roomId);
-                const snap = await ref.get();
+                let snap;
+                try { snap = await ref.get(); } catch (e) { console.error('Read room failed', e); return false; }
                 const v = snap.exists() ? snap.val() : {};
                 try { game.load(v.fen || startFen); } catch { game.load(startFen); }
                 if ((v.turn || 'w') !== realtime.myColor) return false;
                 const move = game.move({ from, to, promotion: 'q' });
                 if (!move) return false;
-                await ref.update({ fen: game.fen(), turn: game.turn(), lastMove: { from, to, t: Date.now() } });
+                try {
+                    await ref.update({ fen: game.fen(), turn: game.turn(), lastMove: { from, to, t: Date.now() } });
+                } catch (e) {
+                    console.error('Write move failed', e);
+                    alert('Failed to send move. Check connection and Database rules.');
+                    return false;
+                }
                 appendMoveSan(move.san);
                 return true;
             }
