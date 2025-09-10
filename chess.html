@@ -13,38 +13,31 @@
         body { font-family: 'Inter', sans-serif; }
         .glass { background: rgba(255,255,255,0.15); box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37); backdrop-filter: blur(8px); border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.18); }
         .gradient-text { background: linear-gradient(90deg, #6366f1, #06b6d4, #a21caf); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-        .board-blur { filter: blur(10px) grayscale(40%); pointer-events: none; }
-        .square { width: 12.5%; padding-bottom: 12.5%; position: relative; }
-        .square > div { position: absolute; inset: 0; }
+        .board { display: grid; grid-template-columns: repeat(8, 1fr); border-radius: 0.75rem; overflow: hidden; border: 2px solid rgba(0,0,0,0.1); user-select: none; }
+        .square { position: relative; width: 100%; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-size: clamp(20px, 6vw, 42px); }
         .light { background-color: #f0d9b5; }
         .dark { background-color: #b58863; }
-        .board-grid { display: flex; flex-wrap: wrap; border-radius: 0.75rem; overflow: hidden; border: 2px solid rgba(0,0,0,0.1); }
-        .tag { font-variant-numeric: tabular-nums; }
-        .piece-img { position: absolute; inset: 0; background-size: 88% 88%; background-repeat: no-repeat; background-position: center; pointer-events: none; }
-        .piece-sprite { position: absolute; inset: 0; background-repeat: no-repeat; background-position: center; background-size: 600% 200%; pointer-events: none; }
         .hl-selected { outline: 3px solid rgba(99,102,241,0.9); box-shadow: inset 0 0 0 9999px rgba(99,102,241,0.12); }
         .hl-dot::after { content: ''; position: absolute; top: 50%; left: 50%; width: 22%; height: 22%; transform: translate(-50%, -50%); border-radius: 999px; background: rgba(16,185,129,0.9); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); }
         .hl-capture::after { background: rgba(239,68,68,0.9); box-shadow: 0 0 0 4px rgba(239,68,68,0.2); }
         .hl-last { box-shadow: inset 0 0 0 9999px rgba(250,204,21,0.18); }
-        .board-flipped { transform: rotate(180deg); }
-        .board-flipped .piece-img { transform: rotate(180deg); }
+        .flipped { transform: rotate(180deg); }
+        .flipped .square span { transform: rotate(180deg); display: inline-block; }
+        .mono { font-variant-numeric: tabular-nums; }
     </style>
 </head>
 
 <body class="bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-gray-900">
 
     <nav class="fixed w-full z-20 top-0 left-0 bg-white/80 backdrop-blur shadow-sm">
-        <div class="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
+        <div class="max-w-5xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
             <div class="flex items-center gap-2">
                 <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-indigo-400" />
                 <span class="font-bold text-indigo-700 text-base sm:text-lg">Mohamed Abdelaziz</span>
             </div>
             <div class="hidden lg:flex gap-3">
                 <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-indigo-600 text-white rounded-full shadow hover:scale-105 transition">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Home
-                </a>
-                <a href="tools.html" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-indigo-700 border border-indigo-200 rounded-full shadow hover:bg-indigo-50 transition">
-                    <i class="fa-solid fa-toolbox"></i> Tools
+                    <i class="fa-solid fa-arrow-left"></i> Home
                 </a>
             </div>
             <a href="index.html" class="lg:hidden text-indigo-700 text-xl" aria-label="Back">
@@ -52,9 +45,325 @@
             </a>
         </div>
     </nav>
-    <h>
-        Wiat for update
-    </h>
+
+    <main class="pt-24 px-4 pb-16">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass p-6 sm:p-8 lg:p-10 shadow-2xl bg-white/70 border border-indigo-200">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold gradient-text">Chess Arena</h1>
+                        <p class="text-gray-700">Play a live match with a friend by joining the same Room ID, or practice locally with click‑to‑move controls.</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <input id="roomId" type="text" placeholder="Room ID (e.g. test123)" class="px-3 py-2 rounded-lg border border-indigo-200 bg-white/80 text-sm" />
+                        <button id="joinBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-indigo-600 hover:bg-indigo-700 shadow"><i class="fa-solid fa-right-to-bracket"></i> Join</button>
+                        <button id="leaveBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50"><i class="fa-solid fa-door-open"></i> Leave</button>
+                        <button id="flipBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50"><i class="fa-solid fa-arrows-rotate"></i> Flip</button>
+                        <button id="resetBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white bg-rose-600 hover:bg-rose-700"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-sm text-gray-700 flex items-center gap-3 flex-wrap">
+                    <span id="status" class="mono">Idle • Local mode</span>
+                    <span class="w-px h-5 bg-indigo-100"></span>
+                    <span id="turn" class="mono">Turn: White</span>
+                    <span class="w-px h-5 bg-indigo-100"></span>
+                    <span id="players" class="mono">Players: W· B·</span>
+                </div>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-[minmax(280px,520px)_1fr] gap-6">
+                    <div>
+                        <div id="board" class="board bg-white"></div>
+                    </div>
+                    <div class="glass p-4 bg-white/70 border border-indigo-100">
+                        <h2 class="font-semibold text-indigo-800 mb-2">Moves</h2>
+                        <ol id="moves" class="text-sm text-gray-800 space-y-1 max-h-[420px] overflow-auto"></ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        window.FIREBASE_CONFIG = {
+          apiKey: "AIzaSyCDfFDf8PCKKKCBWFPhpRX_ln-qnU61oFk",
+          authDomain: "chess-0021.firebaseapp.com",
+          databaseURL: "https://chess-0021-default-rtdb.europe-west1.firebasedatabase.app/",
+          projectId: "chess-0021",
+          storageBucket: "chess-0021.firebasestorage.app",
+          messagingSenderId: "917845016237",
+          appId: "1:917845016237:web:a2f7ad1d637823cc409024"
+        };
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+    <script>
+        const ui = {
+            board: document.getElementById('board'),
+            status: document.getElementById('status'),
+            turn: document.getElementById('turn'),
+            players: document.getElementById('players'),
+            moves: document.getElementById('moves'),
+            inputRoom: document.getElementById('roomId'),
+            btnJoin: document.getElementById('joinBtn'),
+            btnLeave: document.getElementById('leaveBtn'),
+            btnFlip: document.getElementById('flipBtn'),
+            btnReset: document.getElementById('resetBtn')
+        };
+
+        const unicodeMap = {
+            'P': '\u2659', 'N': '\u2658', 'B': '\u2657', 'R': '\u2656', 'Q': '\u2655', 'K': '\u2654',
+            'p': '\u265F', 'n': '\u265E', 'b': '\u265D', 'r': '\u265C', 'q': '\u265B', 'k': '\u265A'
+        };
+
+        const startFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+        const game = new Chess();
+        let selectedSquare = null;
+        let legalTargets = [];
+        let flipped = false;
+
+        const realtime = { enabled: false, app: null, db: null, myId: null, roomId: null, myColor: null, unsub: null };
+        try {
+            if (window.FIREBASE_CONFIG && firebase?.initializeApp) {
+                realtime.app = firebase.initializeApp(window.FIREBASE_CONFIG);
+                realtime.db = firebase.database();
+                realtime.enabled = true;
+                realtime.myId = localStorage.getItem('chess_client_id') || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+                localStorage.setItem('chess_client_id', realtime.myId);
+                ui.status.textContent = 'Idle • Realtime available';
+            }
+        } catch (e) {
+            ui.status.textContent = 'Idle • Local mode';
+        }
+
+        function coordToSquare(fileIndex, rankIndex) {
+            const fileChar = String.fromCharCode('a'.charCodeAt(0) + fileIndex);
+            const rank = 8 - rankIndex;
+            return `${fileChar}${rank}`;
+        }
+
+        function buildBoard() {
+            ui.board.innerHTML = '';
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const sq = coordToSquare(col, row);
+                    const cell = document.createElement('div');
+                    cell.className = `square ${ (row + col) % 2 === 0 ? 'light' : 'dark' }`;
+                    cell.dataset.square = sq;
+                    const span = document.createElement('span');
+                    span.className = 'leading-none';
+                    cell.appendChild(span);
+                    cell.addEventListener('click', () => onSquareClick(sq));
+                    ui.board.appendChild(cell);
+                }
+            }
+        }
+
+        function clearHighlights() {
+            ui.board.querySelectorAll('.square').forEach(el => el.classList.remove('hl-selected','hl-dot','hl-capture','hl-last'));
+        }
+
+        function highlightSelection(from, targets) {
+            clearHighlights();
+            const fromEl = ui.board.querySelector(`[data-square="${from}"]`);
+            if (fromEl) fromEl.classList.add('hl-selected');
+            targets.forEach(t => {
+                const el = ui.board.querySelector(`[data-square="${t}"]`);
+                if (!el) return;
+                const piece = game.get(t);
+                el.classList.add('hl-dot');
+                if (piece) el.classList.add('hl-capture');
+            });
+        }
+
+        function highlightLastMove(from, to) {
+            const a = ui.board.querySelector(`[data-square="${from}"]`);
+            const b = ui.board.querySelector(`[data-square="${to}"]`);
+            if (a) a.classList.add('hl-last');
+            if (b) b.classList.add('hl-last');
+        }
+
+        function render() {
+            const fen = game.fen();
+            const rows = fen.split(' ')[0].split('/');
+            ui.board.querySelectorAll('.square span').forEach(s => s.textContent = '');
+            for (let r = 0; r < 8; r++) {
+                let fileIndex = 0;
+                for (const ch of rows[r]) {
+                    if (/\d/.test(ch)) { fileIndex += parseInt(ch,10); continue; }
+                    const fileChar = String.fromCharCode('a'.charCodeAt(0) + fileIndex);
+                    const rank = 8 - r;
+                    const sq = `${fileChar}${rank}`;
+                    const el = ui.board.querySelector(`[data-square="${sq}"] span`);
+                    if (el) el.textContent = unicodeMap[ch] || '';
+                    fileIndex += 1;
+                }
+            }
+            ui.turn.textContent = `Turn: ${game.turn() === 'w' ? 'White' : 'Black'}`;
+        }
+
+        function appendMoveSan(san) {
+            const li = document.createElement('li');
+            li.textContent = san;
+            ui.moves.appendChild(li);
+            ui.moves.scrollTop = ui.moves.scrollHeight;
+        }
+
+        function urlRoom() {
+            const u = new URL(window.location.href);
+            const id = u.searchParams.get('room');
+            return id && id.trim() ? id.trim() : null;
+        }
+
+        function setPlayersStatus(players, myColor) {
+            const w = players && players.white ? 'W✓' : 'W·';
+            const b = players && players.black ? 'B✓' : 'B·';
+            ui.players.textContent = `Players: ${w} ${b}${myColor ? ` • You: ${myColor==='w'?'White':'Black'}`:''}`;
+        }
+
+        function roomRef(roomId) {
+            return firebase.database().ref(`rooms/${roomId}`);
+        }
+
+        async function joinRoom(roomId) {
+            if (!realtime.enabled) return;
+            realtime.roomId = roomId;
+            if (realtime.unsub) { realtime.unsub(); realtime.unsub = null; }
+            const ref = roomRef(roomId);
+            await ref.transaction(current => {
+                current = current || {};
+                current.players = current.players || {};
+                if (!current.players.white) current.players.white = realtime.myId;
+                else if (!current.players.black) current.players.black = realtime.myId;
+                current.fen = current.fen || startFen;
+                current.turn = current.turn || 'w';
+                current.updatedAt = Date.now();
+                return current;
+            });
+            ui.status.textContent = `Joined room ${roomId}`;
+            ref.on('value', snap => {
+                const v = snap.val() || {};
+                const players = v.players || {};
+                const myColor = players.white === realtime.myId ? 'w' : (players.black === realtime.myId ? 'b' : null);
+                realtime.myColor = myColor;
+                setPlayersStatus(players, myColor);
+                try { game.load(v.fen || startFen); } catch { game.load(startFen); }
+                render();
+                clearHighlights();
+                if (v.lastMove && v.lastMove.from && v.lastMove.to) highlightLastMove(v.lastMove.from, v.lastMove.to);
+            });
+            realtime.unsub = () => ref.off();
+        }
+
+        async function leaveRoom() {
+            if (!realtime.enabled || !realtime.roomId) return;
+            const ref = roomRef(realtime.roomId).child('players');
+            await ref.transaction(players => {
+                if (!players) return players;
+                for (const color of Object.keys(players)) {
+                    if (players[color] === realtime.myId) players[color] = null;
+                }
+                return players;
+            });
+            if (realtime.unsub) { realtime.unsub(); realtime.unsub = null; }
+            ui.status.textContent = 'Left room';
+            realtime.roomId = null; realtime.myColor = null;
+            setPlayersStatus({}, null);
+        }
+
+        async function tryMove(from, to) {
+            if (realtime.enabled && realtime.roomId && realtime.myColor) {
+                const ref = roomRef(realtime.roomId);
+                const snap = await ref.get();
+                const v = snap.exists() ? snap.val() : {};
+                try { game.load(v.fen || startFen); } catch { game.load(startFen); }
+                if ((v.turn || 'w') !== realtime.myColor) return false;
+                const move = game.move({ from, to, promotion: 'q' });
+                if (!move) return false;
+                await ref.update({ fen: game.fen(), turn: game.turn(), lastMove: { from, to, t: Date.now() } });
+                appendMoveSan(move.san);
+                return true;
+            }
+            const move = game.move({ from, to, promotion: 'q' });
+            if (!move) return false;
+            render();
+            clearHighlights();
+            highlightLastMove(from, to);
+            appendMoveSan(move.san);
+            return true;
+        }
+
+        function onSquareClick(sq) {
+            if (realtime.enabled && realtime.roomId && realtime.myColor) {
+                const my = realtime.myColor;
+                if (!selectedSquare) {
+                    if (game.turn() !== my) return;
+                    const piece = game.get(sq);
+                    if (!piece || piece.color !== my) return;
+                    selectedSquare = sq;
+                    legalTargets = game.moves({ square: sq, verbose: true }).map(m => m.to);
+                    highlightSelection(sq, legalTargets);
+                    return;
+                }
+                const from = selectedSquare; const to = sq; selectedSquare = null; legalTargets = [];
+                clearHighlights();
+                tryMove(from, to);
+                return;
+            }
+            if (!selectedSquare) {
+                const piece = game.get(sq);
+                if (!piece) return;
+                selectedSquare = sq;
+                legalTargets = game.moves({ square: sq, verbose: true }).map(m => m.to);
+                highlightSelection(sq, legalTargets);
+                return;
+            }
+            const from = selectedSquare; const to = sq; selectedSquare = null; legalTargets = [];
+            clearHighlights();
+            tryMove(from, to);
+        }
+
+        function resetPosition() {
+            game.reset();
+            render();
+            clearHighlights();
+            ui.moves.innerHTML = '';
+            if (realtime.enabled && realtime.roomId) {
+                roomRef(realtime.roomId).update({ fen: game.fen(), turn: game.turn(), lastMove: null });
+            }
+        }
+
+        function setUrlRoomParam(roomId) {
+            const u = new URL(window.location.href);
+            if (roomId) u.searchParams.set('room', roomId); else u.searchParams.delete('room');
+            history.replaceState(null, '', u.toString());
+        }
+
+        buildBoard();
+        game.load(startFen);
+        render();
+
+        ui.btnFlip.addEventListener('click', () => {
+            const isFlipped = document.getElementById('board').classList.toggle('flipped');
+        });
+        ui.btnReset.addEventListener('click', resetPosition);
+        ui.btnJoin.addEventListener('click', async () => {
+            const id = (ui.inputRoom.value || '').trim();
+            if (!id) { alert('Enter a room ID'); return; }
+            setUrlRoomParam(id);
+            await joinRoom(id);
+        });
+        ui.btnLeave.addEventListener('click', async () => {
+            await leaveRoom();
+            setUrlRoomParam(null);
+        });
+
+        const initialRoom = (new URL(window.location.href)).searchParams.get('room');
+        if (initialRoom) { ui.inputRoom.value = initialRoom; if (realtime.enabled) joinRoom(initialRoom); }
+    </script>
+
 </body>
 
 </html>
