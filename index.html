@@ -1,464 +1,1839 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-8186398462710647">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8186398462710647"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8186398462710647" crossorigin="anonymous"></script>
     <title>Mohamed Abdelaziz | DsMans0021</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="icon" href="https://avatars.githubusercontent.com/u/136956569?v=4" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <style>
-        html {
-            scroll-behavior: smooth;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ===== THEME VARIABLES ===== */
+        :root {
+            --transition-theme: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
-        
+
+        [data-theme="dark"] {
+            --bg: #080808;
+            --bg2: #0f0f0f;
+            --surface: #111111;
+            --surface2: #181818;
+            --border: #1e1e1e;
+            --border2: #2a2a2a;
+            --text: #c8c8c8;
+            --text-strong: #f0f0f0;
+            --text-muted: #555555;
+            --text-dim: #333333;
+            --accent: #39ff14;
+            --accent-dim: rgba(57,255,20,0.08);
+            --accent-border: rgba(57,255,20,0.25);
+            --accent2: #ff6500;
+            --accent3: #00aaff;
+            --shadow: rgba(0,0,0,0.5);
+        }
+
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --bg2: #f3f3f3;
+            --surface: #ffffff;
+            --surface2: #f7f7f7;
+            --border: #e4e4e4;
+            --border2: #d0d0d0;
+            --text: #3a3a3a;
+            --text-strong: #111111;
+            --text-muted: #888888;
+            --text-dim: #cccccc;
+            --accent: #16a305;
+            --accent-dim: rgba(22,163,5,0.07);
+            --accent-border: rgba(22,163,5,0.2);
+            --accent2: #d45200;
+            --accent3: #0077cc;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
+            background: var(--bg);
+            color: var(--text);
             font-family: 'Inter', sans-serif;
-        }
-        
-        .glass {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(8px);
-            border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #6366f1, #06b6d4, #a21caf);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .neon {
-            text-shadow: 0 0 8px #818cf8, 0 0 16px #06b6d4;
-        }
-        
-        .icon-bg {
-            background: linear-gradient(135deg, #818cf8 40%, #06b6d4 100%);
+            font-size: 15px;
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: var(--transition-theme);
         }
 
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        .mobile-menu.open {
-            transform: translateX(0);
+        /* Grid texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
         }
 
-        .responsive-iframe {
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8,8,8,0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: var(--transition-theme);
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(250,250,250,0.9);
+        }
+
+        .nav-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .nav-logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .nav-logo span { color: var(--text-muted); }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: 0.07em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border2);
+            background: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+        .nav-mobile-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Mobile drawer */
+        .mobile-drawer {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+        }
+
+        .mobile-drawer.open { display: block; }
+
+        .drawer-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .drawer-panel {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 260px;
+            background: var(--surface);
+            border-left: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: var(--transition-theme);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .drawer-panel a {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s;
+        }
+
+        .drawer-panel a:hover { color: var(--accent); }
+
+        /* ===== COMMON ===== */
+        section { position: relative; z-index: 1; }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: clamp(22px, 3.5vw, 32px);
+            font-weight: 700;
+            color: var(--text-strong);
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ===== HERO ===== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 56px;
+        }
+
+        .hero-inner {
+            padding: 80px 0 40px;
+        }
+
+        .hero-avatar {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            border: 2px solid var(--border2);
+            margin-bottom: 28px;
+            filter: grayscale(15%);
+        }
+
+        .hero-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-name {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(32px, 5.5vw, 68px);
+            font-weight: 700;
+            color: var(--text-strong);
+            line-height: 1.1;
+            margin-bottom: 14px;
+        }
+
+        .hero-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.82em;
+            background: var(--accent);
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        .hero-subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(13px, 2vw, 16px);
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            min-height: 24px;
+        }
+
+        .hero-subtitle .hl1 { color: var(--accent2); }
+        .hero-subtitle .hl2 { color: var(--accent3); }
+
+        .hero-desc {
+            max-width: 520px;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.85;
+            margin-bottom: 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 56px;
+        }
+
+        .btn-primary {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.07em;
+            color: #000;
+            background: var(--accent);
+            border: none;
+            padding: 13px 26px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover { opacity: 0.82; transform: translateY(-1px); }
+
+        .btn-outline {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.07em;
+            color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--border2);
+            padding: 13px 26px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* Quote ticker in hero */
+        .quote-ticker-wrap {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .quote-ticker-wrap::before,
+        .quote-ticker-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+        }
+
+        .quote-ticker-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg), transparent);
+        }
+
+        .quote-ticker-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg), transparent);
+        }
+
+        .quote-ticker {
+            display: flex;
+            gap: 0;
+            animation: ticker 80s linear infinite;
+            white-space: nowrap;
+        }
+
+        .quote-ticker:hover { animation-play-state: paused; }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            padding: 0 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticker-item::after {
+            content: '·';
+            color: var(--accent);
+        }
+
+        /* ===== ABOUT ===== */
+        #about {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .about-text p + p { margin-top: 14px; }
+
+        .about-text a { color: var(--accent); text-decoration: none; }
+        .about-text strong { color: var(--text-strong); font-weight: 600; }
+
+        /* Currently block */
+        .currently-block {
+            margin-top: 28px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .currently-header {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .currently-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .currently-row:last-child { border-bottom: none; }
+
+        .currently-icon {
+            font-size: 13px;
+            width: 18px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .currently-label {
+            color: var(--text-muted);
+            font-size: 12px;
+            flex: 1;
+        }
+
+        .currently-val {
+            color: var(--text-strong);
+            font-size: 12px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Stats */
+        .about-stats {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat-row:first-child { border-top: 1px solid var(--border); }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .stat-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-strong);
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-right: 6px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        /* ===== SKILLS ===== */
+        #skills {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .skill-card {
+            background: var(--surface);
+            padding: 28px 24px;
+            transition: background 0.2s;
+        }
+
+        .skill-card:hover { background: var(--surface2); }
+
+        .skill-icon {
+            font-size: 18px;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .skill-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-bottom: 6px;
+        }
+
+        .skill-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ===== PROJECTS ===== */
+        #projects {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 28px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            padding: 24px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-decoration: none;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .project-card:hover { background: var(--surface2); }
+
+        .project-card:hover .project-arrow {
+            opacity: 1;
+            transform: translate(2px, -2px);
+        }
+
+        .project-arrow {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            color: var(--accent);
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.2s;
+        }
+
+        .project-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .project-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-strong);
+        }
+
+        .project-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 4px;
+        }
+
+        .project-lang {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--accent2);
+            letter-spacing: 0.06em;
+        }
+
+        .project-stars {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .project-stars i { color: #f0c040; font-size: 9px; }
+
+        .tools-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--border2);
+            padding: 11px 22px;
+            transition: all 0.2s;
+        }
+
+        .tools-link:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ===== ACHIEVEMENTS ===== */
+        #achievements {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .achievement-item {
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            gap: 20px;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: start;
+        }
+
+        .achievement-item:first-child { border-top: 1px solid var(--border); }
+
+        .achievement-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            padding-top: 3px;
+        }
+
+        .achievement-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-bottom: 5px;
+        }
+
+        .achievement-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ===== QUOTE SECTION ===== */
+        #quotes {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .quote-display {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            padding: 48px 40px;
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .quote-mark {
+            font-family: 'Space Mono', monospace;
+            font-size: 48px;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .quote-text {
+            font-size: clamp(15px, 2vw, 18px);
+            color: var(--text-strong);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 20px;
+            transition: opacity 0.5s;
+        }
+
+        .quote-author {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+        }
+
+        .quote-source {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .quote-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .quote-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--border2);
+            background: var(--bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .quote-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .quote-counter {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        /* ===== MUSIC ===== */
+        #music {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .embed-wrap {
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* ===== GAMES ===== */
+        #games {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ===== DEVICE INFO ===== */
+        #device-info {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .device-table { border: 1px solid var(--border); }
+
+        .device-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .device-row:last-child { border-bottom: none; }
+
+        .device-key {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            padding: 13px 18px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .device-val {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-strong);
+            padding: 13px 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ===== CONTACT ===== */
+        #contact {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.85;
+            margin-bottom: 32px;
+        }
+
+        .contact-links { display: flex; flex-direction: column; gap: 10px; }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-link i { width: 16px; text-align: center; }
+        .contact-link:hover { color: var(--accent); }
+
+        .form-group { margin-bottom: 18px; }
+
+        .form-label {
+            display: block;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        .form-input {
             width: 100%;
-            height: auto;
-            min-height: 200px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-strong);
+            padding: 11px 14px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s, background 0.3s;
+            -webkit-appearance: none;
+            border-radius: 0;
         }
 
-        @media (min-width: 640px) {
-            .responsive-iframe {
-                min-height: 300px;
-            }
+        .form-input::placeholder { color: var(--text-muted); opacity: 0.5; }
+        .form-input:focus { border-color: var(--accent); }
+        textarea.form-input { resize: vertical; min-height: 110px; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 0;
+            position: relative;
+            z-index: 1;
         }
 
-        @media (min-width: 1024px) {
-            .responsive-iframe {
-                min-height: 400px;
-            }
+        .footer-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-copy {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .footer-socials { display: flex; gap: 18px; }
+
+        .footer-socials a {
+            font-size: 15px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-socials a:hover { color: var(--accent); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .nav-mobile-btn { display: block; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+            .projects-grid { grid-template-columns: 1fr 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 580px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .hero-inner { padding: 60px 0 30px; }
+            #about, #skills, #projects, #achievements, #quotes, #music, #games, #device-info, #contact { padding: 72px 0; }
+            .quote-display { padding: 32px 24px; }
+            .device-row { grid-template-columns: 1fr; }
+            .device-key { border-right: none; border-bottom: 1px solid var(--border); }
+        }
+
+        @media (max-width: 380px) {
+            .hero-name { font-size: 28px; }
         }
     </style>
 </head>
+<body>
 
-<body class="bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-gray-900">
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-20 top-0 left-0 bg-white/80 backdrop-blur shadow-sm">
-        <div class="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
-            <div class="flex items-center gap-2">
-                <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-indigo-400" />
-                <span class="font-bold text-indigo-700 text-base sm:text-lg">Mohamed Abdelaziz</span>
-            </div>
-            
-            <!-- Desktop Navigation -->
-            <div class="space-x-4 lg:space-x-6 text-indigo-700 font-semibold hidden lg:flex">
-                <a href="#about" class="hover:text-cyan-600 transition">About</a>
-                <a href="#skills" class="hover:text-cyan-600 transition">Skills</a>
-                <a href="#projects" class="hover:text-cyan-600 transition">Projects</a>
-                <a href="#achievements" class="hover:text-cyan-600 transition">Achievements</a>
-                <a href="#music" class="hover:text-cyan-600 transition">Music</a>
-                <a href="#games" class="hover:text-cyan-600 transition">Games</a>
-                <a href="#device-info" class="hover:text-cyan-600 transition">Device Info</a>
-                <a href="#contact" class="hover:text-cyan-600 transition">Contact</a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="lg:hidden text-indigo-700 text-xl">
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo"><span>~/</span>DsMans0021</a>
+        <ul class="nav-links">
+            <li><a href="#about">about</a></li>
+            <li><a href="#skills">skills</a></li>
+            <li><a href="#projects">projects</a></li>
+            <li><a href="#achievements">achievements</a></li>
+            <li><a href="#quotes">quotes</a></li>
+            <li><a href="#music">music</a></li>
+            <li><a href="#games">games</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+            <button class="nav-mobile-btn" id="mobile-btn" aria-label="Menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
+    </div>
+</nav>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white/95 backdrop-blur shadow-xl lg:hidden">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-8">
-                    <span class="font-bold text-indigo-700 text-lg">Menu</span>
-                    <button id="close-mobile-menu" class="text-indigo-700 text-xl">
-                        <i class="fa-solid fa-times"></i>
-                    </button>
-                </div>
-                <div class="space-y-4">
-                    <div class="max-w-4xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
-                        <a href="#about" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">About</a>
-                        <a href="#skills" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Skills</a>
-                        <a href="#projects" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Projects</a>
-                        <a href="#achievements" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Achievements</a>
-                        <a href="#music" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Music</a>
-                        <a href="#games" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Games</a>
-                        <a href="#device-info" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Device Info</a>
-                        <a href="#contact" class="block text-indigo-700 font-semibold hover:text-cyan-600 transition py-2">Contact</a>
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer-panel">
+        <div class="drawer-header">
+            <span style="font-family:'Space Mono',monospace;font-size:12px;color:var(--accent)">~/menu</span>
+            <button class="drawer-close" id="drawer-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <a href="#about">about</a>
+        <a href="#skills">skills</a>
+        <a href="#projects">projects</a>
+        <a href="#achievements">achievements</a>
+        <a href="#quotes">quotes</a>
+        <a href="#music">music</a>
+        <a href="#games">games</a>
+        <a href="#device-info">device info</a>
+        <a href="#contact">contact</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <img class="hero-avatar" src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Mohamed Abdelaziz" />
+            <div class="hero-tag">based in egypt &nbsp;🇪🇬</div>
+            <h1 class="hero-name">Mohamed Abdelaziz<span class="hero-cursor"></span></h1>
+            <p class="hero-subtitle" id="hero-subtitle">&nbsp;</p>
+            <p class="hero-desc">I teach, build, and break things. Mentor at Hack Club STEM October, indie game developer, and tinkerer of all things tech — from Unity multiplayer games to Raspberry Pi hacks.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Get in touch</a>
+                <a href="#projects" class="btn-outline"><i class="fa-brands fa-github"></i> View projects</a>
+                <a href="tools.html" class="btn-outline"><i class="fa-solid fa-wrench"></i> Tools</a>
+            </div>
+        </div>
+    </div>
+    <!-- Scrolling quote ticker -->
+    <div class="quote-ticker-wrap">
+        <div class="quote-ticker" id="ticker"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <p class="section-label">// 01</p>
+        <h2 class="section-title">About me</h2>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <p>I'm <strong>Mohamed Abdelaziz</strong>, a mentor at <a href="https://hackclub.com/" target="_blank">Hack Club STEM October</a> in Egypt, passionate about game development, cybersecurity, and building cool things that actually work.</p>
+                <p>I've shipped multiplayer Unity games, built AI assistants on tiny hardware, written Python automation tools, and explored both sides of cybersecurity. I like going deep on things that most people would just use off the shelf.</p>
+                <p>When I'm not coding, I'm playing games, watching anime, or overclocking hardware to do things it absolutely shouldn't.</p>
+                <div class="currently-block">
+                    <div class="currently-header">// currently</div>
+                    <div class="currently-row">
+                        <span class="currently-icon"><i class="fa-solid fa-code"></i></span>
+                        <span class="currently-label">Working on</span>
+                        <span class="currently-val">Game Dev & Security tools</span>
+                    </div>
+                    <div class="currently-row">
+                        <span class="currently-icon"><i class="fa-solid fa-gamepad"></i></span>
+                        <span class="currently-label">Playing</span>
+                        <span class="currently-val">indie games + jams</span>
+                    </div>
+                    <div class="currently-row">
+                        <span class="currently-icon"><i class="fa-solid fa-book-open"></i></span>
+                        <span class="currently-label">Learning</span>
+                        <span class="currently-val">Cybersecurity / Flutter</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-700 via-blue-600 to-purple-700 text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div class="relative z-10 flex flex-col items-center text-center px-4 py-20">
-            <div class="w-24 h-24 sm:w-36 sm:h-36 rounded-full glass flex items-center justify-center mb-6 sm:mb-8 shadow-2xl border-4 border-white animate-bounce-slow">
-                <img src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Profile" class="w-20 h-20 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-indigo-400 shadow-lg" />
+            <div class="about-stats reveal">
+                <div class="stat-row">
+                    <span class="stat-label">location</span>
+                    <span class="stat-value">Egypt 🇪🇬</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">role</span>
+                    <span class="stat-value">STEM Mentor</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">org</span>
+                    <span class="stat-value">Hack Club</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">main langs</span>
+                    <span class="stat-value">C# · Python · Dart</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">github</span>
+                    <span class="stat-value">DsMans0021</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">status</span>
+                    <span class="stat-value"><span class="status-dot"></span>available</span>
+                </div>
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 gradient-text neon drop-shadow-lg">Mohamed Abdelaziz</h1>
-            <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium mb-6 sm:mb-8 drop-shadow animate-fadeIn">STEM & Game Development Mentor <span class="inline-block ml-2 animate-wiggle">🇪🇬</span></p>
-            <a href="#contact" class="inline-flex items-center gap-2 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-cyan-400 to-indigo-600 text-white font-bold rounded-full shadow-xl hover:scale-105 hover:from-indigo-500 hover:to-cyan-400 transition-all duration-300 text-base sm:text-lg">
-                <i class="fa-solid fa-paper-plane animate-pulse"></i> Contact Me
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="container">
+        <p class="section-label">// 02</p>
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid reveal">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-unity"></i></div>
+                <div class="skill-name">C# &amp; Unity</div>
+                <div class="skill-desc">2D/3D game dev, multiplayer with PUN2, OOP, physics systems, game jam submissions.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+                <div class="skill-name">Python</div>
+                <div class="skill-desc">Automation, Raspberry Pi, Tkinter GUIs, media tools with OpenCV and MoviePy, scripting.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="skill-name">Cybersecurity</div>
+                <div class="skill-desc">Cisco certified, pentesting, RATs, C2 frameworks, phishing tools, network security.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-flutter" style="font-family:sans-serif;font-size:15px;font-style:normal;">F</i></div>
+                <div class="skill-name">Dart &amp; Flutter</div>
+                <div class="skill-desc">Mobile app development, anime info apps, cross-platform UI with Flutter.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-raspberry-pi"></i></div>
+                <div class="skill-name">Raspberry Pi / IoT</div>
+                <div class="skill-desc">Hardware hacking, overclocking, AI assistants, CO₂ filtration systems, IoT experiments.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+                <div class="skill-name">Web &amp; JavaScript</div>
+                <div class="skill-desc">Browser games, web apps, HTML/CSS/JS tools, Naruto clicker, weather apps.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="container">
+        <p class="section-label">// 03</p>
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid reveal">
+
+            <a href="https://github.com/DsMans0021/Maya" target="_blank" class="project-card">
+                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                <span class="project-num">001</span>
+                <div class="project-name">Maya</div>
+                <div class="project-desc">A complete Unity game submitted on itch.io. Built with C# featuring custom gameplay mechanics and polished presentation.</div>
+                <div class="project-footer">
+                    <span class="project-lang">C# · Unity</span>
+                    <span class="project-stars"><i class="fa-solid fa-star"></i> 5</span>
+                </div>
             </a>
-        </div>
-        <!-- Decorative Blobs -->
-        <div class="absolute top-0 left-0 w-40 h-40 sm:w-80 sm:h-80 bg-purple-400 opacity-30 rounded-full blur-3xl -z-10 animate-blob"></div>
-        <div class="absolute bottom-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-cyan-400 opacity-30 rounded-full blur-3xl -z-10 animate-blob animation-delay-2000"></div>
-    </section>
 
-    <!-- About Me -->
-    <section id="about" class="py-12 sm:py-16 lg:py-20 px-4 bg-white relative">
-        <div class="max-w-3xl mx-auto text-center glass p-6 sm:p-8 lg:p-10 shadow-xl">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 gradient-text neon">About Me</h2>
-            <p class="text-base sm:text-lg text-gray-700 leading-relaxed animate-fadeIn">
-                I'm <span class="font-semibold text-indigo-600">Mohamed Abdelaziz</span>, a mentor at <span class="font-semibold text-cyan-600">Hack Club STEM October</span>, passionate about <span class="text-purple-600">game development</span>,
-                <span class="text-blue-600">technology</span>, and empowering young coders. I love building cool projects and sharing knowledge!
-            </p>
-        </div>
-    </section>
+            <a href="https://github.com/DsMans0021/FPS-Game" target="_blank" class="project-card">
+                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                <span class="project-num">002</span>
+                <div class="project-name">FPS Multiplayer Game</div>
+                <div class="project-desc">Multiplayer FPS built with Unity and C#. 2+ players over LAN/internet using PUN2 Photon networking.</div>
+                <div class="project-footer">
+                    <span class="project-lang">C# · Unity · PUN2</span>
+                    <span class="project-stars"><i class="fa-solid fa-star"></i> 5</span>
+                </div>
+            </a>
 
-    <!-- Skills -->
-    <section id="skills" class="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10 text-center gradient-text neon">Skills</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
-                    <div class="icon-bg w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-2xl sm:text-3xl">
-                        <i class="fa-brands fa-unity"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-blue-600">C# & Unity</h3>
-                    <p class="text-sm sm:text-base text-gray-700 text-center">Unity game development, OOP, interactive apps, and fun gameplay mechanics.</p>
+            <a href="https://github.com/DsMans0021/Anime-App" target="_blank" class="project-card">
+                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                <span class="project-num">003</span>
+                <div class="project-name">Anime App</div>
+                <div class="project-desc">A mobile app built in Flutter/Dart that lets you browse anime info, search titles, and explore details.</div>
+                <div class="project-footer">
+                    <span class="project-lang">Dart · Flutter</span>
+                    <span class="project-stars"><i class="fa-solid fa-star"></i> 5</span>
                 </div>
-                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
-                    <div class="icon-bg w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-2xl sm:text-3xl bg-gradient-to-br from-green-400 to-blue-400">
-                        <i class="fa-brands fa-python"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-green-600">Python</h3>
-                    <p class="text-sm sm:text-base text-gray-700 text-center">Automation, scripting, Raspberry Pi, and building creative tools for productivity.</p>
+            </a>
+
+            <a href="https://github.com/DsMans0021/Telegrojan" target="_blank" class="project-card">
+                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                <span class="project-num">004</span>
+                <div class="project-name">Telegrojan</div>
+                <div class="project-desc">Telegram-based remote administration tool. Execute shell commands on a Windows machine through a bot interface.</div>
+                <div class="project-footer">
+                    <span class="project-lang">Python</span>
+                    <span class="project-stars"><i class="fa-solid fa-star"></i> 3</span>
                 </div>
-                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300 sm:col-span-2 lg:col-span-1">
-                    <div class="icon-bg w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 shadow-lg text-white text-2xl sm:text-3xl bg-gradient-to-br from-purple-400 to-pink-400">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-purple-600">Cybersecurity</h3>
-                    <p class="text-sm sm:text-base text-gray-700 text-center">Cisco certified, ethical hacking, and a strong foundation in security principles.</p>
+            </a>
+
+            <a href="https://github.com/DsMans0021/Naruto-game" target="_blank" class="project-card">
+                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                <span class="project-num">005</span>
+                <div class="project-name">Naruto Clicker Game</div>
+                <div class="project-desc">A browser-based anime clicker game. Good fun — pick your character and keep clicking.</div>
+                <div class="project-footer">
+                    <span class="project-lang">JavaScript</span>
+                    <span class="project-stars"><i class="fa-solid fa-star"></i> 4</span>
                 </div>
+            </a>
+
+            <a href="https://github.com/DsMans0021/BlackMamba" target="_blank" class="project-card">
+                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                <span class="project-num">006</span>
+                <div class="project-name">BlackMamba</div>
+                <div class="project-desc">C2 / post-exploitation framework for security research. Inspired by real-world red team tooling.</div>
+                <div class="project-footer">
+                    <span class="project-lang">Security · C2</span>
+                    <span class="project-stars"><i class="fa-solid fa-star"></i> —</span>
+                </div>
+            </a>
+
+        </div>
+        <a href="https://github.com/DsMans0021?tab=repositories" target="_blank" class="tools-link reveal">
+            <i class="fa-brands fa-github"></i>
+            View all repositories on GitHub
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+    <div class="container">
+        <p class="section-label">// 04</p>
+        <h2 class="section-title">Achievements</h2>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">01</span>
+            <div>
+                <div class="achievement-title">AI Assistant on Raspberry Pi Zero 2 W</div>
+                <div class="achievement-desc">Built a functional voice assistant running on severely constrained hardware — proving AI tools don't need beefy machines.</div>
             </div>
         </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="py-12 sm:py-16 lg:py-20 px-4 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10 text-center gradient-text neon">Projects</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl icon-bg shadow-lg">
-                        <i class="fa-solid fa-gamepad"></i>
-                    </div>
-                    <h3 class="font-semibold text-base sm:text-lg mb-2 text-indigo-700">Unity Games</h3>
-                    <p class="text-sm sm:text-base text-gray-700 text-center">2D/3D games built with Unity and C#. Fun, interactive, and creative!</p>
-                </div>
-                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl bg-gradient-to-br from-green-400 to-blue-400 shadow-lg text-white">
-                        <i class="fa-brands fa-raspberry-pi"></i>
-                    </div>
-                    <h3 class="font-semibold text-base sm:text-lg mb-2 text-green-700">Raspberry Pi Experiments</h3>
-                    <p class="text-sm sm:text-base text-gray-700 text-center">IoT, automation, and STEM projects using Raspberry Pi and Python.</p>
-                </div>
-                <div class="glass p-6 sm:p-8 flex flex-col items-center shadow-xl hover:scale-105 transition-transform duration-300 sm:col-span-2 lg:col-span-1">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl bg-gradient-to-br from-blue-400 to-purple-400 shadow-lg text-white">
-                        <i class="fa-solid fa-gears"></i>
-                    </div>
-                    <h3 class="font-semibold text-base sm:text-lg mb-2 text-blue-700">Python Tools</h3>
-                    <p class="text-sm sm:text-base text-gray-700 text-center">Video/audio converters, productivity scripts, and automation tools.</p>
-                </div>
-            </div>
-            <div class="mt-10 flex justify-center gap-4 flex-wrap">
-                <a href="tools.html" class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-white text-base sm:text-lg font-bold shadow-xl bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 hover:from-amber-500 hover:via-rose-500 hover:to-orange-500 transition-transform transform hover:scale-105">
-                    <i class="fa-solid fa-toolbox"></i> Explore My Tools
-                </a>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">02</span>
+            <div>
+                <div class="achievement-title">Video Converter &amp; Media Player in Python</div>
+                <div class="achievement-desc">Tkinter + MoviePy + OpenCV + Pygame desktop app. Converts MP4→MP3 and plays media with a fully custom GUI.</div>
             </div>
         </div>
-    </section>
-
-    <!-- Achievements -->
-    <section id="achievements" class="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-purple-50 via-indigo-50 to-cyan-50">
-        <div class="max-w-4xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center gradient-text neon">Achievements</h2>
-            <ul class="space-y-4 sm:space-y-6 text-sm sm:text-base lg:text-lg text-gray-700">
-                <li>
-                    <span class="font-semibold text-indigo-600">Built a Personal AI Assistant on Raspberry Pi Zero 2 W:</span> Created a smart voice assistant similar to Siri or Alexa, running on a resource-constrained Raspberry Pi Zero 2 W. Demonstrated
-                    ability to build functional AI tools on limited hardware.
-                </li>
-                <li>
-                    <span class="font-semibold text-green-600">Developed a Video Converter & Media Player in Python:</span> Combined Tkinter, MoviePy, OpenCV, and Pygame to make a desktop app that converts MP4 to MP3 and plays media, showing skills in
-                    GUI and media processing.
-                </li>
-                <li>
-                    <span class="font-semibold text-purple-600">Created a Two-Stage Air Filtration System (CO₂ Reducer Project):</span> Engineered a prototype that filters air using water and calcium hydroxide to absorb CO₂, applying scientific methods
-                    for environmental impact.
-                </li>
-                <li>
-                    <span class="font-semibold text-blue-600">Made Games for itch.io Game Jams:</span> Participated in online game jams, submitting complete Unity/C# games under tight deadlines, reflecting creativity and real-world indie game experience.
-                </li>
-                <li>
-                    <span class="font-semibold text-cyan-600">Customized a Smart MP3 and Video Player for Local Media Use:</span> Built a media interface with GUI controls, image previews (PIL), and responsive design, focusing on user experience beyond
-                    basic playback.
-                </li>
-                <li>
-                    <span class="font-semibold text-pink-600">Overclocked and Optimized Raspberry Pi Zero 2 W for Gaming & Projects:</span> Modified configs, safely overclocked, and tested OSes to boost performance, running games like Doom and exploring
-                    retro consoles on a small board.
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    
-<!-- Music Info -->
-    <section id="music" class="py-12 sm:py-16 lg:py-20 px-4 bg-white">
-        <div class="max-w-3xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-center gradient-text neon">My Music Taste</h2>
-            <div class="responsive-iframe">
-                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2RAfvrJZQ7uq9Wcwbv9AU8?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">03</span>
+            <div>
+                <div class="achievement-title">Two-Stage CO₂ Air Filtration System</div>
+                <div class="achievement-desc">Engineered a prototype filtering air with water and calcium hydroxide — applying real science for environmental impact.</div>
             </div>
         </div>
-    </section>
-
-     <!-- Games -->
-    <section id="games" class="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-purple-50 via-indigo-50 to-cyan-50">
-        <div class="max-w-4xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center gradient-text neon">Games</h2>
-            <div class="responsive-iframe">
-                <iframe frameborder="0" src="https://itch.io/embed-upload/13451657?color=333333" allowfullscreen="" width="100%" height="450"><a href="https://itskareem.itch.io/maya">Play Maya on itch.io</a></iframe>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">04</span>
+            <div>
+                <div class="achievement-title">Game Jam Submissions on itch.io</div>
+                <div class="achievement-desc">Shipped complete Unity/C# games under tight deadlines. Real pressure, real deadline, real results.</div>
             </div>
         </div>
-    </section>
-
-    
-    <!-- Device Info -->
-    <section id="device-info" class="py-12 sm:py-16 lg:py-20 px-4 bg-white">
-        <div class="max-w-3xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-xl">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-center gradient-text neon">My Device Info</h2>
-            <ul class="text-sm sm:text-base lg:text-lg text-gray-700 space-y-2">
-                <li><span class="font-semibold text-indigo-600">Operating System:</span> Windows 11 Pro 64-bit (10.0, Build 26100)</li>
-                <li><span class="font-semibold text-blue-600">Language:</span> English (Regional Setting: English)</li>
-                <li><span class="font-semibold text-cyan-600">System Manufacturer:</span> HP</li>
-                <li><span class="font-semibold text-purple-600">System Model:</span> HP ProBook 650 G4</li>
-                <li><span class="font-semibold text-green-600">BIOS:</span> Q83 Ver. 01.24.00</li>
-                <li><span class="font-semibold text-pink-600">Processor:</span> Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (8 CPUs), ~2.1GHz</li>
-                <li><span class="font-semibold text-yellow-600">Memory:</span> 16384MB RAM</li>
-                <li><span class="font-semibold text-red-600">Page file:</span> 8939MB used, 8311MB available</li>
-                <li><span class="font-semibold text-indigo-400">DirectX Version:</span> DirectX 12</li>
-            </ul>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">05</span>
+            <div>
+                <div class="achievement-title">Overclocked Raspberry Pi Zero 2 W</div>
+                <div class="achievement-desc">Modified configs, safely pushed the board beyond spec. Ran Doom and retro emulators on something smaller than a credit card.</div>
+            </div>
         </div>
-    </section>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">06</span>
+            <div>
+                <div class="achievement-title">Cisco Cybersecurity Certification</div>
+                <div class="achievement-desc">Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.</div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- QUOTES -->
+<section id="quotes">
+    <div class="container">
+        <p class="section-label">// 05</p>
+        <h2 class="section-title">Words to live by</h2>
+        <div class="quote-display reveal">
+            <div class="quote-mark">"</div>
+            <div class="quote-text" id="quote-text">Loading...</div>
+            <div class="quote-author" id="quote-author"></div>
+            <div class="quote-source" id="quote-source"></div>
+            <div class="quote-controls">
+                <span class="quote-counter" id="quote-counter">1 / 200</span>
+                <button class="quote-btn" id="quote-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="quote-btn" id="quote-next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Contact Form -->
-    <section id="contact" class="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50">
-        <div class="max-w-xl mx-auto glass p-6 sm:p-8 lg:p-10 shadow-2xl">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center gradient-text neon">Contact Me</h2>
-            <form action="https://formsubmit.co/medozizo008@gmail.com" method="POST" class="space-y-4 sm:space-y-6">
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base" for="name">Name</label>
-                    <div class="relative">
-                        <input class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10 text-sm sm:text-base" type="text" id="name" name="name" required>
-                        <span class="absolute left-3 top-2 sm:top-3 text-indigo-400"><i class="fa-solid fa-user"></i></span>
-                    </div>
+<!-- MUSIC -->
+<section id="music">
+    <div class="container">
+        <p class="section-label">// 06</p>
+        <h2 class="section-title">What I'm listening to</h2>
+        <div class="embed-wrap reveal">
+            <iframe style="border-radius:0" src="https://open.spotify.com/embed/playlist/2RAfvrJZQ7uq9Wcwbv9AU8?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- GAMES -->
+<section id="games">
+    <div class="container">
+        <p class="section-label">// 07</p>
+        <h2 class="section-title">Play Maya</h2>
+        <div class="embed-wrap reveal">
+            <iframe frameborder="0" src="https://itch.io/embed-upload/13451657?color=080808" allowfullscreen="" width="100%" height="450"><a href="https://itskareem.itch.io/maya">Play Maya on itch.io</a></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- DEVICE INFO -->
+<section id="device-info">
+    <div class="container">
+        <p class="section-label">// 08</p>
+        <h2 class="section-title">My rig</h2>
+        <div class="device-table reveal">
+            <div class="device-row"><span class="device-key">OS</span><span class="device-val">Windows 11 Pro 64-bit (Build 26100)</span></div>
+            <div class="device-row"><span class="device-key">Machine</span><span class="device-val">HP ProBook 650 G4</span></div>
+            <div class="device-row"><span class="device-key">CPU</span><span class="device-val">Intel Core i7-8650U @ 1.90GHz (8 CPUs)</span></div>
+            <div class="device-row"><span class="device-key">RAM</span><span class="device-val">16 GB</span></div>
+            <div class="device-row"><span class="device-key">BIOS</span><span class="device-val">Q83 Ver. 01.24.00</span></div>
+            <div class="device-row"><span class="device-key">DirectX</span><span class="device-val">DirectX 12</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <p class="section-label">// 09</p>
+        <h2 class="section-title">Get in touch</h2>
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <p>Have a project idea, a security question, want to play a game together, or just want to talk tech? I'm always happy to hear from people.</p>
+                <div class="contact-links">
+                    <a href="https://github.com/DsMans0021" target="_blank" class="contact-link">
+                        <i class="fa-brands fa-github"></i> github.com/DsMans0021
+                    </a>
+                    <a href="https://linktr.ee/DsMans0021/" target="_blank" class="contact-link">
+                        <i class="fa-solid fa-tree"></i> linktr.ee/DsMans0021
+                    </a>
+                    <a href="https://hackclub.com/" target="_blank" class="contact-link">
+                        <i class="fa-solid fa-code"></i> Hack Club
+                    </a>
                 </div>
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base" for="email">Email</label>
-                    <div class="relative">
-                        <input class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10 text-sm sm:text-base" type="email" id="email" name="email" required>
-                        <span class="absolute left-3 top-2 sm:top-3 text-cyan-400"><i class="fa-solid fa-envelope"></i></span>
-                    </div>
+            </div>
+            <form action="https://formsubmit.co/medozizo008@gmail.com" method="POST" class="reveal">
+                <div class="form-group">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
                 </div>
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2 text-sm sm:text-base" for="message">Message</label>
-                    <div class="relative">
-                        <textarea class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 transition pl-10 text-sm sm:text-base" id="message" name="message" rows="4" required></textarea>
-                        <span class="absolute left-3 top-2 sm:top-3 text-purple-400"><i class="fa-solid fa-comment-dots"></i></span>
-                    </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
                 </div>
-                <button type="submit" class="w-full py-2 sm:py-3 bg-gradient-to-r from-indigo-600 to-cyan-400 text-white font-bold rounded-lg hover:from-cyan-400 hover:to-indigo-600 transition duration-300 shadow-lg text-sm sm:text-base lg:text-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-paper-plane"></i> Send Message
+                <div class="form-group">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea class="form-input" id="message" name="message" placeholder="What's on your mind?" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+                    <i class="fa-solid fa-paper-plane"></i> Send message
                 </button>
             </form>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-gradient-to-r from-indigo-800 to-cyan-700 text-white py-6 sm:py-8">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between px-4">
-            <div class="mb-4 md:mb-0 text-center md:text-left text-sm sm:text-base lg:text-lg">
-                &copy; 2024 Mohamed Abdelaziz. All rights reserved.
-            </div>
-            <div class="flex space-x-6 sm:space-x-8 text-xl sm:text-2xl">
-                <a href="https://github.com/DsMans0021" target="_blank" class="hover:text-cyan-300 transition" aria-label="GitHub">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="https://linktr.ee/DsMans0021/" target="_blank" class="hover:text-cyan-300 transition" aria-label="Linktree">
-                    <i class="fa-solid fa-tree"></i>
-                </a>
-                <a href="https://hackclub.com/" target="_blank" class="hover:text-cyan-300 transition" aria-label="Hack Club">
-                    <i class="fa-solid fa-code"></i>
-                </a>
-            </div>
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <span class="footer-copy">© 2025 Mohamed Abdelaziz · DsMans0021</span>
+        <div class="footer-socials">
+            <a href="https://github.com/DsMans0021" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linktr.ee/DsMans0021/" target="_blank" aria-label="Linktree"><i class="fa-solid fa-tree"></i></a>
+            <a href="https://hackclub.com/" target="_blank" aria-label="Hack Club"><i class="fa-solid fa-code"></i></a>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Smooth scroll for anchor links -->
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (mobileMenu.classList.contains('open')) {
-                        mobileMenu.classList.remove('open');
-                    }
-                }
-            });
-        });
+<script>
+// ============================================================
+// QUOTES DATABASE — 200+ real quotes
+// ============================================================
+const QUOTES = [
+  // === GAME DEVELOPERS ===
+  { text: "A delayed game is eventually good, but a rushed game is forever bad.", author: "Shigeru Miyamoto", source: "Nintendo" },
+  { text: "The goal is not to make games that everyone likes, but to make games that someone loves.", author: "Hideo Kojima", source: "Kojima Productions" },
+  { text: "Video games are bad for you? That's what they said about rock and roll.", author: "Shigeru Miyamoto", source: "Nintendo" },
+  { text: "Games give you a chance to excel, and if you're playing in good company you don't even mind if you lose because you had the enjoyment of the company during the course of the game.", author: "Gary Gygax", source: "D&D Creator" },
+  { text: "I always wanted to be an explorer, but I realized I'll never be an astronaut. So I made the next best thing: video games.", author: "Shigeru Miyamoto", source: "Nintendo" },
+  { text: "Making games is one of the most difficult creative endeavors there is.", author: "Ken Levine", source: "Irrational Games" },
+  { text: "The idea of just wandering into the woods, seeing a cave, and thinking 'I wonder what's in there' — that was what we were trying to replicate.", author: "Hidetaka Miyazaki", source: "FromSoftware" },
+  { text: "A game is a series of interesting choices.", author: "Sid Meier", source: "Firaxis Games" },
+  { text: "We want to give players something that is genuinely special, that they couldn't find anywhere else.", author: "Amy Hennig", source: "Naughty Dog" },
+  { text: "The best games are the ones where the player feels in control of the story.", author: "Neil Druckmann", source: "Naughty Dog" },
+  { text: "We're not making art, we're making products. But products can have art in them.", author: "Cliff Bleszinski", source: "Epic Games" },
+  { text: "If you're not embarrassed by the first version of your product, you've launched too late.", author: "Reid Hoffman", source: "LinkedIn" },
+  { text: "Do what you love. Know your own bone; gnaw at it, bury it, unearth it, and gnaw it still.", author: "Tim Schafer", source: "Double Fine" },
+  { text: "Games are literature. They have characters, they have story, they have environment.", author: "Warren Spector", source: "Ion Storm" },
+  { text: "I think video games are a genuine art form, in the same way that films are.", author: "Hideo Kojima", source: "Kojima Productions" },
+  { text: "The joy of creation is the best feeling in the world.", author: "Will Wright", source: "Maxis" },
+  { text: "The most powerful person in the world is the storyteller.", author: "Steve Jobs", source: "Apple" },
+  { text: "Players are not passive consumers. They are active participants in our worlds.", author: "Hidetaka Miyazaki", source: "FromSoftware" },
+  { text: "We make games for one reason: because we love them.", author: "Gabe Newell", source: "Valve" },
+  { text: "If you can dream it, you can do it.", author: "Walt Disney", source: "Disney" },
+  { text: "Polish is the difference between a good game and a great one.", author: "Shigeru Miyamoto", source: "Nintendo" },
+  { text: "Constraints are the mother of creativity.", author: "Mark Cerny", source: "PlayStation" },
+  { text: "The player is always right, even when they're wrong.", author: "Peter Molyneux", source: "Lionhead Studios" },
+  { text: "Every game is a new opportunity to change someone's life.", author: "Jenova Chen", source: "thatgamecompany" },
+  { text: "The best level design tells a story without a single word.", author: "Jordan Thomas", source: "Irrational Games" },
 
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
+  // === GAME CHARACTERS & GAMES ===
+  { text: "Praise the Sun!", author: "Solaire of Astora", source: "Dark Souls" },
+  { text: "The flow of time is always cruel... its speed seems different for each person, but no one can change it.", author: "Sheik", source: "The Legend of Zelda: Ocarina of Time" },
+  { text: "It's dangerous to go alone! Take this.", author: "Old Man", source: "The Legend of Zelda (1986)" },
+  { text: "War. War never changes.", author: "Ron Perlman", source: "Fallout series" },
+  { text: "What is a man? A miserable little pile of secrets!", author: "Dracula", source: "Castlevania: Symphony of the Night" },
+  { text: "Stay a while and listen!", author: "Deckard Cain", source: "Diablo series" },
+  { text: "You were almost a Jill sandwich!", author: "Barry Burton", source: "Resident Evil" },
+  { text: "The cake is a lie.", author: "GLaDOS (via graffiti)", source: "Portal" },
+  { text: "We're here, we're queer, get used to it.", author: "Strong Bad", source: "Homestar Runner" },
+  { text: "Do you feel in control?", author: "The Antagonist", source: "Spec Ops: The Line" },
+  { text: "A man chooses. A slave obeys.", author: "Andrew Ryan", source: "BioShock" },
+  { text: "Who are you, so wise in the ways of science?", author: "GLaDOS", source: "Portal 2" },
+  { text: "I used to be an adventurer like you, then I took an arrow in the knee.", author: "Guard", source: "The Elder Scrolls V: Skyrim" },
+  { text: "It's not about the destination, it's about the journey.", author: "Ezio Auditore", source: "Assassin's Creed" },
+  { text: "Nothing is true, everything is permitted.", author: "Altaïr Ibn-La'Ahad", source: "Assassin's Creed" },
+  { text: "The night is darkest just before the dawn.", author: "Harvey Dent", source: "Batman: Arkham City" },
+  { text: "I am Error.", author: "Error", source: "Zelda II: The Adventure of Link" },
+  { text: "In the end, does it matter who wins? The struggle itself is the meaning.", author: "The Narrator", source: "Disco Elysium" },
+  { text: "Some trees flourish, others die. Some cattle grow strong, others are taken by wolves. Some men are born rich enough and dumb enough to enjoy their lives. Ain't nothing fair.", author: "John Marston", source: "Red Dead Redemption" },
+  { text: "Endure and survive.", author: "Joel Miller", source: "The Last of Us" },
+  { text: "If you want to make enemies, try to change something.", author: "Solid Snake", source: "Metal Gear Solid" },
+  { text: "We're not tools of the government, or anyone else. Fighting was the only thing... the only thing I was good at. But at least I always fought for what I believed in.", author: "Gray Fox", source: "Metal Gear Solid" },
+  { text: "Kept you waiting, huh?", author: "Big Boss", source: "Metal Gear Solid 3" },
+  { text: "The truth is, video games are the future of storytelling.", author: "Hideo Kojima", source: "Kojima Productions" },
+  { text: "You cannot kill me in a way that matters.", author: "The Transcendent One", source: "Planescape: Torment" },
+  { text: "No matter how dark the night, morning always comes, and our journey begins anew.", author: "Lulu", source: "Final Fantasy X" },
+  { text: "Even if the morrow is barren of promises, nothing shall forestall my return.", author: "Caius Ballad", source: "Final Fantasy XIII-2" },
+  { text: "There is no real ending. It's just the place where you stop the story.", author: "Frank Herbert", source: "Dune (cited in gaming)" },
+  { text: "To be forgotten is worse than death.", author: "Freya Crescent", source: "Final Fantasy IX" },
+  { text: "The more personal something is, the more universal it is.", author: "Undertale Theme", source: "Undertale (Toby Fox)" },
+  { text: "In this world, it's kill or be killed.", author: "Flowey", source: "Undertale" },
+  { text: "Don't give up! I believe in you!", author: "Papyrus", source: "Undertale" },
+  { text: "Your power is that of emotion.", author: "Nier", source: "NieR:Automata" },
+  { text: "Even if we forget the faces of our friends, we will never forget the bonds that were carved into our souls.", author: "2B", source: "NieR:Automata" },
+  { text: "Fascinating. So much passion, so much ego.", author: "Adam", source: "NieR:Automata" },
+  { text: "Everything that lives is designed to end.", author: "2B", source: "NieR:Automata" },
+  { text: "The mind is everything. What you think, you become.", author: "The Knight", source: "Hollow Knight" },
+  { text: "I will be king of this world.", author: "The Radiance", source: "Hollow Knight" },
+  { text: "Together, we shall learn from this dark place what we could not learn in the light.", author: "The Seer", source: "Hollow Knight" },
+  { text: "No more running. I belong here.", author: "Ori", source: "Ori and the Blind Forest" },
+  { text: "When you have eliminated the impossible, whatever remains, however improbable, must be the truth.", author: "Quote", source: "Cave Story" },
+  { text: "I'd rather be hated for who I am than loved for who I'm not.", author: "The Narrator", source: "Disco Elysium" },
+  { text: "Capitalism has brought us to this.", author: "Harry Du Bois", source: "Disco Elysium" },
+  { text: "You have died of dysentery.", author: "Game", source: "The Oregon Trail" },
+  { text: "Stay a while and listen.", author: "Deckard Cain", source: "Diablo II" },
+  { text: "The Covenant will follow Halo to the ends of the universe.", author: "Master Chief", source: "Halo" },
+  { text: "There is nothing noble in being superior to your fellow man; true nobility is being superior to your former self.", author: "Ernest Hemingway", source: "Referenced in Metal Gear" },
+  { text: "All your base are belong to us.", author: "CATS", source: "Zero Wing" },
+  { text: "You can't handle the truth!", author: "NPC", source: "Call of Duty: Black Ops" },
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-        });
+  // === HACKERS & SECURITY ===
+  { text: "The quieter you become, the more you are able to hear.", author: "Kali Linux", source: "Kali Linux motto" },
+  { text: "Hacking is not a crime. It's a skill.", author: "Kevin Mitnick", source: "Security researcher" },
+  { text: "The Internet is the world's largest library. It's just that all the books are on the floor.", author: "John Allen Paulos", source: "Mathematician" },
+  { text: "Security is always excessive until it's not enough.", author: "Robbie Sinclair", source: "Security maxim" },
+  { text: "Think like an attacker to defend like a defender.", author: "Bruce Schneier", source: "Cryptographer" },
+  { text: "The only truly secure system is one that is powered off, cast in a block of concrete, and sealed in a lead-lined room.", author: "Gene Spafford", source: "Purdue University" },
+  { text: "Given enough eyeballs, all bugs are shallow.", author: "Linus Torvalds", source: "Linux creator" },
+  { text: "Free software is a matter of liberty, not price.", author: "Richard Stallman", source: "GNU Project" },
+  { text: "When in doubt, encrypt.", author: "Phil Zimmermann", source: "PGP creator" },
+  { text: "Privacy is not an option, and it shouldn't be the price we accept for just getting on the internet.", author: "Gary Kovacs", source: "Mozilla" },
+  { text: "The real danger is not that computers will begin to think like men, but that men will begin to think like computers.", author: "Sydney J. Harris", source: "Journalist" },
+  { text: "Complexity is the enemy of security.", author: "Bruce Schneier", source: "Cryptographer" },
+  { text: "The hacker mindset doesn't actually see what happens at the other end, to the other person.", author: "Clifford Stoll", source: "Astronomer & Author" },
+  { text: "Information is not knowledge. Knowledge is not wisdom. Wisdom is not truth.", author: "Frank Zappa", source: "Musician (tech quote)" },
+  { text: "To err is human, but to really foul things up you need a computer.", author: "Paul Ehrlich", source: "Biologist" },
+  { text: "The computer was born to solve problems that did not exist before.", author: "Bill Gates", source: "Microsoft" },
+  { text: "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.", author: "Bill Gates", source: "Microsoft" },
+  { text: "The best way to get a project done faster is to start sooner.", author: "Jim Highsmith", source: "Agile" },
+  { text: "It's not about ideas. It's about making ideas happen.", author: "Scott Belsky", source: "Behance" },
+  { text: "Software is like entropy: It is difficult to grasp, weighs nothing, and obeys the Second Law of Thermodynamics; i.e., it always increases.", author: "Norman Augustine", source: "Aerospace engineer" },
+  { text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler", source: "Software developer" },
+  { text: "Everybody in this country should learn how to program a computer... because it teaches you how to think.", author: "Steve Jobs", source: "Apple" },
+  { text: "Programs must be written for people to read, and only incidentally for machines to execute.", author: "Harold Abelson", source: "SICP" },
+  { text: "Premature optimization is the root of all evil.", author: "Donald Knuth", source: "Computer scientist" },
+  { text: "The most disastrous thing that you can ever learn is your first programming language.", author: "Alan Kay", source: "Xerox PARC" },
+  { text: "Talk is cheap. Show me the code.", author: "Linus Torvalds", source: "Linux kernel creator" },
+  { text: "The Internet is the first thing that humanity has built that humanity doesn't understand.", author: "Eric Schmidt", source: "Google" },
+  { text: "One machine can do the work of fifty ordinary men. No machine can do the work of one extraordinary man.", author: "Elbert Hubbard", source: "Author" },
+  { text: "The most dangerous phrase in the language is 'We've always done it this way.'", author: "Grace Hopper", source: "Mathematician & Admiral" },
+  { text: "I'm not a great programmer; I'm just a good programmer with great habits.", author: "Kent Beck", source: "Extreme Programming" },
+  { text: "Don't comment bad code — rewrite it.", author: "Brian W. Kernighan", source: "UNIX co-creator" },
+  { text: "A good programmer looks both ways before crossing a one-way street.", author: "Doug Linder", source: "Developer maxim" },
+  { text: "Testing leads to failure, and failure leads to understanding.", author: "Burt Rutan", source: "Aerospace engineer" },
+  { text: "If debugging is the process of removing software bugs, then programming must be the process of putting them in.", author: "Edsger Dijkstra", source: "Computer scientist" },
+  { text: "The best code is no code at all.", author: "Jeff Atwood", source: "Stack Overflow" },
+  { text: "Make it work, make it right, make it fast.", author: "Kent Beck", source: "Extreme Programming" },
+  { text: "First, solve the problem. Then, write the code.", author: "John Johnson", source: "Programming maxim" },
+  { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci", source: "Referenced in tech" },
+  { text: "The function of good software is to make the complex appear simple.", author: "Grady Booch", source: "Software engineer" },
+  { text: "In software, we rarely have meaningful requirements. Even if we do, the only measure of success that matters is whether our solution solves the customer's shifting idea of what they need.", author: "Jeff Atwood", source: "Coding Horror" },
 
-        closeMobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
+  // === ANIME CHARACTERS ===
+  { text: "A person who can't feel pain can never know true strength.", author: "Naruto Uzumaki", source: "Naruto" },
+  { text: "It's not the face that makes someone a monster; it's the choices they make with their lives.", author: "Naruto Uzumaki", source: "Naruto" },
+  { text: "When you give up, that's when the game ends.", author: "Mitsuyoshi Anzai", source: "Slam Dunk" },
+  { text: "Power comes in response to a need, not a desire. You have to create that need.", author: "Goku", source: "Dragon Ball Z" },
+  { text: "It's not about how hard you can hit. It's about how hard you can get hit and keep moving forward.", author: "Makunouchi Ippo", source: "Hajime no Ippo" },
+  { text: "A lesson without pain is meaningless. That's because no one can gain without sacrificing something.", author: "Edward Elric", source: "Fullmetal Alchemist: Brotherhood" },
+  { text: "There is no such thing as coincidence in this world — there is only the inevitable.", author: "Yuuko Ichihara", source: "xxxHolic" },
+  { text: "People's lives don't end when they die. It ends when they lose faith.", author: "Itachi Uchiha", source: "Naruto" },
+  { text: "If you don't take risks, you can't create a future.", author: "Monkey D. Luffy", source: "One Piece" },
+  { text: "Forgetting is like a wound. The wound may heal, but it has already left a scar.", author: "Monkey D. Luffy", source: "One Piece" },
+  { text: "The world isn't perfect. But it's there for us, doing the best it can.", author: "Roy Mustang", source: "Fullmetal Alchemist" },
+  { text: "The thing I wished for destroyed my whole family. I brought all this on myself. I know I don't deserve your forgiveness, but I also know that I've done all I could to make things right.", author: "Greed", source: "Fullmetal Alchemist: Brotherhood" },
+  { text: "Courage is not the absence of fear. It is acting in spite of it.", author: "Mark Twain", source: "Referenced in Attack on Titan" },
+  { text: "The world will move forward even if you don't.", author: "Reiner Braun", source: "Attack on Titan" },
+  { text: "On that day, mankind received a grim reminder.", author: "Narrator", source: "Attack on Titan" },
+  { text: "If you win, you live. If you lose, you die. If you don't fight, you can't win!", author: "Eren Yeager", source: "Attack on Titan" },
+  { text: "Everyone had their own story. And in each story, no one thought of themselves as the villain.", author: "Armin Arlert", source: "Attack on Titan" },
+  { text: "The future is something that you make yourself. You have to fight for it.", author: "Okabe Rintarou", source: "Steins;Gate" },
+  { text: "Time is the only currency that matters. Spend it wisely.", author: "Okabe Rintarou", source: "Steins;Gate" },
+  { text: "El Psy Kongroo.", author: "Okabe Rintarou", source: "Steins;Gate" },
+  { text: "A person who abandons their beliefs is not a man worthy of calling themselves such.", author: "Lelouch vi Britannia", source: "Code Geass" },
+  { text: "If the king doesn't lead, how can he expect his subordinates to follow?", author: "Lelouch vi Britannia", source: "Code Geass" },
+  { text: "I, Lelouch vi Britannia, command you — obey me, subjects! Obey me, world!", author: "Lelouch vi Britannia", source: "Code Geass" },
+  { text: "All humans are equal in death.", author: "Light Yagami", source: "Death Note" },
+  { text: "I am justice! I protect the innocent and those who fear evil.", author: "Light Yagami", source: "Death Note" },
+  { text: "I'll take a potato chip... and eat it!", author: "Light Yagami", source: "Death Note" },
+  { text: "All according to plan.", author: "Light Yagami", source: "Death Note" },
+  { text: "The thing I hate most in this world is wasting my potential.", author: "Hisoka Morow", source: "Hunter x Hunter" },
+  { text: "Gon, you are light. And sometimes, light can illuminate the darkest of places.", author: "Killua Zoldyck", source: "Hunter x Hunter" },
+  { text: "If you want to be a Ninja, you can't just imitate someone. You have to make your own way.", author: "Killua Zoldyck", source: "Hunter x Hunter" },
+  { text: "The most important thing is to find your own path.", author: "Gon Freecss", source: "Hunter x Hunter" },
+  { text: "Even in this world, there's something worth protecting.", author: "Kirito", source: "Sword Art Online" },
+  { text: "Sword skills aren't just about swinging a sword. They're about putting your heart into every strike.", author: "Kirito", source: "Sword Art Online" },
+  { text: "In this world, the strong devour the weak.", author: "Ryo Yamada", source: "Elfen Lied" },
+  { text: "I'll become stronger, stronger than anyone, so that no one has to suffer anymore.", author: "Erza Scarlet", source: "Fairy Tail" },
+  { text: "Weaklings will stay weak forever. But weakness is not evil, since human beings are weak creatures to begin with.", author: "Mavis Vermillion", source: "Fairy Tail" },
+  { text: "No matter what path you chose, just move forward.", author: "Natsu Dragneel", source: "Fairy Tail" },
+  { text: "The best way to find out if you can trust somebody is to trust them.", author: "Gray Fullbuster", source: "Fairy Tail" },
+  { text: "Do not be sad that it is over, smile that it happened.", author: "Jiraiya", source: "Naruto" },
+  { text: "In my hand, I'll keep the promise to find my way back to you.", author: "Kamina", source: "Gurren Lagann" },
+  { text: "Believe in yourself. Not in the you who believes in me, not the me who believes in you. Believe in the you who believes in yourself!", author: "Kamina", source: "Gurren Lagann" },
+  { text: "Row row, fight the power!", author: "Kamina", source: "Gurren Lagann" },
+  { text: "The past is the past. We cannot indulge ourselves in memories and destroy the present.", author: "Byakuya Kuchiki", source: "Bleach" },
+  { text: "Even if I lose this feeling, I'm sure I'll just fall in love with you all over again.", author: "Ichigo Kurosaki", source: "Bleach" },
+  { text: "If fate is a millstone, then we are the grist. There is nothing we can do. So I wish for strength.", author: "Ichigo Kurosaki", source: "Bleach" },
+  { text: "I have a dream. I want to be a hero.", author: "Izuku Midoriya", source: "My Hero Academia" },
+  { text: "A true hero always smiles in the face of adversity. That is the symbol of peace.", author: "All Might", source: "My Hero Academia" },
+  { text: "Plus Ultra!", author: "U.A. High School motto", source: "My Hero Academia" },
+  { text: "Even the mightiest heroes go through very hard times. Have faith in yourself and there will come a day when others have faith in you.", author: "All Might", source: "My Hero Academia" },
+  { text: "Fear is not evil. It tells you what your weakness is. And once you know your weakness, you can become stronger as well as kinder.", author: "Gildarts Clive", source: "Fairy Tail" },
+  { text: "Those who do not know what real loss is will never understand true valor.", author: "Vegeta", source: "Dragon Ball Z" },
+  { text: "You can fly… if you just remove everything unnecessary.", author: "Motoko Kusanagi", source: "Ghost in the Shell" },
+  { text: "A cyberbrain could be hacked. Even your memories can be falsified.", author: "Motoko Kusanagi", source: "Ghost in the Shell" },
+  { text: "There are as many different worlds as there are people.", author: "Dio Brando", source: "JoJo's Bizarre Adventure" },
+  { text: "Your next line is...", author: "Dio Brando", source: "JoJo's Bizarre Adventure" },
+  { text: "WRYYYYYYY!", author: "Dio Brando", source: "JoJo's Bizarre Adventure" },
+  { text: "It was me, Dio!", author: "Dio Brando", source: "JoJo's Bizarre Adventure" },
+  { text: "Oi! Josuke! I've got a nose bleed!", author: "Okuyasu Nijimura", source: "JoJo's Bizarre Adventure" },
+  { text: "The real power of a shinobi is not something you can measure by raw strength. It comes from something deeper, a will that can't be broken.", author: "Minato Namikaze", source: "Naruto" },
+  { text: "In this world, there exist people who bear the stigma of their background.", author: "Trafalgar D. Water Law", source: "One Piece" },
+  { text: "The sea is the world of pirates. And there's a treasure there that makes you king.", author: "Monkey D. Luffy", source: "One Piece" },
+  { text: "Living is a constant battle.", author: "Roronoa Zoro", source: "One Piece" },
+  { text: "Zoro, lost again.", author: "Nami", source: "One Piece (running gag)" },
+  { text: "I don't want to conquer anything. I just think the guy with the most freedom in this whole ocean is the Pirate King!", author: "Monkey D. Luffy", source: "One Piece" },
+  { text: "If you hurt somebody, or if somebody hurts you, the same blood runs through both your hands.", author: "Rem", source: "Re:Zero" },
+  { text: "I can't do this alone. I need you. I want you to be by my side.", author: "Subaru Natsuki", source: "Re:Zero" },
+  { text: "Even if no one in the world believes in you, I will believe in you.", author: "Zero Two", source: "Darling in the FranXX" },
+  { text: "Love is war.", author: "Kaguya-sama wa Kokurasetai", source: "Kaguya-sama: Love is War" },
+  { text: "Life is about getting back up after being knocked down.", author: "Yusuke Urameshi", source: "Yu Yu Hakusho" },
+  { text: "Is there a difference between a human without memories and someone who never existed?", author: "Ai Haibara", source: "Detective Conan" },
+  { text: "There is only one truth!", author: "Conan Edogawa", source: "Detective Conan" },
+  { text: "Even if you're weak, you can become strong through effort.", author: "Rock Lee", source: "Naruto" },
+  { text: "If you don't like your destiny, don't accept it. Instead, have the courage to change it the way you want it to be.", author: "Naruto Uzumaki", source: "Naruto" },
+  { text: "Hatred is born to protect love.", author: "Pain/Nagato", source: "Naruto" },
+  { text: "Before I became a shinobi, I was still a citizen of Konoha. I'm not fighting for the village. I'm fighting for the people I love.", author: "Gaara", source: "Naruto" },
+  { text: "An eye for an eye makes the whole world blind.", author: "Mahatma Gandhi", source: "Referenced in Naruto" },
+  { text: "The circumstances of one's birth are irrelevant. It is what you do with the gift of life that determines who you are.", author: "Mewtwo", source: "Pokémon: The First Movie" },
+  { text: "Gotta catch 'em all.", author: "Series tagline", source: "Pokémon" },
+  { text: "Your story isn't over yet. There's still a new page to write.", author: "Angel Beats!", source: "Angel Beats!" },
+  { text: "The moment people come to know love, they run the risk of carrying hate.", author: "Obito Uchiha", source: "Naruto Shippuden" },
+  { text: "Those who break the rules are trash, but those who abandon their comrades are worse than trash.", author: "Kakashi Hatake", source: "Naruto" },
+  { text: "You've got guts. That's rare these days.", author: "Spike Spiegel", source: "Cowboy Bebop" },
+  { text: "Whatever happens, happens.", author: "Spike Spiegel", source: "Cowboy Bebop" },
+  { text: "I'm just a wolf, running in the darkness.", author: "Spike Spiegel", source: "Cowboy Bebop" },
+  { text: "See you, Space Cowboy.", author: "Narrator", source: "Cowboy Bebop" },
+  { text: "Three, two, one, let's jam!", author: "Opening", source: "Cowboy Bebop" },
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mobileMenu.classList.remove('open');
-            }
-        });
-    </script>
-    <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+  // === EXTRA HACKER / PHILOSOPHY ===
+  { text: "Access the mind, control the world.", author: "Mr. Robot", source: "Mr. Robot (TV)" },
+  { text: "We are all just IP addresses to them.", author: "Elliot Alderson", source: "Mr. Robot" },
+  { text: "We live in a kingdom of bullshit.", author: "Elliot Alderson", source: "Mr. Robot" },
+  { text: "Hello, friend. Hello, friend? That's lame.", author: "Elliot Alderson", source: "Mr. Robot" },
+  { text: "Control is an illusion.", author: "Elliot Alderson", source: "Mr. Robot" },
+  { text: "I've always believed that hacking is about finding beautiful, elegant solutions to complex problems.", author: "Anonymous", source: "Hacker culture" },
+  { text: "Information wants to be free.", author: "Stewart Brand", source: "Hacker's Conference, 1984" },
+  { text: "In the beginning there was ARPANET. And it was void.", author: "Internet folklore", source: "Hacker culture" },
+  { text: "The Internet is just a world passing notes in a classroom.", author: "Jon Stewart", source: "The Daily Show" },
+  { text: "Root is not just a user. It's a state of mind.", author: "Anonymous", source: "Linux culture" },
+  { text: "sudo make me a sandwich", author: "XKCD #149", source: "XKCD (Randall Munroe)" },
+  { text: "There are only two hard things in computer science: cache invalidation and naming things.", author: "Phil Karlton", source: "Netscape engineer" },
+  { text: "Beware of bugs in the above code; I have only proved it correct, not tried it.", author: "Donald Knuth", source: "Computer scientist" },
+  { text: "Software and cathedrals are much the same — first we build them, then we pray.", author: "Sam Redwine", source: "4th International Software Process Workshop" },
+  { text: "Nine people can't make a baby in a month.", author: "Fred Brooks", source: "The Mythical Man-Month" },
+  { text: "A ship in port is safe, but that's not what ships are for.", author: "Grace Hopper", source: "Mathematician & Admiral" },
+  { text: "The question of whether a computer can think is no more interesting than the question of whether a submarine can swim.", author: "Edsger Dijkstra", source: "Computer scientist" },
+  { text: "If you think you understand quantum mechanics, you don't understand quantum mechanics.", author: "Richard Feynman", source: "Physicist" },
+  { text: "Everything should be made as simple as possible, but not simpler.", author: "Albert Einstein", source: "Physicist" },
+  { text: "The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times.", author: "Donald Knuth", source: "Computer scientist" },
+  { text: "You can't out-Amazon Amazon.", author: "Jeff Bezos", source: "Amazon" },
+  { text: "Move fast and break things.", author: "Mark Zuckerberg", source: "Facebook" },
+  { text: "Build things that don't scale.", author: "Paul Graham", source: "Y Combinator" },
+  { text: "Real artists ship.", author: "Steve Jobs", source: "Apple" },
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs", source: "Apple" },
+  { text: "Stay hungry. Stay foolish.", author: "Steve Jobs", source: "Stanford Commencement 2005" },
+  { text: "An investment in knowledge pays the best interest.", author: "Benjamin Franklin", source: "Founding Father" },
+  { text: "Education is not the filling of a pail, but the lighting of a fire.", author: "W.B. Yeats", source: "Poet" },
+  { text: "The expert in anything was once a beginner.", author: "Helen Hayes", source: "Actress" },
+  { text: "You don't have to be great to start, but you have to start to be great.", author: "Zig Ziglar", source: "Author" },
+  { text: "Code is like poetry — it requires thought, iteration, and a willingness to throw away something beautiful if it doesn't serve the whole.", author: "Anonymous developer", source: "Dev community" },
+  { text: "I'm always right, I'm just not always correct.", author: "StackOverflow regulars", source: "Developer humor" },
+  { text: "It works on my machine.", author: "Every developer", source: "Universal dev truth" },
+];
+
+// ============================================================
+// TICKER — fill with shuffled quotes
+// ============================================================
+function buildTicker() {
+    const ticker = document.getElementById('ticker');
+    if (!ticker) return;
+    const shuffled = [...QUOTES].sort(() => Math.random() - 0.5).slice(0, 40);
+    const doubled = [...shuffled, ...shuffled];
+    ticker.innerHTML = doubled.map(q =>
+        `<span class="ticker-item">"${q.text.slice(0,70)}${q.text.length > 70 ? '…' : ''}" — ${q.author}</span>`
+    ).join('');
+}
+
+// ============================================================
+// QUOTE ROTATOR
+// ============================================================
+let quoteInterval;
+let quoteHistory = [];
+let quoteHistoryPos = -1;
+
+function randomIndexExcluding(exclude) {
+    let idx;
+    do { idx = Math.floor(Math.random() * QUOTES.length); } while (idx === exclude && QUOTES.length > 1);
+    return idx;
+}
+
+function showQuote(i) {
+    const q = QUOTES[i];
+    const textEl = document.getElementById('quote-text');
+    const authorEl = document.getElementById('quote-author');
+    const sourceEl = document.getElementById('quote-source');
+    const counterEl = document.getElementById('quote-counter');
+    if (!textEl) return;
+    textEl.style.opacity = '0';
+    setTimeout(() => {
+        textEl.textContent = q.text;
+        authorEl.textContent = '— ' + q.author;
+        sourceEl.textContent = q.source;
+        counterEl.textContent = '#' + (i + 1);
+        textEl.style.opacity = '1';
+    }, 300);
+}
+
+function nextQuote() {
+    const currentIdx = quoteHistory[quoteHistoryPos] ?? -1;
+    if (quoteHistoryPos < quoteHistory.length - 1) {
+        quoteHistoryPos++;
+    } else {
+        const next = randomIndexExcluding(currentIdx);
+        quoteHistory.push(next);
+        if (quoteHistory.length > 100) quoteHistory.shift();
+        quoteHistoryPos = quoteHistory.length - 1;
+    }
+    showQuote(quoteHistory[quoteHistoryPos]);
+    resetInterval();
+}
+
+function prevQuote() {
+    if (quoteHistoryPos > 0) {
+        quoteHistoryPos--;
+        showQuote(quoteHistory[quoteHistoryPos]);
+    }
+    resetInterval();
+}
+
+function resetInterval() {
+    clearInterval(quoteInterval);
+    quoteInterval = setInterval(nextQuote, 8000);
+}
+
+// ============================================================
+// HERO TYPING EFFECT
+// ============================================================
+const subtitles = [
+    'STEM Mentor & <span class="hl1">Game Developer</span>',
+    'Hack Club <span class="hl2">Mentor</span> · Egypt',
+    '<span class="hl1">Cybersecurity</span> Enthusiast',
+    'Builder · Breaker · <span class="hl2">Learner</span>',
+    'Unity · Python · Raspberry Pi'
+];
+let subtitleIndex = 0;
+function cycleSubtitle() {
+    const el = document.getElementById('hero-subtitle');
+    if (!el) return;
+    el.style.opacity = '0';
+    setTimeout(() => {
+        el.innerHTML = subtitles[subtitleIndex % subtitles.length];
+        el.style.opacity = '1';
+        subtitleIndex++;
+    }, 400);
+}
+document.getElementById('hero-subtitle').style.transition = 'opacity 0.4s';
+
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+function getStoredTheme() {
+    return localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+}
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    localStorage.setItem('theme', theme);
+}
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// ============================================================
+// MOBILE MENU
+// ============================================================
+const mobileBtn = document.getElementById('mobile-btn');
+const mobileDrawer = document.getElementById('mobile-drawer');
+const drawerClose = document.getElementById('drawer-close');
+const drawerOverlay = document.getElementById('drawer-overlay');
+
+mobileBtn.addEventListener('click', () => mobileDrawer.classList.add('open'));
+drawerClose.addEventListener('click', () => mobileDrawer.classList.remove('open'));
+drawerOverlay.addEventListener('click', () => mobileDrawer.classList.remove('open'));
+mobileDrawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileDrawer.classList.remove('open'));
+});
+
+// ============================================================
+// SMOOTH SCROLL
+// ============================================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
         }
-        
-        .animate-fadeIn {
-            animation: fadeIn 1.2s cubic-bezier(.4, 0, .2, 1) both;
+    });
+});
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
         }
-        
-        @keyframes wiggle {
-            0%,
-            100% {
-                transform: rotate(-8deg);
-            }
-            50% {
-                transform: rotate(8deg);
-            }
-        }
-        
-        .animate-wiggle {
-            animation: wiggle 1.2s infinite;
-        }
-        
-        @keyframes bounce-slow {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-18px);
-            }
-        }
-        
-        .animate-bounce-slow {
-            animation: bounce-slow 2.5s infinite;
-        }
-        
-        @keyframes blob {
-            0%,
-            100% {
-                transform: scale(1) translate(0, 0);
-            }
-            33% {
-                transform: scale(1.1) translate(30px, -20px);
-            }
-            66% {
-                transform: scale(0.9) translate(-20px, 30px);
-            }
-        }
-        
-        .animate-blob {
-            animation: blob 12s infinite;
-        }
-        
-        .animation-delay-2000 {
-            animation-delay: 2s;
-        }
-    </style>
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => revealObserver.observe(el));
+
+// ============================================================
+// INIT
+// ============================================================
+applyTheme(getStoredTheme());
+buildTicker();
+
+const firstQuote = Math.floor(Math.random() * QUOTES.length);
+quoteHistory.push(firstQuote);
+quoteHistoryPos = 0;
+showQuote(firstQuote);
+resetInterval();
+
+document.getElementById('quote-next').addEventListener('click', nextQuote);
+document.getElementById('quote-prev').addEventListener('click', prevQuote);
+
+cycleSubtitle();
+setInterval(cycleSubtitle, 3500);
+</script>
 </body>
-
-
 </html>
-
-
-
-
-
-
