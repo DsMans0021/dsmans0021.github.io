@@ -1,36 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" dir="ltr">
 <head>
-    <meta property="og:title" content="DsMans0021 Portfolio">
-    <meta property="og:description" content="Welcome to my humble website. Let's create something together.">
-    <meta property="og:image" content="https://github.com/DsMans0021.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1200">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:url" content="https://dsmans0021.me">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DsMans0021 Portfolio">
-    <meta name="twitter:description" content="Welcome to my humble website. Let's create something together.">
-    <meta name="twitter:image" content="https://github.com/DsMans0021.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Abdelaziz | DsMans0021 — STEM Mentor & Game Developer</title>
+    <meta name="description" content="Mohamed Abdelaziz (DsMans0021) helps students and developers build games and practical tech. STEM mentor at Hack Club, indie game developer, cybersecurity researcher.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#080808">
     <meta name="google-adsense-account" content="ca-pub-8186398462710647">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8186398462710647" crossorigin="anonymous"></script>
-    <title>Mohamed Abdelaziz | DsMans0021</title>
+
+    <link rel="canonical" href="https://dsmans0021.me/">
     <link rel="icon" href="https://avatars.githubusercontent.com/u/136956569?v=4" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mohamed Abdelaziz | DsMans0021 — STEM Mentor & Game Developer">
+    <meta property="og:description" content="I help students and developers build games and practical tech. Mentor at Hack Club STEM October, indie game developer, cybersecurity researcher.">
+    <meta property="og:image" content="https://dsmans0021.me/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:url" content="https://dsmans0021.me/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DsMans0021">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_EG">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mohamed Abdelaziz | DsMans0021">
+    <meta name="twitter:description" content="STEM Mentor & Game Developer — I help students and developers build games and practical tech.">
+    <meta name="twitter:image" content="https://dsmans0021.me/assets/og-image.png">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mohamed Abdelaziz",
+        "alternateName": "DsMans0021",
+        "url": "https://dsmans0021.me/",
+        "jobTitle": "STEM Mentor & Game Developer",
+        "knowsAbout": ["Game Development", "Unity", "Python", "Cybersecurity", "Flutter", "Raspberry Pi"],
+        "sameAs": [
+            "https://github.com/DsMans0021",
+            "https://linktr.ee/DsMans0021"
+        ],
+        "address": { "@type": "PostalAddress", "addressCountry": "EG" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DsMans0021",
+        "url": "https://dsmans0021.me/"
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* ===== THEME VARIABLES ===== */
-        :root {
-            --transition-theme: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
+        :root { --transition-theme: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
 
         [data-theme="dark"] {
             --bg: #080808;
@@ -41,14 +76,16 @@
             --border2: #2a2a2a;
             --text: #c8c8c8;
             --text-strong: #f0f0f0;
-            --text-muted: #555555;
-            --text-dim: #333333;
+            --text-muted: #9a9a9a;
+            --text-dim: #6a6a6a;
             --accent: #39ff14;
             --accent-dim: rgba(57,255,20,0.08);
             --accent-border: rgba(57,255,20,0.25);
             --accent2: #ff6500;
             --accent3: #00aaff;
             --shadow: rgba(0,0,0,0.5);
+            --ok: #39ff14;
+            --err: #ff4d4d;
         }
 
         [data-theme="light"] {
@@ -60,29 +97,37 @@
             --border2: #d0d0d0;
             --text: #3a3a3a;
             --text-strong: #111111;
-            --text-muted: #888888;
-            --text-dim: #cccccc;
+            --text-muted: #5c5c5c;
+            --text-dim: #8a8a8a;
             --accent: #16a305;
             --accent-dim: rgba(22,163,5,0.07);
             --accent-border: rgba(22,163,5,0.2);
             --accent2: #d45200;
             --accent3: #0077cc;
             --shadow: rgba(0,0,0,0.1);
+            --ok: #16a305;
+            --err: #cc2222;
         }
 
         html { scroll-behavior: smooth; }
 
+        ::selection { background: var(--accent); color: var(--bg); }
+
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Cairo', sans-serif;
             font-size: 15px;
             line-height: 1.7;
             overflow-x: hidden;
             transition: var(--transition-theme);
         }
 
-        /* Grid texture */
+        html[lang="ar"] body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            letter-spacing: 0;
+        }
+
         body::before {
             content: '';
             position: fixed;
@@ -94,6 +139,11 @@
             pointer-events: none;
             z-index: 0;
             opacity: 0.5;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
 
         /* ===== NAV ===== */
@@ -110,9 +160,7 @@
             transition: var(--transition-theme);
         }
 
-        [data-theme="light"] nav {
-            background: rgba(250,250,250,0.9);
-        }
+        [data-theme="light"] nav { background: rgba(250,250,250,0.9); }
 
         .nav-inner {
             max-width: 1140px;
@@ -134,11 +182,11 @@
             white-space: nowrap;
         }
 
-        .nav-logo span { color: var(--text-muted); }
+        .nav-logo span { color: var(--text-dim); }
 
         .nav-links {
             display: flex;
-            gap: 28px;
+            gap: 26px;
             list-style: none;
             align-items: center;
         }
@@ -152,16 +200,11 @@
             transition: color 0.2s;
         }
 
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .nav-right { display: flex; align-items: center; gap: 10px; }
 
-        /* Theme toggle */
-        .theme-toggle {
+        .icon-btn {
             width: 36px;
             height: 36px;
             border: 1px solid var(--border2);
@@ -176,49 +219,77 @@
             flex-shrink: 0;
         }
 
-        .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+        .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
 
-        .nav-mobile-btn {
-            display: none;
-            background: none;
-            border: none;
+        .lang-toggle {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.06em;
             color: var(--text-muted);
-            font-size: 18px;
+            border: 1px solid var(--border2);
+            background: var(--surface);
             cursor: pointer;
-            padding: 4px;
+            height: 36px;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s;
             flex-shrink: 0;
         }
 
+        .lang-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+        .nav-mobile-btn { display: none; }
+
         /* Mobile drawer */
         .mobile-drawer {
-            display: none;
             position: fixed;
             inset: 0;
             z-index: 300;
+            visibility: hidden;
+            pointer-events: none;
         }
 
-        .mobile-drawer.open { display: block; }
+        .mobile-drawer.open { visibility: visible; pointer-events: auto; }
 
         .drawer-overlay {
             position: absolute;
             inset: 0;
             background: rgba(0,0,0,0.6);
+            opacity: 0;
+            transition: opacity 0.25s;
         }
+
+        .mobile-drawer.open .drawer-overlay { opacity: 1; }
 
         .drawer-panel {
             position: absolute;
             right: 0;
             top: 0;
             bottom: 0;
-            width: 260px;
+            width: 272px;
             background: var(--surface);
             border-left: 1px solid var(--border);
             padding: 24px;
             display: flex;
             flex-direction: column;
             gap: 4px;
-            transition: var(--transition-theme);
+            transform: translateX(100%);
+            transition: transform 0.25s ease, var(--transition-theme);
         }
+
+        .mobile-drawer.open .drawer-panel { transform: none; }
+
+        [dir="rtl"] .drawer-panel {
+            right: auto;
+            left: 0;
+            border-left: none;
+            border-right: 1px solid var(--border);
+            transform: translateX(-100%);
+        }
+
+        [dir="rtl"] .mobile-drawer.open .drawer-panel { transform: none; }
 
         .drawer-header {
             display: flex;
@@ -247,6 +318,8 @@
 
         .drawer-panel a:hover { color: var(--accent); }
 
+        body.no-scroll { overflow: hidden; }
+
         /* ===== COMMON ===== */
         section { position: relative; z-index: 1; }
 
@@ -259,7 +332,7 @@
         .section-label {
             font-family: 'Space Mono', monospace;
             font-size: 11px;
-            color: var(--text-dim);
+            color: var(--accent2);
             letter-spacing: 0.15em;
             margin-bottom: 6px;
         }
@@ -268,8 +341,30 @@
             font-size: clamp(22px, 3.5vw, 32px);
             font-weight: 700;
             color: var(--text-strong);
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             letter-spacing: -0.02em;
+            position: relative;
+            padding-bottom: 14px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 44px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        [dir="rtl"] .section-title::after { left: auto; right: 0; }
+
+        .section-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 640px;
+            margin-bottom: 36px;
         }
 
         .reveal {
@@ -278,10 +373,7 @@
             transition: opacity 0.65s ease, transform 0.65s ease;
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: none;
-        }
+        .reveal.visible { opacity: 1; transform: none; }
 
         /* ===== HERO ===== */
         #hero {
@@ -290,11 +382,10 @@
             flex-direction: column;
             justify-content: center;
             padding-top: 56px;
+            background-image: radial-gradient(680px 320px at 50% -10%, var(--accent-dim), transparent 70%);
         }
 
-        .hero-inner {
-            padding: 80px 0 40px;
-        }
+        .hero-inner { padding: 80px 0 40px; }
 
         .hero-avatar {
             width: 76px;
@@ -303,12 +394,13 @@
             border: 2px solid var(--border2);
             margin-bottom: 28px;
             filter: grayscale(15%);
+            box-shadow: 0 0 0 3px var(--bg), 0 0 28px var(--accent-border);
         }
 
         .hero-tag {
             font-family: 'Space Mono', monospace;
             font-size: 12px;
-            color: var(--accent);
+            color: var(--accent3);
             letter-spacing: 0.1em;
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -321,8 +413,10 @@
             content: '';
             width: 20px;
             height: 1px;
-            background: var(--accent);
+            background: var(--accent3);
         }
+
+        [dir="rtl"] .hero-tag::before { transform: scaleX(-1); }
 
         .hero-name {
             font-family: 'Space Mono', monospace;
@@ -343,13 +437,15 @@
             animation: blink 1s step-end infinite;
         }
 
+        [dir="rtl"] .hero-cursor { margin-left: 0; margin-right: 3px; }
+
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
         .hero-subtitle {
             font-family: 'Space Mono', monospace;
             font-size: clamp(13px, 2vw, 16px);
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             min-height: 24px;
         }
 
@@ -357,18 +453,20 @@
         .hero-subtitle .hl2 { color: var(--accent3); }
 
         .hero-desc {
-            max-width: 520px;
+            max-width: 560px;
             color: var(--text-muted);
             font-size: 14px;
-            line-height: 1.85;
-            margin-bottom: 40px;
+            line-height: 1.9;
+            margin-bottom: 36px;
         }
+
+        .hero-desc strong { color: var(--text-strong); font-weight: 600; }
 
         .hero-actions {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 56px;
+            margin-bottom: 30px;
         }
 
         .btn-primary {
@@ -389,6 +487,7 @@
         }
 
         .btn-primary:hover { opacity: 0.82; transform: translateY(-1px); }
+        .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
         .btn-outline {
             font-family: 'Space Mono', monospace;
@@ -408,6 +507,33 @@
         }
 
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        .hero-tools-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 26px;
+            padding: 15px 26px;
+            width: 100%;
+            max-width: 420px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: var(--accent);
+            background: var(--surface);
+            border: 1px solid var(--accent-border);
+            text-decoration: none;
+            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .hero-tools-link:hover {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
 
         /* Quote ticker in hero */
         .quote-ticker-wrap {
@@ -441,9 +567,11 @@
         .quote-ticker {
             display: flex;
             gap: 0;
-            animation: ticker 80s linear infinite;
+            animation: ticker 22s linear infinite;
             white-space: nowrap;
         }
+
+        [dir="rtl"] .quote-ticker { animation-direction: reverse; }
 
         .quote-ticker:hover { animation-play-state: paused; }
 
@@ -468,10 +596,7 @@
         }
 
         /* ===== ABOUT ===== */
-        #about {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
-        }
+        #about { padding: 100px 0; border-top: 1px solid var(--border); }
 
         .about-grid {
             display: grid;
@@ -491,7 +616,6 @@
         .about-text a { color: var(--accent); text-decoration: none; }
         .about-text strong { color: var(--text-strong); font-weight: 600; }
 
-        /* Currently block */
         .currently-block {
             margin-top: 28px;
             border: 1px solid var(--border);
@@ -526,11 +650,7 @@
             color: var(--accent);
         }
 
-        .currently-label {
-            color: var(--text-muted);
-            font-size: 12px;
-            flex: 1;
-        }
+        .currently-label { color: var(--text-muted); font-size: 12px; flex: 1; }
 
         .currently-val {
             color: var(--text-strong);
@@ -538,11 +658,7 @@
             font-family: 'Space Mono', monospace;
         }
 
-        /* Stats */
-        .about-stats {
-            display: flex;
-            flex-direction: column;
-        }
+        .about-stats { display: flex; flex-direction: column; }
 
         .stat-row {
             display: flex;
@@ -578,11 +694,220 @@
 
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-        /* ===== SKILLS ===== */
-        #skills {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
+        /* ===== PROJECTS ===== */
+        #projects { padding: 100px 0; border-top: 1px solid var(--border); }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
         }
+
+        .filter-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--border2);
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        .filter-btn.active {
+            color: #000;
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 28px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            display: flex;
+            flex-direction: column;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            background: var(--surface2);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px var(--shadow);
+        }
+
+        .project-card.featured { box-shadow: inset 0 0 0 1px var(--accent-border); }
+
+        .project-thumb {
+            height: 132px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .project-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 16px 16px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .project-thumb i {
+            font-size: 30px;
+            color: rgba(255,255,255,0.85);
+            z-index: 1;
+        }
+
+        .cat-games { background: linear-gradient(135deg, #14532d, #052e16); }
+        .cat-web { background: linear-gradient(135deg, #1e3a8a, #172554); }
+        .cat-mobile { background: linear-gradient(135deg, #581c87, #3b0764); }
+        .cat-security { background: linear-gradient(135deg, #7f1d1d, #450a0a); }
+
+        .status-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 12px;
+            z-index: 2;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: #fff;
+        }
+
+        [dir="rtl"] .status-badge { left: auto; right: 12px; }
+
+        .status-badge.st-completed { color: #a3ffa3; }
+        .status-badge.st-inprogress { color: #ffd27d; }
+        .status-badge.st-archived { color: #b3b3b3; }
+
+        .featured-ribbon {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            z-index: 2;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #000;
+            background: var(--accent);
+            padding: 3px 9px;
+        }
+
+        [dir="rtl"] .featured-ribbon { right: auto; left: 12px; }
+
+        .project-body { padding: 18px 20px 6px; display: flex; flex-direction: column; flex: 1; }
+
+        .project-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-bottom: 6px;
+        }
+
+        .project-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .project-tags { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .project-lang {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--accent2);
+            letter-spacing: 0.06em;
+            border: 1px solid var(--border2);
+            padding: 3px 8px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 12px 20px 20px;
+        }
+
+        .mini-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--border2);
+            padding: 7px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .mini-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        .mini-btn.accent {
+            color: var(--accent);
+            border-color: var(--accent-border);
+            background: var(--accent-dim);
+        }
+
+        .mini-btn.accent:hover { border-color: var(--accent); }
+
+        .security-note {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            padding: 12px 16px;
+            margin-bottom: 28px;
+        }
+
+        .security-note i { color: var(--accent2); margin-top: 3px; }
+
+        .tools-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--border2);
+            padding: 11px 22px;
+            transition: all 0.2s;
+        }
+
+        .tools-link:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ===== SKILLS ===== */
+        #skills { padding: 100px 0; border-top: 1px solid var(--border); }
 
         .skills-grid {
             display: grid;
@@ -595,10 +920,13 @@
         .skill-card {
             background: var(--surface);
             padding: 28px 24px;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.2s;
         }
 
-        .skill-card:hover { background: var(--surface2); }
+        .skill-card:hover {
+            background: var(--surface2);
+            transform: translateY(-2px);
+        }
 
         .skill-icon {
             font-size: 18px;
@@ -619,113 +947,8 @@
             line-height: 1.7;
         }
 
-        /* ===== PROJECTS ===== */
-        #projects {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
-            margin-bottom: 28px;
-        }
-
-        .project-card {
-            background: var(--surface);
-            padding: 24px 22px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            text-decoration: none;
-            transition: background 0.2s;
-            position: relative;
-        }
-
-        .project-card:hover { background: var(--surface2); }
-
-        .project-card:hover .project-arrow {
-            opacity: 1;
-            transform: translate(2px, -2px);
-        }
-
-        .project-arrow {
-            position: absolute;
-            top: 16px;
-            right: 18px;
-            color: var(--accent);
-            font-size: 12px;
-            opacity: 0;
-            transition: all 0.2s;
-        }
-
-        .project-num {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            color: var(--text-dim);
-        }
-
-        .project-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-strong);
-        }
-
-        .project-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.65;
-            flex: 1;
-        }
-
-        .project-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 4px;
-        }
-
-        .project-lang {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            color: var(--accent2);
-            letter-spacing: 0.06em;
-        }
-
-        .project-stars {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .project-stars i { color: #f0c040; font-size: 9px; }
-
-        .tools-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--text-muted);
-            text-decoration: none;
-            border: 1px solid var(--border2);
-            padding: 11px 22px;
-            transition: all 0.2s;
-        }
-
-        .tools-link:hover { color: var(--accent); border-color: var(--accent); }
-
         /* ===== ACHIEVEMENTS ===== */
-        #achievements {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
-        }
+        #achievements { padding: 100px 0; border-top: 1px solid var(--border); }
 
         .achievement-item {
             display: grid;
@@ -758,144 +981,8 @@
             line-height: 1.7;
         }
 
-        /* ===== QUOTE SECTION ===== */
-        #quotes {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .quote-display {
-            border: 1px solid var(--border);
-            background: var(--surface);
-            padding: 48px 40px;
-            position: relative;
-            min-height: 180px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .quote-mark {
-            font-family: 'Space Mono', monospace;
-            font-size: 48px;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 16px;
-            opacity: 0.6;
-        }
-
-        .quote-text {
-            font-size: clamp(15px, 2vw, 18px);
-            color: var(--text-strong);
-            line-height: 1.7;
-            font-style: italic;
-            margin-bottom: 20px;
-            transition: opacity 0.5s;
-        }
-
-        .quote-author {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--accent);
-            letter-spacing: 0.06em;
-        }
-
-        .quote-source {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        .quote-controls {
-            position: absolute;
-            bottom: 20px;
-            right: 24px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .quote-btn {
-            width: 30px;
-            height: 30px;
-            border: 1px solid var(--border2);
-            background: var(--bg);
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .quote-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-        .quote-counter {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            color: var(--text-dim);
-        }
-
-        /* ===== MUSIC ===== */
-        #music {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .embed-wrap {
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        /* ===== GAMES ===== */
-        #games {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        /* ===== DEVICE INFO ===== */
-        #device-info {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .device-table { border: 1px solid var(--border); }
-
-        .device-row {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .device-row:last-child { border-bottom: none; }
-
-        .device-key {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--text-muted);
-            padding: 13px 18px;
-            background: var(--surface);
-            border-right: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-        }
-
-        .device-val {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--text-strong);
-            padding: 13px 18px;
-            display: flex;
-            align-items: center;
-        }
-
         /* ===== CONTACT ===== */
-        #contact {
-            padding: 100px 0;
-            border-top: 1px solid var(--border);
-        }
+        #contact { padding: 100px 0; border-top: 1px solid var(--border); }
 
         .contact-grid {
             display: grid;
@@ -945,7 +1032,7 @@
             color: var(--text-strong);
             padding: 11px 14px;
             font-size: 14px;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Cairo', sans-serif;
             outline: none;
             transition: border-color 0.2s, background 0.3s;
             -webkit-appearance: none;
@@ -955,6 +1042,166 @@
         .form-input::placeholder { color: var(--text-muted); opacity: 0.5; }
         .form-input:focus { border-color: var(--accent); }
         textarea.form-input { resize: vertical; min-height: 110px; }
+
+        select.form-input { cursor: pointer; }
+
+        .form-note {
+            display: none;
+            margin-top: 14px;
+            font-size: 12px;
+            line-height: 1.7;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+        }
+
+        .form-note.success { display: block; color: var(--ok); border-color: var(--ok); background: var(--accent-dim); }
+        .form-note.error { display: block; color: var(--err); border-color: var(--err); background: rgba(255,77,77,0.06); }
+
+        .form-note a { color: inherit; font-weight: 600; }
+
+        /* ===== MORE ABOUT ME ===== */
+        #more { padding: 100px 0 0; border-top: 1px solid var(--border); }
+
+        .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+
+        .more-block { background: var(--surface); padding: 40px 36px; }
+
+        .more-block:first-child { grid-column: 1 / -1; }
+
+        .more-block-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--accent3);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .more-block-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-strong);
+            margin-bottom: 18px;
+        }
+
+        .more-block-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .quote-display {
+            border: 1px solid var(--border);
+            background: var(--bg);
+            padding: 40px 32px;
+            position: relative;
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 3px 0 0 var(--accent);
+        }
+
+        .quote-mark {
+            font-family: 'Space Mono', monospace;
+            font-size: 40px;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 12px;
+            opacity: 0.6;
+        }
+
+        .quote-text {
+            font-size: clamp(14px, 2vw, 17px);
+            color: var(--text-strong);
+            line-height: 1.75;
+            font-style: italic;
+            margin-bottom: 18px;
+            transition: opacity 0.4s;
+        }
+
+        .quote-author {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+        }
+
+        .quote-source {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .quote-controls {
+            position: absolute;
+            bottom: 18px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        [dir="rtl"] .quote-controls { right: auto; left: 24px; }
+
+        .quote-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--border2);
+            background: var(--bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .quote-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .quote-counter {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .embed-wrap { border: 1px solid var(--border); overflow: hidden; }
+        .embed-wrap iframe { display: block; }
+
+        .device-table { border: 1px solid var(--border); }
+
+        .device-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .device-row:last-child { border-bottom: none; }
+
+        .device-key {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            padding: 13px 18px;
+            background: var(--bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        [dir="rtl"] .device-key { border-right: none; border-left: 1px solid var(--border); }
+
+        .device-val {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-strong);
+            padding: 13px 18px;
+            display: flex;
+            align-items: center;
+        }
 
         /* ===== FOOTER ===== */
         footer {
@@ -992,24 +1239,113 @@
 
         .footer-socials a:hover { color: var(--accent); }
 
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 150;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border2);
+            background: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.2s, transform 0.2s, visibility 0.2s, color 0.2s;
+        }
+
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: none; }
+        .back-to-top:hover { color: var(--accent); border-color: var(--accent); }
+
+        [dir="rtl"] .back-to-top { right: auto; left: 24px; }
+
+        /* ===== READING PROGRESS ===== */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent3), var(--accent));
+            z-index: 1100;
+        }
+
+        [dir="rtl"] #progress-bar { left: auto; right: 0; }
+
+        /* ===== SCROLLBAR ===== */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--border2) var(--bg);
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border: 2px solid var(--bg);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        ::-webkit-scrollbar-corner { background: var(--bg); }
+
+        /* ===== SKIP LINK ===== */
+        .skip-link {
+            position: fixed;
+            top: -60px;
+            left: 16px;
+            z-index: 1200;
+            background: var(--accent);
+            color: #000;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 10px 18px;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus { top: 12px; }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .quote-ticker, .quote-ticker:hover { animation: ticker 22s linear infinite !important; }
+            .quote-ticker:hover { animation-play-state: paused !important; }
+            [dir="rtl"] .quote-ticker { animation-direction: reverse !important; }
+            .back-to-top, .icon-btn, .lang-toggle { transition: none; }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .nav-links { display: none; }
-            .nav-mobile-btn { display: block; }
+            .nav-mobile-btn { display: flex; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .skills-grid { grid-template-columns: 1fr 1fr; }
             .projects-grid { grid-template-columns: 1fr 1fr; }
             .contact-grid { grid-template-columns: 1fr; gap: 40px; }
         }
 
+        @media (max-width: 700px) {
+            .more-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 580px) {
             .skills-grid { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
             .hero-inner { padding: 60px 0 30px; }
-            #about, #skills, #projects, #achievements, #quotes, #music, #games, #device-info, #contact { padding: 72px 0; }
-            .quote-display { padding: 32px 24px; }
-            .device-row { grid-template-columns: 1fr; }
-            .device-key { border-right: none; border-bottom: 1px solid var(--border); }
+            #about, #skills, #projects, #achievements, #contact, #more { padding-top: 72px; }
+            .more-block { padding: 28px 20px; }
         }
 
         @media (max-width: 380px) {
@@ -1019,25 +1355,30 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="progress-bar" aria-hidden="true"></div>
+
 <!-- NAV -->
-<nav>
+<nav role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
         <a href="#hero" class="nav-logo"><span>~/</span>DsMans0021</a>
         <ul class="nav-links">
-            <li><a href="#about">about</a></li>
-            <li><a href="#skills">skills</a></li>
-            <li><a href="#projects">projects</a></li>
-            <li><a href="#achievements">achievements</a></li>
-            <li><a href="#quotes">quotes</a></li>
-            <li><a href="#music">music</a></li>
-            <li><a href="#games">games</a></li>
-            <li><a href="#contact">contact</a></li>
+            <li><a href="#about" data-nav="about">about</a></li>
+            <li><a href="#projects" data-nav="projects">projects</a></li>
+            <li><a href="#skills" data-nav="skills">skills</a></li>
+            <li><a href="#achievements" data-nav="achievements">achievements</a></li>
+            <li><a href="#more" data-nav="more">more</a></li>
+            <li><a href="#contact" data-nav="contact">contact</a></li>
         </ul>
         <div class="nav-right">
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+                <i class="fa-solid fa-globe"></i>
+                <span id="lang-label">العربية</span>
+            </button>
+            <button class="icon-btn" id="theme-toggle" aria-label="Toggle light or dark theme">
                 <i class="fa-solid fa-moon" id="theme-icon"></i>
             </button>
-            <button class="nav-mobile-btn" id="mobile-btn" aria-label="Menu">
+            <button class="icon-btn nav-mobile-btn" id="mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
@@ -1045,43 +1386,43 @@
 </nav>
 
 <!-- MOBILE DRAWER -->
-<div class="mobile-drawer" id="mobile-drawer">
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="drawer-panel">
         <div class="drawer-header">
             <span style="font-family:'Space Mono',monospace;font-size:12px;color:var(--accent)">~/menu</span>
-            <button class="drawer-close" id="drawer-close"><i class="fa-solid fa-xmark"></i></button>
+            <button class="drawer-close" id="drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <a href="#about">about</a>
-        <a href="#skills">skills</a>
         <a href="#projects">projects</a>
+        <a href="#skills">skills</a>
         <a href="#achievements">achievements</a>
-        <a href="#quotes">quotes</a>
-        <a href="#music">music</a>
-        <a href="#games">games</a>
-        <a href="#device-info">device info</a>
+        <a href="#more">more</a>
         <a href="#contact">contact</a>
     </div>
 </div>
 
 <!-- HERO -->
+<main id="main">
 <section id="hero">
     <div class="container">
         <div class="hero-inner">
-            <img class="hero-avatar" src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Mohamed Abdelaziz" />
-            <div class="hero-tag">based in egypt &nbsp;🇪🇬</div>
-            <h1 class="hero-name">Mohamed Abdelaziz<span class="hero-cursor"></span></h1>
-            <p class="hero-subtitle" id="hero-subtitle">&nbsp;</p>
-            <p class="hero-desc">I teach, build, and break things. Mentor at Hack Club STEM October, indie game developer, and tinkerer of all things tech — from Unity multiplayer games to Raspberry Pi hacks.</p>
+            <img class="hero-avatar" src="https://avatars.githubusercontent.com/u/136956569?v=4" alt="Portrait of Mohamed Abdelaziz (DsMans0021)" width="76" height="76" />
+            <div class="hero-tag" data-i18n="hero.tag">based in egypt &nbsp;🇪🇬</div>
+            <h1 class="hero-name">Mohamed Abdelaziz<span class="hero-cursor" aria-hidden="true"></span></h1>
+            <p class="hero-subtitle" id="hero-subtitle" aria-live="polite">&nbsp;</p>
+            <p class="hero-desc" data-i18n="hero.desc">I help students and developers build games and practical tech. I teach, build, and break things — mentor at Hack Club STEM October, indie game developer, and tinkerer of all things tech, from Unity multiplayer games to Raspberry Pi hacks.</p>
             <div class="hero-actions">
-                <a href="#contact" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Get in touch</a>
-                <a href="#projects" class="btn-outline"><i class="fa-brands fa-github"></i> View projects</a>
-                <a href="tools.html" class="btn-outline"><i class="fa-solid fa-wrench"></i> Tools</a>
+                <a href="#projects" class="btn-primary"><i class="fa-regular fa-eye"></i> <span data-i18n="hero.btn.work">View my work</span></a>
+                <a href="#contact" class="btn-outline"><i class="fa-solid fa-handshake"></i> <span data-i18n="hero.btn.hire">Hire / Collaborate</span></a>
+                <a href="cv.pdf" class="btn-outline" download><i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="hero.btn.cv">Download CV</span></a>
             </div>
+            <a href="tools.html" class="hero-tools-link">
+                <i class="fa-solid fa-wrench"></i> <span data-i18n="hero.tools">Tools — Anime Scene Search</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
     </div>
-    <!-- Scrolling quote ticker -->
-    <div class="quote-ticker-wrap">
+    <div class="quote-ticker-wrap" aria-hidden="true">
         <div class="quote-ticker" id="ticker"></div>
     </div>
 </section>
@@ -1090,96 +1431,56 @@
 <section id="about">
     <div class="container">
         <p class="section-label">// 01</p>
-        <h2 class="section-title">About me</h2>
+        <h2 class="section-title" data-i18n="about.title">About me</h2>
         <div class="about-grid">
             <div class="about-text reveal">
-                <p>I'm <strong>Mohamed Abdelaziz</strong>, a mentor at <a href="https://hackclub.com/" target="_blank">Hack Club STEM October</a> in Egypt, passionate about game development, cybersecurity, and building cool things that actually work.</p>
-                <p>I've shipped multiplayer Unity games, built AI assistants on tiny hardware, written Python automation tools, and explored both sides of cybersecurity. I like going deep on things that most people would just use off the shelf.</p>
-                <p>When I'm not coding, I'm playing games, watching anime, or overclocking hardware to do things it absolutely shouldn't.</p>
+                <p data-i18n="about.p1">I'm <strong>Mohamed Abdelaziz</strong>, a mentor at <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer">Hack Club STEM October</a> in Egypt, passionate about game development, cybersecurity, and building cool things that actually work.</p>
+                <p data-i18n="about.p2">I've shipped multiplayer Unity games, built AI assistants on tiny hardware, written Python automation tools, and explored both sides of cybersecurity. I like going deep on things that most people would just use off the shelf.</p>
+                <p data-i18n="about.p3">When I'm not coding, I'm playing games, watching anime, or overclocking hardware to do things it absolutely shouldn't.</p>
                 <div class="currently-block">
-                    <div class="currently-header">// currently</div>
+                    <div class="currently-header" data-i18n="about.currently">// currently</div>
                     <div class="currently-row">
                         <span class="currently-icon"><i class="fa-solid fa-code"></i></span>
-                        <span class="currently-label">Working on</span>
-                        <span class="currently-val">Game Dev & Security tools</span>
+                        <span class="currently-label" data-i18n="about.workLabel">Working on</span>
+                        <span class="currently-val" data-i18n="about.workVal">Game Dev &amp; Security tools</span>
                     </div>
                     <div class="currently-row">
                         <span class="currently-icon"><i class="fa-solid fa-gamepad"></i></span>
-                        <span class="currently-label">Playing</span>
-                        <span class="currently-val">indie games + jams</span>
+                        <span class="currently-label" data-i18n="about.playLabel">Playing</span>
+                        <span class="currently-val" data-i18n="about.playVal">indie games + jams</span>
                     </div>
                     <div class="currently-row">
                         <span class="currently-icon"><i class="fa-solid fa-book-open"></i></span>
-                        <span class="currently-label">Learning</span>
-                        <span class="currently-val">Cybersecurity / Flutter</span>
+                        <span class="currently-label" data-i18n="about.learnLabel">Learning</span>
+                        <span class="currently-val" data-i18n="about.learnVal">Cybersecurity / Flutter</span>
                     </div>
                 </div>
             </div>
             <div class="about-stats reveal">
                 <div class="stat-row">
-                    <span class="stat-label">location</span>
-                    <span class="stat-value">Egypt 🇪🇬</span>
+                    <span class="stat-label" data-i18n="stat.location">location</span>
+                    <span class="stat-value" data-i18n="stat.locVal">Egypt 🇪🇬</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">role</span>
-                    <span class="stat-value">STEM Mentor</span>
+                    <span class="stat-label" data-i18n="stat.role">role</span>
+                    <span class="stat-value" data-i18n="stat.roleVal">STEM Mentor</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">org</span>
-                    <span class="stat-value">Hack Club</span>
+                    <span class="stat-label" data-i18n="stat.org">org</span>
+                    <span class="stat-value" data-i18n="stat.orgVal">Hack Club</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">main langs</span>
+                    <span class="stat-label" data-i18n="stat.langs">main langs</span>
                     <span class="stat-value">C# · Python · Dart</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">github</span>
+                    <span class="stat-label" data-i18n="stat.github">github</span>
                     <span class="stat-value">DsMans0021</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">status</span>
-                    <span class="stat-value"><span class="status-dot"></span>available</span>
+                    <span class="stat-label" data-i18n="stat.status">status</span>
+                    <span class="stat-value"><span class="status-dot" aria-hidden="true"></span><span data-i18n="stat.statusVal">available</span></span>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-    <div class="container">
-        <p class="section-label">// 02</p>
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid reveal">
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fa-brands fa-unity"></i></div>
-                <div class="skill-name">C# &amp; Unity</div>
-                <div class="skill-desc">2D/3D game dev, multiplayer with PUN2, OOP, physics systems, game jam submissions.</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
-                <div class="skill-name">Python</div>
-                <div class="skill-desc">Automation, Raspberry Pi, Tkinter GUIs, media tools with OpenCV and MoviePy, scripting.</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="skill-name">Cybersecurity</div>
-                <div class="skill-desc">Cisco certified, pentesting, RATs, C2 frameworks, phishing tools, network security.</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fa-brands fa-flutter" style="font-family:sans-serif;font-size:15px;font-style:normal;">F</i></div>
-                <div class="skill-name">Dart &amp; Flutter</div>
-                <div class="skill-desc">Mobile app development, anime info apps, cross-platform UI with Flutter.</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fa-brands fa-raspberry-pi"></i></div>
-                <div class="skill-name">Raspberry Pi / IoT</div>
-                <div class="skill-desc">Hardware hacking, overclocking, AI assistants, CO₂ filtration systems, IoT experiments.</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
-                <div class="skill-name">Web &amp; JavaScript</div>
-                <div class="skill-desc">Browser games, web apps, HTML/CSS/JS tools, Naruto clicker, weather apps.</div>
             </div>
         </div>
     </div>
@@ -1188,82 +1489,71 @@
 <!-- PROJECTS -->
 <section id="projects">
     <div class="container">
-        <p class="section-label">// 03</p>
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-grid reveal">
+        <p class="section-label">// 02</p>
+        <h2 class="section-title" data-i18n="projects.title">Projects</h2>
 
-            <a href="https://github.com/DsMans0021/Maya" target="_blank" class="project-card">
-                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                <span class="project-num">001</span>
-                <div class="project-name">Maya</div>
-                <div class="project-desc">A complete Unity game submitted on itch.io. Built with C# featuring custom gameplay mechanics and polished presentation.</div>
-                <div class="project-footer">
-                    <span class="project-lang">C# · Unity</span>
-                    <span class="project-stars"><i class="fa-solid fa-star"></i> 5</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/DsMans0021/FPS-Game" target="_blank" class="project-card">
-                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                <span class="project-num">002</span>
-                <div class="project-name">FPS Multiplayer Game</div>
-                <div class="project-desc">Multiplayer FPS built with Unity and C#. 2+ players over LAN/internet using PUN2 Photon networking.</div>
-                <div class="project-footer">
-                    <span class="project-lang">C# · Unity · PUN2</span>
-                    <span class="project-stars"><i class="fa-solid fa-star"></i> 5</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/DsMans0021/Anime-App" target="_blank" class="project-card">
-                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                <span class="project-num">003</span>
-                <div class="project-name">Anime App</div>
-                <div class="project-desc">A mobile app built in Flutter/Dart that lets you browse anime info, search titles, and explore details.</div>
-                <div class="project-footer">
-                    <span class="project-lang">Dart · Flutter</span>
-                    <span class="project-stars"><i class="fa-solid fa-star"></i> 5</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/DsMans0021/Telegrojan" target="_blank" class="project-card">
-                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                <span class="project-num">004</span>
-                <div class="project-name">Telegrojan</div>
-                <div class="project-desc">Telegram-based remote administration tool. Execute shell commands on a Windows machine through a bot interface.</div>
-                <div class="project-footer">
-                    <span class="project-lang">Python</span>
-                    <span class="project-stars"><i class="fa-solid fa-star"></i> 3</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/DsMans0021/Naruto-game" target="_blank" class="project-card">
-                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                <span class="project-num">005</span>
-                <div class="project-name">Naruto Clicker Game</div>
-                <div class="project-desc">A browser-based anime clicker game. Good fun — pick your character and keep clicking.</div>
-                <div class="project-footer">
-                    <span class="project-lang">JavaScript</span>
-                    <span class="project-stars"><i class="fa-solid fa-star"></i> 4</span>
-                </div>
-            </a>
-
-            <a href="https://github.com/DsMans0021/BlackMamba" target="_blank" class="project-card">
-                <span class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                <span class="project-num">006</span>
-                <div class="project-name">BlackMamba</div>
-                <div class="project-desc">C2 / post-exploitation framework for security research. Inspired by real-world red team tooling.</div>
-                <div class="project-footer">
-                    <span class="project-lang">Security · C2</span>
-                    <span class="project-stars"><i class="fa-solid fa-star"></i> —</span>
-                </div>
-            </a>
-
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+            <button class="filter-btn active" data-filter="all" data-i18n="filter.all">All</button>
+            <button class="filter-btn" data-filter="games" data-i18n="filter.games">Games</button>
+            <button class="filter-btn" data-filter="web" data-i18n="filter.web">Web</button>
+            <button class="filter-btn" data-filter="mobile" data-i18n="filter.mobile">Mobile</button>
+            <button class="filter-btn" data-filter="security" data-i18n="filter.security">Security</button>
         </div>
-        <a href="https://github.com/DsMans0021?tab=repositories" target="_blank" class="tools-link reveal">
-            <i class="fa-brands fa-github"></i>
-            View all repositories on GitHub
-            <i class="fa-solid fa-arrow-right"></i>
-        </a>
+
+        <div class="projects-grid reveal" id="projects-grid"></div>
+
+        <div class="security-note reveal">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span data-i18n="projects.disclaimer">Security-related projects are strictly educational and for authorized, research use only.</span>
+        </div>
+
+        <div class="reveal" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://github.com/DsMans0021?tab=repositories" target="_blank" rel="noopener noreferrer" class="tools-link">
+                <i class="fa-brands fa-github"></i>
+                <span data-i18n="projects.viewAll">View all repositories on GitHub</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="container">
+        <p class="section-label">// 03</p>
+        <h2 class="section-title" data-i18n="skills.title">Skills</h2>
+        <div class="skills-grid reveal">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-unity"></i></div>
+                <div class="skill-name">C# &amp; Unity</div>
+                <div class="skill-desc" data-i18n="skills.unity">2D/3D game dev, multiplayer with PUN2, OOP, physics systems, game jam submissions.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+                <div class="skill-name">Python</div>
+                <div class="skill-desc" data-i18n="skills.python">Automation, Raspberry Pi, Tkinter GUIs, media tools with OpenCV and MoviePy, scripting.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="skill-name">Cybersecurity</div>
+                <div class="skill-desc" data-i18n="skills.sec">Cisco certified, pentesting, red-team tooling research, phishing awareness, network security.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-flutter" style="font-family:sans-serif;font-size:15px;font-style:normal;">F</i></div>
+                <div class="skill-name">Dart &amp; Flutter</div>
+                <div class="skill-desc" data-i18n="skills.flutter">Mobile app development, anime info apps, cross-platform UI with Flutter.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-raspberry-pi"></i></div>
+                <div class="skill-name">Raspberry Pi / IoT</div>
+                <div class="skill-desc" data-i18n="skills.rpi">Hardware hacking, overclocking, AI assistants, CO₂ filtration systems, IoT experiments.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+                <div class="skill-name">Web &amp; JavaScript</div>
+                <div class="skill-desc" data-i18n="skills.web">Browser games, web apps, HTML/CSS/JS tools, Naruto clicker, weather apps.</div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1271,105 +1561,87 @@
 <section id="achievements">
     <div class="container">
         <p class="section-label">// 04</p>
-        <h2 class="section-title">Achievements</h2>
+        <h2 class="section-title" data-i18n="ach.title">Achievements</h2>
         <div class="achievement-item reveal">
             <span class="achievement-num">01</span>
             <div>
-                <div class="achievement-title">AI Assistant on Raspberry Pi Zero 2 W</div>
-                <div class="achievement-desc">Built a functional voice assistant running on severely constrained hardware — proving AI tools don't need beefy machines.</div>
+                <div class="achievement-title" data-i18n="ach.a1t">AI Assistant on Raspberry Pi Zero 2 W</div>
+                <div class="achievement-desc" data-i18n="ach.a1d">Built a functional voice assistant running on severely constrained hardware — proving AI tools don't need beefy machines.</div>
             </div>
         </div>
         <div class="achievement-item reveal">
             <span class="achievement-num">02</span>
             <div>
-                <div class="achievement-title">Video Converter &amp; Media Player in Python</div>
-                <div class="achievement-desc">Tkinter + MoviePy + OpenCV + Pygame desktop app. Converts MP4→MP3 and plays media with a fully custom GUI.</div>
+                <div class="achievement-title" data-i18n="ach.a2t">Video Converter &amp; Media Player in Python</div>
+                <div class="achievement-desc" data-i18n="ach.a2d">Tkinter + MoviePy + OpenCV + Pygame desktop app. Converts MP4→MP3 and plays media with a fully custom GUI.</div>
             </div>
         </div>
         <div class="achievement-item reveal">
             <span class="achievement-num">03</span>
             <div>
-                <div class="achievement-title">Two-Stage CO₂ Air Filtration System</div>
-                <div class="achievement-desc">Engineered a prototype filtering air with water and calcium hydroxide — applying real science for environmental impact.</div>
+                <div class="achievement-title" data-i18n="ach.a3t">Two-Stage CO₂ Air Filtration System</div>
+                <div class="achievement-desc" data-i18n="ach.a3d">Engineered a prototype filtering air with water and calcium hydroxide — applying real science for environmental impact.</div>
             </div>
         </div>
         <div class="achievement-item reveal">
             <span class="achievement-num">04</span>
             <div>
-                <div class="achievement-title">Game Jam Submissions on itch.io</div>
-                <div class="achievement-desc">Shipped complete Unity/C# games under tight deadlines. Real pressure, real deadline, real results.</div>
+                <div class="achievement-title" data-i18n="ach.a4t">Game Jam Submissions on itch.io</div>
+                <div class="achievement-desc" data-i18n="ach.a4d">Shipped complete Unity/C# games under tight deadlines. Real pressure, real deadline, real results.</div>
             </div>
         </div>
         <div class="achievement-item reveal">
             <span class="achievement-num">05</span>
             <div>
-                <div class="achievement-title">Overclocked Raspberry Pi Zero 2 W</div>
-                <div class="achievement-desc">Modified configs, safely pushed the board beyond spec. Ran Doom and retro emulators on something smaller than a credit card.</div>
+                <div class="achievement-title" data-i18n="ach.a5t">Overclocked Raspberry Pi Zero 2 W</div>
+                <div class="achievement-desc" data-i18n="ach.a5d">Modified configs, safely pushed the board beyond spec. Ran Doom and retro emulators on something smaller than a credit card.</div>
             </div>
         </div>
         <div class="achievement-item reveal">
             <span class="achievement-num">06</span>
             <div>
-                <div class="achievement-title">Cisco Cybersecurity Certification</div>
-                <div class="achievement-desc">Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.</div>
+                <div class="achievement-title" data-i18n="ach.a6t">Cisco Cybersecurity Certification</div>
+                <div class="achievement-desc" data-i18n="ach.a6d">Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- QUOTES -->
-<section id="quotes">
+<!-- MORE ABOUT ME -->
+<section id="more">
     <div class="container">
         <p class="section-label">// 05</p>
-        <h2 class="section-title">Words to live by</h2>
-        <div class="quote-display reveal">
-            <div class="quote-mark">"</div>
-            <div class="quote-text" id="quote-text">Loading...</div>
-            <div class="quote-author" id="quote-author"></div>
-            <div class="quote-source" id="quote-source"></div>
-            <div class="quote-controls">
-                <span class="quote-counter" id="quote-counter">1 / 200</span>
-                <button class="quote-btn" id="quote-prev"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="quote-btn" id="quote-next"><i class="fa-solid fa-chevron-right"></i></button>
+        <h2 class="section-title" data-i18n="more.title">More about me</h2>
+        <p class="section-sub" data-i18n="more.sub">The personality part — what I listen to, play, quote, and run my work on. Optional reading, but fun.</p>
+        <div class="more-grid">
+            <div class="more-block reveal" id="quotes">
+                <div class="more-block-label" data-i18n="more.quotesLabel">// words to live by</div>
+                <div class="more-block-title" data-i18n="more.quotesTitle">Favorite quotes</div>
+                <div class="quote-display">
+                    <div class="quote-mark" aria-hidden="true">"</div>
+                    <div class="quote-text" id="quote-text">Loading...</div>
+                    <div class="quote-author" id="quote-author"></div>
+                    <div class="quote-source" id="quote-source"></div>
+                    <div class="quote-controls">
+                        <span class="quote-counter" id="quote-counter">1 / 200</span>
+                        <button class="quote-btn" id="quote-prev" aria-label="Previous quote"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="quote-btn" id="quote-next" aria-label="Next quote"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- MUSIC -->
-<section id="music">
-    <div class="container">
-        <p class="section-label">// 06</p>
-        <h2 class="section-title">What I'm listening to</h2>
-        <div class="embed-wrap reveal">
-            <iframe style="border-radius:0" src="https://open.spotify.com/embed/playlist/2RAfvrJZQ7uq9Wcwbv9AU8?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-    </div>
-</section>
-
-<!-- GAMES -->
-<section id="games">
-    <div class="container">
-        <p class="section-label">// 07</p>
-        <h2 class="section-title">Play Maya</h2>
-        <div class="embed-wrap reveal">
-            <iframe frameborder="0" src="https://itch.io/embed-upload/13451657?color=080808" allowfullscreen="" width="100%" height="450"><a href="https://itskareem.itch.io/maya">Play Maya on itch.io</a></iframe>
-        </div>
-    </div>
-</section>
-
-<!-- DEVICE INFO -->
-<section id="device-info">
-    <div class="container">
-        <p class="section-label">// 08</p>
-        <h2 class="section-title">My rig</h2>
-        <div class="device-table reveal">
-            <div class="device-row"><span class="device-key">OS</span><span class="device-val">Windows 11 Pro 64-bit (Build 26100)</span></div>
-            <div class="device-row"><span class="device-key">Machine</span><span class="device-val">HP ProBook 650 G4</span></div>
-            <div class="device-row"><span class="device-key">CPU</span><span class="device-val">Intel Core i7-8650U @ 1.90GHz (8 CPUs)</span></div>
-            <div class="device-row"><span class="device-key">RAM</span><span class="device-val">16 GB</span></div>
-            <div class="device-row"><span class="device-key">BIOS</span><span class="device-val">Q83 Ver. 01.24.00</span></div>
-            <div class="device-row"><span class="device-key">DirectX</span><span class="device-val">DirectX 12</span></div>
+            <div class="more-block reveal" id="music">
+                <div class="more-block-label" data-i18n="more.musicLabel">// now playing</div>
+                <div class="more-block-title" data-i18n="more.musicTitle">What I'm listening to</div>
+                <div class="embed-wrap">
+                    <iframe title="Mohamed Abdelaziz Spotify playlist" src="https://open.spotify.com/embed/playlist/2RAfvrJZQ7uq9Wcwbv9AU8?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="more-block reveal" id="projects-link-block">
+                <div class="more-block-label" data-i18n="more.playLabel">// play</div>
+                <div class="more-block-title" data-i18n="more.playTitle">Want to play Maya?</div>
+                <p class="more-block-desc" data-i18n="more.playDesc">Play my latest game directly from the projects section.</p>
+                <a href="#projects" class="btn-outline"><i class="fa-solid fa-gamepad"></i> <span data-i18n="more.playBtn">Jump to projects</span></a>
+            </div>
         </div>
     </div>
 </section>
@@ -1377,57 +1649,496 @@
 <!-- CONTACT -->
 <section id="contact">
     <div class="container">
-        <p class="section-label">// 09</p>
-        <h2 class="section-title">Get in touch</h2>
+        <p class="section-label">// 06</p>
+        <h2 class="section-title" data-i18n="contact.title">Get in touch</h2>
         <div class="contact-grid">
             <div class="contact-info reveal">
-                <p>Have a project idea, a security question, want to play a game together, or just want to talk tech? I'm always happy to hear from people.</p>
+                <p data-i18n="contact.p">Have a project idea, a security question, want to play a game together, or just want to talk tech? I'm always happy to hear from people.</p>
                 <div class="contact-links">
-                    <a href="https://github.com/DsMans0021" target="_blank" class="contact-link">
+                    <a href="https://github.com/DsMans0021" target="_blank" rel="noopener noreferrer" class="contact-link">
                         <i class="fa-brands fa-github"></i> github.com/DsMans0021
                     </a>
-                    <a href="https://linktr.ee/DsMans0021/" target="_blank" class="contact-link">
+                    <a href="https://linktr.ee/DsMans0021/" target="_blank" rel="noopener noreferrer" class="contact-link">
                         <i class="fa-solid fa-tree"></i> linktr.ee/DsMans0021
                     </a>
-                    <a href="https://hackclub.com/" target="_blank" class="contact-link">
+                    <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer" class="contact-link">
                         <i class="fa-solid fa-code"></i> Hack Club
                     </a>
                 </div>
             </div>
-            <form action="https://formsubmit.co/medozizo008@gmail.com" method="POST" class="reveal">
+            <form action="https://formsubmit.co/medozizo008@gmail.com" method="POST" class="reveal" id="contact-form">
                 <div class="form-group">
-                    <label class="form-label" for="name">Name</label>
-                    <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+                    <label class="form-label" for="name" data-i18n="form.name">Name</label>
+                    <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required data-i18n-ph="form.namePh">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="email">Email</label>
-                    <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+                    <label class="form-label" for="email" data-i18n="form.email">Email</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required data-i18n-ph="form.emailPh">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="message">Message</label>
-                    <textarea class="form-input" id="message" name="message" placeholder="What's on your mind?" required></textarea>
+                    <label class="form-label" for="type" data-i18n="form.type">Subject</label>
+                    <select class="form-input" id="type" name="type">
+                        <option value="Collaboration" data-i18n="form.typeOpt1">Collaboration / Project idea</option>
+                        <option value="Hire" data-i18n="form.typeOpt2">Hiring / Job offer</option>
+                        <option value="Inquiry" data-i18n="form.typeOpt3">General inquiry</option>
+                        <option value="Mentoring" data-i18n="form.typeOpt4">Mentoring / Workshop</option>
+                    </select>
                 </div>
-                <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
-                    <i class="fa-solid fa-paper-plane"></i> Send message
+                <div class="form-group">
+                    <label class="form-label" for="message" data-i18n="form.message">Message</label>
+                    <textarea class="form-input" id="message" name="message" placeholder="What's on your mind?" required data-i18n-ph="form.messagePh"></textarea>
+                </div>
+                <button type="submit" class="btn-primary" id="submit-btn" style="width:100%;justify-content:center;">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span data-i18n="form.send">Send message</span>
                 </button>
+                <div class="form-note" id="form-note" role="status"></div>
             </form>
         </div>
     </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
     <div class="footer-inner">
-        <span class="footer-copy">© 2025 Mohamed Abdelaziz · DsMans0021</span>
+        <span class="footer-copy" data-i18n="footer.copy">© 2025 Mohamed Abdelaziz · DsMans0021</span>
         <div class="footer-socials">
-            <a href="https://github.com/DsMans0021" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://linktr.ee/DsMans0021/" target="_blank" aria-label="Linktree"><i class="fa-solid fa-tree"></i></a>
-            <a href="https://hackclub.com/" target="_blank" aria-label="Hack Club"><i class="fa-solid fa-code"></i></a>
+            <a href="https://github.com/DsMans0021" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linktr.ee/DsMans0021/" target="_blank" rel="noopener noreferrer" aria-label="Linktree"><i class="fa-solid fa-tree"></i></a>
+            <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer" aria-label="Hack Club"><i class="fa-solid fa-code"></i></a>
         </div>
     </div>
 </footer>
 
+<button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8186398462710647" crossorigin="anonymous"></script>
+
 <script>
+// ============================================================
+// TRANSLATIONS
+// ============================================================
+const I18N = {
+    en: {
+        'hero.tag': 'based in egypt &nbsp;🇪🇬',
+        'hero.desc': 'I help students and developers build games and practical tech. I teach, build, and break things — mentor at Hack Club STEM October, indie game developer, and tinkerer of all things tech, from Unity multiplayer games to Raspberry Pi hacks.',
+        'hero.btn.work': 'View my work',
+        'hero.btn.hire': 'Hire / Collaborate',
+        'hero.btn.cv': 'Download CV',
+        'hero.tools': 'Tools — Anime Scene Search',
+        'about.title': 'About me',
+        'about.p1': "I'm <strong>Mohamed Abdelaziz</strong>, a mentor at <a href=\"https://hackclub.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Hack Club STEM October</a> in Egypt, passionate about game development, cybersecurity, and building cool things that actually work.",
+        'about.p2': "I've shipped multiplayer Unity games, built AI assistants on tiny hardware, written Python automation tools, and explored both sides of cybersecurity. I like going deep on things that most people would just use off the shelf.",
+        'about.p3': "When I'm not coding, I'm playing games, watching anime, or overclocking hardware to do things it absolutely shouldn't.",
+        'about.currently': '// currently',
+        'about.workLabel': 'Working on',
+        'about.workVal': 'Game Dev & Security tools',
+        'about.playLabel': 'Playing',
+        'about.playVal': 'indie games + jams',
+        'about.learnLabel': 'Learning',
+        'about.learnVal': 'Cybersecurity / Flutter',
+        'stat.location': 'location',
+        'stat.locVal': 'Egypt 🇪🇬',
+        'stat.role': 'role',
+        'stat.roleVal': 'STEM Mentor',
+        'stat.org': 'org',
+        'stat.orgVal': 'Hack Club',
+        'stat.langs': 'main langs',
+        'stat.github': 'github',
+        'stat.status': 'status',
+        'stat.statusVal': 'available',
+        'projects.title': 'Projects',
+        'filter.all': 'All',
+        'filter.games': 'Games',
+        'filter.web': 'Web',
+        'filter.mobile': 'Mobile',
+        'filter.security': 'Security',
+        'projects.disclaimer': 'Security-related projects are strictly educational and for authorized, research use only.',
+        'projects.viewAll': 'View all repositories on GitHub',
+        'skills.title': 'Skills',
+        'skills.unity': '2D/3D game dev, multiplayer with PUN2, OOP, physics systems, game jam submissions.',
+        'skills.python': 'Automation, Raspberry Pi, Tkinter GUIs, media tools with OpenCV and MoviePy, scripting.',
+        'skills.sec': 'Cisco certified, pentesting, red-team tooling research, phishing awareness, network security.',
+        'skills.flutter': 'Mobile app development, anime info apps, cross-platform UI with Flutter.',
+        'skills.rpi': 'Hardware hacking, overclocking, AI assistants, CO₂ filtration systems, IoT experiments.',
+        'skills.web': 'Browser games, web apps, HTML/CSS/JS tools, Naruto clicker, weather apps.',
+        'ach.title': 'Achievements',
+        'ach.a1t': 'AI Assistant on Raspberry Pi Zero 2 W',
+        'ach.a1d': "Built a functional voice assistant running on severely constrained hardware — proving AI tools don't need beefy machines.",
+        'ach.a2t': 'Video Converter & Media Player in Python',
+        'ach.a2d': 'Tkinter + MoviePy + OpenCV + Pygame desktop app. Converts MP4→MP3 and plays media with a fully custom GUI.',
+        'ach.a3t': 'Two-Stage CO₂ Air Filtration System',
+        'ach.a3d': 'Engineered a prototype filtering air with water and calcium hydroxide — applying real science for environmental impact.',
+        'ach.a4t': 'Game Jam Submissions on itch.io',
+        'ach.a4d': 'Shipped complete Unity/C# games under tight deadlines. Real pressure, real deadline, real results.',
+        'ach.a5t': 'Overclocked Raspberry Pi Zero 2 W',
+        'ach.a5d': 'Modified configs, safely pushed the board beyond spec. Ran Doom and retro emulators on something smaller than a credit card.',
+        'ach.a6t': 'Cisco Cybersecurity Certification',
+        'ach.a6d': 'Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.',
+        'contact.title': 'Get in touch',
+        'contact.p': "Have a project idea, a security question, want to play a game together, or just want to talk tech? I'm always happy to hear from people.",
+        'form.name': 'Name',
+        'form.namePh': 'Your name',
+        'form.email': 'Email',
+        'form.emailPh': 'your@email.com',
+        'form.type': 'Subject',
+        'form.typeOpt1': 'Collaboration / Project idea',
+        'form.typeOpt2': 'Hiring / Job offer',
+        'form.typeOpt3': 'General inquiry',
+        'form.typeOpt4': 'Mentoring / Workshop',
+        'form.message': 'Message',
+        'form.messagePh': "What's on your mind?",
+        'form.send': 'Send message',
+        'more.title': 'More about me',
+        'more.sub': "The personality part — what I listen to, play, and quote. Optional reading, but fun.",
+        'more.quotesLabel': '// words to live by',
+        'more.quotesTitle': 'Favorite quotes',
+        'more.musicLabel': '// now playing',
+        'more.musicTitle': "What I'm listening to",
+        'more.playLabel': '// play',
+        'more.playTitle': 'Want to play Maya?',
+        'more.playDesc': "You can play Maya directly in the projects section.",
+        'more.playBtn': 'Jump to projects',
+        'footer.copy': '© 2025 Mohamed Abdelaziz · DsMans0021',
+        nav: {
+            about: 'about', projects: 'projects', skills: 'skills',
+            achievements: 'achievements', contact: 'contact', more: 'more'
+        }
+    },
+    ar: {
+        'hero.tag': 'مقيم في مصر &nbsp;🇪🇬',
+        'hero.desc': 'أساعد الطلاب والمطوّرين على بناء ألعاب وتجارب تقنية عملية. أُعلّم، أبني، وأختبر — مُرشد في «هاك كلوب» ستيم أكتوبر، مطوّر ألعاب مستقل، ومهووس بكل ما هو تقني من ألعاب الشبكات في Unity إلى تجارب Raspberry Pi.',
+        'hero.btn.work': 'شاهد أعمالي',
+        'hero.btn.hire': 'وظّفني / تعاون معي',
+        'hero.btn.cv': 'تحميل السيرة الذاتية',
+        'hero.tools': 'الأدوات — البحث عن مشاهد الأنمي',
+        'about.title': 'من أنا',
+        'about.p1': 'أنا <strong>محمد عبدالعزيز</strong>، مُرشد في <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer">«هاك كلوب» ستيم أكتوبر</a> في مصر، شغوف بتطوير الألعاب والأمن السيبراني وبناء أشياء رائعة تعمل فعلًا.',
+        'about.p2': 'نشرت ألعاب Unity متعددة اللاعبين، وبنيت مساعدين بالذكاء الاصطناعي على أجهزة صغيرة، وبرمجت أدوات أتمتة بلغة بايثون، واستكشفت جانبي الأمن السيبراني. أحب التعمق في أشياء يكتفي معظم الناس باستخدامها من خارج الصندوق.',
+        'about.p3': 'عندما لا أُبرمج، ألعب ألعاب الفيديو، أو أشاهد الأنمي، أو أرفع تردد الأجهزة لفعل ما لا يُفترض أن تفعله.',
+        'about.currently': '// حاليًا',
+        'about.workLabel': 'أعمل على',
+        'about.workVal': 'تطوير الألعاب وأدوات الأمان',
+        'about.playLabel': 'ألعب',
+        'about.playVal': 'ألعاب مستقلة ومسابقات',
+        'about.learnLabel': 'أتعلم',
+        'about.learnVal': 'الأمن السيبراني / فلاتر',
+        'stat.location': 'الموقع',
+        'stat.locVal': 'مصر 🇪🇬',
+        'stat.role': 'الدور',
+        'stat.roleVal': 'مُرشد ستيم',
+        'stat.org': 'المنظمة',
+        'stat.orgVal': 'هاك كلوب',
+        'stat.langs': 'اللغات الأساسية',
+        'stat.github': 'جيت هب',
+        'stat.status': 'الحالة',
+        'stat.statusVal': 'متاح للعمل',
+        'projects.title': 'المشاريع',
+        'filter.all': 'الكل',
+        'filter.games': 'ألعاب',
+        'filter.web': 'ويب',
+        'filter.mobile': 'موبايل',
+        'filter.security': 'أمن',
+        'projects.disclaimer': 'المشاريع المتعلقة بالأمن هي لأغراض تعليمية وبحثية ومصرّحٍ بها فقط.',
+        'projects.viewAll': 'عرض كل المشاريع على جيت هب',
+        'skills.title': 'المهارات',
+        'skills.unity': 'تطوير ألعاب 2D/3D، تعدد لاعبين عبر PUN2، برمجة كائنية، فيزياء، مشاركات في مسابقات الألعاب.',
+        'skills.python': 'أتمتة، Raspberry Pi، واجهات Tkinter، أدوات وسائط بـ OpenCV وMoviePy، سكربتات.',
+        'skills.sec': 'شهادة سيسكو، اختبار اختراق، أبحاث أدوات الفريق الأحمر، توعية بالتصيد، أمن الشبكات.',
+        'skills.flutter': 'تطوير تطبيقات الموبايل، تطبيقات معلومات الأنمي، واجهات متعددة المنصات بفلاتر.',
+        'skills.rpi': 'هندسة أجهزة، رفع تردد التشغيل، مساعدين بالذكاء الاصطناعي، أنظمة تنقية CO₂، تجارب إنترنت الأشياء.',
+        'skills.web': 'ألعاب متصفح، تطبيقات ويب، أدوات HTML/CSS/JS، لعبة ناروتو، تطبيقات الطقس.',
+        'ach.title': 'الإنجازات',
+        'ach.a1t': 'مساعد ذكاء اصطناعي على Raspberry Pi Zero 2 W',
+        'ach.a1d': 'بنيت مساعد صوتيًا يعمل على أجهزة محدودة جدًا — لإثبات أن أدوات الذكاء الاصطناعي لا تحتاج أجهزة قوية.',
+        'ach.a2t': 'محوّل فيديو ومشغّل وسائط ببايثون',
+        'ach.a2d': 'تطبيق سطح مكتب بـ Tkinter + MoviePy + OpenCV + Pygame. يحوّل MP4 إلى MP3 ويشغّل الوسائط بواجهة مخصّصة بالكامل.',
+        'ach.a3t': 'نظام تنقية هواء CO₂ على مرحلتين',
+        'ach.a3d': 'صممت نموذجًا أوليًا ينقي الهواء بالماء وهيدروكسيد الكالسيوم — بتطبيق علم حقيقي لأثر بيئي.',
+        'ach.a4t': 'مشاركات في مسابقات الألعاب على itch.io',
+        'ach.a4d': 'أصدرت ألعاب Unity/C# كاملة تحت مواعيد ضاغطة. ضغط حقيقي، موعد حقيقي، نتائج حقيقية.',
+        'ach.a5t': 'رفع تردد Raspberry Pi Zero 2 W',
+        'ach.a5d': 'عدّلت الإعدادات ودفعت اللوحة بأمان فوق المواصفات. شغّلت Doom ومحاكيات قديمة على شيء أصغر من بطاقة الائتمان.',
+        'ach.a6t': 'شهادة سيسكو في الأمن السيبراني',
+        'ach.a6d': 'شهادة رسمية في أساسيات أمن الشبكات والاختراق الأخلاقي، مع مشاريع اختبار اختراق عملية.',
+        'contact.title': 'تواصل معي',
+        'contact.p': 'لديك فكرة مشروع، أو سؤال أمني، أو تريد اللعب معًا، أو مجرد الحديث عن التقنية؟ يسعدني دائمًا أن أسمع منك.',
+        'form.name': 'الاسم',
+        'form.namePh': 'اسمك الكريم',
+        'form.email': 'البريد الإلكتروني',
+        'form.emailPh': 'your@email.com',
+        'form.type': 'الموضوع',
+        'form.typeOpt1': 'تعاون / فكرة مشروع',
+        'form.typeOpt2': 'توظيف / عرض عمل',
+        'form.typeOpt3': 'استفسار عام',
+        'form.typeOpt4': 'إرشاد / ورشة عمل',
+        'form.message': 'الرسالة',
+        'form.messagePh': 'ماذا يدور في ذهنك؟',
+        'form.send': 'إرسال الرسالة',
+        'more.title': 'المزيد عني',
+        'more.sub': 'جزء الشخصية — ما أستمع إليه، وما ألعبه، وما أقتبس منه. قراءة اختيارية لكنها ممتعة.',
+        'more.quotesLabel': '// أقوال أؤمن بها',
+        'more.quotesTitle': 'أقوال مفضّلة',
+        'more.musicLabel': '// يُشغّل الآن',
+        'more.musicTitle': 'ما أستمع إليه',
+        'more.playLabel': '// العب',
+        'more.playTitle': 'تريد تجربة مايا؟',
+        'more.playDesc': 'يمكنك لعب مايا مباشرة من قسم المشاريع.',
+        'more.playBtn': 'الانتقال إلى المشاريع',
+        'footer.copy': '© 2025 محمد عبدالعزيز · DsMans0021',
+        nav: {
+            about: 'من أنا', projects: 'المشاريع', skills: 'المهارات',
+            achievements: 'الإنجازات', contact: 'التواصل', more: 'المزيد'
+        }
+    }
+};
+
+// ============================================================
+// LANGUAGE
+// ============================================================
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = lang === 'ar' ? 'محمد عبدالعزيز | DsMans0021' : 'Mohamed Abdelaziz | DsMans0021';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = I18N[lang][el.dataset.i18n];
+        if (v !== undefined) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const v = I18N[lang][el.dataset.i18nPh];
+        if (v !== undefined) el.placeholder = v;
+    });
+    document.querySelectorAll('.nav-links a, .drawer-panel a').forEach(a => {
+        const key = (a.getAttribute('href') || '').slice(1);
+        if (key && I18N[lang].nav[key]) a.textContent = I18N[lang].nav[key];
+    });
+    document.getElementById('lang-label').textContent = lang === 'ar' ? 'EN' : 'العربية';
+    document.getElementById('lang-toggle').setAttribute('aria-label', lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية');
+    document.querySelectorAll('.filter-btn[data-i18n]').forEach(btn => {
+        const v = I18N[lang][btn.dataset.i18n];
+        if (v !== undefined) btn.textContent = v;
+    });
+    cycleSubtitle(true);
+    renderProjects();
+    localStorage.setItem('lang', lang);
+}
+
+document.getElementById('lang-toggle').addEventListener('click', () => {
+    applyLang(currentLang === 'ar' ? 'en' : 'ar');
+});
+
+// ============================================================
+// PROJECTS DATABASE
+// ============================================================
+const PROJECTS = [
+    {
+        name: 'Maya', category: 'games', status: 'completed', featured: true,
+        lang: 'C# · Unity', icon: 'fa-solid fa-gamepad',
+        demo: 'https://itskareem.itch.io/maya',
+        code: 'https://github.com/DsMans0021/Maya',
+        case: 'maya.html',
+        desc: {
+            en: 'A complete Unity game submitted on itch.io. Built with C# featuring custom gameplay mechanics and polished presentation.',
+            ar: 'لعبة Unity اكتملت ونُشرت على itch.io. صُنعت بلغة C# وتتميز بآليات لعب مخصّصة وعرض مصقول.'
+        }
+    },
+    {
+        name: 'FPS Multiplayer Game', category: 'games', status: 'inprogress', featured: true,
+        lang: 'C# · Unity · PUN2', icon: 'fa-solid fa-crosshairs',
+        demo: null,
+        code: 'https://github.com/DsMans0021/FPS-Game',
+        case: 'fps-game.html',
+        desc: {
+            en: 'Multiplayer FPS built with Unity and C#, supporting 2+ players over LAN/internet using PUN2 Photon networking.',
+            ar: 'لعبة تصويب من منظور أول متعددة اللاعبين ببناء Unity وC#، تدعم لاعبين أو أكثر عبر الشبكة المحلية أو الإنترنت باستخدام شبكات PUN2 Photon.'
+        }
+    },
+    {
+        name: 'Anime App', category: 'mobile', status: 'completed', featured: true,
+        lang: 'Dart · Flutter', icon: 'fa-solid fa-mobile-screen',
+        demo: null,
+        code: 'https://github.com/DsMans0021/Anime-App',
+        case: null,
+        desc: {
+            en: 'A mobile app built in Flutter/Dart that lets you browse anime info, search titles, and explore details.',
+            ar: 'تطبيق موبايل مبني بـ Flutter/Dart يتيح تصفّح معلومات الأنمي والبحث عن العناوين واستكشاف التفاصيل.'
+        }
+    },
+    {
+        name: 'Naruto Clicker Game', category: 'web', status: 'completed', featured: false,
+        lang: 'JavaScript', icon: 'fa-solid fa-hand-pointer',
+        demo: null,
+        code: 'https://github.com/DsMans0021/Naruto-game',
+        case: null,
+        desc: {
+            en: 'A browser-based anime clicker game. Good fun — pick your character and keep clicking.',
+            ar: 'لعبة نقر أنمي تعمل في المتصفح. ممتعة — اختر شخصيتك واستمر في النقر.'
+        }
+    },
+    {
+        name: 'Telegram RAT Demo', category: 'security', status: 'archived', featured: false,
+        lang: 'Python', icon: 'fa-solid fa-server',
+        demo: null,
+        code: 'https://github.com/DsMans0021/Telegrojan',
+        case: null,
+        desc: {
+            en: 'An educational remote-administration prototype. Built strictly for learning and authorized testing — research use only.',
+            ar: 'نموذج إدارة عن بُعد تعليمي. صُنع حصريًا للتعلم والاختبار المصرّح به — لأغراض البحث فقط.'
+        }
+    },
+    {
+        name: 'BlackMamba (C2 Research)', category: 'security', status: 'inprogress', featured: false,
+        lang: 'Security · C2', icon: 'fa-solid fa-shield-halved',
+        demo: null,
+        code: 'https://github.com/DsMans0021/BlackMamba',
+        case: null,
+        desc: {
+            en: 'A red-team command & control research framework inspired by real offensive tooling. Built for education and authorized security testing.',
+            ar: 'إطار بحثي للتحكم والسيطرة بأسلوب الفريق الأحمر مستوحى من أدوات الهجوم الحقيقية. صُنع للتعليم والاختبار الأمني المصرّح به.'
+        }
+    }
+];
+
+const STATUS_KEY = {
+    completed: 'st-completed',
+    inprogress: 'st-inprogress',
+    archived: 'st-archived'
+};
+
+const STATUS_TEXT = {
+    completed: { en: 'Completed', ar: 'مكتمل' },
+    inprogress: { en: 'In progress', ar: 'قيد التطوير' },
+    archived: { en: 'Archived', ar: 'مؤرشف' }
+};
+
+const CATEGORY_ICON = {
+    games: 'fa-solid fa-gamepad',
+    web: 'fa-solid fa-globe',
+    mobile: 'fa-solid fa-mobile-screen',
+    security: 'fa-solid fa-shield-halved'
+};
+
+let activeFilter = 'all';
+
+function t(key) {
+    return I18N[currentLang][key] || key;
+}
+
+function renderProjects() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    let list = PROJECTS.filter(p => activeFilter === 'all' || p.category === activeFilter);
+    list = list.slice().sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    if (list.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'no-results';
+        empty.style.cssText = 'font-family:\'Space Mono\',monospace;font-size:12px;color:var(--text-muted);padding:32px 0;text-align:center;';
+        empty.textContent = currentLang === 'ar' ? 'لا توجد مشاريع في هذا التصنيف بعد.' : 'No projects in this category yet.';
+        grid.appendChild(empty);
+        return;
+    }
+    list.forEach(p => grid.appendChild(buildProjectCard(p)));
+}
+
+function buildProjectCard(p) {
+    const card = document.createElement('article');
+    card.className = 'project-card' + (p.featured ? ' featured' : '');
+    card.setAttribute('data-category', p.category);
+
+    const thumb = document.createElement('div');
+    thumb.className = 'project-thumb cat-' + p.category;
+
+    const icon = document.createElement('i');
+    icon.className = (CATEGORY_ICON[p.category] || 'fa-solid fa-code');
+    icon.setAttribute('aria-hidden', 'true');
+    thumb.appendChild(icon);
+
+    const status = document.createElement('span');
+    status.className = 'status-badge ' + (STATUS_KEY[p.status] || '');
+    status.textContent = STATUS_TEXT[p.status][currentLang];
+    status.setAttribute('data-status', p.status);
+    thumb.appendChild(status);
+
+    if (p.featured) {
+        const ribbon = document.createElement('span');
+        ribbon.className = 'featured-ribbon';
+        ribbon.textContent = '★ ' + (currentLang === 'ar' ? 'مميز' : 'featured');
+        thumb.appendChild(ribbon);
+    }
+    card.appendChild(thumb);
+
+    const body = document.createElement('div');
+    body.className = 'project-body';
+
+    const name = document.createElement('div');
+    name.className = 'project-name';
+    name.textContent = p.name;
+    body.appendChild(name);
+
+    const desc = document.createElement('div');
+    desc.className = 'project-desc';
+    desc.textContent = p.desc[currentLang];
+    body.appendChild(desc);
+
+    const tags = document.createElement('div');
+    tags.className = 'project-tags';
+    const tag = document.createElement('span');
+    tag.className = 'project-lang';
+    tag.textContent = p.lang;
+    tags.appendChild(tag);
+    body.appendChild(tags);
+
+    card.appendChild(body);
+
+    const links = document.createElement('div');
+    links.className = 'project-links';
+
+    if (p.demo) {
+        links.appendChild(miniLink(p.demo, '<i class="fa-solid fa-arrow-up-right-from-square"></i> ' + (currentLang === 'ar' ? 'تجربة حيّة' : 'Live demo'), true));
+    }
+    if (p.code) {
+        links.appendChild(miniLink(p.code, '<i class="fa-brands fa-github"></i> ' + (currentLang === 'ar' ? 'الكود' : 'Source'), false));
+    }
+    if (p.case) {
+        links.appendChild(miniLink(p.case, '<i class="fa-solid fa-book-open"></i> ' + (currentLang === 'ar' ? 'دراسة الحالة' : 'Case study'), true));
+    }
+    if (links.childNodes.length === 0) {
+        const none = document.createElement('span');
+        none.className = 'mini-btn';
+        none.style.cursor = 'default';
+        none.textContent = currentLang === 'ar' ? 'الرابط قادم' : 'links coming soon';
+        links.appendChild(none);
+    }
+    card.appendChild(links);
+
+    return card;
+}
+
+function miniLink(href, html, accent) {
+    const a = document.createElement('a');
+    a.className = 'mini-btn' + (accent ? ' accent' : '');
+    a.href = href;
+    if (href.startsWith('http')) {
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+    }
+    a.innerHTML = html;
+    return a;
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+        renderProjects();
+    });
+});
+
 // ============================================================
 // QUOTES DATABASE — 200+ real quotes
 // ============================================================
@@ -1677,15 +2388,15 @@ const QUOTES = [
 ];
 
 // ============================================================
-// TICKER — fill with shuffled quotes
+// TICKER — fill with shuffled quotes, faster scroll
 // ============================================================
 function buildTicker() {
     const ticker = document.getElementById('ticker');
     if (!ticker) return;
-    const shuffled = [...QUOTES].sort(() => Math.random() - 0.5).slice(0, 40);
+    const shuffled = [...QUOTES].sort(() => Math.random() - 0.5).slice(0, 24);
     const doubled = [...shuffled, ...shuffled];
     ticker.innerHTML = doubled.map(q =>
-        `<span class="ticker-item">"${q.text.slice(0,70)}${q.text.length > 70 ? '…' : ''}" — ${q.author}</span>`
+        `<span class="ticker-item">"${q.text.slice(0, 70)}${q.text.length > 70 ? '…' : ''}" — ${q.author}</span>`
     ).join('');
 }
 
@@ -1749,20 +2460,34 @@ function resetInterval() {
 // ============================================================
 // HERO TYPING EFFECT
 // ============================================================
-const subtitles = [
-    'STEM Mentor & <span class="hl1">Game Developer</span>',
-    'Hack Club <span class="hl2">Mentor</span> · Egypt',
-    '<span class="hl1">Cybersecurity</span> Enthusiast',
-    'Builder · Breaker · <span class="hl2">Learner</span>',
-    'Unity · Python · Raspberry Pi'
-];
+const SUBTITLES = {
+    en: [
+        'STEM Mentor & <span class="hl1">Game Developer</span>',
+        'Hack Club <span class="hl2">Mentor</span> · Egypt',
+        '<span class="hl1">Cybersecurity</span> Enthusiast',
+        'Builder · Breaker · <span class="hl2">Learner</span>',
+        'Unity · Python · Raspberry Pi'
+    ],
+    ar: [
+        'مُرشد ستيم و<span class="hl1">مطوّر ألعاب</span>',
+        '<span class="hl2">مُرشد</span> في هاك كلوب · مصر',
+        'مهتم <span class="hl1">بالأمن السيبراني</span>',
+        'منشئ · مخترق · <span class="hl2">متعلّم</span>',
+        'Unity · Python · Raspberry Pi'
+    ]
+};
 let subtitleIndex = 0;
-function cycleSubtitle() {
+
+function cycleSubtitle(force) {
     const el = document.getElementById('hero-subtitle');
     if (!el) return;
+    if (force) {
+        el.innerHTML = SUBTITLES[currentLang][subtitleIndex % SUBTITLES[currentLang].length];
+        return;
+    }
     el.style.opacity = '0';
     setTimeout(() => {
-        el.innerHTML = subtitles[subtitleIndex % subtitles.length];
+        el.innerHTML = SUBTITLES[currentLang][subtitleIndex % SUBTITLES[currentLang].length];
         el.style.opacity = '1';
         subtitleIndex++;
     }, 400);
@@ -1796,15 +2521,25 @@ const mobileDrawer = document.getElementById('mobile-drawer');
 const drawerClose = document.getElementById('drawer-close');
 const drawerOverlay = document.getElementById('drawer-overlay');
 
-mobileBtn.addEventListener('click', () => mobileDrawer.classList.add('open'));
-drawerClose.addEventListener('click', () => mobileDrawer.classList.remove('open'));
-drawerOverlay.addEventListener('click', () => mobileDrawer.classList.remove('open'));
+function setDrawer(open) {
+    mobileDrawer.classList.toggle('open', open);
+    mobileBtn.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('no-scroll', open);
+    if (open) document.getElementById('drawer-close').focus();
+}
+
+mobileBtn.addEventListener('click', () => setDrawer(true));
+drawerClose.addEventListener('click', () => setDrawer(false));
+drawerOverlay.addEventListener('click', () => setDrawer(false));
 mobileDrawer.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => mobileDrawer.classList.remove('open'));
+    a.addEventListener('click', () => setDrawer(false));
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) setDrawer(false);
 });
 
 // ============================================================
-// SMOOTH SCROLL
+// SMOOTH SCROLL + ACTIVE NAV + BACK TO TOP
 // ============================================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -1814,6 +2549,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             target.scrollIntoView({ behavior: 'smooth' });
         }
     });
+});
+
+const backToTop = document.getElementById('back-to-top');
+const progressBar = document.getElementById('progress-bar');
+function updateScrollUI() {
+    const scrolled = window.scrollY;
+    backToTop.classList.toggle('visible', scrolled > 600);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progressBar && max > 0) progressBar.style.width = (scrolled / max) * 100 + '%';
+}
+window.addEventListener('scroll', updateScrollUI, { passive: true });
+window.addEventListener('resize', updateScrollUI);
+updateScrollUI();
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const sectionIds = ['about', 'projects', 'skills', 'achievements', 'more', 'contact'];
+const navSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+            });
+        }
+    });
+}, { rootMargin: '-45% 0px -50% 0px' });
+sectionIds.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) navSpy.observe(section);
 });
 
 // ============================================================
@@ -1831,10 +2594,58 @@ const revealObserver = new IntersectionObserver((entries) => {
 reveals.forEach(el => revealObserver.observe(el));
 
 // ============================================================
+// CONTACT FORM
+// ============================================================
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    const submitBtn = document.getElementById('submit-btn');
+    const note = document.getElementById('form-note');
+    let submitting = false;
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (submitting) return;
+        submitting = true;
+        submitBtn.disabled = true;
+        submitBtn.querySelector('span').textContent = currentLang === 'ar' ? 'جارٍ الإرسال…' : 'Sending…';
+        note.className = 'form-note';
+
+        const formData = new FormData(contactForm);
+        formData.append('_subject', (formData.get('type') || 'Message') + ' — from dsmans0021.me');
+        formData.append('_captcha', 'false');
+
+        try {
+            const res = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || data.success !== 'true') throw new Error('bad response');
+            note.className = 'form-note success';
+            note.textContent = currentLang === 'ar'
+                ? 'تم إرسال رسالتك بنجاح. سأعود إليك قريبًا.'
+                : 'Your message was sent. I\'ll get back to you soon.';
+            contactForm.reset();
+        } catch (err) {
+            note.className = 'form-note error';
+            note.innerHTML = currentLang === 'ar'
+                ? 'تعذّر إرسال الرسالة الآن. جرّب مراسلتي مباشرة عبر البريد: <a href="mailto:medozizo008@gmail.com">medozizo008@gmail.com</a>'
+                : 'Something went wrong. You can also reach me directly at <a href="mailto:medozizo008@gmail.com">medozizo008@gmail.com</a>.';
+        } finally {
+            submitting = false;
+            submitBtn.disabled = false;
+            submitBtn.querySelector('span').textContent = I18N[currentLang]['form.send'];
+        }
+    });
+}
+
+// ============================================================
 // INIT
 // ============================================================
 applyTheme(getStoredTheme());
 buildTicker();
+applyLang(currentLang);
 
 const firstQuote = Math.floor(Math.random() * QUOTES.length);
 quoteHistory.push(firstQuote);
@@ -1845,8 +2656,20 @@ resetInterval();
 document.getElementById('quote-next').addEventListener('click', nextQuote);
 document.getElementById('quote-prev').addEventListener('click', prevQuote);
 
-cycleSubtitle();
-setInterval(cycleSubtitle, 3500);
+setInterval(() => cycleSubtitle(false), 4000);
+
+// ============================================================
+// EASTER EGG (open the console, then type  dsmans() )
+// ============================================================
+setTimeout(() => {
+    console.log('%c~> welcome to the machine. Type  dsmans()  if you dare.',
+        'color:#39ff14;font-family:monospace;font-size:12px');
+}, 800);
+
+window.dsmans = function () {
+    console.log('%c\n   ██████╗ ███████╗███╗   ███╗ █████╗ ███╗   ██╗███████╗\n   ██╔══██╗██╔════╝████╗ ████║██╔══██╗████╗  ██║██╔════╝\n   ██║  ██║███████╗██╔████╔██║███████║██╔██╗ ██║███████╗\n   ██║  ██║╚════██║██║╚██╔╝██║██╔══██║██║╚██╗██║╚════██║\n   ██████╔╝███████║██║ ╚═╝ ██║██║  ██║██║ ╚████║███████║\n   ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝\n\n   You found the backdoor. +1 hacker credit. Welcome, DsMans.\n', 'color:#39ff14;font-family:monospace');
+    return 'root@dsmans0021:~$ access granted';
+};
 </script>
 </body>
 </html>

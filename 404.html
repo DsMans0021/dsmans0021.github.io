@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>404 · dsmans:~$ not found</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #080808;
+            --text: #c8c8c8;
+            --muted: #6a6a6a;
+            --accent: #39ff14;
+            --accent2: #00aaff;
+        }
+
+        html { scrollbar-width: thin; scrollbar-color: #2a2a2a #080808; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Space Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .term {
+            width: 100%;
+            max-width: 640px;
+            border: 1px solid #1e1e1e;
+            background: #0f0f0f;
+        }
+
+        .term-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-bottom: 1px solid #1e1e1e;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .dot.r { background: #ff5f56; }
+        .dot.y { background: #ffbd2e; }
+        .dot.g { background: #27c93f; }
+
+        .term-body { padding: 28px 24px 32px; }
+
+        .line { line-height: 1.8; font-size: 14px; }
+        .prompt { color: var(--accent); }
+        .dim { color: var(--muted); }
+        .big {
+            font-size: clamp(48px, 14vw, 96px);
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin: 8px 0 20px;
+        }
+
+        .muted { color: var(--muted); }
+        .accent2 { color: var(--accent2); }
+        .msg { margin-top: 22px; font-size: 13px; line-height: 1.9; }
+
+        .btn {
+            display: inline-block;
+            margin-top: 26px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: #000;
+            background: var(--accent);
+            padding: 12px 24px;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn:hover { opacity: 0.82; transform: translateY(-2px); }
+
+        .cursor { animation: blink 1s steps(1) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cursor { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="term" role="alert">
+    <div class="term-bar">
+        <span class="dot r"></span>
+        <span class="dot y"></span>
+        <span class="dot g"></span>
+        <span style="margin-left:8px">dsmans0021@bash: ~/404</span>
+    </div>
+    <div class="term-body">
+        <div class="line">
+            <span class="prompt">$</span> <span class="accent2">find</span> /the/page/you/wanted <span class="dim">--verbose</span>
+        </div>
+        <div class="line dim">checking ~/portfolio entries&hellip;</div>
+        <div class="line dim" id="spinner">no results &mdash; file not found <span class="cursor">▍</span></div>
+        <div class="big">404</div>
+        <p class="muted" style="font-size:13px">The page you're looking for got lost somewhere in the terminal.</p>
+        <p class="msg accent2">صفحة مش موجودة هنا &mdash; بس متقلقش، رجوعك للموقع الرئيسي أسرع من إعادة الـ ping<span class="dim">…</span></p>
+        <a href="./" class="btn">cd ~ &amp;&amp; go home</a>
+    </div>
+</div>
+
+<script>
+    setTimeout(function () {
+        window.dsmans404 = 1;
+        console.log('%c404 — but nice of you to wander around. Type  dsmans()  back on the home page.', 'color:#39ff14;font-family:monospace');
+    }, 500);
+</script>
+</body>
+</html>

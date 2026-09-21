@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools | Mohamed Abdelaziz</title>
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/136956569?v=4" />
+    <title>Anime Scene Search | Mohamed Abdelaziz</title>
+    <meta name="description" content="Find the source of any anime screenshot — episode, timestamp and preview — using the trace.moe reverse image search API. Free tool by DsMans0021.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#080808">
+
+    <link rel="canonical" href="https://dsmans0021.me/tools.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <meta property="og:title" content="Anime Scene Search — DsMans0021">
+    <meta property="og:description" content="Upload an anime screenshot and find the exact source scene, episode, and timestamp with the trace.moe API.">
+    <meta property="og:image" content="https://dsmans0021.me/assets/og-image.png">
+    <meta property="og:url" content="https://dsmans0021.me/tools.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anime Scene Search — DsMans0021">
+    <meta name="twitter:description" content="Find the source anime scene from any screenshot using trace.moe.">
+    <meta name="twitter:image" content="https://dsmans0021.me/assets/og-image.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,27 +33,30 @@
         [data-theme="dark"] {
             --bg: #080808; --bg2: #0f0f0f; --surface: #111111; --surface2: #181818;
             --border: #1e1e1e; --border2: #2a2a2a; --text: #c8c8c8; --text-strong: #f0f0f0;
-            --text-muted: #555555; --text-dim: #333333; --accent: #39ff14;
-            --accent-dim: rgba(57,255,20,0.08); --accent2: #ff6500;
+            --text-muted: #9a9a9a; --text-dim: #6a6a6a; --accent: #39ff14;
+            --accent-dim: rgba(57,255,20,0.08); --accent-border: rgba(57,255,20,0.25);
+            --accent2: #ff6500; --accent3: #00aaff; --err: #ff4d4d;
         }
 
         [data-theme="light"] {
             --bg: #fafafa; --bg2: #f3f3f3; --surface: #ffffff; --surface2: #f7f7f7;
             --border: #e4e4e4; --border2: #d0d0d0; --text: #3a3a3a; --text-strong: #111111;
-            --text-muted: #888888; --text-dim: #cccccc; --accent: #16a305;
-            --accent-dim: rgba(22,163,5,0.07); --accent2: #d45200;
+            --text-muted: #5c5c5c; --text-dim: #8a8a8a; --accent: #16a305;
+            --accent-dim: rgba(22,163,5,0.07); --accent2: #d45200; --accent3: #0077cc; --err: #cc2222;
         }
 
         html { scroll-behavior: smooth; }
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Cairo', sans-serif;
             font-size: 15px;
             line-height: 1.7;
             min-height: 100vh;
             transition: var(--transition-theme);
         }
+
+        html[lang="ar"] body { font-family: 'Cairo', 'Inter', sans-serif; }
 
         body::before {
             content: '';
@@ -52,11 +71,17 @@
             opacity: 0.5;
         }
 
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             border-bottom: 1px solid var(--border);
             background: rgba(8,8,8,0.88);
             backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             transition: var(--transition-theme);
         }
 
@@ -73,9 +98,9 @@
             color: var(--accent); text-decoration: none; letter-spacing: 0.04em;
         }
 
-        .nav-logo span { color: var(--text-muted); }
+        .nav-logo span { color: var(--text-dim); }
 
-        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-right { display: flex; align-items: center; gap: 10px; }
 
         .nav-back {
             font-family: 'Space Mono', monospace; font-size: 11px;
@@ -87,22 +112,34 @@
 
         .nav-back:hover { color: var(--accent); border-color: var(--accent); }
 
-        .theme-toggle {
+        [dir="rtl"] .nav-back i { transform: scaleX(-1); }
+
+        .icon-btn {
             width: 36px; height: 36px; border: 1px solid var(--border2);
             background: var(--surface); color: var(--text-muted); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             font-size: 14px; transition: all 0.2s;
         }
 
-        .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+        .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        .lang-toggle {
+            font-family: 'Space Mono', monospace; font-size: 11px;
+            letter-spacing: 0.06em; color: var(--text-muted);
+            border: 1px solid var(--border2); background: var(--surface);
+            cursor: pointer; height: 36px; padding: 0 12px;
+            display: flex; align-items: center; gap: 7px; transition: all 0.2s;
+        }
+
+        .lang-toggle:hover { color: var(--accent); border-color: var(--accent); }
 
         main { position: relative; z-index: 1; padding-top: 56px; }
 
-        .container { max-width: 700px; margin: 0 auto; padding: 80px 24px; }
+        .container { max-width: 760px; margin: 0 auto; padding: 80px 24px; }
 
         .page-tag {
             font-family: 'Space Mono', monospace; font-size: 11px;
-            color: var(--text-dim); letter-spacing: 0.15em;
+            color: var(--accent2); letter-spacing: 0.15em;
             text-transform: uppercase; margin-bottom: 6px;
         }
 
@@ -111,7 +148,7 @@
             color: var(--text-strong); margin-bottom: 10px; letter-spacing: -0.02em;
         }
 
-        .page-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7; }
+        .page-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 36px; line-height: 1.7; }
 
         .tool-card {
             border: 1px solid var(--border);
@@ -158,21 +195,39 @@
             font-size: 11px; color: var(--accent); min-height: 16px;
         }
 
+        .file-size-display {
+            font-family: 'Space Mono', monospace; font-size: 10px;
+            color: var(--text-dim); min-height: 14px;
+        }
+
         .preview-thumb {
             max-width: 100%; max-height: 120px; object-fit: contain;
             margin-top: 12px; display: none; border: 1px solid var(--border);
         }
 
+        .btn-row { display: flex; gap: 10px; }
+
         .btn-primary {
             font-family: 'Space Mono', monospace; font-size: 11px;
             letter-spacing: 0.07em; color: #000; background: var(--accent);
-            border: none; padding: 14px 28px; cursor: pointer; width: 100%;
+            border: none; padding: 14px 28px; cursor: pointer; flex: 1;
             display: flex; align-items: center; justify-content: center;
             gap: 10px; transition: opacity 0.2s;
         }
 
         .btn-primary:hover { opacity: 0.85; }
         .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .btn-ghost {
+            font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.06em;
+            color: var(--text-muted); background: none;
+            border: 1px solid var(--border2); padding: 14px 18px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+        .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
 
         .status-bar {
             margin-top: 18px; font-family: 'Space Mono', monospace;
@@ -181,6 +236,8 @@
         }
 
         .status-bar.visible { display: flex; }
+
+        .status-bar.error { color: var(--err); }
 
         .status-dot {
             width: 6px; height: 6px; border-radius: 50%;
@@ -202,7 +259,7 @@
 
         .result-card {
             background: var(--surface); padding: 18px 22px;
-            display: grid; grid-template-columns: 90px 1fr;
+            display: grid; grid-template-columns: 110px 1fr;
             gap: 18px; align-items: start;
             transition: background 0.2s;
         }
@@ -216,7 +273,7 @@
 
         .result-header {
             display: flex; align-items: flex-start;
-            justify-content: space-between; gap: 12px; margin-bottom: 5px;
+            justify-content: space-between; gap: 12px; margin-bottom: 6px;
         }
 
         .result-title {
@@ -228,7 +285,17 @@
             font-family: 'Space Mono', monospace; font-size: 10px;
             color: var(--accent); white-space: nowrap;
             background: var(--accent-dim); border: 1px solid rgba(57,255,20,0.2);
-            padding: 2px 8px;
+            padding: 2px 8px; flex-shrink: 0;
+        }
+
+        .meter {
+            height: 5px; background: var(--border2);
+            margin: 4px 0 10px; overflow: hidden;
+        }
+
+        .meter-fill {
+            height: 100%; background: var(--accent);
+            width: 0; transition: width 0.6s ease;
         }
 
         .result-meta {
@@ -242,7 +309,8 @@
             font-family: 'Space Mono', monospace; font-size: 10px;
             color: var(--text-muted); text-decoration: none;
             border: 1px solid var(--border2); padding: 5px 12px;
-            transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 6px;
+            transition: all 0.2s; cursor: pointer; background: none;
         }
 
         .result-link:hover { border-color: var(--accent); color: var(--accent); }
@@ -251,6 +319,14 @@
             font-family: 'Space Mono', monospace; font-size: 12px;
             color: var(--text-muted); padding: 24px 0; text-align: center; display: none;
         }
+
+        .api-note {
+            margin-top: 28px; font-size: 11px; color: var(--text-dim);
+            font-family: 'Space Mono', monospace; text-align: center;
+        }
+
+        .api-note a { color: var(--accent3); text-decoration: none; }
+        .api-note a:hover { text-decoration: underline; }
 
         footer {
             border-top: 1px solid var(--border); padding: 24px;
@@ -261,20 +337,40 @@
             font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text-dim);
         }
 
+        html { scrollbar-width: thin; scrollbar-color: var(--border2) var(--bg); }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border2); border: 2px solid var(--bg); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        ::-webkit-scrollbar-corner { background: var(--bg); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+
         @media (max-width: 480px) {
             .result-card { grid-template-columns: 1fr; }
             .container { padding: 60px 20px; }
+            .btn-row { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-<nav>
+<nav role="navigation" aria-label="Navigation">
     <div class="nav-inner">
         <a href="index.html" class="nav-logo"><span>~/</span>DsMans0021</a>
         <div class="nav-right">
-            <a href="index.html" class="nav-back"><i class="fa-solid fa-arrow-left"></i> back</a>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <a href="index.html" class="nav-back"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="back">back</span></a>
+            <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+                <i class="fa-solid fa-globe"></i>
+                <span id="lang-label">العربية</span>
+            </button>
+            <button class="icon-btn" id="theme-toggle" aria-label="Toggle light or dark theme">
                 <i class="fa-solid fa-moon" id="theme-icon"></i>
             </button>
         </div>
@@ -284,27 +380,34 @@
 <main>
     <div class="container">
         <p class="page-tag">// tools</p>
-        <h1 class="page-title">Anime Scene Search</h1>
-        <p class="page-desc">Upload a screenshot from any anime and I'll find the source — episode, timestamp, and a preview — using the trace.moe API.</p>
+        <h1 class="page-title" data-i18n="title">Anime Scene Search</h1>
+        <p class="page-desc" data-i18n="desc">Upload a screenshot from any anime and I'll find the source — episode, timestamp, and a preview — using the trace.moe API. Images are sent directly to the API and are not stored.</p>
 
         <div class="tool-card">
             <p class="tool-label">trace.moe · reverse image search</p>
 
             <form id="trace-form">
                 <div class="form-group">
-                    <label class="form-label">Screenshot</label>
+                    <label class="form-label" for="image-input" data-i18n="label">Screenshot (JPG / PNG / WebP, max 15 MB)</label>
                     <div class="file-drop-zone" id="drop-zone">
-                        <input type="file" id="image-input" name="image" accept="image/*" />
+                        <input type="file" id="image-input" name="image" accept="image/jpeg,image/png,image/webp" aria-describedby="file-name file-size" />
                         <div class="file-drop-icon"><i class="fa-regular fa-image"></i></div>
-                        <div class="file-drop-text">Click to choose or drag & drop an image</div>
+                        <div class="file-drop-text" data-i18n="dropText">Click to choose or drag & drop an image</div>
                         <div class="file-name-display" id="file-name"></div>
-                        <img id="preview-thumb" class="preview-thumb" alt="preview" />
+                        <div class="file-size-display" id="file-size"></div>
+                        <img id="preview-thumb" class="preview-thumb" alt="Image preview" />
                     </div>
                 </div>
-                <button type="submit" class="btn-primary" id="submit-btn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    Search scene
-                </button>
+                <div class="btn-row">
+                    <button type="submit" class="btn-primary" id="submit-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span data-i18n="search">Search scene</span>
+                    </button>
+                    <button type="button" class="btn-ghost" id="clear-btn" disabled>
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span data-i18n="clear">Clear</span>
+                    </button>
+                </div>
             </form>
 
             <div class="status-bar" id="status-bar">
@@ -313,145 +416,381 @@
             </div>
         </div>
 
-        <div class="results-wrap" id="results-wrap" style="display:none">
-            <div class="results-header">results</div>
-            <div class="no-results" id="no-results">No matches found.</div>
+        <div class="results-wrap" id="results-wrap">
+            <div class="results-header" data-i18n="results">results</div>
+            <div class="no-results" id="no-results" data-i18n="noResults">No matches found.</div>
             <div class="results-section" id="results"></div>
         </div>
+
+        <p class="api-note">
+            <i class="fa-solid fa-circle-info"></i>
+            <span data-i18n="apiNote">Powered by the </span>
+            <a href="https://soruly.github.io/trace.moe-api/" target="_blank" rel="noopener noreferrer">trace.moe API</a>
+            <span data-i18n="apiNote2"> — reverse anime image search.</span>
+        </p>
     </div>
 </main>
 
 <footer>
-    <span class="footer-copy">© 2025 Mohamed Abdelaziz · DsMans0021</span>
+    <span class="footer-copy" data-i18n="copy">© 2025 Mohamed Abdelaziz · DsMans0021</span>
 </footer>
 
 <script>
-    // Theme
-    function getStoredTheme() {
-        return localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+const I18N = {
+    en: {
+        'back': 'back',
+        'title': 'Anime Scene Search',
+        'desc': 'Upload a screenshot from any anime and I\'ll find the source — episode, timestamp, and a preview — using the trace.moe API. Images are sent directly to the API and are not stored.',
+        'label': 'Screenshot (JPG / PNG / WebP, max 15 MB)',
+        'dropText': 'Click to choose or drag & drop an image',
+        'search': 'Search scene',
+        'clear': 'Clear',
+        'results': 'results',
+        'noResults': 'No matches found.',
+        'apiNote': 'Powered by the ',
+        'apiNote2': ' — reverse anime image search.',
+        'copy': '© 2025 Mohamed Abdelaziz · DsMans0021',
+        'sending': 'Uploading and searching...',
+        'errNoFile': '← choose a file first',
+        'errType': 'Unsupported file type. Use JPG, PNG or WebP.',
+        'errSize': 'File is too large. Maximum size is 15 MB.',
+        'errFail': 'Something went wrong. Check your connection and try again.',
+        'errEmpty': 'No matches found. Try a cleaner screenshot.',
+        'copied': 'Copied!',
+        'copyInfo': 'Copy episode info',
+        'previewClip': 'preview clip',
+        'viewImage': 'view image'
+    },
+    ar: {
+        'back': 'رجوع',
+        'title': 'البحث عن مشاهد الأنمي',
+        'desc': 'ارفع لقطة شاشة من أي أنمي وسأجد المصدر — الحلقة والوقت ومعاينة — باستخدام واجهة برمجة trace.moe. تُرسل الصور مباشرة إلى الواجهة ولا تُخزَّن.',
+        'label': 'لقطة الشاشة (JPG / PNG / WebP، بحد أقصى 15 ميجابايت)',
+        'dropText': 'اضغط للاختيار أو اسحب الصورة وأفلتها هنا',
+        'search': 'ابحث عن المشهد',
+        'clear': 'مسح',
+        'results': 'النتائج',
+        'noResults': 'لا توجد نتائج مطابقة.',
+        'apiNote': 'مدعوم بواجهة ',
+        'apiNote2': ' — البحث العكسي عن صور الأنمي.',
+        'copy': '© 2025 محمد عبدالعزيز · DsMans0021',
+        'sending': 'جارٍ الرفع والبحث...',
+        'errNoFile': '← اختر ملفًا أولًا',
+        'errType': 'نوع الملف غير مدعوم. استخدم JPG أو PNG أو WebP.',
+        'errSize': 'الملف كبير جدًا. الحد الأقصى 15 ميجابايت.',
+        'errFail': 'حدث خطأ. تحقق من اتصالك ثم حاول مجددًا.',
+        'errEmpty': 'لا توجد نتائج. جرّب لقطة أوضح.',
+        'copied': 'تم النسخ!',
+        'copyInfo': 'نسخ معلومات الحلقة',
+        'previewClip': 'معاينة المقطع',
+        'viewImage': 'عرض الصورة'
     }
-    function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        const icon = document.getElementById('theme-icon');
-        if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-        localStorage.setItem('theme', theme);
+};
+
+let currentLang = localStorage.getItem('lang') || 'en';
+const MAX_BYTES = 15 * 1024 * 1024;
+const ACCEPTED = ['image/jpeg', 'image/png', 'image/webp'];
+
+function t(key) { return I18N[currentLang][key] || key; }
+
+function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = lang === 'ar' ? 'البحث عن مشاهد الأنمي | محمد عبدالعزيز' : 'Anime Scene Search | Mohamed Abdelaziz';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = I18N[lang][el.dataset.i18n];
+        if (v !== undefined) el.textContent = v;
+    });
+    document.getElementById('lang-label').textContent = lang === 'ar' ? 'EN' : 'العربية';
+    document.getElementById('lang-toggle').setAttribute('aria-label', lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية');
+    localStorage.setItem('lang', lang);
+    applyStatus();
+}
+
+document.getElementById('lang-toggle').addEventListener('click', () => {
+    applyLang(currentLang === 'ar' ? 'en' : 'ar');
+});
+
+// Theme
+function getStoredTheme() {
+    return localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+}
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    localStorage.setItem('theme', theme);
+}
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+applyTheme(getStoredTheme());
+
+// File input
+const fileInput = document.getElementById('image-input');
+const fileNameEl = document.getElementById('file-name');
+const fileSizeEl = document.getElementById('file-size');
+const previewThumb = document.getElementById('preview-thumb');
+const dropZone = document.getElementById('drop-zone');
+const clearBtn = document.getElementById('clear-btn');
+
+function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+
+function handleFile(file) {
+    if (!file) return;
+    if (!ACCEPTED.includes(file.type)) {
+        fileNameEl.textContent = t('errType');
+        fileSizeEl.textContent = '';
+        fileInput.value = '';
+        previewThumb.style.display = 'none';
+        clearBtn.disabled = true;
+        return;
     }
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-        applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-    applyTheme(getStoredTheme());
+    if (file.size > MAX_BYTES) {
+        fileNameEl.textContent = t('errSize');
+        fileSizeEl.textContent = '';
+        fileInput.value = '';
+        previewThumb.style.display = 'none';
+        clearBtn.disabled = true;
+        return;
+    }
+    fileNameEl.textContent = file.name;
+    fileSizeEl.textContent = formatBytes(file.size);
+    clearBtn.disabled = false;
+    const reader = new FileReader();
+    reader.onload = e => {
+        previewThumb.src = e.target.result;
+        previewThumb.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+}
 
-    // File input
-    const fileInput = document.getElementById('image-input');
-    const fileNameEl = document.getElementById('file-name');
-    const previewThumb = document.getElementById('preview-thumb');
-    const dropZone = document.getElementById('drop-zone');
+fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
 
-    fileInput.addEventListener('change', () => {
-        const file = fileInput.files[0];
-        if (file) {
-            fileNameEl.textContent = file.name;
-            const reader = new FileReader();
-            reader.onload = e => {
-                previewThumb.src = e.target.result;
-                previewThumb.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file && ACCEPTED.includes(file.type)) {
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        fileInput.files = dt.files;
+        fileInput.dispatchEvent(new Event('change'));
+    } else if (file) {
+        handleFile(file);
+    }
+});
+
+function clearSelection() {
+    fileInput.value = '';
+    fileNameEl.textContent = '';
+    fileSizeEl.textContent = '';
+    previewThumb.style.display = 'none';
+    clearBtn.disabled = true;
+}
+
+clearBtn.addEventListener('click', clearSelection);
+
+// Search
+const form = document.getElementById('trace-form');
+const resultsEl = document.getElementById('results');
+const resultsWrap = document.getElementById('results-wrap');
+const statusBar = document.getElementById('status-bar');
+const statusText = document.getElementById('status-text');
+const statusDot = statusBar.querySelector('.status-dot');
+const noResults = document.getElementById('no-results');
+const submitBtn = document.getElementById('submit-btn');
+
+function setStatus(text, kind) {
+    statusText.textContent = text;
+    statusBar.classList.add('visible');
+    statusBar.classList.toggle('error', kind === 'error');
+    statusDot.style.display = kind === 'error' ? 'none' : '';
+    if (text === I18N[currentLang]['sending'] || kind === 'loading') {
+        statusDot.style.display = '';
+    }
+}
+
+function applyStatus() {
+    if (submitBtn.disabled) setStatus(t('sending'), 'loading');
+}
+
+function resetResults() {
+    resultsEl.innerHTML = '';
+    noResults.style.display = 'none';
+    resultsWrap.style.display = 'none';
+}
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const file = fileInput.files[0];
+    if (!file) {
+        fileNameEl.textContent = t('errNoFile');
+        return;
+    }
+    if (!ACCEPTED.includes(file.type) || file.size > MAX_BYTES) {
+        fileNameEl.textContent = t('errType');
+        return;
+    }
+
+    resetResults();
+    setStatus(t('sending'), 'loading');
+    submitBtn.disabled = true;
+    clearBtn.disabled = true;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+        const response = await fetch('https://api.trace.moe/search', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (!response.ok) throw new Error('Request failed: ' + response.status);
+
+        const data = await response.json();
+        const results = (data && (data.result || data.results)) || [];
+
+        statusBar.classList.remove('visible');
+        submitBtn.disabled = false;
+        clearBtn.disabled = fileInput.files.length === 0;
+        resultsWrap.style.display = 'block';
+
+        if (!Array.isArray(results) || results.length === 0) {
+            noResults.style.display = 'block';
+            noResults.textContent = t('errEmpty');
+            return;
         }
-    });
 
-    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
-    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-    dropZone.addEventListener('drop', e => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
-        if (file && file.type.startsWith('image/')) {
-            const dt = new DataTransfer();
-            dt.items.add(file);
-            fileInput.files = dt.files;
-            fileInput.dispatchEvent(new Event('change'));
-        }
-    });
+        results.slice(0, 5).forEach((item) => buildResultCard(item, resultsEl));
 
-    // Search
-    const form = document.getElementById('trace-form');
-    const resultsEl = document.getElementById('results');
-    const resultsWrap = document.getElementById('results-wrap');
-    const statusBar = document.getElementById('status-bar');
-    const statusText = document.getElementById('status-text');
-    const noResults = document.getElementById('no-results');
-    const submitBtn = document.getElementById('submit-btn');
+    } catch (err) {
+        statusBar.classList.remove('visible');
+        submitBtn.disabled = false;
+        clearBtn.disabled = fileInput.files.length === 0;
+        noResults.style.display = 'block';
+        noResults.textContent = t('errFail');
+    }
+});
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        resultsEl.innerHTML = '';
-        noResults.style.display = 'none';
-        resultsWrap.style.display = 'none';
+function buildResultCard(item, parent) {
+    const similarity = typeof item.similarity === 'number' ? Math.round(item.similarity * 100) : null;
+    const episode = item.episode != null ? item.episode : '—';
+    const from = item.from != null ? Math.floor(item.from) : null;
+    const to = item.to != null ? Math.ceil(item.to) : null;
+    const imageUrl = typeof item.image === 'string' ? item.image : '';
+    const videoUrl = typeof item.video === 'string' ? item.video : '';
+    const title = typeof item.filename === 'string' ? item.filename : (typeof item.title === 'string' ? item.title : 'Episode ' + episode);
 
-        const file = fileInput.files[0];
-        if (!file) { fileNameEl.textContent = '← choose a file first'; return; }
+    const card = document.createElement('div');
+    card.className = 'result-card';
 
-        statusBar.classList.add('visible');
-        statusText.textContent = 'Uploading and searching...';
-        submitBtn.disabled = true;
+    const thumb = document.createElement('img');
+    thumb.className = 'result-thumb';
+    thumb.loading = 'lazy';
+    thumb.decoding = 'async';
+    thumb.alt = 'Preview frame for ' + title;
+    if (imageUrl) {
+        thumb.src = imageUrl;
+    } else {
+        thumb.style.display = 'none';
+        const ph = document.createElement('div');
+        ph.className = 'result-thumb';
+        card.appendChild(ph);
+    }
 
-        const formData = new FormData();
-        formData.append('image', file);
+    const info = document.createElement('div');
 
+    const header = document.createElement('div');
+    header.className = 'result-header';
+
+    const titleEl = document.createElement('div');
+    titleEl.className = 'result-title';
+    titleEl.textContent = title;
+    header.appendChild(titleEl);
+
+    if (similarity !== null) {
+        const badge = document.createElement('span');
+        badge.className = 'result-badge';
+        badge.dataset.sim = similarity;
+        badge.textContent = similarity + '%';
+        header.appendChild(badge);
+    }
+    info.appendChild(header);
+
+    if (similarity !== null) {
+        const meter = document.createElement('div');
+        meter.className = 'meter';
+        const fill = document.createElement('div');
+        fill.className = 'meter-fill';
+        requestAnimationFrame(() => { fill.style.width = similarity + '%'; });
+        meter.appendChild(fill);
+        info.appendChild(meter);
+    }
+
+    let metaText = 'ep. ' + episode;
+    if (from !== null && to !== null) metaText += ' · ' + from + 's–' + to + 's';
+    const meta = document.createElement('div');
+    meta.className = 'result-meta';
+    meta.textContent = metaText;
+    info.appendChild(meta);
+
+    const links = document.createElement('div');
+    links.className = 'result-links';
+
+    if (videoUrl) {
+        const a = document.createElement('a');
+        a.className = 'result-link';
+        a.href = videoUrl;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = '▶ ' + t('previewClip');
+        links.appendChild(a);
+    }
+
+    if (imageUrl) {
+        const a = document.createElement('a');
+        a.className = 'result-link';
+        a.href = imageUrl;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = t('viewImage');
+        links.appendChild(a);
+    }
+
+    const copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'result-link';
+    copyBtn.textContent = t('copyInfo');
+    copyBtn.addEventListener('click', async () => {
+        const clip = '[' + title + '] ' + metaText + ' — ' + similarity + '% match (via trace.moe)';
         try {
-            const response = await fetch('https://api.trace.moe/search', {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (!response.ok) throw new Error('Request failed');
-            const data = await response.json();
-            const results = (data && (data.result || data.results)) || [];
-
-            statusBar.classList.remove('visible');
-            submitBtn.disabled = false;
-            resultsWrap.style.display = 'block';
-
-            if (!Array.isArray(results) || results.length === 0) {
-                noResults.style.display = 'block';
-                return;
-            }
-
-            results.slice(0, 5).forEach((item) => {
-                const similarity = typeof item.similarity === 'number' ? Math.round(item.similarity * 100) : null;
-                const episode = item.episode != null ? item.episode : '—';
-                const from = item.from != null ? Math.floor(item.from) : null;
-                const to = item.to != null ? Math.ceil(item.to) : null;
-                const imageUrl = item.image || '';
-                const videoUrl = item.video || '';
-                const title = item.filename || item.title || `Episode ${episode}`;
-
-                const card = document.createElement('div');
-                card.className = 'result-card';
-                card.innerHTML = `
-                    ${imageUrl ? `<img src="${imageUrl}" alt="preview" class="result-thumb" />` : '<div class="result-thumb"></div>'}
-                    <div>
-                        <div class="result-header">
-                            <div class="result-title">${title}</div>
-                            ${similarity !== null ? `<span class="result-badge">${similarity}%</span>` : ''}
-                        </div>
-                        <div class="result-meta">ep. ${episode}${from !== null && to !== null ? ` · ${from}s–${to}s` : ''}</div>
-                        <div class="result-links">
-                            ${videoUrl ? `<a href="${videoUrl}" target="_blank" class="result-link">preview clip</a>` : ''}
-                            ${imageUrl ? `<a href="${imageUrl}" target="_blank" class="result-link">view image</a>` : ''}
-                        </div>
-                    </div>
-                `;
-                resultsEl.appendChild(card);
-            });
-
-        } catch (err) {
-            statusText.textContent = 'Something went wrong. Please try again.';
-            submitBtn.disabled = false;
+            await navigator.clipboard.writeText(clip);
+            copyBtn.textContent = t('copied');
+            setTimeout(() => { copyBtn.textContent = t('copyInfo'); }, 2000);
+        } catch {
+            copyBtn.textContent = t('errFail');
         }
     });
+    links.appendChild(copyBtn);
+
+    info.appendChild(links);
+    card.appendChild(thumb);
+    card.appendChild(info);
+    parent.appendChild(card);
+}
+
+applyLang(currentLang);
 </script>
 </body>
 </html>
