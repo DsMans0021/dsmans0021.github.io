@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dsmans0021.me/sitemap.xml
+Sitemap: https://dsmans0021.com/sitemap.xml
