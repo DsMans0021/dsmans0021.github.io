@@ -699,6 +699,7 @@
 
         .filters {
             display: flex;
+            align-items: center;
             gap: 8px;
             flex-wrap: wrap;
             margin-bottom: 28px;
@@ -725,18 +726,107 @@
         }
 
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
-            margin-bottom: 28px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 20px;
+            align-items: stretch;
+            scroll-snap-type: x proximity;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border2) transparent;
+            padding: 4px 4px 18px;
+            cursor: grab;
         }
+
+        .projects-grid.dragging { cursor: grabbing; scroll-snap-type: none; }
+
+        .projects-grid .no-results { flex: 0 0 100%; }
+
+        .scroller-nav {
+            margin-inline-start: auto;
+            display: flex;
+            gap: 6px;
+        }
+
+        .scroller-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            line-height: 1;
+            color: var(--accent);
+            background: none;
+            border: 1px solid var(--accent-border);
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .scroller-btn:hover { background: var(--accent-dim); color: var(--accent); }
+
+        .projects-scroller { position: relative; margin-bottom: 28px; }
+
+        .projects-scroller::before,
+        .projects-scroller::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 20px;
+            width: 42px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .projects-scroller::before {
+            inset-inline-start: 0;
+            background: linear-gradient(to right, var(--bg), transparent);
+        }
+
+        .projects-scroller::after {
+            inset-inline-end: 0;
+            background: linear-gradient(to left, var(--bg), transparent);
+        }
+
+        [dir="rtl"] .projects-scroller::before { background: linear-gradient(to left, var(--bg), transparent); }
+        [dir="rtl"] .projects-scroller::after { background: linear-gradient(to right, var(--bg), transparent); }
+
+        .scroller-progress {
+            height: 2px;
+            background: var(--border2);
+            margin: 0 4px 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroller-progress span {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            transition: width 0.1s linear;
+        }
+
+        [dir="rtl"] .scroller-nav { flex-direction: row-reverse; }
+        [dir="rtl"] .scroller-btn { transform: scaleX(-1); }
+
+        .scroller-count {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.05em;
+        }
+
+        .projects-grid:focus { outline: none; }
+        .projects-grid:focus-visible { outline: 1px solid var(--accent-border); outline-offset: 2px; }
 
         .project-card {
             background: var(--surface);
+            border: 1px solid var(--border);
             display: flex;
             flex-direction: column;
+            flex: 0 0 auto;
+            width: 320px;
+            max-width: 84vw;
+            scroll-snap-align: start;
             transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
             position: relative;
             overflow: hidden;
@@ -748,7 +838,25 @@
             box-shadow: 0 14px 36px var(--shadow);
         }
 
-        .project-card.featured { box-shadow: inset 0 0 0 1px var(--accent-border); }
+        .project-card.featured { box-shadow: inset 0 0 0 1px var(--accent-border); width: 360px; }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            z-index: 4;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s;
+        }
+
+        [dir="rtl"] .project-card::before { transform-origin: right; }
+
+        .project-card:hover::before { transform: scaleX(1); }
 
         .project-thumb {
             height: 132px;
@@ -778,8 +886,11 @@
 
         .cat-games { background: linear-gradient(135deg, #14532d, #052e16); }
         .cat-web { background: linear-gradient(135deg, #1e3a8a, #172554); }
+        .cat-apps { background: linear-gradient(135deg, #0f766e, #022c22); }
         .cat-mobile { background: linear-gradient(135deg, #581c87, #3b0764); }
         .cat-security { background: linear-gradient(135deg, #7f1d1d, #450a0a); }
+        .cat-education { background: linear-gradient(135deg, #c2410c, #431407); }
+        .cat-misc { background: linear-gradient(135deg, #475569, #1e293b); }
 
         .status-badge {
             position: absolute;
@@ -855,11 +966,11 @@
         .mini-btn {
             font-family: 'Space Mono', monospace;
             font-size: 10px;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.05em;
             color: var(--text-muted);
             text-decoration: none;
             border: 1px solid var(--border2);
-            padding: 7px 12px;
+            padding: 8px 13px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -1171,38 +1282,6 @@
         .embed-wrap { border: 1px solid var(--border); overflow: hidden; }
         .embed-wrap iframe { display: block; }
 
-        .device-table { border: 1px solid var(--border); }
-
-        .device-row {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .device-row:last-child { border-bottom: none; }
-
-        .device-key {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--text-muted);
-            padding: 13px 18px;
-            background: var(--bg);
-            border-right: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-        }
-
-        [dir="rtl"] .device-key { border-right: none; border-left: 1px solid var(--border); }
-
-        .device-val {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--text-strong);
-            padding: 13px 18px;
-            display: flex;
-            align-items: center;
-        }
-
         /* ===== FOOTER ===== */
         footer {
             border-top: 1px solid var(--border);
@@ -1226,6 +1305,23 @@
             font-family: 'Space Mono', monospace;
             font-size: 10px;
             color: var(--text-dim);
+        }
+
+        .footer-hint {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            opacity: 0.65;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        .footer-hint:hover { opacity: 1; color: var(--accent); }
+
+        .footer-hint kbd {
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            padding: 1px 6px;
+            font-size: 9px;
         }
 
         .footer-socials { display: flex; gap: 18px; }
@@ -1332,7 +1428,8 @@
             .nav-mobile-btn { display: flex; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .skills-grid { grid-template-columns: 1fr 1fr; }
-            .projects-grid { grid-template-columns: 1fr 1fr; }
+            .project-card { width: 280px; }
+            .project-card.featured { width: 300px; }
             .contact-grid { grid-template-columns: 1fr; gap: 40px; }
         }
 
@@ -1342,7 +1439,8 @@
 
         @media (max-width: 580px) {
             .skills-grid { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr; }
+            .project-card { width: 78vw; }
+            .project-card.featured { width: 82vw; }
             .hero-inner { padding: 60px 0 30px; }
             #about, #skills, #projects, #achievements, #contact, #more { padding-top: 72px; }
             .more-block { padding: 28px 20px; }
@@ -1350,6 +1448,294 @@
 
         @media (max-width: 380px) {
             .hero-name { font-size: 28px; }
+        }
+    </style>
+
+    <style>
+        /* ===== PROJECT COVER + GITHUB STATS ===== */
+        .project-thumb .cover-art {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            transition: transform 0.45s ease;
+        }
+
+        .project-card:hover .cover-art { transform: scale(1.035); }
+
+        .project-thumb i { display: none; }
+
+        .project-thumb::after { z-index: 1; }
+
+        .status-badge, .featured-ribbon { z-index: 2; }
+
+        .project-stats {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+            margin-top: 14px;
+            min-height: 15px;
+        }
+
+        .project-stats b { color: var(--accent); font-weight: 700; }
+
+        /* ===== EMAIL CHIP ===== */
+        .email-chip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 26px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            padding: 12px 14px;
+        }
+
+        .email-chip .email-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-strong);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .email-chip .email-text i { color: var(--accent); margin-right: 8px; }
+        [dir="rtl"] .email-chip .email-text i { margin-right: 0; margin-left: 8px; }
+
+        .copy-btn {
+            flex: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            background: none;
+            border: 1px solid var(--accent-border);
+            cursor: pointer;
+            padding: 7px 14px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .copy-btn:hover { background: var(--accent-dim); }
+        .copy-btn.copied { color: #000; background: var(--accent); border-color: var(--accent); }
+
+        /* ===== PARTY MODE ===== */
+        html.party { filter: hue-rotate(0deg); }
+
+        /* ===== NIGHT SHIFT ===== */
+        html.night::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9990;
+            background: radial-gradient(ellipse at center, transparent 55%, rgba(40, 60, 160, 0.16));
+            mix-blend-mode: screen;
+        }
+
+        /* ===== HACKER CREDITS BADGE ===== */
+        .credit-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            color: var(--accent2);
+            letter-spacing: 0.05em;
+            opacity: 0.85;
+        }
+
+        /* ===== BURSTS / SPARKS / BOO ===== */
+        .fx-burst {
+            position: fixed;
+            z-index: 10000;
+            pointer-events: none;
+            font-size: 15px;
+            line-height: 1;
+            animation: burst-up 1.1s ease-out forwards;
+        }
+
+        @keyframes burst-up {
+            0% { opacity: 1; transform: translate(0, 0) scale(1); }
+            100% { opacity: 0; transform: translate(calc(var(--dx, 0px) * 1.4), var(--dy, -90px)) scale(1.7); }
+        }
+
+        #boo-flash {
+            position: fixed;
+            inset: 0;
+            background: #fff;
+            z-index: 9998;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        #boo-flash.on { animation: boo-flash 0.28s ease-out forwards; }
+
+        @keyframes boo-flash {
+            0% { opacity: 0.85; }
+            100% { opacity: 0; }
+        }
+
+        #spark-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 9996;
+            pointer-events: none;
+            display: none;
+        }
+
+        #spark-canvas.on { display: block; }
+
+        /* ===== HORIZONTAL PROJECTS SCROLLER ===== */
+        .projects-grid, .projects-grid * { user-select: none; }
+        .projects-grid::-webkit-scrollbar { height: 6px; }
+        .projects-grid::-webkit-scrollbar-thumb { background: var(--border2); }
+        .projects-grid::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* ===== MATRIX ===== */
+        #matrix-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2000;
+            display: none;
+            background: rgba(0, 0, 0, 0.92);
+        }
+
+        #matrix-canvas.on { display: block; }
+
+        /* ===== TOAST ===== */
+        #toast {
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%) translateY(24px);
+            z-index: 2300;
+            background: var(--surface);
+            border: 1px solid var(--accent-border);
+            color: var(--text-strong);
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            padding: 12px 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+            max-width: calc(100vw - 40px);
+            box-shadow: 0 14px 40px var(--shadow);
+        }
+
+        #toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+        #toast b { color: var(--accent); }
+
+        /* ===== TERMINAL OVERLAY ===== */
+        .tty-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(3px);
+            padding: 20px;
+        }
+
+        .tty-overlay.open { display: flex; }
+
+        .tty {
+            width: 100%;
+            max-width: 720px;
+            max-height: 78vh;
+            display: flex;
+            flex-direction: column;
+            background: #0b0f0b;
+            border: 1px solid #1e1e1e;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .tty-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-bottom: 1px solid #1e1e1e;
+            background: #080808;
+        }
+
+        .tty-title {
+            color: #6a6a6a;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+        }
+
+        .tty-title b { color: var(--accent); font-weight: 400; }
+
+        .tty-close {
+            background: none;
+            border: none;
+            color: #6a6a6a;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+
+        .tty-close:hover { color: var(--accent); }
+
+        .tty-body {
+            padding: 16px 16px 4px;
+            overflow-y: auto;
+            min-height: 220px;
+            max-height: calc(78vh - 96px);
+        }
+
+        .tty-body::-webkit-scrollbar { width: 8px; }
+        .tty-body::-webkit-scrollbar-thumb { background: #1e1e1e; border: none; }
+
+        .tty-line {
+            font-size: 12px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: #c8c8c8;
+        }
+
+        .tty-line .tty-p { color: var(--accent); }
+        .tty-line .tty-d { color: #6a6a6a; }
+        .tty-line .tty-a2 { color: #00aaff; }
+
+        .tty-in {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px 14px;
+            border-top: 1px solid #1e1e1e;
+            background: #080808;
+        }
+
+        .tty-prompt {
+            font-size: 12px;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .tty-input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: #f0f0f0;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            caret-color: var(--accent);
+        }
+
+        @media (max-width: 520px) {
+            .tty { max-height: 85vh; }
+            .tty-body { max-height: calc(85vh - 96px); }
         }
     </style>
 </head>
@@ -1496,11 +1882,22 @@
             <button class="filter-btn active" data-filter="all" data-i18n="filter.all">All</button>
             <button class="filter-btn" data-filter="games" data-i18n="filter.games">Games</button>
             <button class="filter-btn" data-filter="web" data-i18n="filter.web">Web</button>
+            <button class="filter-btn" data-filter="apps" data-i18n="filter.apps">Apps</button>
             <button class="filter-btn" data-filter="mobile" data-i18n="filter.mobile">Mobile</button>
             <button class="filter-btn" data-filter="security" data-i18n="filter.security">Security</button>
+            <button class="filter-btn" data-filter="education" data-i18n="filter.education">Education</button>
+            <button class="filter-btn" data-filter="misc" data-i18n="filter.misc">Misc</button>
+            <span class="scroller-nav">
+                <button type="button" class="scroller-btn" id="proj-prev" aria-label="Scroll projects back" title="←">&lsaquo;</button>
+                <button type="button" class="scroller-btn" id="proj-next" aria-label="Scroll projects forward" title="→">&rsaquo;</button>
+                <span class="scroller-count" id="scroller-count">0</span>
+            </span>
         </div>
 
-        <div class="projects-grid reveal" id="projects-grid"></div>
+        <div class="projects-scroller reveal">
+            <div class="projects-grid" id="projects-grid" tabindex="0" role="list" aria-label="Projects carousel"></div>
+            <div class="scroller-progress" aria-hidden="true"><span id="scroller-bar"></span></div>
+        </div>
 
         <div class="security-note reveal">
             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -1665,6 +2062,10 @@
                         <i class="fa-solid fa-code"></i> Hack Club
                     </a>
                 </div>
+                <div class="email-chip">
+                    <span class="email-text" id="email-text"><i class="fa-solid fa-envelope"></i> medozizo008@gmail.com</span>
+                    <button class="copy-btn" id="copy-email" type="button"><span data-i18n="contact.copy">copy</span></button>
+                </div>
             </div>
             <form action="https://formsubmit.co/medozizo008@gmail.com" method="POST" class="reveal" id="contact-form">
                 <div class="form-group">
@@ -1703,6 +2104,8 @@
 <footer>
     <div class="footer-inner">
         <span class="footer-copy" data-i18n="footer.copy">© 2025 Mohamed Abdelaziz · DsMans0021</span>
+        <span class="footer-hint" data-i18n="footer.hint">psst… press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>~</kbd></span>
+        <span class="credit-badge" id="credit-badge" title="hacker credits">◆ 0 · script kiddie</span>
         <div class="footer-socials">
             <a href="https://github.com/DsMans0021" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
             <a href="https://linktr.ee/DsMans0021/" target="_blank" rel="noopener noreferrer" aria-label="Linktree"><i class="fa-solid fa-tree"></i></a>
@@ -1752,8 +2155,11 @@ const I18N = {
         'filter.all': 'All',
         'filter.games': 'Games',
         'filter.web': 'Web',
+        'filter.apps': 'Apps',
         'filter.mobile': 'Mobile',
         'filter.security': 'Security',
+        'filter.education': 'Education',
+        'filter.misc': 'Misc',
         'projects.disclaimer': 'Security-related projects are strictly educational and for authorized, research use only.',
         'projects.viewAll': 'View all repositories on GitHub',
         'skills.title': 'Skills',
@@ -1778,6 +2184,8 @@ const I18N = {
         'ach.a6d': 'Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.',
         'contact.title': 'Get in touch',
         'contact.p': "Have a project idea, a security question, want to play a game together, or just want to talk tech? I'm always happy to hear from people.",
+        'contact.copy': 'copy',
+        'contact.copied': 'copied ✓',
         'form.name': 'Name',
         'form.namePh': 'Your name',
         'form.email': 'Email',
@@ -1801,6 +2209,7 @@ const I18N = {
         'more.playDesc': "You can play Maya directly in the projects section.",
         'more.playBtn': 'Jump to projects',
         'footer.copy': '© 2025 Mohamed Abdelaziz · DsMans0021',
+        'footer.hint': 'psst… press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>~</kbd>',
         nav: {
             about: 'about', projects: 'projects', skills: 'skills',
             achievements: 'achievements', contact: 'contact', more: 'more'
@@ -1838,8 +2247,11 @@ const I18N = {
         'filter.all': 'الكل',
         'filter.games': 'ألعاب',
         'filter.web': 'ويب',
+        'filter.apps': 'تطبيقات',
         'filter.mobile': 'موبايل',
         'filter.security': 'أمن',
+        'filter.education': 'تعليم',
+        'filter.misc': 'متنوع',
         'projects.disclaimer': 'المشاريع المتعلقة بالأمن هي لأغراض تعليمية وبحثية ومصرّحٍ بها فقط.',
         'projects.viewAll': 'عرض كل المشاريع على جيت هب',
         'skills.title': 'المهارات',
@@ -1864,6 +2276,8 @@ const I18N = {
         'ach.a6d': 'شهادة رسمية في أساسيات أمن الشبكات والاختراق الأخلاقي، مع مشاريع اختبار اختراق عملية.',
         'contact.title': 'تواصل معي',
         'contact.p': 'لديك فكرة مشروع، أو سؤال أمني، أو تريد اللعب معًا، أو مجرد الحديث عن التقنية؟ يسعدني دائمًا أن أسمع منك.',
+        'contact.copy': 'نسخ',
+        'contact.copied': 'تم النسخ ✓',
         'form.name': 'الاسم',
         'form.namePh': 'اسمك الكريم',
         'form.email': 'البريد الإلكتروني',
@@ -1887,6 +2301,7 @@ const I18N = {
         'more.playDesc': 'يمكنك لعب مايا مباشرة من قسم المشاريع.',
         'more.playBtn': 'الانتقال إلى المشاريع',
         'footer.copy': '© 2025 محمد عبدالعزيز · DsMans0021',
+        'footer.hint': 'أسرار صغيرة… اضغط <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>~</kbd>',
         nav: {
             about: 'من أنا', projects: 'المشاريع', skills: 'المهارات',
             achievements: 'الإنجازات', contact: 'التواصل', more: 'المزيد'
@@ -1936,70 +2351,274 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
 // ============================================================
 const PROJECTS = [
     {
+        name: 'This Website', category: 'web', status: 'completed', featured: true,
+        lang: 'HTML · CSS · JS', icon: 'fa-solid fa-code',
+        demo: 'https://dsmans0021.me/', code: 'https://github.com/DsMans0021/dsmans0021.github.io', case: null,
+        desc: { en: 'The portfolio you are reading right now — fully bilingual EN/AR with RTL, a hidden terminal, 200+ quotes and live GitHub stats.', ar: 'الموقع اللي بتقرأ فيه دلوقتي — ثنائي اللغة كامل EN/AR مع RTL، ترمينال مخفي، أكثر من 200 اقتباس وإحصائيات GitHub حيّة.' }
+    },
+    {
         name: 'Maya', category: 'games', status: 'completed', featured: true,
         lang: 'C# · Unity', icon: 'fa-solid fa-gamepad',
-        demo: 'https://itskareem.itch.io/maya',
-        code: 'https://github.com/DsMans0021/Maya',
-        case: 'maya.html',
-        desc: {
-            en: 'A complete Unity game submitted on itch.io. Built with C# featuring custom gameplay mechanics and polished presentation.',
-            ar: 'لعبة Unity اكتملت ونُشرت على itch.io. صُنعت بلغة C# وتتميز بآليات لعب مخصّصة وعرض مصقول.'
-        }
+        demo: 'https://itskareem.itch.io/maya', code: 'https://github.com/DsMans0021/Maya', case: null,
+        desc: { en: 'A complete Unity game published on itch.io — custom C# mechanics and polished presentation.', ar: 'لعبة Unity كاملة منشورة على itch.io — آليات C# مخصصة وعرض مصقول.' }
     },
     {
         name: 'FPS Multiplayer Game', category: 'games', status: 'inprogress', featured: true,
         lang: 'C# · Unity · PUN2', icon: 'fa-solid fa-crosshairs',
-        demo: null,
-        code: 'https://github.com/DsMans0021/FPS-Game',
-        case: 'fps-game.html',
-        desc: {
-            en: 'Multiplayer FPS built with Unity and C#, supporting 2+ players over LAN/internet using PUN2 Photon networking.',
-            ar: 'لعبة تصويب من منظور أول متعددة اللاعبين ببناء Unity وC#، تدعم لاعبين أو أكثر عبر الشبكة المحلية أو الإنترنت باستخدام شبكات PUN2 Photon.'
-        }
+        demo: null, code: 'https://github.com/DsMans0021/FPS-Game', case: null,
+        desc: { en: 'Multiplayer FPS on Unity/C# — 2+ players over LAN or internet via PUN2 Photon networking.', ar: 'لعبة تصويب FPS متعددة اللاعبين بـ Unity/C# — لاعبون متعددون عبر LAN أو الإنترنت بشبكة PUN2 Photon.' }
     },
     {
         name: 'Anime App', category: 'mobile', status: 'completed', featured: true,
         lang: 'Dart · Flutter', icon: 'fa-solid fa-mobile-screen',
-        demo: null,
-        code: 'https://github.com/DsMans0021/Anime-App',
-        case: null,
-        desc: {
-            en: 'A mobile app built in Flutter/Dart that lets you browse anime info, search titles, and explore details.',
-            ar: 'تطبيق موبايل مبني بـ Flutter/Dart يتيح تصفّح معلومات الأنمي والبحث عن العناوين واستكشاف التفاصيل.'
-        }
+        demo: null, code: 'https://github.com/DsMans0021/Anime-App', case: null,
+        desc: { en: 'A Flutter mobile app to browse anime info, search titles and explore deep details.', ar: 'تطبيق Flutter لتصفّح معلومات الأنمي والبحث عن العناوين واستكشاف التفاصيل.' }
     },
     {
-        name: 'Naruto Clicker Game', category: 'web', status: 'completed', featured: false,
+        name: 'Naruto Clicker Game', category: 'games', status: 'completed', featured: false,
         lang: 'JavaScript', icon: 'fa-solid fa-hand-pointer',
-        demo: null,
-        code: 'https://github.com/DsMans0021/Naruto-game',
-        case: null,
-        desc: {
-            en: 'A browser-based anime clicker game. Good fun — pick your character and keep clicking.',
-            ar: 'لعبة نقر أنمي تعمل في المتصفح. ممتعة — اختر شخصيتك واستمر في النقر.'
-        }
+        demo: null, code: 'https://github.com/DsMans0021/Naruto-game', case: null,
+        desc: { en: 'A browser-based anime clicker game. Pick your character and keep clicking.', ar: 'لعبة نقر أنمي في المتصفح. اختار شخصيتك واستمر في النقر.' }
+    },
+    {
+        name: 'Mission: XXI', category: 'games', status: 'inprogress', featured: false,
+        lang: 'Unity · Game Design', icon: 'fa-solid fa-rocket',
+        demo: null, code: 'https://github.com/DsMans0021/Mission-XXI', case: null,
+        desc: { en: 'A space life-survival game set beyond Earth — storycraft meets survival mechanics.', ar: 'لعبة بقاء في الفضاء خارج الأرض — سرد القصة يلتقي بآليات البقاء.' }
+    },
+    {
+        name: 'jump-star', category: 'games', status: 'completed', featured: false,
+        lang: 'GDScript · Godot', icon: 'fa-solid fa-star',
+        demo: null, code: 'https://github.com/DsMans0021/jump-star_dsmans0021', case: null,
+        desc: { en: 'A chill Godot platformer built for a daydream — jump and float between stars.', ar: 'منصّبة Godot مريحة للتأمل — اقفز وحلّق بين النجوم.' }
+    },
+    {
+        name: 'jump', category: 'games', status: 'completed', featured: false,
+        lang: 'JavaScript', icon: 'fa-solid fa-angle-up',
+        demo: null, code: 'https://github.com/DsMans0021/jump', case: null,
+        desc: { en: 'A tiny browser jump game — one core mechanic and pure timing.', ar: 'لعبة قفز صغيرة في المتصفح — آلية واحدة وتوقيت محض.' }
+    },
+    {
+        name: 'The_Coiner', category: 'games', status: 'completed', featured: false,
+        lang: 'JavaScript', icon: 'fa-solid fa-coins',
+        demo: null, code: 'https://github.com/DsMans0021/The_Coiner', case: null,
+        desc: { en: 'A coin-chasing browser game — grab every coin before time runs out.', ar: 'لعبة مطاردة عملات في المتصفح — اجمع كل العملات قبل انتهاء الوقت.' }
+    },
+    {
+        name: 'BOO-ME', category: 'games', status: 'completed', featured: false,
+        lang: 'ASP.NET · C#', icon: 'fa-solid fa-ghost',
+        demo: null, code: 'https://github.com/DsMans0021/BOO-ME---I', case: null,
+        desc: { en: 'A spooky little boo! web game — do not flinch.', ar: 'لعبة ويب صغيرة مرعبة "بقّة!" — لا تنفعل.' }
+    },
+    {
+        name: 'STEM Game Dev Project', category: 'games', status: 'completed', featured: false,
+        lang: 'ASP.NET · C#', icon: 'fa-solid fa-terminal',
+        demo: null, code: 'https://github.com/DsMans0021/The-Game-For-STEM-Game-Dev', case: null,
+        desc: { en: 'A multiplayer game project built during the STEM Game Dev program — full-stack fun.', ar: 'مشروع لعبة جماعي مبني خلال برنامج STEM Game Dev — متعة برمجة كاملة.' }
+    },
+    {
+        name: 'DsLooper0021', category: 'games', status: 'completed', featured: false,
+        lang: 'GML · GameMaker', icon: 'fa-solid fa-circle-notch',
+        demo: null, code: 'https://github.com/DsMans0021/DsLooper0021', case: null,
+        desc: { en: 'A GameMaker loop-runner made for the CampFire jam — fast, tight and endless.', ar: 'لعبة جري حلقيّة بـ GameMaker صُنعت لمسابقة CampFire — سريعة ومحكمة وبلا نهاية.' }
+    },
+    {
+        name: 'The Count of Monte Cristo', category: 'web', status: 'completed', featured: false,
+        lang: 'HTML · CSS', icon: 'fa-solid fa-book',
+        demo: null, code: 'https://github.com/DsMans0021/The-Count-of-Monte-Cristo', case: null,
+        desc: { en: 'An interactive reading experience that brings the classic novel to the browser.', ar: 'تجربة قراءة تفاعلية تنقل الرواية الكلاسيكية إلى المتصفح.' }
+    },
+    {
+        name: 'Intelliroad', category: 'web', status: 'completed', featured: false,
+        lang: 'HTML · CSS', icon: 'fa-solid fa-road',
+        demo: null, code: 'https://github.com/DsMans0021/Intelliroad', case: null,
+        desc: { en: 'A web concept for smarter roads — data-driven and clean.', ar: 'مفهوم ويب لطرق أذكى — يعتمد على البيانات بشكل نظيف.' }
+    },
+    {
+        name: 'Whiplash Prezi', category: 'web', status: 'completed', featured: false,
+        lang: 'HTML · CSS', icon: 'fa-solid fa-chart-line',
+        demo: null, code: 'https://github.com/DsMans0021/Whiplash-Prezi', case: null,
+        desc: { en: 'A fast, motion-driven presentation page — pitch mode for anything.', ar: 'صفحة عرض تقديمي سريعة تعتمد على الحركة — وضع عرض لأي فكرة.' }
+    },
+    {
+        name: 'Room Designer 0021', category: 'apps', status: 'completed', featured: false,
+        lang: 'Python · Tkinter', icon: 'fa-solid fa-couch',
+        demo: null, code: 'https://github.com/DsMans0021/Room-Designer0021', case: null,
+        desc: { en: 'A feature-rich room layout designer built with Python and Tkinter.', ar: 'مصمّم تخطيط غرف تطبيق ثري مبني بـ Python وTkinter.' }
+    },
+    {
+        name: 'Multi-Projects', category: 'apps', status: 'inprogress', featured: false,
+        lang: 'Python', icon: 'fa-solid fa-layer-group',
+        demo: null, code: 'https://github.com/DsMans0021/Multi-Projects', case: null,
+        desc: { en: 'A growing collection of Python scripts and micro-tools — automation snacks.', ar: 'مجموعة متنامية من سكربتات وأدوات Python — وجبات أتمتة سريعة.' }
+    },
+    {
+        name: 'Typy', category: 'apps', status: 'completed', featured: false,
+        lang: 'Auto Typer', icon: 'fa-solid fa-keyboard',
+        demo: null, code: 'https://github.com/DsMans0021/Typy', case: null,
+        desc: { en: 'An auto-typer app that types your text for you at the speed you set.', ar: 'تطبيق طباعة تلقائية يكتب نصك نيابة عنك بالسرعة التي تحددها.' }
+    },
+    {
+        name: 'Weather App', category: 'mobile', status: 'completed', featured: false,
+        lang: 'HTML · CSS · JS', icon: 'fa-solid fa-cloud-sun',
+        demo: null, code: 'https://github.com/DsMans0021/Weather-App', case: null,
+        desc: { en: 'A clean weather app that tells you what the sky is doing where you are.', ar: 'تطبيق طقس أنيق يخبرك بما يحدث في السماء فوق مكانك.' }
+    },
+    {
+        name: 'unity-webview', category: 'mobile', status: 'completed', featured: false,
+        lang: 'Unity · Plugin', icon: 'fa-solid fa-globe',
+        demo: null, code: 'https://github.com/DsMans0021/unity-webview', case: null,
+        desc: { en: 'A Unity WebView plugin integration for embedding web content inside games.', ar: 'دمج إضافة Unity WebView لفحص محتوى الويب داخل الألعاب.' }
+    },
+    {
+        name: 'Air Scrambler', category: 'security', status: 'inprogress', featured: false,
+        lang: 'Hardware · RF', icon: 'fa-solid fa-tower-broadcast',
+        demo: null, code: 'https://github.com/DsMans0021/Air-Scrambler', case: null,
+        desc: { en: 'A hardware cybersecurity research tool that blocks and jams RF signals. Educational, authorized use only.', ar: 'أداة بحث أمني مادية تقوم بحجب وتشويش الإشارات اللاسلكية. للتعليم والاستخدام المصرّح فقط.' }
+    },
+    {
+        name: 'WiFi Defense Toolkit', category: 'security', status: 'inprogress', featured: false,
+        lang: 'Python · Networking', icon: 'fa-solid fa-wifi',
+        demo: null, code: 'https://github.com/DsMans0021/fk-wifi-thiefs', case: null,
+        desc: { en: 'A Windows network-defense toolkit — ARP monitoring, live device tracking and alerts against WiFi intruders. Authorized testing only.', ar: 'أدوات دفاع شبكية لـ Windows — مراقبة ARP وتتبع الأجهزة لحظيًا والتنبيه ضد متسللي WiFi. للاختبار المصرّح فقط.' }
+    },
+    {
+        name: 'DsocialMans0021', category: 'security', status: 'inprogress', featured: false,
+        lang: 'Python · OSINT', icon: 'fa-solid fa-users-slash',
+        demo: null, code: 'https://github.com/DsMans0021/DsocialMans0021', case: null,
+        desc: { en: 'A social-engineering research framework that combines 21 attack methods. Strictly educational — authorized research only.', ar: 'إطار بحثي في الهندسة الاجتماعية يجمع 21 أسلوبًا. تعليمي حصريًا — للبحث المصرّح فقط.' }
+    },
+    {
+        name: 'Network Sentry', category: 'security', status: 'completed', featured: false,
+        lang: 'Python', icon: 'fa-solid fa-network-wired',
+        demo: null, code: 'https://github.com/DsMans0021/Network-Sentry', case: null,
+        desc: { en: 'A network monitoring and security scanner that discovers local devices and tracks their activity.', ar: 'ماسح مراقبة شبكي وأمني يكتشف أجهزة الشبكة المحلية ويتتبع نشاطها.' }
     },
     {
         name: 'Telegram RAT Demo', category: 'security', status: 'archived', featured: false,
         lang: 'Python', icon: 'fa-solid fa-server',
-        demo: null,
-        code: 'https://github.com/DsMans0021/Telegrojan',
-        case: null,
-        desc: {
-            en: 'An educational remote-administration prototype. Built strictly for learning and authorized testing — research use only.',
-            ar: 'نموذج إدارة عن بُعد تعليمي. صُنع حصريًا للتعلم والاختبار المصرّح به — لأغراض البحث فقط.'
-        }
+        demo: null, code: 'https://github.com/DsMans0021/Telegrojan', case: null,
+        desc: { en: 'An educational remote-administration prototype. Built for learning and authorized testing — research only.', ar: 'نموذج إدارة عن بُعد تعليمي. صُنع للتعلم والاختبار المصرّح — بحث فقط.' }
     },
     {
         name: 'BlackMamba (C2 Research)', category: 'security', status: 'inprogress', featured: false,
         lang: 'Security · C2', icon: 'fa-solid fa-shield-halved',
-        demo: null,
-        code: 'https://github.com/DsMans0021/BlackMamba',
-        case: null,
-        desc: {
-            en: 'A red-team command & control research framework inspired by real offensive tooling. Built for education and authorized security testing.',
-            ar: 'إطار بحثي للتحكم والسيطرة بأسلوب الفريق الأحمر مستوحى من أدوات الهجوم الحقيقية. صُنع للتعليم والاختبار الأمني المصرّح به.'
-        }
+        demo: null, code: 'https://github.com/DsMans0021/BlackMamba', case: null,
+        desc: { en: 'A command & control research framework inspired by real offensive tooling. Education and authorized testing only.', ar: 'إطار بحثي للتحكم والسيطرة مستوحى من الأدوات الهجومية الحقيقية. للتعليم والاختبار المصرّح فقط.' }
+    },
+    {
+        name: 'zombie-zip', category: 'security', status: 'completed', featured: false,
+        lang: 'ZIP · Research', icon: 'fa-solid fa-file-zipper',
+        demo: null, code: 'https://github.com/DsMans0021/zombie-zip', case: null,
+        desc: { en: 'A malformed ZIP that evades antivirus by lying about compression — studied for the defense side.', ar: 'ملف ZIP معطوب يتهرب من مكافح الفيروسات بالكذب حول الضغط — للدراسة الدفاعية.' }
+    },
+    {
+        name: 'PayloadsAllTheThings', category: 'security', status: 'inprogress', featured: false,
+        lang: 'Web · Research', icon: 'fa-solid fa-database',
+        demo: null, code: 'https://github.com/DsMans0021/PayloadsAllTheThings', case: null,
+        desc: { en: 'A security research collection of payloads and bypasses for web testing and CTFs. Educational.', ar: 'مجموعة بحثية أمنية من الـ payloads والحلول الملتوية لاختبار الويب وCTF. تعليمية.' }
+    },
+    {
+        name: 'maigret — OSINT Username Hunter', category: 'security', status: 'archived', featured: false,
+        lang: 'Python · OSINT', icon: 'fa-solid fa-magnifying-glass',
+        demo: null, code: 'https://github.com/DsMans0021/maigret', case: null,
+        desc: { en: 'A research fork of the OSINT username-dossier tool — 3000+ site lookup. Educational investigation only.', ar: 'نسخة بحثية من أداة OSINT لبناء ملفّات اسم للمستخدم عبر أكثر من 3000 موقع. للبحث التعليمي فقط.' }
+    },
+    {
+        name: 'Chrome App-Bound Decryption', category: 'security', status: 'inprogress', featured: false,
+        lang: 'Security · Research', icon: 'fa-solid fa-lock',
+        demo: null, code: 'https://github.com/DsMans0021/Chrome-App-Bound-Encryption-Decryption', case: null,
+        desc: { en: 'A research fork exploring Chromium App-Bound encryption — studied to understand browser credential defenses. Educational.', ar: 'نسخة بحثية تستكشف تشفير Chromium App-Bound — للفهم الدفاعي لبيانات المتصفح. تعليمية.' }
+    },
+    {
+        name: 'Google Dork Cheatsheet', category: 'security', status: 'completed', featured: false,
+        lang: 'OSINT · Research', icon: 'fa-solid fa-braces',
+        demo: null, code: 'https://github.com/DsMans0021/Google-Dork-Cheatsheet', case: null,
+        desc: { en: 'A cheatsheet of Google-dork operators for sharper search and recon. Educational.', ar: 'مرجع أوامر Google Dork لبحث واستطلاع أدق. لأغراض تعليمية.' }
+    },
+    {
+        name: 'Google Dorking', category: 'security', status: 'completed', featured: false,
+        lang: 'OSINT · Research', icon: 'fa-solid fa-braces',
+        demo: null, code: 'https://github.com/DsMans0021/Google-Dorking', case: null,
+        desc: { en: 'A research collection of Google dorking techniques — sharpening your search-fu. Educational.', ar: 'مجموعة بحثية لتقنيات Google dorking — لصقل مهارات البحث. تعليمية.' }
+    },
+    {
+        name: 'Windows Kernel Exploits', category: 'security', status: 'archived', featured: false,
+        lang: 'C · Research', icon: 'fa-solid fa-window-restore',
+        demo: null, code: 'https://github.com/DsMans0021/windows-kernel-exploits', case: null,
+        desc: { en: 'A study archive of Windows kernel privilege-escalation exploits — researched for defense. Educational only.', ar: 'أرشيف دراسي لثغرات رفع صلاحيات نواة Windows — يُدرس لأغراض الدفاع. تعليمي فقط.' }
+    },
+    {
+        name: 'AIRAVAT', category: 'security', status: 'inprogress', featured: false,
+        lang: 'Android · Research', icon: 'fa-solid fa-mobile-screen-button',
+        demo: null, code: 'https://github.com/DsMans0021/AIRAVAT', case: null,
+        desc: { en: 'A research fork of a mobile remote-admin framework — studied for mobile-threat awareness. Educational only.', ar: 'نسخة بحثية من إطار إدارة عن بُعد محمول — لدراسة تهديدات الجوال. تعليمية فقط.' }
+    },
+    {
+        name: 'TheFatRat', category: 'security', status: 'archived', featured: false,
+        lang: 'Python · Research', icon: 'fa-solid fa-bug',
+        demo: null, code: 'https://github.com/DsMans0021/TheFatRat', case: null,
+        desc: { en: 'A research fork of a post-exploitation generator — kept for defensive analysis. Educational only.', ar: 'نسخة بحثية من مولّد استغلال ما بعد الاختراق — للتحليل الدفاعي. تعليمية فقط.' }
+    },
+    {
+        name: 'AndroRAT', category: 'security', status: 'archived', featured: false,
+        lang: 'Java · Research', icon: 'fa-solid fa-bug',
+        demo: null, code: 'https://github.com/DsMans0021/AndroRAT', case: null,
+        desc: { en: 'A research fork of a classic Android remote-admin demo — analyzed for defense awareness. Educational only.', ar: 'نسخة بحثية من نموذج إدارة Android عن بُعد الكلاسيكي — للتحليل الدفاعي. تعليمية فقط.' }
+    },
+    {
+        name: 'Blackeye', category: 'security', status: 'archived', featured: false,
+        lang: 'Phishing · Research', icon: 'fa-solid fa-fish',
+        demo: null, code: 'https://github.com/DsMans0021/Blackeye', case: null,
+        desc: { en: 'A research fork of a phishing-kit demo — studied for defense awareness. Educational only.', ar: 'نسخة بحثية من نموذج اصطياد تجريبي — دُرست للوعي الدفاعي. تعليمية فقط.' }
+    },
+    {
+        name: 'zphisher', category: 'security', status: 'archived', featured: false,
+        lang: 'Phishing · Research', icon: 'fa-solid fa-fish',
+        demo: null, code: 'https://github.com/DsMans0021/zphisher', case: null,
+        desc: { en: 'A research fork of an automated phishing demo with 30+ templates — kept for defense research. Educational only.', ar: 'نسخة بحثية من أداة اصطياد آلية بأكثر من 30 قالبًا — محفوظة لبحث الدفاع. تعليمية فقط.' }
+    },
+    {
+        name: 'QR-DUDE', category: 'security', status: 'archived', featured: false,
+        lang: 'Phishing · Research', icon: 'fa-solid fa-qrcode',
+        demo: null, code: 'https://github.com/DsMans0021/QR-DUDE', case: null,
+        desc: { en: 'A research fork generating phishing landing pages with QR payloads — studied for awareness. Educational.', ar: 'نسخة بحثية تولّد صفحات اصطياد مع حمولة QR — للوعي الدفاعي. تعليمية.' }
+    },
+    {
+        name: 'The Psychiatrist', category: 'education', status: 'completed', featured: false,
+        lang: 'Web · Quiz', icon: 'fa-solid fa-brain',
+        demo: null, code: 'https://github.com/DsMans0021/The-psychiatrist', case: null,
+        desc: { en: 'A personality test built from scratch — 0% AI, 100% classic psychology logic.', ar: 'اختبار شخصية مبني من الصفر — 0% ذكاء اصطناعي، 100% منطق علم نفس كلاسيكي.' }
+    },
+    {
+        name: 'Chemistry-G12', category: 'education', status: 'completed', featured: false,
+        lang: 'Web · Interactive', icon: 'fa-solid fa-flask',
+        demo: null, code: 'https://github.com/DsMans0021/Chemistry-G12', case: null,
+        desc: { en: 'An interactive chemistry companion for Grade 12 students.', ar: 'مرجع كيمياء تفاعلي لطلاب الصف الثاني عشر.' }
+    },
+    {
+        name: 'swot', category: 'education', status: 'completed', featured: false,
+        lang: 'Kotlin · Android', icon: 'fa-solid fa-graduation-cap',
+        demo: null, code: 'https://github.com/DsMans0021/swot', case: null,
+        desc: { en: 'An Android tool that identifies university emails and domains to speed up institutional approvals.', ar: 'أداة Android تكتشف إيميلات ونطاقات الجامعات لتسريع الموافقات المؤسسية.' }
+    },
+    {
+        name: 'DsMans0021 Infos', category: 'misc', status: 'completed', featured: false,
+        lang: 'Profile', icon: 'fa-solid fa-id-badge',
+        demo: null, code: 'https://github.com/DsMans0021/DsMans0021', case: null,
+        desc: { en: 'My GitHub profile infos — the meta repo about the alias behind this site.', ar: 'معلومات ملفي على GitHub — الريبو الذي يوثق الألياس اللي ورا الموقع ده.' }
+    },
+    {
+        name: 'blah-blah', category: 'misc', status: 'completed', featured: false,
+        lang: 'Scratch', icon: 'fa-solid fa-flask-vial',
+        demo: null, code: 'https://github.com/DsMans0021/blah-blah', case: null,
+        desc: { en: 'A tiny scratch repo for quick experiments — a name as honest as its contents.', ar: 'ريبو تجارب صغير — اسم على مسمّى، مخصص للتجارب السريعة.' }
+    },
+    {
+        name: 'Roader', category: 'misc', status: 'completed', featured: false,
+        lang: 'Prototype', icon: 'fa-solid fa-seedling',
+        demo: null, code: 'https://github.com/DsMans0021/Roader', case: null,
+        desc: { en: 'An early-stage prototype playground — ideas in their first shape.', ar: 'ملعب نماذج أولية — أفكار في بدايتها.' }
     }
 ];
 
@@ -2024,6 +2643,42 @@ const CATEGORY_ICON = {
 
 let activeFilter = 'all';
 
+function repoFromUrl(url) {
+    const m = /github\.com\/([^/]+\/[^/]+)/.exec(url || '');
+    return m ? m[1] : null;
+}
+
+function svgCover(p) {
+    const grads = {
+        games: ['#15803d', '#052e16'],
+        web: ['#1d4ed8', '#0b1537'],
+        apps: ['#0f766e', '#022c22'],
+        mobile: ['#7e22ce', '#2e0752'],
+        security: ['#b91c1c', '#350808'],
+        education: ['#c2410c', '#431407'],
+        misc: ['#64748b', '#1e293b']
+    };
+    const g = grads[p.category] || ['#334155', '#0f172a'];
+    const letters = (p.name.replace(/[^A-Za-z0-9]/g, '') || 'DM').slice(0, 2).toUpperCase();
+    const label = (p.category || 'project').toUpperCase();
+    const svg =
+        "<svg xmlns='http://www.w3.org/2000/svg' width='600' height='264'>" +
+        "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>" +
+        "<stop offset='0' stop-color='" + g[0] + "'/><stop offset='1' stop-color='" + g[1] +
+        "'/></linearGradient></defs>" +
+        "<rect width='600' height='264' fill='url(#g)'/>" +
+        "<g stroke='#ffffff' stroke-opacity='0.06'>" +
+        "<path d='M0 44H600M0 88H600M0 132H600M0 176H600M0 220H600'/>" +
+        "<path d='M44 0V264M88 0V264M132 0V264M176 0V264M220 0V264M264 0V264M308 0V264M352 0V264M396 0V264M440 0V264M484 0V264M528 0V264M572 0V264'/></g>" +
+        "<circle cx='540' cy='40' r='70' fill='#ffffff' fill-opacity='0.045'/>" +
+        "<text x='24' y='58' font-family='monospace' font-size='38' font-weight='bold' fill='#ffffff' fill-opacity='0.95'>" +
+        letters + "</text>" +
+        "<rect x='26' y='72' width='56' height='3' fill='#ffffff' fill-opacity='0.8'/>" +
+        "<text x='24' y='236' font-family='monospace' font-size='11' letter-spacing='3' fill='#ffffff' fill-opacity='0.55'>// " +
+        label + "</text></svg>";
+    return 'data:image/svg+xml,' + encodeURIComponent(svg);
+}
+
 function t(key) {
     return I18N[currentLang][key] || key;
 }
@@ -2043,6 +2698,18 @@ function renderProjects() {
         return;
     }
     list.forEach(p => grid.appendChild(buildProjectCard(p)));
+    updateScrollerUI();
+}
+
+function updateScrollerUI() {
+    const g = document.getElementById('projects-grid');
+    const count = document.getElementById('scroller-count');
+    if (count) count.textContent = g ? g.children.length : 0;
+    const max = g ? g.scrollWidth - g.clientWidth : 0;
+    const rtl = document.documentElement.dir === 'rtl';
+    const from = g ? (rtl ? -g.scrollLeft : g.scrollLeft) : 0;
+    const bar = document.getElementById('scroller-bar');
+    if (bar) bar.style.width = (max > 1 ? (from / max) * 100 : 0) + '%';
 }
 
 function buildProjectCard(p) {
@@ -2053,10 +2720,10 @@ function buildProjectCard(p) {
     const thumb = document.createElement('div');
     thumb.className = 'project-thumb cat-' + p.category;
 
-    const icon = document.createElement('i');
-    icon.className = (CATEGORY_ICON[p.category] || 'fa-solid fa-code');
-    icon.setAttribute('aria-hidden', 'true');
-    thumb.appendChild(icon);
+    const cover = document.createElement('div');
+    cover.className = 'cover-art';
+    cover.style.backgroundImage = "url('" + svgCover(p) + "')";
+    thumb.appendChild(cover);
 
     const status = document.createElement('span');
     status.className = 'status-badge ' + (STATUS_KEY[p.status] || '');
@@ -2092,6 +2759,14 @@ function buildProjectCard(p) {
     tag.textContent = p.lang;
     tags.appendChild(tag);
     body.appendChild(tags);
+
+    const repo = repoFromUrl(p.code);
+    if (repo) {
+        const stats = document.createElement('div');
+        stats.className = 'project-stats';
+        stats.setAttribute('data-repo', repo);
+        body.appendChild(stats);
+    }
 
     card.appendChild(body);
 
@@ -2136,8 +2811,81 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         activeFilter = btn.dataset.filter;
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
         renderProjects();
+        scrollProjectsTo(0);
     });
 });
+
+// ---------- Horizontal projects scroller ----------
+const pGrid = document.getElementById('projects-grid');
+
+function scrollProjectsTo(pos) {
+    if (!pGrid) return;
+    pGrid.scrollTo({ left: pos, behavior: 'smooth' });
+    return pos;
+}
+
+function scrollProjectsBy(forward) {
+    if (!pGrid) return;
+    const card = pGrid.querySelector('.project-card');
+    if (!card) return;
+    const step = card.offsetWidth + 20;
+    const rtl = document.documentElement.dir === 'rtl';
+    const fromStart = rtl ? -pGrid.scrollLeft : pGrid.scrollLeft;
+    const max = pGrid.scrollWidth - pGrid.clientWidth;
+    const next = Math.max(0, Math.min(max, fromStart + (forward ? step : -step)));
+    pGrid.scrollTo({ left: rtl ? -next : next, behavior: 'smooth' });
+}
+
+document.getElementById('proj-prev').addEventListener('click', () => scrollProjectsBy(false));
+document.getElementById('proj-next').addEventListener('click', () => scrollProjectsBy(true));
+
+// drag-to-scroll
+let pDrag = false, pStartX = 0, pStartFrom = 0, pMoved = false;
+pGrid.addEventListener('mousedown', function (e) {
+    pDrag = true; pMoved = false;
+    pStartX = e.clientX;
+    const rtl = document.documentElement.dir === 'rtl';
+    pStartFrom = rtl ? -pGrid.scrollLeft : pGrid.scrollLeft;
+    pGrid.classList.add('dragging');
+});
+document.addEventListener('mousemove', function (e) {
+    if (!pDrag) return;
+    const dx = e.clientX - pStartX;
+    if (Math.abs(dx) > 5) pMoved = true;
+    if (pMoved) {
+        e.preventDefault();
+        const rtl = document.documentElement.dir === 'rtl';
+        const max = pGrid.scrollWidth - pGrid.clientWidth;
+        const next = Math.max(0, Math.min(max, pStartFrom - dx));
+        pGrid.scrollLeft = rtl ? -next : next;
+    }
+});
+document.addEventListener('mouseup', function () {
+    if (!pDrag) return;
+    pDrag = false;
+    pGrid.classList.remove('dragging');
+});
+pGrid.addEventListener('mouseleave', function () {
+    if (pDrag) { pDrag = false; pGrid.classList.remove('dragging'); }
+});
+pGrid.addEventListener('click', function (e) {
+    if (pMoved) { e.preventDefault(); e.stopPropagation(); pMoved = false; }
+}, true);
+
+// scroller progress bar + count
+pGrid.addEventListener('scroll', updateScrollerUI);
+window.addEventListener('resize', updateScrollerUI);
+
+// keyboard navigation (respects RTL)
+pGrid.addEventListener('keydown', function (e) {
+    const rtl = document.documentElement.dir === 'rtl';
+    const prev = rtl ? 'ArrowRight' : 'ArrowLeft';
+    const next = rtl ? 'ArrowLeft' : 'ArrowRight';
+    if (e.key === prev) { e.preventDefault(); scrollProjectsBy(false); }
+    else if (e.key === next) { e.preventDefault(); scrollProjectsBy(true); }
+});
+
+updateScrollerUI();
 
 // ============================================================
 // QUOTES DATABASE — 200+ real quotes
@@ -2670,6 +3418,715 @@ window.dsmans = function () {
     console.log('%c\n   ██████╗ ███████╗███╗   ███╗ █████╗ ███╗   ██╗███████╗\n   ██╔══██╗██╔════╝████╗ ████║██╔══██╗████╗  ██║██╔════╝\n   ██║  ██║███████╗██╔████╔██║███████║██╔██╗ ██║███████╗\n   ██║  ██║╚════██║██║╚██╔╝██║██╔══██║██║╚██╗██║╚════██║\n   ██████╔╝███████║██║ ╚═╝ ██║██║  ██║██║ ╚████║███████║\n   ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝\n\n   You found the backdoor. +1 hacker credit. Welcome, DsMans.\n', 'color:#39ff14;font-family:monospace');
     return 'root@dsmans0021:~$ access granted';
 };
+</script>
+
+<!-- ======== OVERLAYS (Easter eggs) ======== -->
+<canvas id="matrix-canvas" aria-hidden="true"></canvas>
+<canvas id="spark-canvas" aria-hidden="true"></canvas>
+<div id="boo-flash" aria-hidden="true"></div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div class="tty-overlay" id="tty-overlay" aria-hidden="true">
+    <div class="tty" role="dialog" aria-label="Hidden terminal">
+        <div class="tty-head">
+            <span class="tty-title">dsmans@portfolio: <b>~</b></span>
+            <button class="tty-close" id="tty-close" aria-label="Close terminal">&times;</button>
+        </div>
+        <div class="tty-body" id="tty-out"></div>
+        <div class="tty-in">
+            <span class="tty-prompt">dsmans@portfolio:~$</span>
+            <input class="tty-input" id="tty-input" autocomplete="off" spellcheck="false" aria-label="Terminal command">
+        </div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// EXTRAS: github live stats, copy email, terminal, easter eggs
+// ============================================================
+
+// ---------- GitHub live stats ----------
+const GH_KEY = 'ghstats_v1';
+
+function getGhCache() { try { return JSON.parse(localStorage.getItem(GH_KEY) || '{}') } catch (e) { return {} } }
+function setGhCache(c) { try { localStorage.setItem(GH_KEY, JSON.stringify(c)) } catch (e) { } }
+function timeAgo(iso) {
+    if (!iso) return '';
+    const s = (Date.now() - new Date(iso)) / 1000;
+    if (s < 3600) return Math.max(1, Math.round(s / 60)) + 'm ago';
+    if (s < 86400) return Math.round(s / 3600) + 'h ago';
+    return Math.floor(s / 86400) + 'd ago';
+}
+function renderStat(el, rec) {
+    let html = '↳ <b>★ ' + rec.stars + '</b>';
+    if (rec.pushed) html += ' · updated ' + timeAgo(rec.pushed);
+    el.innerHTML = html;
+}
+function refreshGithubStats() {
+    const els = document.querySelectorAll('.project-stats[data-repo]');
+    const cache = getGhCache();
+    els.forEach(el => {
+        if (el.getAttribute('data-loading')) return;
+        const repo = el.getAttribute('data-repo');
+        const rec = cache[repo];
+        if (rec && rec.t > Date.now() - 3600e3) { renderStat(el, rec); return; }
+        el.setAttribute('data-loading', '1');
+        el.textContent = '↳ fetching…';
+        fetch('https://api.github.com/repos/' + repo)
+            .then(r => r.ok ? r.json() : null)
+            .catch(() => null)
+            .then(data => {
+                el.removeAttribute('data-loading');
+                if (!data) { el.textContent = '↳ ★ --'; return; }
+                const next = { stars: data.stargazers_count || 0, pushed: data.pushed_at || null, t: Date.now() };
+                cache[repo] = next;
+                setGhCache(cache);
+                renderStat(el, next);
+            });
+    });
+}
+
+// hook into re-renders
+const _origRender = window.renderProjects;
+window.renderProjects = function () {
+    _origRender();
+    refreshGithubStats();
+};
+
+// ---------- Copy email ----------
+const copyBtn = document.getElementById('copy-email');
+if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+        const mail = 'medozizo008@gmail.com';
+        const done = function () {
+            copyBtn.innerHTML = currentLang === 'ar' ? 'تم النسخ &#10003;' : 'copied &#10003;';
+            copyBtn.classList.add('copied');
+            setTimeout(function () {
+                copyBtn.innerHTML = 'copy';
+                copyBtn.classList.remove('copied');
+            }, 1800);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(mail).then(done).catch(function () { done(); });
+        } else { done(); }
+    });
+}
+
+// ---------- Toast ----------
+let toastTimer = null;
+function showToast(html, ms) {
+    const t = document.getElementById('toast');
+    t.innerHTML = html;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, ms || 3800);
+}
+
+// ---------- Matrix rain ----------
+function runMatrix(dur) {
+    const cv = document.getElementById('matrix-canvas');
+    if (cv.classList.contains('on')) return;
+    dur = dur || 7000;
+    cv.classList.add('on');
+    cv.width = window.innerWidth;
+    cv.height = window.innerHeight;
+    const ctx = cv.getContext('2d');
+    const chars = 'アイウエオカキクケコサシスセソタチツテト0101アナZEROxΔ<>¬▓▒░$#@%&';
+    const cols = Math.floor(cv.width / 18);
+    const drops = new Array(cols).fill(1);
+    const iv = setInterval(function () {
+        ctx.fillStyle = 'rgba(0,0,0,0.08)';
+        ctx.fillRect(0, 0, cv.width, cv.height);
+        ctx.fillStyle = '#39ff14';
+        ctx.font = '15px monospace';
+        for (let i = 0; i < cols; i++) {
+            const t = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(t, i * 18, drops[i] * 18);
+            if (drops[i] * 18 > cv.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        }
+    }, 50);
+    setTimeout(function () { clearInterval(iv); cv.classList.remove('on'); }, dur);
+}
+
+// ---------- Party mode (JS-driven hue filter — works even under reduced-motion) ----------
+let partyTimer = null;
+let beatTimer = null;
+
+function startParty() {
+    const doc = document.documentElement;
+    if (partyTimer) return;
+    doc.classList.add('party');
+    showToast('DISCO MODE — <b>rgb(255, all, 0)</b>');
+    let hue = 0;
+    partyTimer = setInterval(function () {
+        hue = (hue + 5) % 360;
+        doc.style.filter = 'hue-rotate(' + hue + 'deg) saturate(1.2)';
+    }, 45);
+    beatTimer = setInterval(function () {
+        if (sfxOn) ton(170 + Math.random() * 60, 0.05, 'square', 0.035);
+    }, 160);
+    setTimeout(endParty, 8000);
+}
+
+function endParty() {
+    if (!partyTimer) return;
+    clearInterval(partyTimer);
+    if (beatTimer) { clearInterval(beatTimer); beatTimer = null; }
+    partyTimer = null;
+    const doc = document.documentElement;
+    doc.classList.remove('party');
+    doc.style.filter = '';
+}
+
+// ============================================================
+// GOD MODE TOOLKIT — sound, hacker credits, sparks, secrets
+// ============================================================
+let sfxOn = localStorage.getItem('sg_sfx') !== '0';
+let sfxAac = null;
+function getAac() {
+    if (!sfxAac) {
+        const C = window.AudioContext || window.webkitAudioContext;
+        if (C) sfxAac = new C();
+    }
+    if (sfxAac && sfxAac.state === 'suspended') try { sfxAac.resume(); } catch (e) {}
+    return sfxAac;
+}
+function ton(f, dur, type, vol) {
+    if (!sfxOn) return;
+    const ac = getAac(); if (!ac) return;
+    try {
+        const o = ac.createOscillator(), g = ac.createGain();
+        o.type = type || 'square';
+        o.frequency.value = f;
+        g.gain.value = (vol || 0.04);
+        g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + (dur || 0.08));
+        o.connect(g); g.connect(ac.destination);
+        o.start(); o.stop(ac.currentTime + (dur || 0.08) + 0.03);
+    } catch (e) {}
+}
+function chime() { ton(523, 0.09, 'triangle', 0.05); setTimeout(function () { ton(659, 0.09, 'triangle', 0.05); }, 90); setTimeout(function () { ton(784, 0.14, 'triangle', 0.05); }, 180); }
+function fanfare() { [523, 659, 784, 1047].forEach(function (f, i) { setTimeout(function () { ton(f * 2, 0.1, 'square', 0.04); }, i * 110); }); }
+function arpeggio() { [440, 554, 659, 880].forEach(function (f, i) { setTimeout(function () { ton(f, 0.08, 'triangle', 0.045); }, i * 70); }); }
+function setSfx(on) {
+    sfxOn = !!on;
+    try { localStorage.setItem('sg_sfx', sfxOn ? '1' : '0'); } catch (e) {}
+    if (sfxOn) blip();
+    return sfxOn;
+}
+function blip() { ton(880, 0.05, 'square', 0.03); }
+window.addEventListener('pointerdown', function () { const ac = getAac(); if (ac && ac.state === 'suspended') try { ac.resume(); } catch (e) {} }, { once: true });
+
+// ---------- Hacker credits + ranks (persisted) ----------
+const RANKS = [
+    [0, 'script kiddie'], [3, 'white hat cadet'], [6, 'green hat tinkerer'], [10, 'grey hat apprentice'],
+    [18, 'cyber citizen'], [30, 'blue team operator'], [50, 'elite frame breaker'], [80, 'the machine\'s favorite'],
+    [120, 'boss of this terminal']
+];
+let creditsTotal = parseInt(localStorage.getItem('sg_credits') || '0', 10);
+function creditRank() {
+    let r = RANKS[0][1];
+    for (let i = 0; i < RANKS.length; i++) if (creditsTotal >= RANKS[i][0]) r = RANKS[i][1];
+    return r;
+}
+function renderCreditBadge() {
+    const b = document.getElementById('credit-badge');
+    if (b) b.textContent = '◆ ' + creditsTotal + ' · ' + creditRank();
+}
+function awardCredits(n, reason) {
+    creditsTotal += n;
+    try { localStorage.setItem('sg_credits', String(creditsTotal)); } catch (e) {}
+    arpeggio();
+    showToast('+' + n + ' hacker credits <b>· ' + creditRank() + '</b>' + (reason ? '<br><span class="tty-d">' + reason + '</span>' : ''), 4200);
+    renderCreditBadge();
+}
+renderCreditBadge();
+
+// ---------- Sparks (cursor-less star dust) ----------
+let sparkIv = null;
+function runSparks(dur) {
+    const cv = document.getElementById('spark-canvas');
+    if (!cv || cv.classList.contains('on')) return;
+    cv.classList.add('on');
+    cv.width = window.innerWidth; cv.height = window.innerHeight;
+    const ctx = cv.getContext('2d');
+    const ps = [];
+    const push = function () {
+        for (let i = 0; i < 9; i++) ps.push({ x: Math.random() * cv.width, y: Math.random() * cv.height, vx: (Math.random() - 0.5) * 1.5, vy: Math.random() * 1.2 + 0.2, life: 1, hue: Math.floor(Math.random() * 360) });
+    };
+    push();
+    sparkIv = setInterval(function () {
+        ctx.clearRect(0, 0, cv.width, cv.height);
+        for (let i = ps.length - 1; i >= 0; i--) {
+            const p = ps[i];
+            p.x += p.vx; p.y += p.vy; p.life -= 0.02;
+            if (p.life <= 0 || p.y > cv.height) { ps.splice(i, 1); continue; }
+            ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, 6.2832);
+            ctx.fillStyle = 'hsla(' + p.hue + ',100%,65%,' + p.life + ')';
+            ctx.fill();
+        }
+    }, 30);
+    setTimeout(endSparks, dur || 12000);
+}
+function endSparks() {
+    if (sparkIv) { clearInterval(sparkIv); sparkIv = null; }
+    const cv = document.getElementById('spark-canvas');
+    if (cv) cv.classList.remove('on');
+}
+function burst(char, n) {
+    for (let i = 0; i < (n || 14); i++) {
+        const s = document.createElement('i');
+        s.className = 'fx-burst';
+        s.textContent = char;
+        s.style.left = (Math.random() * 100) + 'vw';
+        s.style.top = (30 + Math.random() * 45) + 'vh';
+        s.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px');
+        s.style.setProperty('--dy', (-60 - Math.random() * 120) + 'px');
+        s.style.color = 'hsl(' + Math.floor(Math.random() * 360) + ',90%,70%)';
+        document.body.appendChild(s);
+        setTimeout(function () { s.remove(); }, 1150);
+    }
+}
+function booFlash() {
+    const f = document.getElementById('boo-flash');
+    if (f) { f.classList.remove('on'); void f.offsetWidth; f.classList.add('on'); }
+    burst('👻', 10);
+}
+
+// ---------- Night shift (03:00–05:00 local) ----------
+function isNight() { const h = new Date().getHours(); return h >= 0 && h < 5; }
+function toggleNight(force) {
+    const on = typeof force === 'boolean' ? force : !document.documentElement.classList.contains('night');
+    document.documentElement.classList.toggle('night', on);
+    return on;
+}
+if (isNight()) {
+    toggleNight(true);
+    setTimeout(function () { showToast('🦉 night shift — the machine sees you. try <b>dsmans</b>', 5000); }, 3500);
+}
+
+// ---------- Konami code anywhere on the page ----------
+const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiPos = 0;
+document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const need = KONAMI[konamiPos];
+    if (e.key.toLowerCase() === need.toLowerCase()) konamiPos++;
+    else konamiPos = (e.key === 'ArrowUp') ? 1 : 0;
+    if (konamiPos === KONAMI.length) {
+        konamiPos = 0;
+        fanfare();
+        startParty();
+        awardCredits(5, 'konami accepted — you win the internet');
+    }
+});
+
+// ---------- DevTools inspector detection ----------
+let devtoolsCaught = false;
+setInterval(function () {
+    if (devtoolsCaught) return;
+    if ((window.outerWidth - window.innerWidth) > 160 || (window.outerHeight - window.innerHeight) > 160) {
+        devtoolsCaught = true;
+        console.log('%c👀 you opened DevTools. respect. the real secret is: the source code IS the easter egg.', 'color:#00aaff;font-family:monospace');
+        awardCredits(2, 'inspector probe');
+    }
+}, 2000);
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))) {
+        if (!devtoolsCaught) {
+            devtoolsCaught = true;
+            console.log('%cthe machine sees everything.', 'color:#39ff14;font-family:monospace');
+            awardCredits(1, 'keyboard ninja');
+        }
+    }
+});
+
+// ---------- "the machine sees you" — idle watcher ----------
+let idleMs = 0, idleShown = 0;
+const IDLE_MSG = [
+    'still here? good. the machine remembers.',
+    'psst — press <b>Ctrl+Shift+~</b>&nbsp; to unlock a terminal.',
+    'you have been staring at this wall for a while. impressive.',
+    'try typing <b>matrix</b> or <b>party</b> anywhere on the page.',
+    'the quotes keep moving. the cursor does not. unnerving, isnt it?'
+];
+setInterval(function () { idleMs += 5000; }, 5000);
+['mousemove', 'keydown', 'scroll', 'click', 'touchstart', 'wheel'].forEach(function (ev) {
+    window.addEventListener(ev, function () { idleMs = 0; }, { passive: true });
+});
+setInterval(function () {
+    if (idleMs >= 45000 && idleShown < 5) {
+        showToast('🤖 <b>the machine</b> sees you —<br><span class="tty-d">' + IDLE_MSG[idleShown] + '</span>', 4200);
+        idleShown++;
+        idleMs = 0;
+    }
+}, 15000);
+
+// ---------- Hidden terminal ----------
+let ttyHistory = [];
+let ttyHistPos = -1;
+
+function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+}
+
+function ttyPrint(html) {
+    const out = document.getElementById('tty-out');
+    const line = document.createElement('div');
+    line.className = 'tty-line';
+    line.innerHTML = html;
+    out.appendChild(line);
+    out.scrollTop = out.scrollHeight;
+}
+
+function ttyBoot() {
+    ttyPrint('<span class="tty-p">[ system ]</span> <span class="tty-d">hidden tty unlocked — type</span> <span class="tty-a2">help</span> <span class="tty-d">/</span> <span class="tty-a2">secrets</span> <span class="tty-d">to begin. keyboard: Ctrl+Shift+~ or Ctrl+K</span>');
+    ttyPrint('<span class="tty-d">------------------------------------------------------------</span>');
+}
+
+function openTerminal() {
+    const o = document.getElementById('tty-overlay');
+    o.classList.add('open');
+    o.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    chime();
+    ttyBoot();
+    setTimeout(function () { document.getElementById('tty-input').focus(); }, 30);
+}
+
+function closeTerminal() {
+    const o = document.getElementById('tty-overlay');
+    o.classList.remove('open');
+    o.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.getElementById('tty-out').innerHTML = '';
+}
+
+const TTY_CMDS = {
+    help: function () {
+        ttyPrint('<span class="tty-a2">available commands</span><span class="tty-d"> — try them all:</span>');
+        [
+            'help', 'whoami', 'ls', 'goto &lt;section&gt;', 'theme', 'lang ar|en',
+            'cv', 'tools', 'github', 'matrix', 'party', 'neofetch',
+            'ping', 'hack', 'sudo &lt;cmd&gt;', 'secret', 'clear', 'exit'
+        ].forEach(function (c) {
+            ttyPrint('   <span class="tty-p">' + esc(c) + '</span>');
+        });
+        ttyPrint('<span class="tty-d">psst… try the secrets:  sekret  ·  konami  ·  42</span>');
+    },
+    whoami: function () {
+        ttyPrint('<span class="tty-p">Mohamed Abdelaziz</span> <span class="tty-d">/ alias</span> <span class="tty-a2">DsMans0021</span>');
+        ttyPrint('<span class="tty-d">STEM mentor · indie game developer · cyber tinkerer · member of the machine</span>');
+    },
+    ls: function () {
+        ttyPrint('<span class="tty-d">~ contains:</span>');
+        ttyPrint('   <span class="tty-a2">about/  projects/  skills/  achievements/  more/  contact/</span>');
+        ttyPrint('   <span class="tty-d">tools.html  cv.pdf  favicon.svg  secrets/</span>');
+    },
+    goto: function (args) {
+        const ids = ['about', 'projects', 'skills', 'achievements', 'more', 'contact'];
+        const target = args.split(/\s+/)[0];
+        const t = ids.indexOf(target);
+        if (t === -1) {
+            ttyPrint('<span class="tty-a2">unknown sector:</span> ' + esc(target || '?') + ' <span class="tty-d">(try about, projects, skills, achievements, more, contact)</span>');
+            return;
+        }
+        ttyPrint('<span class="tty-a2">navigating…</span>');
+        closeTerminal();
+        document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
+    },
+    theme: function (args) {
+        const next = (args.split(/\s+/)[0] === 'light') ? 'light' : ((args.split(/\s+/)[0] === 'dark') ? 'dark' : (document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+        applyTheme(next);
+        ttyPrint('<span class="tty-d">theme →</span> <span class="tty-p">' + next + '</span>');
+    },
+    lang: function (args) {
+        const next = (args.split(/\s+/)[0] === 'ar' || args.split(/\s+/)[0] === 'en') ? args.split(/\s+/)[0] : (currentLang === 'ar' ? 'en' : 'ar');
+        applyLang(next);
+        ttyPrint('<span class="tty-d">language →</span> <span class="tty-p">' + next + '</span>');
+    },
+    cv: function () { window.open('cv.pdf', '_blank', 'noopener'); ttyPrint('<span class="tty-d">opening cv.pdf…</span>'); },
+    tools: function () { ttyPrint('<span class="tty-d">redirecting to the toolbox…</span>'); setTimeout(function () { location.href = 'tools.html'; }, 300); },
+    github: function () { window.open('https://github.com/DsMans0021', '_blank', 'noopener'); ttyPrint('<span class="tty-d">beaming you to the repo repo…</span>'); },
+    matrix: function () { ttyPrint('<span class="tty-d">wake up, DsMans…</span>'); runMatrix(); },
+    party: function () { startParty(); ttyPrint('<span class="tty-p">party mode engaged. the site is now legally distracting.</span>'); },
+    neofetch: function () {
+        ttyPrint('<pre style="margin:0">   .--.        <span class="tty-p">dsmans@portfolio</span>\n  |o_o |       <span class="tty-d">--------------</span>\n  |:_/ |       OS: Portfolio OS ~ x86_64\n //   \\ \\      Shell: dsmans_bash 7.0\n(|     | )     Resolution: 1920x1080\n/\'\\_   _/`\\     Theme: Terminal Green [dark]\n\\___)=(___/     CPU: Human Intel i7 (2021)\n               Memory: 16GB RAM · 2TB curiosity\n               Projects: 45 · Languages: en/ar</pre>');
+    },
+    ping: function () {
+        const ping = [
+            '<span class="tty-d">PING dsmans.me (127.0.0.1): 56 data bytes</span>',
+            '<span class="tty-d">64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.042 ms</span>',
+            '<span class="tty-d">64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.038 ms</span>',
+            '<span class="tty-d">--- dsmans.me ping statistics ---</span>',
+            '<span class="tty-d">2 packets transmitted, 2 received, 0.0% packet loss</span>'
+        ];
+        ping.forEach(function (l, i) { setTimeout(function () { ttyPrint(l); }, i * 140); });
+    },
+    hack: function () {
+        ttyPrint('<span class="tty-d">initializing exploit… 1%… 47%… 100%</span>');
+        ttyPrint('<span class="tty-d">nothing happened. but</span> <span class="tty-p">+1 hacker credit</span><span class="tty-d"> was earned honestly.</span>');
+        showToast('+1 hacker credit <b>earned</b>');
+    },
+    sudo: function () {
+        ttyPrint('<span class="tty-a2">Great job, white hat.</span> <span class="tty-d">Permission denied. This incident will be reported to your sense of ethics.</span>');
+    },
+    secret: function () {
+        ttyPrint('<span class="tty-p">~ the answer is 42.</span>');
+        setTimeout(function () { showToast('the answer is <b>42</b>. tell no one.'); }, 400);
+    },
+    sekret: function () {
+        ttyPrint('<span class="tty-p">you read me. the real easter egg isn\'t a feature — it\'s the mailto.</span>');
+    },
+    konami: function () {
+        ttyPrint('<span class="tty-p">↑↑↓↓←→←→BA</span> <span class="tty-d">accepted. you win the internet.</span>');
+        startParty();
+    },
+    42: function () {
+        ttyPrint('<span class="tty-p">6 × 9 = 42. check your math engine.</span>');
+    },
+    clear: function () { document.getElementById('tty-out').innerHTML = ''; },
+    exit: function () { closeTerminal(); },
+    quit: function () { closeTerminal(); }
+};
+
+// extended commands (evil the toolkit needs)
+Object.assign(TTY_CMDS, {
+    help: function () {
+        ttyPrint('<span class="tty-a2">available commands</span><span class="tty-d"> — try them all:</span>');
+        ['help', 'secrets', 'whoami', 'ls', 'goto &lt;section&gt;', 'theme', 'lang ar|en', 'cv', 'tools', 'github', 'neofetch', 'ping', 'sound on|off', 'matrix', 'party', 'sparks', 'quote', 'love', 'coffee', 'ghost', 'time', 'morse', 'rank', 'credits', 'night', 'hack', 'sudo &lt;cmd&gt;', 'secret', 'konami', '42', 'clear', 'exit']
+        .forEach(function (c) { ttyPrint('   <span class="tty-p">' + esc(c) + '</span>'); });
+        ttyPrint('<span class="tty-d">type</span> <span class="tty-p">secrets</span> <span class="tty-d">for hidden keys &amp; shortcuts.</span>');
+    },
+    secrets: function () {
+        ttyPrint('<span class="tty-a2">hidden keys</span><span class="tty-d"> — type these anywhere on the page:</span>');
+        ['dsmans', 'دسمانس', 'matrix', 'party', 'disco', 'hack', 'secret', 'love', 'coffee', 'sparks', 'ghost'].forEach(function (c) { ttyPrint('   <span class="tty-p">' + c + '</span>'); });
+        ttyPrint('<span class="tty-d">and on this keyboard:</span>');
+        ['Ctrl+K / Ctrl+~ / Ctrl+Shift+~  → terminal', 'Ctrl+Alt+M → matrix', 'Ctrl+Alt+D → disco', '↑↑↓↓←→←→BA → konami', 'click the avatar 7×', 'open DevTools 👀'].forEach(function (c) { ttyPrint('   <span class="tty-p">' + esc(c) + '</span>'); });
+    },
+    hack: function () {
+        ttyPrint('<span class="tty-d">initializing exploit… 1%… 47%… 100%</span>');
+        ttyPrint('<span class="tty-d">nothing happened. but</span> <span class="tty-d">+1 hacker credit</span><span class="tty-d"> was earned honestly.</span>');
+        awardCredits(1, 'exploit: confidence');
+    },
+    konami: function () {
+        ttyPrint('<span class="tty-p">↑↑↓↓←→←→BA</span> <span class="tty-d">accepted. you win the internet.</span>');
+        fanfare();
+        startParty();
+        awardCredits(5, 'konami (terminal route)');
+    },
+    matrix: function () { ttyPrint('<span class="tty-d">wake up, DsMans…</span>'); ton(220, 0.25, 'sine', 0.04); runMatrix(); },
+    party: function () { startParty(); ttyPrint('<span class="tty-p">party mode engaged. the site is now legally distracting.</span>'); },
+    sparks: function () { runSparks(); ttyPrint('<span class="tty-d">star dust deployed.</span>'); },
+    love: function () { burst('❤️', 16); ttyPrint('<span class="tty-p">sentiment detected.</span>'); awardCredits(1, 'feelings, chaotic'); },
+    coffee: function () { showToast('☕ coffee break detected — productivity +1'); ttyPrint('<span class="tty-d">barista mode on.</span>'); awardCredits(1, 'caffeine'); },
+    ghost: function () { booFlash(); ttyPrint('<span class="tty-a2">BOO!</span> <span class="tty-d">sorry. i had to.</span>'); awardCredits(1, 'spooked'); },
+    quote: function () {
+        const q = (typeof QUOTES !== 'undefined' && QUOTES.length) ? QUOTES[Math.floor(Math.random() * QUOTES.length)] : null;
+        if (!q) { ttyPrint('<span class="tty-d">quote engine offline.</span>'); return; }
+        ttyPrint('<span class="tty-p">"' + esc(q.text) + '"</span>');
+        ttyPrint('<span class="tty-d">— ' + esc(q.author) + '</span>');
+    },
+    time: function () {
+        const d = new Date();
+        ttyPrint('<span class="tty-d">local time:</span> <span class="tty-p">' + d.toLocaleTimeString() + '</span>');
+        if (isNight()) ttyPrint('<span class="tty-a2">it is very late. the night shift is on.</span>');
+    },
+    morse: function () {
+        const map = { A: '.-', B: '-...', C: '-.-.', D: '-..', E: '.', F: '..-.', G: '--.', H: '....', I: '..', J: '.---', K: '-.-', L: '.-..', M: '--', N: '-.', O: '---', P: '.--.', Q: '--.-', R: '.-.', S: '...', T: '-', U: '..-', V: '...-', W: '.--', X: '-..-', Y: '-.--', Z: '--..', 0: '-----', 1: '.----', 2: '..---', 3: '...--', 4: '....-', 5: '.....', 6: '-....', 7: '--...', 8: '---..', 9: '----.' };
+        const msg = 'MEDOZIZO008';
+        let t = 0, out = '';
+        ttyPrint('<span class="tty-d">morse of my contact:</span> <span class="tty-p">' + esc(msg) + '</span>');
+        String(msg).split('').forEach(function (ch) {
+            const code = map[ch] || '';
+            out += ch + ' ' + code + '   ';
+            code.split('').forEach(function (c) {
+                setTimeout(function () { ton(1200, c === '.' ? 0.05 : 0.16, 'sine', 0.05); }, t);
+                t += (c === '.' ? 90 : 240);
+            });
+            t += 200;
+        });
+        setTimeout(function () { ttyPrint('<span class="tty-d">' + out + '</span>'); }, 250);
+    },
+    rank: function () { ttyPrint('<span class="tty-d">hacker credits:</span> <span class="tty-p">' + creditsTotal + '</span> <span class="tty-d">· rank:</span> <span class="tty-a2">' + creditRank() + '</span>'); },
+    credits: function () { TTY_CMDS.rank(); },
+    sound: function (args) {
+        const a = args.trim();
+        const state = a === 'off' ? setSfx(false) : (a === 'on' ? setSfx(true) : setSfx(!sfxOn));
+        ttyPrint('<span class="tty-d">sound fx →</span> <span class="tty-p">' + (state ? 'ON' : 'OFF') + '</span>');
+    },
+    night: function () {
+        const on = toggleNight();
+        ttyPrint('<span class="tty-d">night shift →</span> <span class="tty-p">' + (on ? 'ON 🦉' : 'OFF') + '</span>');
+    }
+});
+
+function ttyRun(raw) {
+    const input = document.getElementById('tty-input');
+    const cmd = raw.trim();
+    ttyPrint('<span class="tty-p">dsmans@portfolio:~$</span> ' + esc(cmd));
+    ttyHistory.push(raw);
+    ttyHistPos = ttyHistory.length;
+    if (!cmd) return;
+    if (cmd === 'rm -rf /') {
+        ttyPrint('<span class="tty-a2">permission denied — the world needs this site.</span>');
+        return;
+    }
+    const parts = cmd.split(/\s+/);
+    const name = parts[0];
+    const handler = TTY_CMDS[name];
+    if (handler) {
+        handler(parts.slice(1).join(' '));
+    } else if (name === 'goto' || name === 'cd') {
+        TTY_CMDS.goto(parts.slice(1).join(' '));
+    } else {
+        ttyPrint('<span class="tty-a2">command not found:</span> <span class="tty-d">' + esc(name) + ' — try</span> <span class="tty-p">help</span>');
+    }
+    input.value = '';
+}
+
+const ttyInput = document.getElementById('tty-input');
+ttyInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        ttyRun(ttyInput.value);
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (ttyHistPos > 0) { ttyHistPos--; ttyInput.value = ttyHistory[ttyHistPos] || ''; }
+    } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (ttyHistPos < ttyHistory.length - 1) { ttyHistPos++; ttyInput.value = ttyHistory[ttyHistPos]; }
+        else { ttyHistPos = ttyHistory.length; ttyInput.value = ''; }
+    } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closeTerminal();
+    }
+});
+
+document.getElementById('tty-close').addEventListener('click', closeTerminal);
+document.getElementById('tty-overlay').addEventListener('click', function (e) {
+    if (e.target === this) closeTerminal();
+});
+
+// keyboard shortcuts + secret words anywhere on the page
+let secretBuf = '';
+const SECRET_WORDS = {
+    dsmans: function () {
+        openTerminal();
+        ttyPrint('<span class="tty-p">root access granted.</span> <span class="tty-d">you typed my name — respect.</span>');
+        awardCredits(1, 'name drop');
+    },
+    'دسمانس': function () {
+        openTerminal();
+        ttyPrint('<span class="tty-p">تم منح صلاحيات الجذر.</span> <span class="tty-d">كتبت اسمي — تحية.</span>');
+        awardCredits(1, 'name drop (arabic edition)');
+    },
+    matrix: function () { runMatrix(); awardCredits(1, 'red pill taken'); },
+    party: function () { startParty(); awardCredits(2, 'disco fever'); },
+    disco: function () { startParty(); awardCredits(2, 'disco inferno'); },
+    hack: function () { showToast('nothing happened. but <b>+1 hacker credit</b>'); awardCredits(1, 'exploit: confidence'); },
+    secret: function () { showToast('the answer is <b>42</b>. tell no one.'); awardCredits(1, 'found 42'); },
+    love: function () { burst('❤️', 18); awardCredits(1, 'sentiment detected'); },
+    coffee: function () { showToast('☕ coffee break detected — productivity +1'); awardCredits(1, 'caffeine'); },
+    sparks: function () { runSparks(); awardCredits(1, 'particle physics'); },
+    ghost: function () { booFlash(); awardCredits(1, 'spooked'); },
+    sudo: function () { showToast('nice try. permission denied — but respect earned.'); }
+};
+
+document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey && (e.key === '`' || e.key === '~')) || (e.ctrlKey && e.key === 'k')) {
+        e.preventDefault();
+        openTerminal();
+        return;
+    }
+    if (e.ctrlKey && e.altKey && e.key === 'm') { e.preventDefault(); runMatrix(); return; }
+    if (e.ctrlKey && e.altKey && e.key === 'd') { e.preventDefault(); startParty(); return; }
+    const active = document.activeElement;
+    const typing = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+    const k = e.key;
+    if (k && k.length === 1) {
+        if (typing) { secretBuf = ''; return; }
+        secretBuf = (secretBuf + k.toLowerCase()).slice(-6);
+        for (const w in SECRET_WORDS) {
+            if (secretBuf === w) {
+                secretBuf = '';
+                SECRET_WORDS[w]();
+                break;
+            }
+        }
+    } else if (k === 'Backspace') {
+        if (!typing) secretBuf = secretBuf.slice(0, -1);
+    } else if (typing && e.key === 'Escape') {
+        secretBuf = '';
+    }
+});
+
+// ---------- Avatar clicks easter egg ----------
+let avatarClicks = 0;
+const avatar = document.querySelector('.hero-avatar');
+if (avatar) {
+    avatar.addEventListener('click', function () {
+        avatarClicks++;
+        if (avatarClicks >= 7) {
+            avatarClicks = 0;
+            awardCredits(1, 'avatar beater — you like clicking');
+            console.log('%c+1 hacker credit — avatar beater. Try  dsmans.tty()  next.', 'color:#39ff14;font-family:monospace');
+        }
+    });
+}
+
+// ---------- Console easter eggs ----------
+const banner = [
+    '',
+    '  ██████╗ ███████╗███╗   ███╗ █████╗ ███╗   ██╗███████╗',
+    '  ██╔══██╗██╔════╝████╗ ████║██╔══██╗████╗  ██║██╔════╝',
+    '  ██║  ██║███████╗██╔████╔██║███████║██╔██╗ ██║███████╗',
+    '  ██║  ██║╚════██║██║╚██╔╝██║██╔══██║██║╚██╗██║╚════██║',
+    '  ██████╔╝███████║██║ ╚═╝ ██║██║  ██║██║ ╚████║███████║',
+    '  ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝',
+    '',
+    '  welcome to the machine. party tricks:',
+    '    dsmans.tty()       → open the hidden terminal',
+    '    dsmans.matrix()    → wake up, DsMans',
+    '    dsmans.party()     → disco mode',
+    '    dsmans.sparks()    → star dust',
+    '    dsmans.credits()   → your hacker net worth',
+    '    dsmans.morse()     → my contact in morse',
+    '',
+    '  or just press  Ctrl+Shift+~  on the page.',
+    '  hint: type  matrix · party · love · ghost · coffee  anywhere.',
+    ''
+].join('\n');
+
+setTimeout(function () {
+    console.log(banner);
+    console.log('%c+ you can also open it by typing  dsmans  on the page or clicking the avatar 7 times.',
+        'color:#00aaff;font-family:monospace');
+}, 900);
+
+window.dsmans = Object.assign(function dsmans() {
+    openTerminal();
+    return '~ access granted — try "help" or "secrets"';
+}, {
+    tty: function () { openTerminal(); },
+    matrix: function () { runMatrix(); },
+    party: function () { startParty(); },
+    sparks: function () { runSparks(); },
+    sound: function (on) { return typeof on === 'boolean' ? setSfx(on) : setSfx(!sfxOn); },
+    credits: function () { return creditsTotal + ' credit(s) · rank: ' + creditRank(); },
+    night: function () { return toggleNight() ? 'night shift on' : 'night shift off'; },
+    konami: function () { fanfare(); startParty(); awardCredits(5, 'konami (console route)'); },
+    morse: function () { TTY_CMDS.morse(); },
+    secrets: function () { console.table(Object.keys(SECRET_WORDS).concat(['↑↑↓↓←→←→BA', 'Ctrl+Alt+M', 'Ctrl+Alt+D', 'avatar ×7', 'DevTools'])); },
+    version: '2.0.0',
+    profile: { name: 'Mohamed Abdelaziz', alias: 'DsMans0021', role: 'STEM Mentor · Game Dev · Cyber Tinkerer', location: 'Egypt 🌍' }
+});
+
+// initial stats fill (covers the render already done by the main script)
+refreshGithubStats();
 </script>
 </body>
 </html>
