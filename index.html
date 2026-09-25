@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Abdelaziz | DsMans0021 — STEM Mentor & Game Developer</title>
-    <meta name="description" content="Mohamed Abdelaziz (DsMans0021) helps students and developers build games and practical tech. STEM mentor at Hack Club, indie game developer, cybersecurity researcher.">
+    <title>Mohamed Abdelaziz | DsMans0021 — Computer &amp; Systems Engineering Student &amp; Game Developer</title>
+    <meta name="description" content="Mohamed Abdelaziz (DsMans0021) — Computer & Systems Engineering student at Minya University, indie game developer, and cybersecurity researcher building games and practical tech.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#080808">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://formsubmit.co https://*.googlesyndication.com; frame-src https://open.spotify.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com; form-action 'self' https:; base-uri 'none'; object-src 'none';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="google-adsense-account" content="ca-pub-8186398462710647">
 
     <link rel="canonical" href="https://dsmans0021.com/">
     <link rel="icon" href="https://avatars.githubusercontent.com/u/136956569?v=4" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Mohamed Abdelaziz | DsMans0021 — STEM Mentor & Game Developer">
-    <meta property="og:description" content="I help students and developers build games and practical tech. Mentor at Hack Club STEM October, indie game developer, cybersecurity researcher.">
+    <meta property="og:title" content="Mohamed Abdelaziz | DsMans0021 — Computer & Systems Engineering Student">
+    <meta property="og:description" content="Computer & Systems Engineering student at Minya University, indie game developer, and cybersecurity researcher — I build games and practical tech.">
     <meta property="og:image" content="https://github.com/DsMans0021.png?size=1200">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
     <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Mohamed Abdelaziz (DsMans0021) — profile picture">
     <meta property="og:url" content="https://dsmans0021.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="DsMans0021">
@@ -28,8 +31,9 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Mohamed Abdelaziz | DsMans0021">
-    <meta name="twitter:description" content="STEM Mentor & Game Developer — I help students and developers build games and practical tech.">
+    <meta name="twitter:description" content="Computer & Systems Engineering student at Minya University · Game Developer · Cybersecurity researcher.">
     <meta name="twitter:image" content="https://github.com/DsMans0021.png?size=1200">
+    <meta name="twitter:image:alt" content="Mohamed Abdelaziz (DsMans0021) — profile picture">
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -39,8 +43,9 @@
         "name": "Mohamed Abdelaziz",
         "alternateName": "DsMans0021",
         "url": "https://dsmans0021.com/",
-        "jobTitle": "STEM Mentor & Game Developer",
-        "knowsAbout": ["Game Development", "Unity", "Python", "Cybersecurity", "Flutter", "Raspberry Pi"],
+        "jobTitle": "Computer & Systems Engineering Student",
+        "affiliation": { "@type": "EducationalOrganization", "name": "Faculty of Engineering, Minya University" },
+        "knowsAbout": ["Game Development", "Unity", "Python", "Cybersecurity", "Flutter", "Raspberry Pi", "Computer & Systems Engineering"],
         "sameAs": [
             "https://github.com/DsMans0021",
             "https://linktr.ee/DsMans0021"
@@ -1449,6 +1454,48 @@
         @media (max-width: 380px) {
             .hero-name { font-size: 28px; }
         }
+
+        /* ===== DESIGN POLISH ===== */
+        * { -webkit-tap-highlight-color: transparent; }
+        ::selection { background: var(--accent-dim); color: var(--bg-deep); }
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, .projects-grid:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+        .hero-avatar {
+            box-shadow: 0 0 0 3px var(--bg-deep), 0 0 0 6px var(--accent-dim), 0 10px 30px -8px rgba(0,0,0,.5);
+        }
+        .btn-primary:active, .btn-outline:active, .mini-btn:active, .filter-btn:active, .scroller-btn:active {
+            transform: scale(0.97);
+        }
+        .nav-logo:hover span { color: var(--accent); text-shadow: 0 0 12px var(--accent-dim); }
+        .project-card:hover { border-color: var(--accent-dim); }
+        .contact-link, .tools-link { transition: transform .2s ease, color .2s ease; }
+        .contact-link:active, .tools-link:active { transform: translateX(3px); }
+        #boo-flash, #matrix-canvas, #spark-canvas { pointer-events: none; }
+        .tty-input { font-size: 16px; }
+        .footer-inner { row-gap: 8px; }
+        .form-group.hidden-field { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+        .form-group.hidden-field .form-input { width: 1px; }
+
+        /* mobile-first niceties */
+        @media (hover: none) {
+            .project-card:hover .cover-art { transform: none; }
+            .btn-outline:hover, .mini-btn:hover { transform: none; }
+        }
+        @media (max-width: 900px) {
+            .filter-btn { min-height: 38px; padding: 10px 14px; }
+            .mini-btn { min-height: 36px; }
+            .scroller-btn { width: 42px; height: 42px; }
+            .icon-btn { min-height: 40px; }
+            .btn-primary, .btn-outline { min-height: 44px; }
+        }
+        @media (max-width: 580px) {
+            .footer-inner { flex-wrap: wrap; justify-content: center; text-align: center; gap: 10px; }
+            .footer-hint, .credit-badge { font-size: 12px; }
+            .contact-links .contact-link { align-items: flex-start; word-break: break-all; }
+        }
     </style>
 
     <style>
@@ -1785,6 +1832,7 @@
         <a href="#achievements">achievements</a>
         <a href="#more">more</a>
         <a href="#contact">contact</a>
+        <a href="#" id="drawer-terminal">terminal</a>
     </div>
 </div>
 
@@ -1797,7 +1845,7 @@
             <div class="hero-tag" data-i18n="hero.tag">based in egypt &nbsp;🇪🇬</div>
             <h1 class="hero-name">Mohamed Abdelaziz<span class="hero-cursor" aria-hidden="true"></span></h1>
             <p class="hero-subtitle" id="hero-subtitle" aria-live="polite">&nbsp;</p>
-            <p class="hero-desc" data-i18n="hero.desc">I help students and developers build games and practical tech. I teach, build, and break things — mentor at Hack Club STEM October, indie game developer, and tinkerer of all things tech, from Unity multiplayer games to Raspberry Pi hacks.</p>
+            <p class="hero-desc" data-i18n="hero.desc">I'm a Computer &amp; Systems Engineering student at Minya University building games, security tools, and practical tech. I teach, build, and break things — from Unity multiplayer games to Raspberry Pi hacks.</p>
             <div class="hero-actions">
                 <a href="#projects" class="btn-primary"><i class="fa-regular fa-eye"></i> <span data-i18n="hero.btn.work">View my work</span></a>
                 <a href="#contact" class="btn-outline"><i class="fa-solid fa-handshake"></i> <span data-i18n="hero.btn.hire">Hire / Collaborate</span></a>
@@ -1820,7 +1868,7 @@
         <h2 class="section-title" data-i18n="about.title">About me</h2>
         <div class="about-grid">
             <div class="about-text reveal">
-                <p data-i18n="about.p1">I'm <strong>Mohamed Abdelaziz</strong>, a mentor at <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer">Hack Club STEM October</a> in Egypt, passionate about game development, cybersecurity, and building cool things that actually work.</p>
+                <p data-i18n="about.p1">I'm <strong>Mohamed Abdelaziz</strong>, a <strong>Computer &amp; Systems Engineering</strong> student at <a href="https://www.minia.edu.eg" target="_blank" rel="noopener noreferrer">Minya University</a>, passionate about game development, cybersecurity, and building cool things that actually work.</p>
                 <p data-i18n="about.p2">I've shipped multiplayer Unity games, built AI assistants on tiny hardware, written Python automation tools, and explored both sides of cybersecurity. I like going deep on things that most people would just use off the shelf.</p>
                 <p data-i18n="about.p3">When I'm not coding, I'm playing games, watching anime, or overclocking hardware to do things it absolutely shouldn't.</p>
                 <div class="currently-block">
@@ -1849,11 +1897,11 @@
                 </div>
                 <div class="stat-row">
                     <span class="stat-label" data-i18n="stat.role">role</span>
-                    <span class="stat-value" data-i18n="stat.roleVal">STEM Mentor</span>
+                    <span class="stat-value" data-i18n="stat.roleVal">Engineering Student</span>
                 </div>
                 <div class="stat-row">
                     <span class="stat-label" data-i18n="stat.org">org</span>
-                    <span class="stat-value" data-i18n="stat.orgVal">Hack Club</span>
+                    <span class="stat-value" data-i18n="stat.orgVal">Minya University</span>
                 </div>
                 <div class="stat-row">
                     <span class="stat-label" data-i18n="stat.langs">main langs</span>
@@ -2001,6 +2049,13 @@
                 <div class="achievement-desc" data-i18n="ach.a6d">Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.</div>
             </div>
         </div>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">07</span>
+            <div>
+                <div class="achievement-title" data-i18n="ach.a7t">Student — Faculty of Engineering, Minya University</div>
+                <div class="achievement-desc" data-i18n="ach.a7d">Pursuing Computer &amp; Systems Engineering — where game dev, security, and hardware finally meet on a whiteboard.</div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -2063,11 +2118,15 @@
                     </a>
                 </div>
                 <div class="email-chip">
-                    <span class="email-text" id="email-text"><i class="fa-solid fa-envelope"></i> medozizo008@gmail.com</span>
+                    <span class="email-text" id="email-text"><i class="fa-solid fa-envelope"></i></span>
                     <button class="copy-btn" id="copy-email" type="button"><span data-i18n="contact.copy">copy</span></button>
                 </div>
             </div>
-            <form action="https://formsubmit.co/medozizo008@gmail.com" method="POST" class="reveal" id="contact-form">
+            <form method="POST" class="reveal" id="contact-form">
+                <div class="form-group hidden-field" aria-hidden="true">
+                    <label class="form-label" for="website">Website</label>
+                    <input class="form-input" type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
+                </div>
                 <div class="form-group">
                     <label class="form-label" for="name" data-i18n="form.name">Name</label>
                     <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required data-i18n-ph="form.namePh">
@@ -2103,7 +2162,7 @@
 <!-- FOOTER -->
 <footer>
     <div class="footer-inner">
-        <span class="footer-copy" data-i18n="footer.copy">© 2025 Mohamed Abdelaziz · DsMans0021</span>
+        <span class="footer-copy" data-i18n="footer.copy">© 2026 Mohamed Abdelaziz · DsMans0021</span>
         <span class="footer-hint" data-i18n="footer.hint">psst… press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>~</kbd></span>
         <span class="credit-badge" id="credit-badge" title="hacker credits">◆ 0 · script kiddie</span>
         <div class="footer-socials">
@@ -2125,13 +2184,13 @@
 const I18N = {
     en: {
         'hero.tag': 'based in egypt &nbsp;🇪🇬',
-        'hero.desc': 'I help students and developers build games and practical tech. I teach, build, and break things — mentor at Hack Club STEM October, indie game developer, and tinkerer of all things tech, from Unity multiplayer games to Raspberry Pi hacks.',
+        'hero.desc': "I'm a Computer & Systems Engineering student at Minya University building games, security tools, and practical tech. I teach, build, and break things — from Unity multiplayer games to Raspberry Pi hacks.",
         'hero.btn.work': 'View my work',
         'hero.btn.hire': 'Hire / Collaborate',
         'hero.btn.cv': 'Download CV',
         'hero.tools': 'Tools — Anime Scene Search',
         'about.title': 'About me',
-        'about.p1': "I'm <strong>Mohamed Abdelaziz</strong>, a mentor at <a href=\"https://hackclub.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Hack Club STEM October</a> in Egypt, passionate about game development, cybersecurity, and building cool things that actually work.",
+        'about.p1': "I'm <strong>Mohamed Abdelaziz</strong>, a <strong>Computer & Systems Engineering</strong> student at <a href=\"https://www.minia.edu.eg\" target=\"_blank\" rel=\"noopener noreferrer\">Minya University</a>, passionate about game development, cybersecurity, and building cool things that actually work.",
         'about.p2': "I've shipped multiplayer Unity games, built AI assistants on tiny hardware, written Python automation tools, and explored both sides of cybersecurity. I like going deep on things that most people would just use off the shelf.",
         'about.p3': "When I'm not coding, I'm playing games, watching anime, or overclocking hardware to do things it absolutely shouldn't.",
         'about.currently': '// currently',
@@ -2144,9 +2203,9 @@ const I18N = {
         'stat.location': 'location',
         'stat.locVal': 'Egypt 🇪🇬',
         'stat.role': 'role',
-        'stat.roleVal': 'STEM Mentor',
+        'stat.roleVal': 'Engineering Student',
         'stat.org': 'org',
-        'stat.orgVal': 'Hack Club',
+        'stat.orgVal': 'Minya University',
         'stat.langs': 'main langs',
         'stat.github': 'github',
         'stat.status': 'status',
@@ -2182,6 +2241,8 @@ const I18N = {
         'ach.a5d': 'Modified configs, safely pushed the board beyond spec. Ran Doom and retro emulators on something smaller than a credit card.',
         'ach.a6t': 'Cisco Cybersecurity Certification',
         'ach.a6d': 'Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.',
+        'ach.a7t': 'Student — Faculty of Engineering, Minya University',
+        'ach.a7d': 'Pursuing Computer & Systems Engineering — where game dev, security, and hardware finally meet on a whiteboard.',
         'contact.title': 'Get in touch',
         'contact.p': "Have a project idea, a security question, want to play a game together, or just want to talk tech? I'm always happy to hear from people.",
         'contact.copy': 'copy',
@@ -2208,7 +2269,7 @@ const I18N = {
         'more.playTitle': 'Want to play Maya?',
         'more.playDesc': "You can play Maya directly in the projects section.",
         'more.playBtn': 'Jump to projects',
-        'footer.copy': '© 2025 Mohamed Abdelaziz · DsMans0021',
+        'footer.copy': '© 2026 Mohamed Abdelaziz · DsMans0021',
         'footer.hint': 'psst… press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>~</kbd>',
         nav: {
             about: 'about', projects: 'projects', skills: 'skills',
@@ -2217,13 +2278,13 @@ const I18N = {
     },
     ar: {
         'hero.tag': 'مقيم في مصر &nbsp;🇪🇬',
-        'hero.desc': 'أساعد الطلاب والمطوّرين على بناء ألعاب وتجارب تقنية عملية. أُعلّم، أبني، وأختبر — مُرشد في «هاك كلوب» ستيم أكتوبر، مطوّر ألعاب مستقل، ومهووس بكل ما هو تقني من ألعاب الشبكات في Unity إلى تجارب Raspberry Pi.',
+        'hero.desc': 'أنا طالب هندسة حاسبات في جامعة المنيا، أبني ألعابًا وأدوات أمان وتطبيقات عملية. أُعلّم، أبني، وأختبر — من ألعاب الشبكات في Unity إلى تجارب Raspberry Pi.',
         'hero.btn.work': 'شاهد أعمالي',
         'hero.btn.hire': 'وظّفني / تعاون معي',
         'hero.btn.cv': 'تحميل السيرة الذاتية',
         'hero.tools': 'الأدوات — البحث عن مشاهد الأنمي',
         'about.title': 'من أنا',
-        'about.p1': 'أنا <strong>محمد عبدالعزيز</strong>، مُرشد في <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer">«هاك كلوب» ستيم أكتوبر</a> في مصر، شغوف بتطوير الألعاب والأمن السيبراني وبناء أشياء رائعة تعمل فعلًا.',
+        'about.p1': 'أنا <strong>محمد عبدالعزيز</strong>، طالب <strong>هندسة حاسبات</strong> في <a href="https://www.minia.edu.eg" target="_blank" rel="noopener noreferrer">جامعة المنيا</a>، شغوف بتطوير الألعاب والأمن السيبراني وبناء أشياء رائعة تعمل فعلًا.',
         'about.p2': 'نشرت ألعاب Unity متعددة اللاعبين، وبنيت مساعدين بالذكاء الاصطناعي على أجهزة صغيرة، وبرمجت أدوات أتمتة بلغة بايثون، واستكشفت جانبي الأمن السيبراني. أحب التعمق في أشياء يكتفي معظم الناس باستخدامها من خارج الصندوق.',
         'about.p3': 'عندما لا أُبرمج، ألعب ألعاب الفيديو، أو أشاهد الأنمي، أو أرفع تردد الأجهزة لفعل ما لا يُفترض أن تفعله.',
         'about.currently': '// حاليًا',
@@ -2236,9 +2297,9 @@ const I18N = {
         'stat.location': 'الموقع',
         'stat.locVal': 'مصر 🇪🇬',
         'stat.role': 'الدور',
-        'stat.roleVal': 'مُرشد ستيم',
+        'stat.roleVal': 'طالب هندسة حاسبات',
         'stat.org': 'المنظمة',
-        'stat.orgVal': 'هاك كلوب',
+        'stat.orgVal': 'جامعة المنيا',
         'stat.langs': 'اللغات الأساسية',
         'stat.github': 'جيت هب',
         'stat.status': 'الحالة',
@@ -2274,6 +2335,8 @@ const I18N = {
         'ach.a5d': 'عدّلت الإعدادات ودفعت اللوحة بأمان فوق المواصفات. شغّلت Doom ومحاكيات قديمة على شيء أصغر من بطاقة الائتمان.',
         'ach.a6t': 'شهادة سيسكو في الأمن السيبراني',
         'ach.a6d': 'شهادة رسمية في أساسيات أمن الشبكات والاختراق الأخلاقي، مع مشاريع اختبار اختراق عملية.',
+        'ach.a7t': 'طالب بكلية الهندسة — جامعة المنيا',
+        'ach.a7d': 'أدرس هندسة الحواسب والنظم — حيث يلتقي تطوير الألعاب والأمن السيبراني والأجهزة على السبورة البيضاء.',
         'contact.title': 'تواصل معي',
         'contact.p': 'لديك فكرة مشروع، أو سؤال أمني، أو تريد اللعب معًا، أو مجرد الحديث عن التقنية؟ يسعدني دائمًا أن أسمع منك.',
         'contact.copy': 'نسخ',
@@ -2300,7 +2363,7 @@ const I18N = {
         'more.playTitle': 'تريد تجربة مايا؟',
         'more.playDesc': 'يمكنك لعب مايا مباشرة من قسم المشاريع.',
         'more.playBtn': 'الانتقال إلى المشاريع',
-        'footer.copy': '© 2025 محمد عبدالعزيز · DsMans0021',
+        'footer.copy': '© 2026 محمد عبدالعزيز · DsMans0021',
         'footer.hint': 'أسرار صغيرة… اضغط <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>~</kbd>',
         nav: {
             about: 'من أنا', projects: 'المشاريع', skills: 'المهارات',
@@ -2349,7 +2412,7 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
 // ============================================================
 // PROJECTS DATABASE
 // ============================================================
-const PROJECTS = [
+let PROJECTS = [
     {
         name: 'This Website', category: 'web', status: 'completed', featured: true,
         lang: 'HTML · CSS · JS', icon: 'fa-solid fa-code',
@@ -3210,15 +3273,15 @@ function resetInterval() {
 // ============================================================
 const SUBTITLES = {
     en: [
-        'STEM Mentor & <span class="hl1">Game Developer</span>',
-        'Hack Club <span class="hl2">Mentor</span> · Egypt',
+        'Computer &amp; Systems <span class="hl1">Engineering Student</span>',
+        'Minya University · <span class="hl2">Faculty of Engineering</span>',
         '<span class="hl1">Cybersecurity</span> Enthusiast',
         'Builder · Breaker · <span class="hl2">Learner</span>',
         'Unity · Python · Raspberry Pi'
     ],
     ar: [
-        'مُرشد ستيم و<span class="hl1">مطوّر ألعاب</span>',
-        '<span class="hl2">مُرشد</span> في هاك كلوب · مصر',
+        'طالب <span class="hl1">هندسة حاسبات</span>',
+        'جامعة المنيا · <span class="hl2">كلية الهندسة</span>',
         'مهتم <span class="hl1">بالأمن السيبراني</span>',
         'منشئ · مخترق · <span class="hl2">متعلّم</span>',
         'Unity · Python · Raspberry Pi'
@@ -3344,6 +3407,9 @@ reveals.forEach(el => revealObserver.observe(el));
 // ============================================================
 // CONTACT FORM
 // ============================================================
+const MAIL_USER = 'medozizo008';
+const MAIL_DOM = 'gmail.com';
+function mailAddr() { return MAIL_USER + '@' + MAIL_DOM; }
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     const submitBtn = document.getElementById('submit-btn');
@@ -3361,6 +3427,16 @@ if (contactForm) {
         const formData = new FormData(contactForm);
         formData.append('_subject', (formData.get('type') || 'Message') + ' — from dsmans0021.com');
         formData.append('_captcha', 'false');
+        contactForm.action = 'https://formsubmit.co/' + mailAddr();
+        if (formData.get('_gotcha')) {
+            note.className = 'form-note success';
+            note.textContent = currentLang === 'ar' ? 'تم إرسال رسالتك بنجاح.' : 'Your message was sent.';
+            contactForm.reset();
+            submitting = false;
+            submitBtn.disabled = false;
+            submitBtn.querySelector('span').textContent = I18N[currentLang]['form.send'];
+            return;
+        }
 
         try {
             const res = await fetch(contactForm.action, {
@@ -3378,8 +3454,8 @@ if (contactForm) {
         } catch (err) {
             note.className = 'form-note error';
             note.innerHTML = currentLang === 'ar'
-                ? 'تعذّر إرسال الرسالة الآن. جرّب مراسلتي مباشرة عبر البريد: <a href="mailto:medozizo008@gmail.com">medozizo008@gmail.com</a>'
-                : 'Something went wrong. You can also reach me directly at <a href="mailto:medozizo008@gmail.com">medozizo008@gmail.com</a>.';
+                ? 'تعذّر إرسال الرسالة الآن. جرّب مراسلتي مباشرة عبر البريد: <a href="mailto:' + mailAddr() + '">' + mailAddr() + '</a>'
+                : 'Something went wrong. You can also reach me directly at <a href="mailto:' + mailAddr() + '">' + mailAddr() + '</a>.';
         } finally {
             submitting = false;
             submitBtn.disabled = false;
@@ -3494,11 +3570,94 @@ window.renderProjects = function () {
     refreshGithubStats();
 };
 
+// ---------- Auto-sync projects from GitHub (live, no more hand-editing) ----------
+const REPO_CACHE_KEY = 'sg_repos_v1';
+
+function guessCategory(r) {
+    const n = (r.name || '').toLowerCase();
+    const tops = (r.topics || []).map(t => t.toLowerCase());
+    const full = n + ' ' + tops.join(' ');
+    if (tops.includes('security') || /security|hack|phish|recon|exploit|vuln|crawler|c2|rat|spam|obfus|steal/.test(full)) return 'security';
+    if (tops.includes('game') || /game|maya|fps|clicker|jump|coiner|naruto|brick|snake|pong|runner|platform|rogue|solar|solitaire|quiz|typer/.test(full)) return 'games';
+    if (tops.includes('mobile') || r.language === 'Dart' || /flutter|android|apk|mobile/.test(full)) return 'mobile';
+    if (tops.includes('education') || /edu|school|teach|stem|learn|course/.test(full)) return 'education';
+    if (tops.includes('web') || /website|webapp|portfolio|dash|landing|site/.test(full)) return 'web';
+    if (tops.includes('app') || /app|tool|convert|player|media|assistant|bot|notepad|clock/.test(full)) return 'apps';
+    return 'misc';
+}
+
+function mergeLiveRepo(r) {
+    const slug = r.name;
+    const base = PROJECTS.find(p => (p.code || '').endsWith('/' + slug));
+    const out = {
+        name: slug,
+        category: base ? base.category : guessCategory(r),
+        status: r.archived ? 'archived' : (base ? base.status : 'inprogress'),
+        featured: base ? !!base.featured : false,
+        lang: r.language || (base ? base.lang : 'GitHub'),
+        icon: base ? base.icon : 'fa-brands fa-github',
+        demo: base ? base.demo : (r.homepage || null),
+        code: r.html_url || (base ? base.code : 'https://github.com/DsMans0021/' + slug),
+        case: base ? base.case : null,
+        desc: base ? { en: base.desc.en, ar: base.desc.ar }
+            : { en: (r.description || slug).trim(), ar: (r.description || slug).trim() },
+        stars: r.stargazers_count || 0,
+        forks: r.forks_count || 0,
+        pushed: r.pushed_at || null,
+        archived: !!r.archived
+    };
+    return out;
+}
+
+function buildLiveProjectList(apiList) {
+    return apiList.map(mergeLiveRepo).sort((a, b) =>
+        ((b.featured ? 1 : 0) - (a.featured ? 1 : 0)) ||
+        ((b.stars || 0) - (a.stars || 0)) ||
+        (new Date(b.pushed || 0) - new Date(a.pushed || 0)));
+}
+
+function loadLiveRepoCache() {
+    try { return JSON.parse(localStorage.getItem(REPO_CACHE_KEY) || 'null'); } catch (e) { return null; }
+}
+function saveLiveRepoCache(apiList) {
+    try {
+        localStorage.setItem(REPO_CACHE_KEY, JSON.stringify(apiList.map(r => ({
+            name: r.name, stargazers_count: r.stargazers_count || 0, forks_count: r.forks_count || 0,
+            language: r.language, pushed_at: r.pushed_at, html_url: r.html_url, homepage: r.homepage,
+            description: r.description, archived: !!r.archived, topics: (r.topics || []).slice(0, 25)
+        }))));
+    } catch (e) {}
+}
+function syncProjects() {
+    const cached = loadLiveRepoCache();
+    if (cached && cached.length) {
+        PROJECTS = buildLiveProjectList(cached);
+        renderProjects();
+    }
+    fetch('https://api.github.com/users/DsMans0021/repos?per_page=100&sort=updated&type=all')
+        .then(r => r.ok ? r.json() : null)
+        .catch(() => null)
+        .then(repos => {
+            if (!repos || !repos.length) return;
+            saveLiveRepoCache(repos);
+            const sig = repos.map(r => r.name + ':' + (r.pushed_at || '')).join('|');
+            if (sig !== (window._repoSig || '')) {
+                window._repoSig = sig;
+                PROJECTS = buildLiveProjectList(repos);
+                renderProjects();
+            }
+        });
+}
+syncProjects();
+
 // ---------- Copy email ----------
-const copyBtn = document.getElementById('copy-email');
-if (copyBtn) {
+(function () {
+    const et = document.getElementById('email-text');
+    if (et) et.insertAdjacentHTML('beforeend', ' <span id="email-addr">' + mailAddr() + '</span>');
+    const copyBtn = document.getElementById('copy-email');
+    if (!copyBtn) return;
     copyBtn.addEventListener('click', function () {
-        const mail = 'medozizo008@gmail.com';
+        const mail = mailAddr();
         const done = function () {
             copyBtn.innerHTML = currentLang === 'ar' ? 'تم النسخ &#10003;' : 'copied &#10003;';
             copyBtn.classList.add('copied');
@@ -3511,7 +3670,7 @@ if (copyBtn) {
             navigator.clipboard.writeText(mail).then(done).catch(function () { done(); });
         } else { done(); }
     });
-}
+})();
 
 // ---------- Toast ----------
 let toastTimer = null;
@@ -3819,7 +3978,7 @@ const TTY_CMDS = {
     },
     whoami: function () {
         ttyPrint('<span class="tty-p">Mohamed Abdelaziz</span> <span class="tty-d">/ alias</span> <span class="tty-a2">DsMans0021</span>');
-        ttyPrint('<span class="tty-d">STEM mentor · indie game developer · cyber tinkerer · member of the machine</span>');
+        ttyPrint('<span class="tty-d">CSE student @ Minya University · indie game dev · cyber tinkerer · member of the machine</span>');
     },
     ls: function () {
         ttyPrint('<span class="tty-d">~ contains:</span>');
@@ -4064,6 +4223,61 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+// ---------- Mobile easter eggs (no keyboard needed) ----------
+(function () {
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    const idleTarget = function (t) { return !t.closest('a, button, input, textarea, select'); };
+
+    // triple-tap anywhere -> party
+    let taps = [];
+    ['pointerup'].forEach(function (ev) {
+        document.addEventListener(ev, function (e) {
+            if (!idleTarget(e.target)) { taps = []; return; }
+            const now = Date.now();
+            taps.push(now);
+            taps = taps.filter(function (t) { return now - t < 600; });
+            if (taps.length >= 3) { taps = []; startParty(); }
+        });
+    });
+
+    // double-tap the nav logo or hero name -> sparks
+    var dtTarget = null, dtLast = 0;
+    document.addEventListener('pointerup', function (e) {
+        const el = e.target.closest('.nav-logo, h1.hero-name');
+        if (!el) return;
+        const now = Date.now();
+        if (dtTarget === el && now - dtLast < 500) { dtTarget = null; dtLast = 0; runSparks(); }
+        else { dtTarget = el; dtLast = now; }
+    });
+
+    // long-press (600ms) hero avatar -> matrix ; footer credit badge -> rank
+    let lpTimer = null, lpFire = false;
+    document.addEventListener('pointerdown', function (e) {
+        const avatarEl = e.target.closest('.hero-avatar');
+        const badgeEl = e.target.closest('#credit-badge');
+        if (!avatarEl && !badgeEl) return;
+        lpFire = false;
+        lpTimer = setTimeout(function () {
+            lpFire = true;
+            if (avatarEl) {
+                e.preventDefault();
+                runMatrix();
+                showToast('🦾 the machine feels that touch.');
+            }
+            if (badgeEl) {
+                showToast('<b>' + creditsTotal + '</b> hacker credits · rank: <b>' + creditRank() + '</b>', 3000);
+            }
+        }, 600);
+    });
+    document.addEventListener('pointerup', function () { clearTimeout(lpTimer); lpTimer = null; });
+
+    // tap the footer hint -> open terminal (works on mobile too)
+    var hint = document.querySelector('.footer-hint');
+    if (hint) hint.addEventListener('click', function () { openTerminal(); });
+    var dt = document.getElementById('drawer-terminal');
+    if (dt) dt.addEventListener('click', function () { setDrawer(false); openTerminal(); });
+})();
+
 // ---------- Avatar clicks easter egg ----------
 let avatarClicks = 0;
 const avatar = document.querySelector('.hero-avatar');
@@ -4122,7 +4336,7 @@ window.dsmans = Object.assign(function dsmans() {
     morse: function () { TTY_CMDS.morse(); },
     secrets: function () { console.table(Object.keys(SECRET_WORDS).concat(['↑↑↓↓←→←→BA', 'Ctrl+Alt+M', 'Ctrl+Alt+D', 'avatar ×7', 'DevTools'])); },
     version: '2.0.0',
-    profile: { name: 'Mohamed Abdelaziz', alias: 'DsMans0021', role: 'STEM Mentor · Game Dev · Cyber Tinkerer', location: 'Egypt 🌍' }
+    profile: { name: 'Mohamed Abdelaziz', alias: 'DsMans0021', role: 'CSE Student @ Minya University · Game Dev · Cyber Tinkerer', location: 'Egypt 🌍' }
 });
 
 // initial stats fill (covers the render already done by the main script)
