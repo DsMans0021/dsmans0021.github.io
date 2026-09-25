@@ -1,81 +1,87 @@
-# dsmans0021.github.io
+<div align="center">
 
 ```
-dsmans0021@bash:~$ whoami
-Mohamed Abdelaziz — Computer & Systems Engineering student at Minya University.
-Indie game dev, cyber tinkerer, member of the machine.
+██████╗ ███████╗ ██████╗ ██████╗ ███████╗
+██╔══██╗██╔════╝██╔════╝██╔═══██╗██╔════╝
+██║  ██║███████╗██║     ██║   ██║███████╗
+██║  ██║╚════██║██║     ██║   ██║╚════██║
+██████╔╝███████║╚██████╗╚██████╔╝███████║
+╚═════╝ ╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
 ```
 
-This repo is my little corner of the internet. No frameworks, no build step,
-no bloat — just hand-written HTML, CSS and vanilla JS. It's the place where my
-games, security tools and random experiments get a second home next to my name.
+</div>
 
-Currently live at **[dsmans0021.com](https://dsmans0021.com)**, with
-[dsmans0021.github.io](https://dsmans0021.github.io) as the always-on mirror.
+# 👋 Hi, I'm Mohamed Abdelaziz
 
-## What's in here
+**Computer & Systems Engineering student** at the **Faculty of Engineering, Minya University** — and I build games, security tools, and practical tech that actually gets used. Whether it's a Unity multiplayer game, a Raspberry Pi hack, or a Flask-based cyber range for students, if it's a rabbit hole I've probably gone down it.
 
-- **Portfolio** (`index.html`) — who I am, what I build, and why I keep breaking things.
-- **Toolbox** (`tools.html`) — small utilities that don't deserve their own apps yet.
-- A **terminal** you can actually use — the site is a TUI you can walk around in.
+---
 
-## The terminal
+## 🪐 About me
 
-Hit the terminal button (or just press <kbd>`</kbd>) and type `help`. Some of my favorites:
+- 🎮 **Game developer** — I love designing multiplayer experiences in Unity and turning wild ideas into playable things.
+- 🛡️ **Cybersecurity tinkerer** — I build CTF challenges and security tools, and I teach people how the machines around them think.
+- 🐍 **Python + Raspberry Pi enjoyer** — from home-lab automations to silly (but educational) hardware projects.
+- 🌱 **Always teaching** — sharing what I learn is half of why I learn it.
+- 🧩 Trinity of hobbies: *build it, break it, fix it.*
 
-```
-whoami    who are you, really
-neofetch  the usual ASCII flex
-snake     yes, Snake, playable in a terminal. WASD/arrows.
-morse     say something in morse
-matrix    wake up, DsMans…
-sudo      try it. i dare you.
-42        got it? then you've been paying attention
-konami    ↑↑↓↓←→←→BA
-```
+---
 
-## Easter eggs (yes, even on mobile)
+## 🧰 Toolbox
 
-- **Konami code** anywhere on the page → confetti + credits.
-- **Secret words** — type `dsmans`, `matrix`, `party`, `coffee`… mid-sentence. The toast knows.
-- **Triple-tap** anywhere on mobile → disco.
-- **Long-press the avatar** → matrix rain.
-- Open DevTools and poke at `dsmans.*` in the console. There are credits for that too.
-- Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd> or <kbd>D</kbd> for shortcuts.
+<div align="center">
 
-Getting easter eggs right counts as **hacker credits**. Rack them up and see your rank.
+![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white)
 
-## Projects that keep themselves fresh
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
-I got tired of updating the projects grid by hand, so it doesn't need me anymore:
-the page pulls the repo list straight from the GitHub API, keeps the descriptions
-I wrote by hand, and auto-categorizes new repos. Old ones stick around as an
-offline fallback. Stargazers, forks and activity get re-synced quietly in the background.
+</div>
 
-## Small things I care about
+---
 
-- **English / العربية** — the whole site flips languages from one button.
-- **Email that bots can't read** — the address is assembled in JS at runtime, and the
-  contact form carries a honeypot for the robots that can't read.
-- **CSP + strict referrer policy** — because static pages deserve a seatbelt too.
-- **PWA** — installable, offline-capable, tiny manifest + service worker.
-- **No trackers by default** — there's an opt-in spot for GoatCounter (privacy-friendly)
-  left empty until I decide to add one.
-- **Keyboard first** — most of the site works without touching the mouse.
+## 💻 This repository
 
-## Running it locally
+This repo powers my personal corner of the internet — a hand-written, no-framework portfolio that doubles as a place to play:
 
-```bash
-python -m http.server 8000
-# or: npx serve .
-```
+- **A working terminal** — `whoami`, `neofetch`, `snake`, `matrix`, `sudo`, `42`, and friends. Type `help` and play.
+- **Easter eggs everywhere** — the Konami code, secret words, DevTools credits, mobile tap combos. Go find them.
+- **Projects that update themselves** — the grid pulls straight from the GitHub API, so new repos appear without me touching the code.
+- **العربية / English** — the whole site flips languages in one click.
+- **Privacy-minded** — email assembled at runtime, honeypot in the form, CSP out of the box, zero trackers by default.
 
-Open `http://localhost:8000` and play. That's the whole install process.
+Live at **[dsmans0021.com](https://dsmans0021.com)** · Mirror: [dsmans0021.github.io](https://dsmans0021.github.io)
 
-## Stuff to keep in mind
+---
 
-- All content is mine unless stated otherwise. No formal license file has landed yet —
-  if you want to borrow something you love, just ask first.
-- The source is intentionally readable. Hiding it in this case would be theater anyway.
+## 📊 In numbers
 
-_— Mohamed (DsMans0021). Building, breaking, and occasionally fixing things since the STEM days._
+<div align="center">
+
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=DsMans0021&show_icons=true&theme=highcontrast&hide_border=true)
+
+</div>
+
+---
+
+## 📬 Say hi
+
+- 🏠 Home on the web: [dsmans0021.com](https://dsmans0021.com)
+- 🐙 GitHub: [@DsMans0021](https://github.com/DsMans0021)
+- ✉️ Email lives on the site, safely hidden from the bots. Go find it — that's a feature.
+- 🔗 My projects, games, and security tools are all in the portfolio.
+
+---
+
+<div align="center">
+
+*Mohamed Abdelaziz — building, breaking, and occasionally fixing things.*
+
+</div>
