@@ -7,7 +7,9 @@
     <meta name="description" content="Mohamed Abdelaziz (DsMans0021) — Computer & Systems Engineering student at Minya University, indie game developer, and cybersecurity researcher building games and practical tech.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#080808">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://formsubmit.co https://*.googlesyndication.com; frame-src https://open.spotify.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com; form-action 'self' https:; base-uri 'none'; object-src 'none';">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="assets/icon-180.png">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://formsubmit.co https://*.googlesyndication.com https://*.goatcounter.com; frame-src https://open.spotify.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com; form-action 'self' https:; base-uri 'none'; object-src 'none';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="google-adsense-account" content="ca-pub-8186398462710647">
 
@@ -1478,6 +1480,13 @@
         .footer-inner { row-gap: 8px; }
         .form-group.hidden-field { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
         .form-group.hidden-field .form-input { width: 1px; }
+        .snake-wrap { padding: 6px 0 10px; }
+        .snake-grid {
+            margin: 0; padding: 10px; font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.25;
+            color: var(--accent); background: #06130a; border: 1px solid var(--accent-dim); border-radius: 8px;
+            white-space: pre; display: inline-block; max-width: 100%; overflow: auto; letter-spacing: 1px;
+        }
+        @media (max-width: 500px) { .snake-grid { font-size: 9px; letter-spacing: 0; } }
 
         /* mobile-first niceties */
         @media (hover: none) {
@@ -2785,7 +2794,7 @@ function buildProjectCard(p) {
 
     const cover = document.createElement('div');
     cover.className = 'cover-art';
-    cover.style.backgroundImage = "url('" + svgCover(p) + "')";
+    cover.style.backgroundImage = "url('" + (p.cover || svgCover(p)) + "')";
     thumb.appendChild(cover);
 
     const status = document.createElement('span');
@@ -3604,7 +3613,8 @@ function mergeLiveRepo(r) {
         stars: r.stargazers_count || 0,
         forks: r.forks_count || 0,
         pushed: r.pushed_at || null,
-        archived: !!r.archived
+        archived: !!r.archived,
+        cover: r.open_graph_image_url || null
     };
     return out;
 }
@@ -4120,7 +4130,8 @@ Object.assign(TTY_CMDS, {
     night: function () {
         const on = toggleNight();
         ttyPrint('<span class="tty-d">night shift →</span> <span class="tty-p">' + (on ? 'ON 🦉' : 'OFF') + '</span>');
-    }
+    },
+    snake: function () { snakeStart(); }
 });
 
 function ttyRun(raw) {
@@ -4149,6 +4160,22 @@ function ttyRun(raw) {
 
 const ttyInput = document.getElementById('tty-input');
 ttyInput.addEventListener('keydown', function (e) {
+    if (snakeSt && snakeSt.running) {
+        const dirs = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', w: 'up', s: 'down', a: 'left', d: 'right', W: 'up', S: 'down', A: 'left', D: 'right' };
+        if (dirs[e.key]) {
+            e.preventDefault();
+            snakeTurn(dirs[e.key]);
+            return;
+        }
+        if (e.key === 'Enter' || e.key === 'g' || e.key === 'q') {
+            e.preventDefault();
+            snakeEnd(true);
+            return;
+        }
+        if (e.key === 'Escape') { e.preventDefault(); snakeEnd(true); closeTerminal(); return; }
+        e.preventDefault();
+        return;
+    }
     if (e.key === 'Enter') {
         e.preventDefault();
         ttyRun(ttyInput.value);
@@ -4166,6 +4193,104 @@ ttyInput.addEventListener('keydown', function (e) {
 });
 
 document.getElementById('tty-close').addEventListener('click', closeTerminal);
+
+// ---------- SNAKE (playable inside the terminal) ----------
+let snakeSt = null;
+const SNAKE_ROWS = 16;
+const SNAKE_COLS = 30;
+
+function snakeTurn(dir) {
+    if (!snakeSt) return;
+    const opp = { up: 'down', down: 'up', left: 'right', right: 'left' };
+    if (snakeSt.dir !== opp[dir]) snakeSt.dir = dir;
+}
+
+function snakeEnd(manual) {
+    if (!snakeSt) return;
+    clearInterval(snakeSt.iv);
+    snakeSt.running = false;
+    if (!manual) {
+        ttyPrint('<span class="tty-a2">game over</span> <span class="tty-d">· score:</span> <span class="tty-p">' + snakeSt.score + '</span>');
+        ttyPrint('<span class="tty-d">type</span> <span class="tty-p">snake</span> <span class="tty-d">to respawn.</span>');
+    } else {
+        ttyPrint('<span class="tty-d">snake retired. score:</span> <span class="tty-p">' + snakeSt.score + '</span>');
+    }
+    snakeSt = null;
+}
+
+function snakeDraw() {
+    const g = snakeSt;
+    const cells = new Set(g.body.map(function (c) { return c[0] * SNAKE_COLS + c[1]; }));
+    const head = g.body[g.body.length - 1];
+    let s = '';
+    for (let r = 0; r < SNAKE_ROWS; r++) {
+        for (let c = 0; c < SNAKE_COLS; c++) {
+            const k = r * SNAKE_COLS + c;
+            if (g.food[0] === r && g.food[1] === c) s += '●';
+            else if (head[0] === r && head[1] === c) s += '◉';
+            else if (cells.has(k)) s += '■';
+            else s += '·';
+        }
+        s += '\n';
+    }
+    g.pre.textContent = s + '   score: ' + g.score;
+}
+
+function snakeTick() {
+    const g = snakeSt;
+    if (!g || !g.running) return;
+    const head = g.body[g.body.length - 1];
+    let hr = head[0], hc = head[1];
+    if (g.dir === 'up') hr--;
+    else if (g.dir === 'down') hr++;
+    else if (g.dir === 'left') hc--;
+    else hc++;
+    if (hr < 0 || hr >= SNAKE_ROWS || hc < 0 || hc >= SNAKE_COLS) { snakeEnd(false); return; }
+    const eating = hr === g.food[0] && hc === g.food[1];
+    const hitSelf = g.body.some(function (c) { return c[0] === hr && c[1] === hc; });
+    if (hitSelf) { snakeEnd(false); return; }
+    g.body.push([hr, hc]);
+    if (eating) {
+        g.score += 10;
+        let ny, nx;
+        do { ny = Math.floor(Math.random() * SNAKE_ROWS); nx = Math.floor(Math.random() * SNAKE_COLS); }
+        while (g.body.some(function (c) { return c[0] === ny && c[1] === nx; }));
+        g.food = [ny, nx];
+    } else {
+        g.body.shift();
+    }
+    snakeDraw();
+    scrollTtyBottom();
+}
+
+function snakeStart() {
+    if (snakeSt) { ttyPrint('<span class="tty-d">already running — press Enter to quit.</span>'); return; }
+    ttyPrint('<span class="tty-a2">SNAKE</span> <span class="tty-d">— arrows / WASD steer · Enter quits</span>');
+    const g = {
+        body: [], dir: 'right', score: 0, running: true, iv: null, pre: null, food: null
+    };
+    const cy = Math.floor(SNAKE_ROWS / 2), cx = Math.floor(SNAKE_COLS / 3);
+    g.body.push([cy, cx], [cy, cx + 1], [cy, cx + 2]);
+    const wrap = document.createElement('div');
+    wrap.className = 'snake-wrap';
+    const pre = document.createElement('pre');
+    pre.className = 'snake-grid';
+    wrap.appendChild(pre);
+    document.getElementById('tty-out').appendChild(wrap);
+    g.pre = pre;
+    do { g.food = [Math.floor(Math.random() * SNAKE_ROWS), Math.floor(Math.random() * SNAKE_COLS)]; }
+    while (g.body.some(function (c) { return c[0] === g.food[0] && c[1] === g.food[1]; }));
+    snakeSt = g;
+    ttyInput.value = '';
+    snakeDraw();
+    g.iv = setInterval(snakeTick, 130);
+    scrollTtyBottom();
+}
+
+function scrollTtyBottom() {
+    const out = document.getElementById('tty-out');
+    if (out) out.scrollTop = out.scrollHeight;
+}
 document.getElementById('tty-overlay').addEventListener('click', function (e) {
     if (e.target === this) closeTerminal();
 });
@@ -4335,9 +4460,30 @@ window.dsmans = Object.assign(function dsmans() {
     konami: function () { fanfare(); startParty(); awardCredits(5, 'konami (console route)'); },
     morse: function () { TTY_CMDS.morse(); },
     secrets: function () { console.table(Object.keys(SECRET_WORDS).concat(['↑↑↓↓←→←→BA', 'Ctrl+Alt+M', 'Ctrl+Alt+D', 'avatar ×7', 'DevTools'])); },
-    version: '2.0.0',
+    version: '2.1.0',
     profile: { name: 'Mohamed Abdelaziz', alias: 'DsMans0021', role: 'CSE Student @ Minya University · Game Dev · Cyber Tinkerer', location: 'Egypt 🌍' }
 });
+
+// ---------- Light privacy-friendly analytics (GoatCounter) ----------
+// To enable: create an account at goatcounter.com, then put your site slug below.
+// While ANALYTICS.site is '' nothing is loaded and no third-party request is made.
+const ANALYTICS = { provider: 'goatcounter', site: '' };
+if (ANALYTICS.site) {
+    (function () {
+        const el = document.createElement('script');
+        el.async = true;
+        el.setAttribute('data-goatcounter', 'https://' + ANALYTICS.site + '.goatcounter.com/count');
+        el.src = 'https://gc.zgo.at/count.js';
+        document.head.appendChild(el);
+    })();
+}
+
+// ---------- PWA: offline-first service worker (only on fresh https) ----------
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+}
 
 // initial stats fill (covers the render already done by the main script)
 refreshGithubStats();
