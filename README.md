@@ -49,7 +49,7 @@
 
 ## 💻 This repository
 
-This repo powers my personal corner of the internet — a hand-written, no-framework portfolio that doubles as a place to play:
+This repo powers my personal corner of the internet — rebuilt on [Astro](https://astro.build) with a real build pipeline, while keeping the hand-written vibe. It doubles as a place to play:
 
 - **A working terminal** — `whoami`, `neofetch`, `snake`, `matrix`, `sudo`, `42`, and friends. Type `help` and play.
 - **Easter eggs everywhere** — the Konami code, secret words, DevTools credits, mobile tap combos. Go find them.

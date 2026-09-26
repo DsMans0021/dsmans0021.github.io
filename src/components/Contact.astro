@@ -1,0 +1,62 @@
+---
+---
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <p class="section-label">// 06</p>
+        <h2 class="section-title" data-i18n="contact.title">Get in touch</h2>
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <p data-i18n="contact.p">Have a project idea, a security question, want to play a game together, or just want to talk tech? I'm always happy to hear from people.</p>
+                <div class="contact-links">
+                    <a href="https://github.com/DsMans0021" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fa-brands fa-github"></i> github.com/DsMans0021
+                    </a>
+                    <a href="https://linktr.ee/DsMans0021/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fa-solid fa-tree"></i> linktr.ee/DsMans0021
+                    </a>
+                    <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fa-solid fa-code"></i> Hack Club
+                    </a>
+                </div>
+                <div class="email-chip">
+                    <span class="email-text" id="email-text"><i class="fa-solid fa-envelope"></i></span>
+                    <button class="copy-btn" id="copy-email" type="button"><span data-i18n="contact.copy">copy</span></button>
+                </div>
+            </div>
+            <form method="POST" class="reveal" id="contact-form">
+                <div class="form-group hidden-field" aria-hidden="true">
+                    <label class="form-label" for="website">Website</label>
+                    <input class="form-input" type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="name" data-i18n="form.name">Name</label>
+                    <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required data-i18n-ph="form.namePh">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email" data-i18n="form.email">Email</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required data-i18n-ph="form.emailPh">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="type" data-i18n="form.type">Subject</label>
+                    <select class="form-input" id="type" name="type">
+                        <option value="Collaboration" data-i18n="form.typeOpt1">Collaboration / Project idea</option>
+                        <option value="Hire" data-i18n="form.typeOpt2">Hiring / Job offer</option>
+                        <option value="Inquiry" data-i18n="form.typeOpt3">General inquiry</option>
+                        <option value="Mentoring" data-i18n="form.typeOpt4">Mentoring / Workshop</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message" data-i18n="form.message">Message</label>
+                    <textarea class="form-input" id="message" name="message" placeholder="What's on your mind?" required data-i18n-ph="form.messagePh"></textarea>
+                </div>
+                <button type="submit" class="btn-primary" id="submit-btn" style="width:100%;justify-content:center;">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span data-i18n="form.send">Send message</span>
+                </button>
+                <div class="form-note" id="form-note" role="status"></div>
+            </form>
+        </div>
+    </div>
+</section>

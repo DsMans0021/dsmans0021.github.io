@@ -1,0 +1,16 @@
+{
+  "name": "dsmans0021.github.io",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal portfolio rebuilt with Astro — hand-written vibes, proper build pipeline.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^5.1.0"
+  }
+}

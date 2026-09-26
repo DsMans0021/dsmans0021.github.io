@@ -1,0 +1,44 @@
+---
+---
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="container">
+        <p class="section-label">// 02</p>
+        <h2 class="section-title" data-i18n="projects.title">Projects</h2>
+
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+            <button class="filter-btn active" data-filter="all" data-i18n="filter.all">All</button>
+            <button class="filter-btn" data-filter="games" data-i18n="filter.games">Games</button>
+            <button class="filter-btn" data-filter="web" data-i18n="filter.web">Web</button>
+            <button class="filter-btn" data-filter="apps" data-i18n="filter.apps">Apps</button>
+            <button class="filter-btn" data-filter="mobile" data-i18n="filter.mobile">Mobile</button>
+            <button class="filter-btn" data-filter="security" data-i18n="filter.security">Security</button>
+            <button class="filter-btn" data-filter="education" data-i18n="filter.education">Education</button>
+            <button class="filter-btn" data-filter="misc" data-i18n="filter.misc">Misc</button>
+            <span class="scroller-nav">
+                <button type="button" class="scroller-btn" id="proj-prev" aria-label="Scroll projects back" title="←">&lsaquo;</button>
+                <button type="button" class="scroller-btn" id="proj-next" aria-label="Scroll projects forward" title="→">&rsaquo;</button>
+                <span class="scroller-count" id="scroller-count">0</span>
+            </span>
+        </div>
+
+        <div class="projects-scroller reveal">
+            <div class="projects-grid" id="projects-grid" tabindex="0" role="list" aria-label="Projects carousel"></div>
+            <div class="scroller-progress" aria-hidden="true"><span id="scroller-bar"></span></div>
+        </div>
+
+        <div class="security-note reveal">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span data-i18n="projects.disclaimer">Security-related projects are strictly educational and for authorized, research use only.</span>
+        </div>
+
+        <div class="reveal" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://github.com/DsMans0021?tab=repositories" target="_blank" rel="noopener noreferrer" class="tools-link">
+                <i class="fa-brands fa-github"></i>
+                <span data-i18n="projects.viewAll">View all repositories on GitHub</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
