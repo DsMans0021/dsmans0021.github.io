@@ -63,11 +63,12 @@ Live at **[dsmans0021.com](https://dsmans0021.com)** · Mirror: [dsmans0021.gith
 
 ## 📊 In numbers
 
-<div align="center">
-
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=DsMans0021&show_icons=true&theme=highcontrast&hide_border=true)
-
-</div>
+| | |
+|---|---|
+| 🗂️ **Public repos** | `46` |
+| ⭐ **Total stars earned** | `81` |
+| 👥 **Followers** | `15` |
+| 🎮 **Most-starred** | `blah-blah` (6⭐) · `FPS-Game` (4⭐) · `Anime-App` (4⭐) |
 
 ---
 
