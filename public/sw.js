@@ -1,4 +1,4 @@
-const VER = 'dsmans-v2';
+const VER = 'dsmans-v3';
 const CACHE = 'dsmans-' + VER;
 const OFFLINE = '/';
 

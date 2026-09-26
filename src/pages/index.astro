@@ -9,6 +9,7 @@ import Achievements from '../components/Achievements.astro';
 import More from '../components/More.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import Overlays from '../components/Overlays.astro';
 ---
 
 <Base>
@@ -30,6 +31,8 @@ import Footer from '../components/Footer.astro';
     <Footer />
 
     <button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+    <Overlays />
 
     <script>
         import '../scripts/app.ts';
