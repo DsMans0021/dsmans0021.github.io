@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>404 — Page not found | DsMans0021</title>
+    <meta name="theme-color" content="#080808">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script>
+    (function () {
+        try {
+            var t = localStorage.getItem('theme');
+            if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+    })();
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root { --transition-theme: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+        [data-theme="dark"] {
+            --bg: #080808; --bg2: #0f0f0f; --surface: #111111; --surface2: #181818;
+            --border: #1e1e1e; --border2: #2a2a2a; --text: #c8c8c8; --text-strong: #f0f0f0;
+            --text-muted: #9a9a9a; --text-dim: #8a8a8a; --accent: #39ff14;
+            --accent-dim: rgba(57,255,20,0.08); --accent-border: rgba(57,255,20,0.25);
+            --accent2: #ff6500; --accent3: #00aaff;
+        }
+
+        [data-theme="light"] {
+            --bg: #fafafa; --bg2: #f3f3f3; --surface: #ffffff; --surface2: #f7f7f7;
+            --border: #e4e4e4; --border2: #d0d0d0; --text: #3a3a3a; --text-strong: #111111;
+            --text-muted: #5c5c5c; --text-dim: #6a6a6a; --accent: #16a305;
+            --accent-dim: rgba(22,163,5,0.07); --accent-border: rgba(22,163,5,0.2);
+            --accent2: #d45200; --accent3: #0077cc;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 16px;
+            line-height: 1.75;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-theme);
+        }
+
+        html[lang="ar"] body { letter-spacing: 0; }
+
+        h1, h2, h3, h4, .page-title {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+        }
+
+        html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4,
+        html[lang="ar"] .page-title {
+            font-family: "Reem Kufi", "Cairo", "Comic Sans MS", sans-serif;
+            letter-spacing: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8,8,8,0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: var(--transition-theme);
+        }
+
+        [data-theme="light"] nav { background: rgba(250,250,250,0.9); }
+
+        .nav-inner {
+            max-width: 1140px; margin: 0 auto; padding: 0 24px;
+            height: 56px; display: flex; align-items: center;
+            justify-content: space-between; gap: 16px;
+        }
+
+        .nav-logo {
+            font-size: 13px; color: var(--accent); text-decoration: none; letter-spacing: 0.04em;
+        }
+
+        .nav-logo span { color: var(--text-dim); }
+
+        .nav-right { display: flex; align-items: center; gap: 10px; }
+
+        .nav-back {
+            font-size: 11px; color: var(--text-muted); text-decoration: none;
+            display: flex; align-items: center; gap: 8px;
+            border: 1px solid var(--border2); padding: 7px 14px;
+            transition: all 0.2s; letter-spacing: 0.06em;
+        }
+
+        .nav-back:hover { color: var(--accent); border-color: var(--accent); }
+        [dir="rtl"] .nav-back i { transform: scaleX(-1); }
+
+        .icon-btn {
+            width: 36px; height: 36px; border: 1px solid var(--border2);
+            background: var(--surface); color: var(--text-muted); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; transition: all 0.2s;
+        }
+
+        .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        .lang-toggle {
+            font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted);
+            border: 1px solid var(--border2); background: var(--surface);
+            cursor: pointer; height: 36px; padding: 0 12px;
+            display: flex; align-items: center; gap: 7px; transition: all 0.2s;
+        }
+
+        .lang-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+        main { position: relative; z-index: 1; padding-top: 56px; flex: 1; display: flex; align-items: center; }
+
+        .container { width: 100%; max-width: 760px; margin: 0 auto; padding: 80px 24px; }
+
+        .page-tag {
+            font-family: 'VT323', 'JetBrains Mono', monospace; font-size: 16px;
+            color: var(--accent2); letter-spacing: 0.16em;
+            text-transform: uppercase; margin-bottom: 2px;
+        }
+
+        .error-code {
+            font-family: 'VT323', 'JetBrains Mono', monospace;
+            font-size: clamp(96px, 22vw, 160px);
+            line-height: 0.9;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 40px var(--accent-dim);
+            margin: 6px 0 14px;
+        }
+
+        .page-title {
+            font-size: clamp(24px, 4vw, 34px); font-weight: 700;
+            color: var(--text-strong); margin-bottom: 10px; letter-spacing: -0.02em;
+        }
+
+        .page-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 30px; line-height: 1.8; max-width: 600px; }
+
+        .term-card {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            margin-bottom: 28px;
+            transition: var(--transition-theme);
+        }
+
+        .term-bar {
+            display: flex; align-items: center; gap: 7px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            font-size: 10px; color: var(--text-dim);
+        }
+
+        .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+        .dot.r { background: #ff5f56; }
+        .dot.y { background: #ffbd2e; }
+        .dot.g { background: #27c93f; }
+
+        .term-body {
+            padding: 18px 20px 20px;
+            font-family: 'VT323', 'JetBrains Mono', monospace;
+            font-size: 17px;
+            line-height: 1.65;
+        }
+
+        .term-line { color: var(--text-muted); }
+        .term-line .prompt { color: var(--accent); }
+        .term-line .cmd { color: var(--accent3); }
+        .term-line .dim { color: var(--text-dim); }
+        .cursor { animation: blink 1s steps(1) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .action-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        .btn-primary, .btn-outline {
+            font-size: 11px; letter-spacing: 0.07em;
+            padding: 13px 24px; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 9px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { color: #000; background: var(--accent); border: 1px solid var(--accent); font-weight: 700; }
+        .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+        .btn-outline { color: var(--text-muted); background: none; border: 1px solid var(--border2); }
+        .btn-outline:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+
+        footer {
+            border-top: 1px solid var(--border); padding: 24px;
+            text-align: center; position: relative; z-index: 1;
+        }
+
+        .footer-copy { font-size: 10px; color: var(--text-dim); }
+
+        .skip-link {
+            position: fixed; top: -60px; left: 16px; z-index: 1200;
+            background: var(--accent); color: #000;
+            font-size: 11px; font-weight: 700;
+            padding: 10px 18px; text-decoration: none;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 12px; }
+        [dir="rtl"] .skip-link { left: auto; right: 16px; }
+
+        html { scrollbar-width: thin; scrollbar-color: var(--border2) var(--bg); }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border2); border: 2px solid var(--bg); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        ::-webkit-scrollbar-corner { background: var(--bg); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container { padding: 60px 20px; }
+            .nav-back span { display: none; }
+            .nav-back { padding: 7px 10px; }
+            .action-row { flex-direction: column; }
+            .btn-primary, .btn-outline { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link" data-i18n="skip">Skip to content</a>
+
+<nav role="navigation" aria-label="Navigation">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo"><span>~/</span>DsMans0021</a>
+        <div class="nav-right">
+            <a href="index.html" class="nav-back"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="back">home</span></a>
+            <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">
+                <i class="fa-solid fa-globe"></i>
+                <span id="lang-label">العربية</span>
+            </button>
+            <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle light or dark theme">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main id="main">
+    <div class="container">
+        <p class="page-tag">// 404</p>
+        <div class="error-code" aria-hidden="true">404</div>
+        <h1 class="page-title" data-i18n="title">Page not found</h1>
+        <p class="page-desc" data-i18n="desc">This page doesn't exist, was moved, or the link has a typo. The rest of the site is still here.</p>
+
+        <div class="term-card" role="status">
+            <div class="term-bar">
+                <span class="dot r"></span>
+                <span class="dot y"></span>
+                <span class="dot g"></span>
+                <span style="margin-inline-start:8px">dsmans0021@bash: ~/404</span>
+            </div>
+            <div class="term-body">
+                <div class="term-line"><span class="prompt">$</span> <span class="cmd">find</span> /the/page/you/wanted <span class="dim">--verbose</span></div>
+                <div class="term-line dim" data-i18n="line1">checking ~/portfolio entries...</div>
+                <div class="term-line" data-i18n="line2">no results — file not found <span class="cursor">▍</span></div>
+            </div>
+        </div>
+
+        <div class="action-row">
+            <a href="index.html" class="btn-primary"><i class="fa-solid fa-house"></i> <span data-i18n="home">Back home</span></a>
+            <a href="index.html#projects" class="btn-outline"><i class="fa-solid fa-folder-open"></i> <span data-i18n="projects">View projects</span></a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <span class="footer-copy" data-i18n="copy">© 2026 Mohamed Abdelaziz · DsMans0021</span>
+</footer>
+
+<script>
+const I18N = {
+    en: {
+        title: 'Page not found',
+        desc: "This page doesn't exist, was moved, or the link has a typo. The rest of the site is still here.",
+        line1: 'checking ~/portfolio entries...',
+        line2: 'no results — file not found',
+        home: 'Back home',
+        projects: 'View projects',
+        back: 'home',
+        skip: 'Skip to content',
+        copy: '© 2026 Mohamed Abdelaziz · DsMans0021'
+    },
+    ar: {
+        title: 'الصفحة غير موجودة',
+        desc: 'الصفحة دي مش موجودة أو اتنقلت أو اللينك فيه غلطة. باقي الموقع لسه هنا.',
+        line1: 'بيدوّر في صفحات الموقع...',
+        line2: 'مفيش نتايج — الملف مش موجود',
+        home: 'الرجوع للرئيسية',
+        projects: 'شوف المشاريع',
+        back: 'الرئيسية',
+        skip: 'انتقل للمحتوى',
+        copy: '© 2026 محمد عبدالعزيز · DsMans0021'
+    }
+};
+
+let currentLang = 'en';
+try { currentLang = localStorage.getItem('lang') || 'en'; } catch (e) {}
+if (currentLang !== 'ar') currentLang = 'en';
+
+function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = (lang === 'ar' ? '404 — الصفحة غير موجودة' : '404 — Page not found') + ' | DsMans0021';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const value = I18N[lang][el.dataset.i18n];
+        if (value !== undefined) el.innerHTML = value;
+    });
+    document.getElementById('lang-label').textContent = lang === 'ar' ? 'EN' : 'العربية';
+    document.getElementById('lang-toggle').setAttribute('aria-label', lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية');
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+}
+
+function getStoredTheme() {
+    try {
+        return localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    } catch (e) { return 'dark'; }
+}
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#080808' : '#fafafa');
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+}
+
+document.getElementById('lang-toggle').addEventListener('click', () => {
+    applyLang(currentLang === 'ar' ? 'en' : 'ar');
+});
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+applyTheme(getStoredTheme());
+applyLang(currentLang);
+
+setTimeout(function () {
+    console.log('%c404 — but nice of you to wander around. Type  dsmans()  back on the home page.', 'color:#39ff14;font-family:monospace');
+}, 500);
+</script>
+</body>
+</html>

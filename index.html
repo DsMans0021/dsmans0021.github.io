@@ -1,0 +1,4126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Abdelaziz | DsMans0021 — Engineering Student & Game Developer</title>
+    <meta name="description" content="Mohamed Abdelaziz (DsMans0021) — engineering student at Minia University, indie game developer, and cybersecurity enthusiast building games and practical tech.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#080808">
+    <meta name="google-adsense-account" content="ca-pub-8186398462710647">
+
+    <link rel="canonical" href="https://dsmans0021.me/">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <script>
+    (function () {
+        try {
+            var t = localStorage.getItem('theme');
+            if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+    })();
+    </script>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mohamed Abdelaziz | DsMans0021 — Engineering Student & Game Developer">
+    <meta property="og:description" content="Engineering student at Minia University, indie game developer, and cybersecurity enthusiast building games and practical tech.">
+    <meta property="og:image" content="https://dsmans0021.me/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Mohamed Abdelaziz (DsMans0021) — Engineering Student & Game Developer">
+    <meta property="og:url" content="https://dsmans0021.me/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DsMans0021">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_EG">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mohamed Abdelaziz | DsMans0021">
+    <meta name="twitter:description" content="Engineering Student & Game Developer — building games and practical tech.">
+    <meta name="twitter:image" content="https://dsmans0021.me/assets/og-image.png">
+    <meta name="twitter:image:alt" content="Mohamed Abdelaziz (DsMans0021) — Engineering Student & Game Developer">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mohamed Abdelaziz",
+        "alternateName": "DsMans0021",
+        "url": "https://dsmans0021.me/",
+        "jobTitle": "Engineering Student & Game Developer",
+        "affiliation": { "@type": "CollegeOrUniversity", "name": "Minia University" },
+        "knowsAbout": ["Game Development", "Unity", "Python", "Cybersecurity", "Flutter", "Raspberry Pi"],
+        "sameAs": [
+            "https://github.com/DsMans0021",
+            "https://linktr.ee/DsMans0021"
+        ],
+        "address": { "@type": "PostalAddress", "addressCountry": "EG" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DsMans0021",
+        "url": "https://dsmans0021.me/"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Projects by Mohamed Abdelaziz",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Maya", "url": "https://dsmans0021.me/project-maya.html" },
+            { "@type": "ListItem", "position": 2, "name": "FPS Multiplayer Game", "url": "https://dsmans0021.me/project-fps.html" },
+            { "@type": "ListItem", "position": 3, "name": "Room Designer", "url": "https://dsmans0021.me/project-room-designer.html" },
+            { "@type": "ListItem", "position": 4, "name": "DsocialMans0021", "url": "https://dsmans0021.me/project-dsocial.html" },
+            { "@type": "ListItem", "position": 5, "name": "FkWiFiThiefs", "url": "https://dsmans0021.me/project-fk-wifi.html" },
+            { "@type": "ListItem", "position": 6, "name": "Telegram RAT Demo", "url": "https://dsmans0021.me/project-telegram-rat.html" },
+            { "@type": "ListItem", "position": 7, "name": "BlackMamba (C2 Research)", "url": "https://dsmans0021.me/project-blackmamba.html" }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root { --transition-theme: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+        [data-theme="dark"] {
+            --bg: #080808;
+            --bg2: #0f0f0f;
+            --surface: #111111;
+            --surface2: #181818;
+            --border: #1e1e1e;
+            --border2: #2a2a2a;
+            --text: #c8c8c8;
+            --text-strong: #f0f0f0;
+            --text-muted: #9a9a9a;
+            --text-dim: #8a8a8a;
+            --accent: #39ff14;
+            --accent-dim: rgba(57,255,20,0.08);
+            --accent-border: rgba(57,255,20,0.25);
+            --accent2: #ff6500;
+            --accent3: #00aaff;
+            --shadow: rgba(0,0,0,0.5);
+            --ok: #39ff14;
+            --err: #ff4d4d;
+        }
+
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --bg2: #f3f3f3;
+            --surface: #ffffff;
+            --surface2: #f7f7f7;
+            --border: #e4e4e4;
+            --border2: #d0d0d0;
+            --text: #3a3a3a;
+            --text-strong: #111111;
+            --text-muted: #5c5c5c;
+            --text-dim: #6a6a6a;
+            --accent: #16a305;
+            --accent-dim: rgba(22,163,5,0.07);
+            --accent-border: rgba(22,163,5,0.2);
+            --accent2: #d45200;
+            --accent3: #0077cc;
+            --shadow: rgba(0,0,0,0.1);
+            --ok: #16a305;
+            --err: #cc2222;
+        }
+
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+
+        img, svg, video, canvas, iframe { max-width: 100%; }
+        img { height: auto; }
+
+        ::selection { background: var(--accent); color: var(--bg); }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 16px;
+            line-height: 1.75;
+            overflow-x: hidden;
+            transition: var(--transition-theme);
+        }
+
+        html[lang="ar"] body {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            letter-spacing: 0;
+        }
+
+        h1, h2, h3, h4,
+        .hero-name, .section-title, .page-title, .cs-title,
+        .skill-name, .project-name, .achievement-title, .more-block-title {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+        }
+
+        html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 { letter-spacing: 0; }
+
+        html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4,
+        html[lang="ar"] .hero-name, html[lang="ar"] .section-title, html[lang="ar"] .page-title,
+        html[lang="ar"] .cs-title, html[lang="ar"] .skill-name, html[lang="ar"] .project-name,
+        html[lang="ar"] .achievement-title, html[lang="ar"] .more-block-title {
+            font-family: "Reem Kufi", "Cairo", "Comic Sans MS", sans-serif;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(720px 420px at 85% -5%, var(--accent-dim), transparent 70%),
+                radial-gradient(680px 420px at -5% 105%, rgba(0,170,255,0.05), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8,8,8,0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: var(--transition-theme);
+        }
+
+        [data-theme="light"] nav { background: rgba(250,250,250,0.9); }
+
+        .nav-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .nav-logo {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 13px;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .nav-logo span { color: var(--text-dim); }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: 0.07em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 100%;
+            height: 1px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.22s ease;
+        }
+
+        [dir="rtl"] .nav-links a::after { transform-origin: right; }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+        .nav-right { display: flex; align-items: center; gap: 10px; }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border2);
+            background: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        .lang-toggle {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            border: 1px solid var(--border2);
+            background: var(--surface);
+            cursor: pointer;
+            height: 36px;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .lang-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+        .nav-mobile-btn { display: none; }
+
+        /* Mobile drawer */
+        .mobile-drawer {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            visibility: hidden;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .mobile-drawer.open { visibility: visible; pointer-events: auto; }
+
+        .drawer-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .mobile-drawer.open .drawer-overlay { opacity: 1; }
+
+        .drawer-panel {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 272px;
+            background: var(--surface);
+            border-left: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transform: translateX(100%);
+            transition: transform 0.25s ease, var(--transition-theme);
+        }
+
+        .mobile-drawer.open .drawer-panel { transform: none; }
+
+        [dir="rtl"] .drawer-panel {
+            right: auto;
+            left: 0;
+            border-left: none;
+            border-right: 1px solid var(--border);
+            transform: translateX(-100%);
+        }
+
+        [dir="rtl"] .mobile-drawer.open .drawer-panel { transform: none; }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .drawer-panel a {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s;
+        }
+
+        .drawer-panel a:hover { color: var(--accent); }
+
+        body.no-scroll { overflow: hidden; }
+
+        /* ===== COMMON ===== */
+        section { position: relative; z-index: 1; }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-label {
+            font-family: 'VT323', 'JetBrains Mono', monospace;
+            font-size: 16px;
+            color: var(--accent2);
+            letter-spacing: 0.16em;
+            margin-bottom: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(22px, 3.5vw, 32px);
+            font-weight: 700;
+            color: var(--text-strong);
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+            position: relative;
+            padding-bottom: 14px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 44px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        [dir="rtl"] .section-title::after { left: auto; right: 0; }
+
+        .section-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 640px;
+            margin-bottom: 36px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ===== HERO ===== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 56px;
+            background-image: radial-gradient(680px 320px at 50% -10%, var(--accent-dim), transparent 70%);
+        }
+
+        .hero-inner { padding: 96px 0 48px; }
+
+        .hero-avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-border);
+            margin-bottom: 30px;
+            filter: grayscale(10%);
+            box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--border2), 0 0 36px var(--accent-border);
+        }
+
+        .hero-tag {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 12px;
+            color: var(--accent3);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--accent3);
+        }
+
+        [dir="rtl"] .hero-tag::before { transform: scaleX(-1); }
+
+        .hero-name {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: clamp(38px, 7vw, 82px);
+            font-weight: 700;
+            color: var(--text-strong);
+            line-height: 1.02;
+            letter-spacing: -0.035em;
+            margin-bottom: 18px;
+        }
+
+        .hero-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.82em;
+            background: var(--accent);
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+
+        [dir="rtl"] .hero-cursor { margin-left: 0; margin-right: 3px; }
+
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        .hero-subtitle {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: clamp(13px, 2vw, 16px);
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            min-height: 24px;
+        }
+
+        .hero-subtitle .hl1 { color: var(--accent2); }
+        .hero-subtitle .hl2 { color: var(--accent3); }
+
+        .hero-desc {
+            max-width: 620px;
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 38px;
+        }
+
+        .hero-desc strong { color: var(--text-strong); font-weight: 600; }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.07em;
+            color: #000;
+            background: var(--accent);
+            border: none;
+            padding: 13px 26px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 10px 28px var(--accent-border); }
+        .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .btn-outline {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.07em;
+            color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--border2);
+            padding: 13px 26px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+        .hero-tools-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 26px;
+            padding: 15px 26px;
+            width: 100%;
+            max-width: 420px;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: var(--accent);
+            background: var(--surface);
+            border: 1px solid var(--accent-border);
+            text-decoration: none;
+            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .hero-tools-link:hover {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        /* Quote ticker in hero */
+        .quote-ticker-wrap {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .quote-ticker-wrap::before,
+        .quote-ticker-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+        }
+
+        .quote-ticker-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg), transparent);
+        }
+
+        .quote-ticker-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg), transparent);
+        }
+
+        .quote-ticker {
+            display: flex;
+            gap: 0;
+            animation: ticker 22s linear infinite;
+            white-space: nowrap;
+        }
+
+        [dir="rtl"] .quote-ticker { animation-direction: reverse; }
+
+        .quote-ticker:hover { animation-play-state: paused; }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--text-muted);
+            padding: 0 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticker-item::after {
+            content: '·';
+            color: var(--accent);
+        }
+
+        /* ===== ABOUT ===== */
+        #about { padding: 100px 0; border-top: 1px solid var(--border); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .about-text p + p { margin-top: 14px; }
+
+        .about-text a { color: var(--accent); text-decoration: none; }
+        .about-text strong { color: var(--text-strong); font-weight: 600; }
+
+        .currently-block {
+            margin-top: 28px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .currently-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .currently-date { color: var(--accent); }
+
+        .currently-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .currently-row:last-child { border-bottom: none; }
+
+        .currently-icon {
+            font-size: 13px;
+            width: 18px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .currently-label { color: var(--text-muted); font-size: 12px; flex: 1; }
+
+        .currently-val {
+            color: var(--text-strong);
+            font-size: 12px;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+        }
+
+        .about-stats { display: flex; flex-direction: column; }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat-row:first-child { border-top: 1px solid var(--border); }
+
+        .stat-label {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .stat-value {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--text-strong);
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-right: 6px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        /* ===== PROJECTS ===== */
+        #projects { padding: 100px 0; border-top: 1px solid var(--border); }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .filter-btn {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--border2);
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        .filter-btn.active {
+            color: #000;
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 28px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            display: flex;
+            flex-direction: column;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            background: var(--surface2);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px var(--shadow);
+        }
+
+        .project-card.featured { box-shadow: inset 0 0 0 1px var(--accent-border); }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: 3;
+        }
+
+        .project-card:hover::before { transform: scaleX(1); }
+
+        [dir="rtl"] .project-card::before { transform-origin: right; }
+
+        .project-thumb {
+            height: 148px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .project-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 16px 16px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .project-thumb i {
+            width: 66px;
+            height: 66px;
+            display: grid;
+            place-items: center;
+            font-size: 26px;
+            color: rgba(255,255,255,0.92);
+            background: rgba(0,0,0,0.28);
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 50%;
+            z-index: 1;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover .project-thumb i {
+            transform: scale(1.08) rotate(-4deg);
+            border-color: var(--accent);
+        }
+
+        .project-thumb.has-img::after {
+            background: linear-gradient(180deg, rgba(0,0,0,0.02) 45%, rgba(0,0,0,0.42) 100%);
+            background-image: none;
+            opacity: 1;
+        }
+
+        .project-thumb picture { display: contents; }
+
+        .project-thumb-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 72%;
+            z-index: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-thumb-img { transform: scale(1.04); }
+
+        .project-thumb.has-img .status-badge,
+        .project-thumb.has-img .featured-ribbon { z-index: 3; }
+
+        .cat-games { background: linear-gradient(135deg, #14532d, #052e16); }
+        .cat-apps { background: linear-gradient(135deg, #1e3a8a, #172554); }
+        .cat-networking { background: linear-gradient(135deg, #134e4a, #042f2e); }
+        .cat-security { background: linear-gradient(135deg, #7f1d1d, #450a0a); }
+
+        .status-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 12px;
+            z-index: 2;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: #fff;
+        }
+
+        [dir="rtl"] .status-badge { left: auto; right: 12px; }
+
+        .status-badge.st-completed { color: #a3ffa3; }
+        .status-badge.st-inprogress { color: #ffd27d; }
+        .status-badge.st-archived { color: #b3b3b3; }
+
+        .featured-ribbon {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            z-index: 2;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #000;
+            background: var(--accent);
+            padding: 3px 9px;
+        }
+
+        [dir="rtl"] .featured-ribbon { right: auto; left: 12px; }
+
+        .project-body { padding: 18px 20px 6px; display: flex; flex-direction: column; flex: 1; }
+
+        .project-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-bottom: 6px;
+        }
+
+        .project-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .project-tags { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .project-lang {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 10px;
+            color: var(--accent2);
+            letter-spacing: 0.06em;
+            border: 1px solid var(--border2);
+            padding: 3px 8px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 12px 20px 20px;
+        }
+
+        .mini-btn {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--border2);
+            padding: 7px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .mini-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        .mini-btn.accent {
+            color: var(--accent);
+            border-color: var(--accent-border);
+            background: var(--accent-dim);
+        }
+
+        .mini-btn.accent:hover { border-color: var(--accent); }
+
+        .security-note {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            padding: 12px 16px;
+            margin-bottom: 28px;
+        }
+
+        .security-note i { color: var(--accent2); margin-top: 3px; }
+
+        .tools-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--border2);
+            padding: 11px 22px;
+            transition: all 0.2s;
+        }
+
+        .tools-link:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ===== SKILLS ===== */
+        #skills { padding: 100px 0; border-top: 1px solid var(--border); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .skill-card {
+            background: var(--surface);
+            padding: 28px 24px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .skill-card:hover {
+            background: var(--surface2);
+            transform: translateY(-2px);
+        }
+
+        .skill-icon {
+            font-size: 22px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            transition: transform 0.25s ease;
+        }
+
+        .skill-card:hover .skill-icon { transform: translateY(-2px) scale(1.08); }
+
+        .skill-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-bottom: 6px;
+        }
+
+        .skill-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ===== ACHIEVEMENTS ===== */
+        #achievements { padding: 100px 0; border-top: 1px solid var(--border); }
+
+        .achievement-item {
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            gap: 20px;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: start;
+        }
+
+        .achievement-item:first-child { border-top: 1px solid var(--border); }
+
+        .achievement-num {
+            font-family: 'VT323', 'JetBrains Mono', monospace;
+            font-size: 18px;
+            color: var(--text-dim);
+            padding-top: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .achievement-item:hover .achievement-num { color: var(--accent); }
+
+        .achievement-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-bottom: 5px;
+        }
+
+        .achievement-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .timeline { position: relative; margin: 0 0 40px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            bottom: 14px;
+            left: calc(64px + 14px + 9px);
+            width: 1px;
+            background: var(--border2);
+        }
+        [dir="rtl"] .timeline::before { left: auto; right: calc(64px + 14px + 9px); }
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 64px 18px 1fr;
+            column-gap: 14px;
+            align-items: start;
+            padding: 12px 0;
+        }
+        .timeline-year {
+            font-family: 'VT323', 'JetBrains Mono', monospace;
+            font-size: 18px;
+            color: var(--accent);
+            text-align: right;
+            line-height: 1.2;
+        }
+        [dir="rtl"] .timeline-year { text-align: left; }
+        .timeline-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin: 5px auto 0;
+            box-shadow: 0 0 0 4px var(--accent-dim);
+            position: relative;
+            z-index: 1;
+        }
+        .timeline-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-bottom: 3px;
+        }
+        .timeline-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+        /* ===== CONTACT ===== */
+        #contact { padding: 100px 0; border-top: 1px solid var(--border); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            max-width: 760px;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.85;
+            margin-bottom: 28px;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 22px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-strong);
+            font-size: clamp(17px, 2.6vw, 24px);
+            font-weight: 700;
+            text-decoration: none;
+            margin-bottom: 28px;
+            transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+            overflow-wrap: anywhere;
+            max-width: 100%;
+        }
+
+        .contact-email i { color: var(--accent); font-size: 0.8em; flex-shrink: 0; }
+        .contact-email span { min-width: 0; overflow-wrap: anywhere; }
+        .contact-email:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); transform: translateY(-2px); }
+
+        .contact-links { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-link i { width: 16px; text-align: center; }
+        .contact-link:hover { color: var(--accent); }
+
+        /* ===== MORE ABOUT ME ===== */
+        #more { padding: 100px 0 0; border-top: 1px solid var(--border); }
+
+        .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+
+        .more-block { background: var(--surface); padding: 40px 36px; }
+
+        .more-block:first-child { grid-column: 1 / -1; }
+
+        .more-block-label {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 10px;
+            color: var(--accent3);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .more-block-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-strong);
+            margin-bottom: 18px;
+        }
+
+        .more-block-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .quote-display {
+            border: 1px solid var(--border);
+            background: var(--bg);
+            padding: 40px 32px;
+            position: relative;
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 3px 0 0 var(--accent);
+        }
+
+        .quote-mark {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 40px;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 12px;
+            opacity: 0.6;
+        }
+
+        .quote-text {
+            font-size: clamp(14px, 2vw, 17px);
+            color: var(--text-strong);
+            line-height: 1.75;
+            font-style: italic;
+            margin-bottom: 18px;
+            transition: opacity 0.4s;
+        }
+
+        .quote-author {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+        }
+
+        .quote-source {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .quote-controls {
+            position: absolute;
+            bottom: 18px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        [dir="rtl"] .quote-controls { right: auto; left: 24px; }
+
+        .quote-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--border2);
+            background: var(--bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .quote-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .quote-counter {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        /* ===== POETRY PLAYER ===== */
+        #poems { grid-column: 1 / -1; }
+
+        .poem-player {
+            display: grid;
+            grid-template-columns: 190px minmax(0, 1fr);
+            gap: 40px;
+            align-items: center;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            padding: 34px;
+        }
+
+        .cd-wrap { display: flex; justify-content: center; }
+
+        .cd {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at 32% 30%, #4a4a4a 0%, #1d1d1d 26%, #050505 58%, #1a1a1a 100%);
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55), inset 0 0 0 2px #000, inset 0 0 0 14px rgba(255, 255, 255, 0.025);
+            animation: cdspin 9s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .cd.playing { animation-play-state: running; }
+
+        .cd-grooves {
+            position: absolute;
+            inset: 10px;
+            border-radius: 50%;
+            background: repeating-radial-gradient(circle, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 4px);
+        }
+
+        .cd-label {
+            position: absolute;
+            inset: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 12px;
+            background: radial-gradient(circle, #121212 0%, #1e1e1e 100%);
+            border: 1px solid var(--accent-border);
+            color: var(--accent);
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.4;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        .cd-hole {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            z-index: 2;
+        }
+
+        @keyframes cdspin { to { transform: rotate(360deg); } }
+
+        .poem-meta { min-width: 0; }
+
+        .poem-now {
+            font-size: clamp(17px, 2.4vw, 23px);
+            font-weight: 700;
+            color: var(--text-strong);
+            margin-bottom: 6px;
+            line-height: 1.4;
+            overflow-wrap: anywhere;
+        }
+
+        .poem-poet {
+            font-size: 11px;
+            color: var(--accent);
+            margin-bottom: 8px;
+            min-height: 1.4em;
+        }
+
+        .poem-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .poem-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+
+        .poem-btn {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-strong);
+            font-size: 13px;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s, transform 0.2s, background 0.2s;
+        }
+
+        .poem-btn:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+        .poem-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+        .poem-btn.poem-play {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #000;
+            font-size: 16px;
+        }
+
+        .poem-btn.poem-play:hover { color: #000; background: var(--accent); box-shadow: 0 8px 24px var(--accent-border); }
+
+        .poem-progress { display: flex; align-items: center; gap: 12px; }
+
+        .poem-time {
+            font-size: 11px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .poem-seek {
+            flex: 1;
+            min-width: 0;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--progress, 0%), var(--border) var(--progress, 0%), var(--border) 100%);
+            border-radius: 0;
+            cursor: pointer;
+        }
+
+        [dir="rtl"] .poem-seek {
+            background: linear-gradient(to left, var(--accent) 0%, var(--accent) var(--progress, 0%), var(--border) var(--progress, 0%), var(--border) 100%);
+        }
+
+        .poem-seek::-moz-range-track { height: 4px; background: transparent; }
+        .poem-seek::-moz-range-progress { height: 4px; background: transparent; }
+
+        .poem-seek::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+        }
+
+        .poem-seek::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+        }
+
+        .poem-controls { flex-wrap: wrap; }
+
+        .poem-btn.poem-mode.active {
+            color: #000;
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .poem-btn.repeat-one { position: relative; }
+        .poem-btn.repeat-one::after {
+            content: '1';
+            position: absolute;
+            top: 2px;
+            right: 5px;
+            font-size: 8px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .poem-btn.poem-share-done { color: var(--accent); border-color: var(--accent); }
+
+        .poem-playlist-wrap { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 12px; }
+
+        .poem-playlist-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 8px 0;
+            border: 0;
+            background: none;
+            color: var(--text-muted);
+            font: inherit;
+            font-size: 11px;
+            cursor: pointer;
+            text-align: start;
+        }
+
+        .poem-playlist-toggle:hover { color: var(--accent); }
+        .poem-list-count { margin-inline-start: auto; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+        .poem-list-chevron { transition: transform 0.2s; }
+        .poem-playlist-toggle[aria-expanded="true"] .poem-list-chevron { transform: rotate(180deg); }
+
+        .poem-list {
+            list-style: none;
+            margin: 6px 0 0;
+            max-height: 220px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .poem-list[hidden] { display: none; }
+
+        .poem-list-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 9px 12px;
+            border: 0;
+            border-bottom: 1px solid var(--border);
+            background: none;
+            color: var(--text-muted);
+            font: inherit;
+            font-size: 12px;
+            text-align: start;
+            cursor: pointer;
+        }
+
+        .poem-list li:last-child .poem-list-item { border-bottom: 0; }
+        .poem-list-item:hover { background: var(--surface2); color: var(--text-strong); }
+        .poem-list-item.active { color: var(--accent); background: var(--accent-dim); }
+        .poem-list-num { font-family: 'VT323', 'JetBrains Mono', monospace; font-size: 14px; color: var(--text-dim); min-width: 24px; }
+        .poem-list-item.active .poem-list-num { color: var(--accent); }
+        .poem-list-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        .device-table { border: 1px solid var(--border); }
+
+        .device-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .device-row:last-child { border-bottom: none; }
+
+        .device-key {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--text-muted);
+            padding: 13px 18px;
+            background: var(--bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        [dir="rtl"] .device-key { border-right: none; border-left: 1px solid var(--border); }
+
+        .device-val {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            color: var(--text-strong);
+            padding: 13px 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-copy {
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .footer-socials { display: flex; gap: 18px; }
+
+        .footer-socials a {
+            font-size: 15px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-socials a:hover { color: var(--accent); }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 150;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border2);
+            background: var(--surface);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.2s, transform 0.2s, visibility 0.2s, color 0.2s;
+        }
+
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: none; }
+        .back-to-top:hover { color: var(--accent); border-color: var(--accent); }
+
+        [dir="rtl"] .back-to-top { right: auto; left: 24px; }
+
+        /* ===== READING PROGRESS ===== */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent3), var(--accent));
+            z-index: 1100;
+        }
+
+        [dir="rtl"] #progress-bar { left: auto; right: 0; }
+
+        /* ===== SCROLLBAR ===== */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--border2) var(--bg);
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border: 2px solid var(--bg);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        ::-webkit-scrollbar-corner { background: var(--bg); }
+
+        /* ===== SKIP LINK ===== */
+        .skip-link {
+            position: fixed;
+            top: -60px;
+            left: 16px;
+            z-index: 1200;
+            background: var(--accent);
+            color: #000;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 10px 18px;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus { top: 12px; }
+
+        /* ===== UNDERTALE EASTER EGG ===== */
+        .ut-heart {
+            position: fixed;
+            left: 18px;
+            bottom: 18px;
+            z-index: 190;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+            line-height: 1;
+            color: #ff2b2b;
+            background: rgba(255,43,43,0.08);
+            border: 1px solid rgba(255,43,43,0.35);
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+        [dir="rtl"] .ut-heart { left: auto; right: 18px; }
+        .ut-heart:hover { transform: scale(1.08); background: rgba(255,43,43,0.16); box-shadow: 0 0 22px rgba(255,43,43,0.35); }
+        .ut-heart.pulse { animation: heartbeat 1.1s ease-in-out infinite; }
+        @keyframes heartbeat { 0%,100%{transform:scale(1)} 18%{transform:scale(1.18)} 32%{transform:scale(1)} 46%{transform:scale(1.12)} }
+
+        .heart-rain {
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .heart-rain span {
+            position: absolute;
+            top: -48px;
+            color: #ff2b2b;
+            font-size: 18px;
+            line-height: 1;
+            text-shadow: 0 0 12px rgba(255, 43, 43, 0.55);
+            animation: heartFall linear forwards;
+        }
+        @keyframes heartFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(115vh) rotate(340deg); opacity: 0; }
+        }
+
+        .ut-dialog {
+            position: fixed;
+            inset: 0;
+            z-index: 400;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+        }
+        .ut-dialog.open { display: flex; }
+        .ut-stage {
+            width: min(820px, 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 18px;
+        }
+        .ut-sans {
+            flex: 0 0 auto;
+            position: relative;
+            width: clamp(78px, 16vw, 150px);
+            transform-origin: bottom center;
+            animation: sansBob 3.6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 22px rgba(0,0,0,0.6));
+        }
+        .ut-sans-img { width: 100%; height: auto; display: block; }
+        .ut-sans::after {
+            content: '';
+            position: absolute;
+            left: 61%;
+            top: 12.5%;
+            width: 17%;
+            height: 10%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(150,248,255,0.95) 0%, rgba(0,234,255,0.7) 35%, rgba(0,234,255,0) 72%);
+            filter: blur(1px);
+            mix-blend-mode: screen;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s;
+        }
+        @keyframes sansBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .ut-dialog.badtime .ut-sans::after {
+            opacity: 1;
+            animation: eyeFlicker 0.9s steps(2, end) infinite;
+        }
+        @keyframes eyeFlicker {
+            0%, 100% { opacity: 1; }
+            45% { opacity: 0.5; }
+            55% { opacity: 0.9; }
+        }
+        .ut-dialog.badtime .ut-box {
+            border-color: #00eaff;
+            box-shadow: 0 0 0 4px #000, 0 0 40px rgba(0,234,255,0.35);
+        }
+        .ut-dialog.badtime .ut-text { text-shadow: 0 0 14px rgba(0,234,255,0.4); }
+        .ut-dialog.shake .ut-stage { animation: utShake 0.45s ease-in-out; }
+        @keyframes utShake {
+            10%, 90% { transform: translateX(-2px); }
+            20%, 80% { transform: translateX(3px); }
+            30%, 50%, 70% { transform: translateX(-5px); }
+            40%, 60% { transform: translateX(5px); }
+        }
+        .ut-box {
+            flex: 1;
+            min-width: 0;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            background: #000;
+            color: #fff;
+            border: 4px solid #fff;
+            border-radius: 6px;
+            padding: 22px 24px 16px;
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive;
+            box-shadow: 0 0 0 4px #000, 0 20px 70px rgba(0,0,0,0.75);
+            animation: utIn 0.18s ease-out;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        @keyframes utIn { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+        html[lang="ar"] .ut-box,
+        html[lang="ar"] .ut-text {
+            font-family: "Reem Kufi", "Cairo", "Comic Sans MS", sans-serif;
+        }
+        .ut-text {
+            font-size: 19px;
+            line-height: 1.55;
+            min-height: 3.1em;
+            white-space: pre-wrap;
+        }
+        .ut-text .ut-red { color: #ff2b2b; }
+        .ut-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+        .ut-btn {
+            font-family: inherit;
+            font-size: 15px;
+            color: #fff;
+            background: #000;
+            border: 2px solid #ff8c00;
+            padding: 4px 12px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+        .ut-btn:hover { background: #ff8c00; color: #000; }
+        .ut-mute { margin-inline-end: auto; }
+        @media (max-width: 600px) {
+            .ut-dialog { padding: 14px; }
+            .ut-stage { gap: 10px; }
+            .ut-sans { width: clamp(68px, 18vw, 108px); }
+            .ut-box { padding: 16px 16px 12px; }
+            .ut-text { font-size: 17px; }
+        }
+        @media (max-width: 420px) {
+            .ut-stage { gap: 8px; }
+            .ut-sans { width: 64px; }
+            .ut-btn { padding: 4px 9px; }
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .quote-ticker, .quote-ticker:hover { animation: ticker 22s linear infinite !important; }
+            .quote-ticker:hover { animation-play-state: paused !important; }
+            [dir="rtl"] .quote-ticker { animation-direction: reverse !important; }
+            .back-to-top, .icon-btn, .lang-toggle { transition: none; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .nav-mobile-btn { display: flex; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+            .projects-grid { grid-template-columns: 1fr 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 700px) {
+            .more-grid { grid-template-columns: 1fr; }
+            .poem-player { grid-template-columns: 1fr; gap: 28px; padding: 28px 22px; }
+            .cd { width: 150px; height: 150px; }
+            .cd-label { inset: 38px; font-size: 9px; }
+            .cd-hole { width: 14px; height: 14px; }
+        }
+
+        @media (max-width: 580px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .hero-inner { padding: 60px 0 30px; }
+            #about, #skills, #projects, #achievements, #contact, #more { padding-top: 72px; }
+            .more-block { padding: 28px 20px; }
+        }
+
+        @media (max-width: 420px) {
+            .nav-inner { padding: 0 14px; gap: 10px; }
+            .nav-logo { font-size: 11px; }
+            .nav-right { gap: 6px; }
+            .lang-toggle { padding: 0 8px; font-size: 10px; }
+            .icon-btn, .lang-toggle { height: 32px; }
+            .icon-btn { width: 32px; }
+            .contact-email { padding: 14px 16px; }
+        }
+
+        @media (max-width: 380px) {
+            .hero-name { font-size: 28px; }
+            .poem-controls { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="progress-bar" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo"><span>~/</span>DsMans0021</a>
+        <ul class="nav-links">
+            <li><a href="#about" data-nav="about">about</a></li>
+            <li><a href="#projects" data-nav="projects">projects</a></li>
+            <li><a href="#skills" data-nav="skills">skills</a></li>
+            <li><a href="#achievements" data-nav="achievements">achievements</a></li>
+            <li><a href="#more" data-nav="more">more</a></li>
+            <li><a href="#contact" data-nav="contact">contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+                <i class="fa-solid fa-globe"></i>
+                <span id="lang-label">العربية</span>
+            </button>
+            <button class="icon-btn" id="theme-toggle" aria-label="Toggle light or dark theme">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+            <button class="icon-btn nav-mobile-btn" id="mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer-panel">
+        <div class="drawer-header">
+            <span style="font-family:"Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;font-size:12px;color:var(--accent)">~/menu</span>
+            <button class="drawer-close" id="drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <a href="#about">about</a>
+        <a href="#projects">projects</a>
+        <a href="#skills">skills</a>
+        <a href="#achievements">achievements</a>
+        <a href="#more">more</a>
+        <a href="#contact">contact</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<main id="main">
+<section id="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <img class="hero-avatar" src="assets/avatar.jpg" alt="Portrait of Mohamed Abdelaziz (DsMans0021)" width="76" height="76" />
+            <div class="hero-tag" data-i18n="hero.tag">Egypt &nbsp;🇪🇬</div>
+            <h1 class="hero-name">Mohamed Abdelaziz<span class="hero-cursor" aria-hidden="true"></span></h1>
+            <p class="hero-subtitle" id="hero-subtitle" aria-live="polite">&nbsp;</p>
+            <p class="hero-desc" data-i18n="hero.desc">I'm an engineering student at Minia University and an indie game developer. I build and break things — from Unity multiplayer games to Raspberry Pi experiments — and I love turning ideas into things that actually work.</p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary"><i class="fa-regular fa-eye"></i> <span data-i18n="hero.btn.work">View my work</span></a>
+                <a href="#contact" class="btn-outline"><i class="fa-solid fa-handshake"></i> <span data-i18n="hero.btn.hire">Hire / Collaborate</span></a>
+                <a href="cv.pdf" class="btn-outline" download><i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="hero.btn.cv">Download CV</span></a>
+            </div>
+            <a href="tools.html" class="hero-tools-link">
+                <i class="fa-solid fa-wrench"></i> <span data-i18n="hero.tools">Tools — Anime Scene Search</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="quote-ticker-wrap" aria-hidden="true">
+        <div class="quote-ticker" id="ticker"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <p class="section-label">// 01</p>
+        <h2 class="section-title" data-i18n="about.title">About me</h2>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <p data-i18n="about.p1">I'm <strong>Mohamed Abdelaziz</strong>, a first-year engineering student at <strong>Minia University</strong> in Egypt, passionate about game development, cybersecurity, and building cool things that actually work. Last year I volunteered as a mentor at Hack Club STEM October, and that experience shaped how I learn and share what I know.</p>
+                <p data-i18n="about.p2">I've shipped multiplayer Unity games, built AI assistants on tiny hardware, written Python automation tools, and explored both sides of cybersecurity. I like going deep on things that most people would just use off the shelf.</p>
+                <p data-i18n="about.p3">When I'm not coding, I'm playing games, watching anime, or overclocking hardware to do things it absolutely shouldn't.</p>
+                <div class="currently-block">
+                    <div class="currently-header"><span data-i18n="about.currently">// now</span><span class="currently-date" data-i18n="about.nowDate">Nov 2026</span></div>
+                    <div class="currently-row">
+                        <span class="currently-icon"><i class="fa-solid fa-hammer"></i></span>
+                        <span class="currently-label" data-i18n="about.buildLabel">Building</span>
+                        <span class="currently-val" data-i18n="about.buildVal">FPS multiplayer + C2 research</span>
+                    </div>
+                    <div class="currently-row">
+                        <span class="currently-icon"><i class="fa-solid fa-code"></i></span>
+                        <span class="currently-label" data-i18n="about.workLabel">Working on</span>
+                        <span class="currently-val" data-i18n="about.workVal">Game Dev &amp; Security tools</span>
+                    </div>
+                    <div class="currently-row">
+                        <span class="currently-icon"><i class="fa-solid fa-gamepad"></i></span>
+                        <span class="currently-label" data-i18n="about.playLabel">Playing</span>
+                        <span class="currently-val" data-i18n="about.playVal">indie games + jams</span>
+                    </div>
+                    <div class="currently-row">
+                        <span class="currently-icon"><i class="fa-solid fa-book-open"></i></span>
+                        <span class="currently-label" data-i18n="about.learnLabel">Learning</span>
+                        <span class="currently-val" data-i18n="about.learnVal">Cybersecurity / Flutter</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats reveal">
+                <div class="stat-row">
+                    <span class="stat-label" data-i18n="stat.location">location</span>
+                    <span class="stat-value" data-i18n="stat.locVal">Egypt 🇪🇬</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label" data-i18n="stat.role">role</span>
+                    <span class="stat-value" data-i18n="stat.roleVal">Engineering Student</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label" data-i18n="stat.org">org</span>
+                    <span class="stat-value" data-i18n="stat.orgVal">Minia University</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label" data-i18n="stat.langs">main langs</span>
+                    <span class="stat-value">C# · Python · Dart</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label" data-i18n="stat.github">github</span>
+                    <span class="stat-value">DsMans0021</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label" data-i18n="stat.status">status</span>
+                    <span class="stat-value"><span class="status-dot" aria-hidden="true"></span><span data-i18n="stat.statusVal">open to internships</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="container">
+        <p class="section-label">// 02</p>
+        <h2 class="section-title" data-i18n="projects.title">Projects</h2>
+
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+            <button class="filter-btn active" data-filter="all" data-i18n="filter.all">All</button>
+            <button class="filter-btn" data-filter="games" data-i18n="filter.games">Games</button>
+            <button class="filter-btn" data-filter="apps" data-i18n="filter.apps">Apps</button>
+            <button class="filter-btn" data-filter="security" data-i18n="filter.security">Security</button>
+            <button class="filter-btn" data-filter="networking" data-i18n="filter.networking">Networking</button>
+        </div>
+
+        <div class="projects-grid reveal" id="projects-grid"></div>
+
+        <noscript>
+            <div class="security-note">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>
+                    JavaScript is disabled, so the interactive grid is hidden. Browse the projects directly:
+                    <a href="maya.html">Maya</a>,
+                    <a href="fps-game.html">FPS Multiplayer Game</a>,
+                    <a href="project-room-designer.html">Room Designer</a>,
+                    <a href="project-dsocial.html">DsocialMans0021</a>,
+                    <a href="project-fk-wifi.html">FkWiFiThiefs</a>,
+                    <a href="project-telegram-rat.html">Telegram RAT Demo</a>,
+                    <a href="project-blackmamba.html">BlackMamba</a>,
+                    <a href="https://github.com/DsMans0021?tab=repositories">all repositories on GitHub</a>.
+                </span>
+            </div>
+        </noscript>
+
+        <div class="security-note reveal">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span data-i18n="projects.disclaimer">Security-related projects are strictly educational and for authorized, research use only.</span>
+        </div>
+
+        <div class="reveal" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://github.com/DsMans0021?tab=repositories" target="_blank" rel="noopener noreferrer" class="tools-link">
+                <i class="fa-brands fa-github"></i>
+                <span data-i18n="projects.viewAll">View all repositories on GitHub</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="container">
+        <p class="section-label">// 03</p>
+        <h2 class="section-title" data-i18n="skills.title">Skills</h2>
+        <div class="skills-grid reveal">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-unity"></i></div>
+                <div class="skill-name">C# &amp; Unity</div>
+                <div class="skill-desc" data-i18n="skills.unity">2D/3D game dev, multiplayer with PUN2, OOP, physics systems, game jam submissions.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+                <div class="skill-name">Python</div>
+                <div class="skill-desc" data-i18n="skills.python">Automation, Raspberry Pi, Tkinter GUIs, media tools with OpenCV and MoviePy, scripting.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="skill-name">Cybersecurity</div>
+                <div class="skill-desc" data-i18n="skills.sec">Cisco certified, pentesting, red-team tooling research, phishing awareness, network security.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-flutter" style="font-family:sans-serif;font-size:15px;font-style:normal;">F</i></div>
+                <div class="skill-name">Dart &amp; Flutter</div>
+                <div class="skill-desc" data-i18n="skills.flutter">Mobile app development, cross-platform UI, API-driven Flutter apps.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-raspberry-pi"></i></div>
+                <div class="skill-name">Raspberry Pi / IoT</div>
+                <div class="skill-desc" data-i18n="skills.rpi">Hardware hacking, overclocking, AI assistants, CO₂ filtration systems, IoT experiments.</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+                <div class="skill-name">Web &amp; JavaScript</div>
+                <div class="skill-desc" data-i18n="skills.web">Browser games, portfolio sites, interactive UI, HTML/CSS/JS tools.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+    <div class="container">
+        <p class="section-label">// 04</p>
+        <h2 class="section-title" data-i18n="ach.title">Achievements</h2>
+        <div class="timeline reveal" aria-label="Timeline">
+            <div class="timeline-item">
+                <span class="timeline-year">2024</span>
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <div class="timeline-body">
+                    <div class="timeline-title" data-i18n="tl.t1t">Mentor at Hack Club STEM October</div>
+                    <div class="timeline-desc" data-i18n="tl.t1d">Volunteered as a mentor, helping younger students turn ideas into working projects.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2024</span>
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <div class="timeline-body">
+                    <div class="timeline-title" data-i18n="tl.t2t">Cisco Cybersecurity Certification</div>
+                    <div class="timeline-desc" data-i18n="tl.t2d">Formal training in network security and ethical hacking fundamentals.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2025</span>
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <div class="timeline-body">
+                    <div class="timeline-title" data-i18n="tl.t3t">Shipped Maya on itch.io</div>
+                    <div class="timeline-desc" data-i18n="tl.t3d">Designed, built, and published a complete Unity game from scratch.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2025</span>
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <div class="timeline-body">
+                    <div class="timeline-title" data-i18n="tl.t4t">Started Engineering at Minia University</div>
+                    <div class="timeline-desc" data-i18n="tl.t4d">Began a formal engineering degree while continuing to build games and security tools.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2026</span>
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <div class="timeline-body">
+                    <div class="timeline-title" data-i18n="tl.t5t">Multiplayer FPS + C2 research</div>
+                    <div class="timeline-desc" data-i18n="tl.t5d">Currently building a networked FPS and studying command-and-control architecture from the defensive side.</div>
+                </div>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">01</span>
+            <div>
+                <div class="achievement-title" data-i18n="ach.a1t">AI Assistant on Raspberry Pi Zero 2 W</div>
+                <div class="achievement-desc" data-i18n="ach.a1d">Built a functional voice assistant running on severely constrained hardware — proving AI tools don't need beefy machines.</div>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">02</span>
+            <div>
+                <div class="achievement-title" data-i18n="ach.a2t">Video Converter &amp; Media Player in Python</div>
+                <div class="achievement-desc" data-i18n="ach.a2d">Tkinter + MoviePy + OpenCV + Pygame desktop app. Converts MP4→MP3 and plays media with a fully custom GUI.</div>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">03</span>
+            <div>
+                <div class="achievement-title" data-i18n="ach.a3t">Two-Stage CO₂ Air Filtration System</div>
+                <div class="achievement-desc" data-i18n="ach.a3d">Engineered a prototype filtering air with water and calcium hydroxide — applying real science for environmental impact.</div>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">04</span>
+            <div>
+                <div class="achievement-title" data-i18n="ach.a4t">Game Jam Submissions on itch.io</div>
+                <div class="achievement-desc" data-i18n="ach.a4d">Shipped complete Unity/C# games under tight deadlines. Real pressure, real deadline, real results.</div>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">05</span>
+            <div>
+                <div class="achievement-title" data-i18n="ach.a5t">Overclocked Raspberry Pi Zero 2 W</div>
+                <div class="achievement-desc" data-i18n="ach.a5d">Modified configs, safely pushed the board beyond spec. Ran Doom and retro emulators on something smaller than a credit card.</div>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <span class="achievement-num">06</span>
+            <div>
+                <div class="achievement-title" data-i18n="ach.a6t">Cisco Cybersecurity Certification</div>
+                <div class="achievement-desc" data-i18n="ach.a6d">Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MORE ABOUT ME -->
+<section id="more">
+    <div class="container">
+        <p class="section-label">// 05</p>
+        <h2 class="section-title" data-i18n="more.title">More about me</h2>
+        <p class="section-sub" data-i18n="more.sub">The personality part — what I listen to and what I keep coming back to. Optional reading, but fun.</p>
+        <div class="more-grid">
+            <div class="more-block reveal" id="quotes">
+                <div class="more-block-label" data-i18n="more.quotesLabel">// words to live by</div>
+                <div class="more-block-title" data-i18n="more.quotesTitle">Favorite quotes</div>
+                <div class="quote-display">
+                    <div class="quote-mark" aria-hidden="true">"</div>
+                    <div class="quote-text" id="quote-text">Loading...</div>
+                    <div class="quote-author" id="quote-author"></div>
+                    <div class="quote-source" id="quote-source"></div>
+                    <div class="quote-controls">
+                        <span class="quote-counter" id="quote-counter">1 / 200</span>
+                        <button class="quote-btn" id="quote-prev" aria-label="Previous quote"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="quote-btn" id="quote-next" aria-label="Next quote"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="more-block reveal" id="poems">
+                <div class="more-block-label" data-i18n="more.poemsLabel">// on repeat</div>
+                <div class="more-block-title" id="poems-heading" data-i18n="more.poemsTitle">Poetry I keep coming back to</div>
+                <div class="poem-player" role="group" aria-labelledby="poems-heading">
+                    <div class="cd-wrap">
+                        <div class="cd" id="cd" aria-hidden="true">
+                            <div class="cd-grooves"></div>
+                            <div class="cd-label" id="cd-label">—</div>
+                            <div class="cd-hole"></div>
+                        </div>
+                    </div>
+                    <div class="poem-meta">
+                        <div class="poem-now" id="poem-title" aria-live="polite">—</div>
+                        <div class="poem-poet" id="poem-poet">—</div>
+                        <div class="poem-sub"><span id="poem-index">1 / 9</span> · <span data-i18n="more.poemsSub">A small collection of Arabic poetry and anthems.</span></div>
+                        <div class="poem-controls">
+                            <button class="poem-btn" id="poem-prev" type="button" aria-label="Previous poem"><i class="fa-solid fa-backward-step"></i></button>
+                            <button class="poem-btn poem-play" id="poem-play" type="button" aria-label="Play"><i class="fa-solid fa-play"></i></button>
+                            <button class="poem-btn" id="poem-next" type="button" aria-label="Next poem"><i class="fa-solid fa-forward-step"></i></button>
+                            <button class="poem-btn poem-mode" id="poem-shuffle" type="button" aria-label="Shuffle: off" aria-pressed="false"><i class="fa-solid fa-shuffle"></i></button>
+                            <button class="poem-btn poem-mode" id="poem-repeat" type="button" aria-label="Repeat: off" aria-pressed="false"><i class="fa-solid fa-repeat"></i></button>
+                            <button class="poem-btn" id="poem-share" type="button" aria-label="Share this poem"><i class="fa-solid fa-share-nodes"></i></button>
+                        </div>
+                        <div class="poem-progress">
+                            <span class="poem-time" id="poem-cur">0:00</span>
+                            <input class="poem-seek" id="poem-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek">
+                            <span class="poem-time" id="poem-dur">0:00</span>
+                        </div>
+                        <div class="poem-playlist-wrap">
+                            <button class="poem-playlist-toggle" id="poem-list-toggle" type="button" aria-expanded="false" aria-controls="poem-list">
+                                <i class="fa-solid fa-list-ul"></i>
+                                <span data-i18n="more.playlist">Playlist</span>
+                                <span class="poem-list-count" id="poem-list-count">1 / 9</span>
+                                <i class="fa-solid fa-chevron-down poem-list-chevron" aria-hidden="true"></i>
+                            </button>
+                            <ol class="poem-list" id="poem-list" hidden></ol>
+                        </div>
+                    </div>
+                </div>
+                <audio id="poem-audio" preload="metadata"></audio>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <p class="section-label">// 06</p>
+        <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <p data-i18n="contact.p">Have a project idea, a security question, or just want to talk tech? My inbox is always open.</p>
+                <a class="contact-email" href="mailto:medozizo008@gmail.com">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    <span>medozizo008@gmail.com</span>
+                </a>
+                <div class="contact-links">
+                    <a href="https://github.com/DsMans0021" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fa-brands fa-github"></i> github.com/DsMans0021
+                    </a>
+                    <a href="https://linktr.ee/DsMans0021/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fa-solid fa-tree"></i> linktr.ee/DsMans0021
+                    </a>
+                    <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fa-solid fa-code"></i> Hack Club
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <span class="footer-copy" data-i18n="footer.copy">© 2026 Mohamed Abdelaziz · DsMans0021</span>
+        <div class="footer-socials">
+            <a href="https://github.com/DsMans0021" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linktr.ee/DsMans0021/" target="_blank" rel="noopener noreferrer" aria-label="Linktree"><i class="fa-solid fa-tree"></i></a>
+            <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer" aria-label="Hack Club"><i class="fa-solid fa-code"></i></a>
+        </div>
+    </div>
+</footer>
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- UNDERTALE EASTER EGG -->
+<button class="ut-heart" id="ut-heart" aria-label="A mysterious heart" aria-haspopup="dialog" title="heya.">♥</button>
+<audio id="ut-voice" preload="auto" loop aria-hidden="true">
+    <source src="assets/sans%20voice%204%20sec.mp3" type="audio/mpeg">
+    <source src="assets/sans%20voice%201%20sec.mp3" type="audio/mpeg">
+</audio>
+<div class="ut-dialog" id="ut-dialog" role="dialog" aria-modal="true" aria-label="Sans the skeleton">
+    <div class="ut-stage">
+        <div class="ut-sans" aria-hidden="true">
+            <img class="ut-sans-img" src="assets/sans.png" alt="" width="1024" height="1346" decoding="async">
+        </div>
+        <div class="ut-box">
+            <p class="ut-text" id="ut-text"></p>
+            <div class="ut-actions">
+                <button class="ut-btn ut-mute" id="ut-mute" type="button" aria-label="Mute Sans voice" aria-pressed="false"><i class="fa-solid fa-volume-high" aria-hidden="true"></i></button>
+                <button class="ut-btn" id="ut-next" type="button" aria-label="Next line">▶</button>
+                <button class="ut-btn" id="ut-close" type="button" aria-label="Close dialogue">✕</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8186398462710647" crossorigin="anonymous"></script>
+<script src="projects-data.js"></script>
+
+<script>
+// ============================================================
+// TRANSLATIONS
+// ============================================================
+const I18N = {
+    en: {
+        'hero.tag': 'Egypt &nbsp;🇪🇬',
+        'hero.desc': "I'm an engineering student at Minia University and an indie game developer. I build and break things — from Unity multiplayer games to Raspberry Pi experiments — and I love turning ideas into things that actually work.",
+        'hero.btn.work': 'View my work',
+        'hero.btn.hire': 'Hire / Collaborate',
+        'hero.btn.cv': 'Download CV',
+        'hero.tools': 'Tools — Anime Scene Search',
+        'about.title': 'About me',
+        'about.p1': "I'm <strong>Mohamed Abdelaziz</strong>, a first-year engineering student at <strong>Minia University</strong> in Egypt, passionate about game development, cybersecurity, and building cool things that actually work. Last year I volunteered as a mentor at Hack Club STEM October, and that experience shaped how I learn and share what I know.",
+        'about.p2': "I've shipped multiplayer Unity games, built AI assistants on tiny hardware, written Python automation tools, and explored both sides of cybersecurity. I like going deep on things that most people would just use off the shelf.",
+        'about.p3': "When I'm not coding, I'm playing games, watching anime, or overclocking hardware to do things it absolutely shouldn't.",
+        'about.currently': '// now',
+        'about.nowDate': 'Nov 2026',
+        'about.buildLabel': 'Building',
+        'about.buildVal': 'FPS multiplayer + C2 research',
+        'about.workLabel': 'Working on',
+        'about.workVal': 'Game Dev & Security tools',
+        'about.playLabel': 'Playing',
+        'about.playVal': 'indie games + jams',
+        'about.learnLabel': 'Learning',
+        'about.learnVal': 'Engineering @ Minia University',
+        'stat.location': 'location',
+        'stat.locVal': 'Egypt 🇪🇬',
+        'stat.role': 'role',
+        'stat.roleVal': 'Engineering Student',
+        'stat.org': 'org',
+        'stat.orgVal': 'Minia University',
+        'stat.langs': 'main langs',
+        'stat.github': 'github',
+        'stat.status': 'status',
+        'stat.statusVal': 'open to internships',
+        'projects.title': 'Projects',
+        'filter.all': 'All',
+        'filter.games': 'Games',
+        'filter.apps': 'Apps',
+        'filter.security': 'Security',
+        'filter.networking': 'Networking',
+        'projects.disclaimer': 'Security-related projects are strictly educational and for authorized, research use only.',
+        'projects.viewAll': 'View all repositories on GitHub',
+        'skills.title': 'Skills',
+        'skills.unity': '2D/3D game dev, multiplayer with PUN2, OOP, physics systems, game jam submissions.',
+        'skills.python': 'Automation, Raspberry Pi, Tkinter GUIs, media tools with OpenCV and MoviePy, scripting.',
+        'skills.sec': 'Cisco certified, pentesting, red-team tooling research, phishing awareness, network security.',
+        'skills.flutter': 'Mobile app development, cross-platform UI, API-driven Flutter apps.',
+        'skills.rpi': 'Hardware hacking, overclocking, AI assistants, CO₂ filtration systems, IoT experiments.',
+        'skills.web': 'Browser games, portfolio sites, interactive UI, HTML/CSS/JS tools.',
+        'ach.title': 'Achievements',
+        'tl.t1t': 'Mentor at Hack Club STEM October',
+        'tl.t1d': 'Volunteered as a mentor, helping younger students turn ideas into working projects.',
+        'tl.t2t': 'Cisco Cybersecurity Certification',
+        'tl.t2d': 'Formal training in network security and ethical hacking fundamentals.',
+        'tl.t3t': 'Shipped Maya on itch.io',
+        'tl.t3d': 'Designed, built, and published a complete Unity game from scratch.',
+        'tl.t4t': 'Started Engineering at Minia University',
+        'tl.t4d': 'Began a formal engineering degree while continuing to build games and security tools.',
+        'tl.t5t': 'Multiplayer FPS + C2 research',
+        'tl.t5d': 'Currently building a networked FPS and studying command-and-control architecture from the defensive side.',
+        'ach.a1t': 'AI Assistant on Raspberry Pi Zero 2 W',
+        'ach.a1d': "Built a functional voice assistant running on severely constrained hardware — proving AI tools don't need beefy machines.",
+        'ach.a2t': 'Video Converter & Media Player in Python',
+        'ach.a2d': 'Tkinter + MoviePy + OpenCV + Pygame desktop app. Converts MP4→MP3 and plays media with a fully custom GUI.',
+        'ach.a3t': 'Two-Stage CO₂ Air Filtration System',
+        'ach.a3d': 'Engineered a prototype filtering air with water and calcium hydroxide — applying real science for environmental impact.',
+        'ach.a4t': 'Game Jam Submissions on itch.io',
+        'ach.a4d': 'Shipped complete Unity/C# games under tight deadlines. Real pressure, real deadline, real results.',
+        'ach.a5t': 'Overclocked Raspberry Pi Zero 2 W',
+        'ach.a5d': 'Modified configs, safely pushed the board beyond spec. Ran Doom and retro emulators on something smaller than a credit card.',
+        'ach.a6t': 'Cisco Cybersecurity Certification',
+        'ach.a6d': 'Formal certification in network security and ethical hacking fundamentals, plus hands-on pentesting projects.',
+        'contact.title': 'Contact',
+        'contact.p': "Have a project idea, a security question, or just want to talk tech? My inbox is always open.",
+        'more.title': 'More about me',
+        'more.sub': "The personality part — what I listen to and what I keep coming back to. Optional reading, but fun.",
+        'more.quotesLabel': '// words to live by',
+        'more.quotesTitle': 'Favorite quotes',
+        'more.poemsLabel': '// on repeat',
+        'more.poemsTitle': 'Poetry I keep coming back to',
+        'more.poemsSub': 'A small collection of Arabic poetry and anthems.',
+        'more.playlist': 'Playlist',
+        'footer.copy': '© 2026 Mohamed Abdelaziz · DsMans0021',
+        nav: {
+            about: 'about', projects: 'projects', skills: 'skills',
+            achievements: 'achievements', contact: 'contact', more: 'more'
+        }
+    },
+    ar: {
+        'hero.tag': 'مصر &nbsp;🇪🇬',
+        'hero.desc': 'أنا طالب هندسة في جامعة المنيا ومطوّر ألعاب مستقل. أبني وأختبر الأشياء — من ألعاب Unity متعددة اللاعبين إلى تجارب Raspberry Pi — وأحب تحويل الأفكار إلى أشياء تعمل فعلًا.',
+        'hero.btn.work': 'شاهد أعمالي',
+        'hero.btn.hire': 'وظّفني / تعاون معي',
+        'hero.btn.cv': 'تحميل السيرة الذاتية',
+        'hero.tools': 'الأدوات — البحث عن مشاهد الأنمي',
+        'about.title': 'من أنا',
+        'about.p1': 'أنا <strong>محمد عبدالعزيز</strong>، طالب هندسة في السنة الأولى بـ<strong>جامعة المنيا</strong> في مصر، شغوف بتطوير الألعاب والأمن السيبراني وبناء أشياء رائعة تعمل فعلًا. العام الماضي تطوّعت كمُرشد في «هاك كلوب» ستيم أكتوبر، وقد شكّلت هذه التجربة طريقة تعلّمي ومشاركتي لما أعرفه.',
+        'about.p2': 'نشرت ألعاب Unity متعددة اللاعبين، وبنيت مساعدين بالذكاء الاصطناعي على أجهزة صغيرة، وبرمجت أدوات أتمتة بلغة بايثون، واستكشفت جانبي الأمن السيبراني. أحب التعمق في أشياء يكتفي معظم الناس باستخدامها من خارج الصندوق.',
+        'about.p3': 'عندما لا أُبرمج، ألعب ألعاب الفيديو، أو أشاهد الأنمي، أو أرفع تردد الأجهزة لفعل ما لا يُفترض أن تفعله.',
+        'about.currently': '// الآن',
+        'about.nowDate': 'نوفمبر 2026',
+        'about.buildLabel': 'أبني',
+        'about.buildVal': 'FPS متعددة اللاعبين + بحث C2',
+        'about.workLabel': 'أعمل على',
+        'about.workVal': 'تطوير الألعاب وأدوات الأمان',
+        'about.playLabel': 'ألعب',
+        'about.playVal': 'ألعاب مستقلة ومسابقات',
+        'about.learnLabel': 'أتعلم',
+        'about.learnVal': 'الهندسة @ جامعة المنيا',
+        'stat.location': 'الموقع',
+        'stat.locVal': 'مصر 🇪🇬',
+        'stat.role': 'الدور',
+        'stat.roleVal': 'طالب هندسة',
+        'stat.org': 'الجامعة',
+        'stat.orgVal': 'جامعة المنيا',
+        'stat.langs': 'اللغات الأساسية',
+        'stat.github': 'جيت هب',
+        'stat.status': 'الحالة',
+        'stat.statusVal': 'متاح للتدريب',
+        'projects.title': 'المشاريع',
+        'filter.all': 'الكل',
+        'filter.games': 'ألعاب',
+        'filter.apps': 'تطبيقات',
+        'filter.security': 'أمن',
+        'filter.networking': 'شبكات',
+        'projects.disclaimer': 'المشاريع المتعلقة بالأمن هي لأغراض تعليمية وبحثية ومصرّحٍ بها فقط.',
+        'projects.viewAll': 'عرض كل المشاريع على جيت هب',
+        'skills.title': 'المهارات',
+        'skills.unity': 'تطوير ألعاب 2D/3D، تعدد لاعبين عبر PUN2، برمجة كائنية، فيزياء، مشاركات في مسابقات الألعاب.',
+        'skills.python': 'أتمتة، Raspberry Pi، واجهات Tkinter، أدوات وسائط بـ OpenCV وMoviePy، سكربتات.',
+        'skills.sec': 'شهادة سيسكو، اختبار اختراق، أبحاث أدوات الفريق الأحمر، توعية بالتصيد، أمن الشبكات.',
+        'skills.flutter': 'تطوير تطبيقات الموبايل، واجهات متعددة المنصات، تطبيقات فلاتر تعتمد على APIs.',
+        'skills.rpi': 'هندسة أجهزة، رفع تردد التشغيل، مساعدين بالذكاء الاصطناعي، أنظمة تنقية CO₂، تجارب إنترنت الأشياء.',
+        'skills.web': 'ألعاب متصفح، مواقع بورتفوليو، واجهات تفاعلية، أدوات HTML/CSS/JS.',
+        'ach.title': 'الإنجازات',
+        'tl.t1t': 'مُرشد في «هاك كلوب» ستيم أكتوبر',
+        'tl.t1d': 'تطوّعت كمُرشد لمساعدة الطلاب الأصغر على تحويل أفكارهم إلى مشاريع تعمل.',
+        'tl.t2t': 'شهادة Cisco في الأمن السيبراني',
+        'tl.t2d': 'تدريب رسمي في أمن الشبكات وأساسيات الاختراق الأخلاقي.',
+        'tl.t3t': 'نشر Maya على itch.io',
+        'tl.t3d': 'صمّمت وبنيت ونشرت لعبة Unity كاملة من الصفر.',
+        'tl.t4t': 'بداية دراسة الهندسة بجامعة المنيا',
+        'tl.t4d': 'بدأت الدراسة الهندسية الرسمية مع الاستمرار في بناء الألعاب وأدوات الأمان.',
+        'tl.t5t': 'FPS متعددة اللاعبين + بحث C2',
+        'tl.t5d': 'أبني حاليًا لعبة FPS شبكية وأدرس معمارية التحكم والسيطرة من الجانب الدفاعي.',
+        'ach.a1t': 'مساعد ذكاء اصطناعي على Raspberry Pi Zero 2 W',
+        'ach.a1d': 'بنيت مساعد صوتيًا يعمل على أجهزة محدودة جدًا — لإثبات أن أدوات الذكاء الاصطناعي لا تحتاج أجهزة قوية.',
+        'ach.a2t': 'محوّل فيديو ومشغّل وسائط ببايثون',
+        'ach.a2d': 'تطبيق سطح مكتب بـ Tkinter + MoviePy + OpenCV + Pygame. يحوّل MP4 إلى MP3 ويشغّل الوسائط بواجهة مخصّصة بالكامل.',
+        'ach.a3t': 'نظام تنقية هواء CO₂ على مرحلتين',
+        'ach.a3d': 'صممت نموذجًا أوليًا ينقي الهواء بالماء وهيدروكسيد الكالسيوم — بتطبيق علم حقيقي لأثر بيئي.',
+        'ach.a4t': 'مشاركات في مسابقات الألعاب على itch.io',
+        'ach.a4d': 'أصدرت ألعاب Unity/C# كاملة تحت مواعيد ضاغطة. ضغط حقيقي، موعد حقيقي، نتائج حقيقية.',
+        'ach.a5t': 'رفع تردد Raspberry Pi Zero 2 W',
+        'ach.a5d': 'عدّلت الإعدادات ودفعت اللوحة بأمان فوق المواصفات. شغّلت Doom ومحاكيات قديمة على شيء أصغر من بطاقة الائتمان.',
+        'ach.a6t': 'شهادة سيسكو في الأمن السيبراني',
+        'ach.a6d': 'شهادة رسمية في أساسيات أمن الشبكات والاختراق الأخلاقي، مع مشاريع اختبار اختراق عملية.',
+        'contact.title': 'تواصل',
+        'contact.p': 'لديك فكرة مشروع، أو سؤال أمني، أو تريد الحديث عن التقنية؟ بريدي مفتوح دائمًا.',
+        'more.title': 'المزيد عني',
+        'more.sub': 'جزء الشخصية — ما أستمع إليه وما أعود إليه دائمًا. قراءة اختيارية لكنها ممتعة.',
+        'more.quotesLabel': '// أقوال أؤمن بها',
+        'more.quotesTitle': 'أقوال مفضّلة',
+        'more.poemsLabel': '// على التكرار',
+        'more.poemsTitle': 'شعر أعود إليه دائمًا',
+        'more.poemsSub': 'مجموعة صغيرة من الشعر العربي والأناشيد.',
+        'more.playlist': 'قائمة التشغيل',
+        'footer.copy': '© 2026 محمد عبدالعزيز · DsMans0021',
+        nav: {
+            about: 'من أنا', projects: 'المشاريع', skills: 'المهارات',
+            achievements: 'الإنجازات', contact: 'التواصل', more: 'المزيد'
+        }
+    }
+};
+
+// ============================================================
+// LANGUAGE
+// ============================================================
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = lang === 'ar'
+        ? 'محمد عبدالعزيز | DsMans0021 — طالب هندسة ومطوّر ألعاب'
+        : 'Mohamed Abdelaziz | DsMans0021 — Engineering Student & Game Developer';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = I18N[lang][el.dataset.i18n];
+        if (v !== undefined) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const v = I18N[lang][el.dataset.i18nPh];
+        if (v !== undefined) el.placeholder = v;
+    });
+    document.querySelectorAll('.nav-links a, .drawer-panel a').forEach(a => {
+        const key = (a.getAttribute('href') || '').slice(1);
+        if (key && I18N[lang].nav[key]) a.textContent = I18N[lang].nav[key];
+    });
+    document.getElementById('lang-label').textContent = lang === 'ar' ? 'EN' : 'العربية';
+    document.getElementById('lang-toggle').setAttribute('aria-label', lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية');
+    document.querySelectorAll('.filter-btn[data-i18n]').forEach(btn => {
+        const v = I18N[lang][btn.dataset.i18n];
+        if (v !== undefined) btn.textContent = v;
+    });
+    cycleSubtitle(true);
+    renderProjects();
+    if (document.getElementById('ut-dialog')?.classList.contains('open') && typeof window.utRefreshLang === 'function') {
+        window.utRefreshLang();
+    }
+    localStorage.setItem('lang', lang);
+}
+
+document.getElementById('lang-toggle').addEventListener('click', () => {
+    applyLang(currentLang === 'ar' ? 'en' : 'ar');
+});
+
+// ============================================================
+// PROJECTS DATABASE
+// ============================================================
+
+
+const STATUS_KEY = {
+    completed: 'st-completed',
+    inprogress: 'st-inprogress',
+    archived: 'st-archived'
+};
+
+const STATUS_TEXT = {
+    completed: { en: 'Completed', ar: 'مكتمل' },
+    inprogress: { en: 'In progress', ar: 'قيد التطوير' },
+    archived: { en: 'Archived', ar: 'مؤرشف' }
+};
+
+const CATEGORY_ICON = {
+    games: 'fa-solid fa-gamepad',
+    apps: 'fa-solid fa-couch',
+    security: 'fa-solid fa-shield-halved',
+    networking: 'fa-solid fa-network-wired'
+};
+
+let activeFilter = 'all';
+
+function t(key) {
+    return I18N[currentLang][key] || key;
+}
+
+function renderProjects() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    let list = PROJECTS.filter(p => activeFilter === 'all' || p.category === activeFilter);
+    list = list.slice().sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    if (list.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'no-results';
+        empty.style.cssText = 'font-family:\"Comic Sans MS\", \"Comic Sans\", \"Cairo\", cursive;font-size:12px;color:var(--text-muted);padding:32px 0;text-align:center;';
+        empty.textContent = currentLang === 'ar' ? 'لا توجد مشاريع في هذا التصنيف بعد.' : 'No projects in this category yet.';
+        grid.appendChild(empty);
+        return;
+    }
+    list.forEach(p => grid.appendChild(buildProjectCard(p)));
+}
+
+function buildProjectCard(p) {
+    const card = document.createElement('article');
+    card.className = 'project-card' + (p.featured ? ' featured' : '');
+    card.setAttribute('data-category', p.category);
+
+    const thumb = document.createElement('div');
+    thumb.className = 'project-thumb cat-' + p.category + (p.image ? ' has-img' : '');
+
+    if (p.image) {
+        const picture = document.createElement('picture');
+        if (p.webp) {
+            const src = document.createElement('source');
+            src.type = 'image/webp';
+            src.srcset = p.webp;
+            picture.appendChild(src);
+        }
+        const img = document.createElement('img');
+        img.className = 'project-thumb-img';
+        img.src = p.image;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.width = 1200;
+        img.height = 630;
+        picture.appendChild(img);
+        thumb.appendChild(picture);
+    } else {
+        const icon = document.createElement('i');
+        icon.className = (CATEGORY_ICON[p.category] || 'fa-solid fa-code');
+        icon.setAttribute('aria-hidden', 'true');
+        thumb.appendChild(icon);
+    }
+
+    const status = document.createElement('span');
+    status.className = 'status-badge ' + (STATUS_KEY[p.status] || '');
+    status.textContent = STATUS_TEXT[p.status][currentLang];
+    status.setAttribute('data-status', p.status);
+    thumb.appendChild(status);
+
+    if (p.featured) {
+        const ribbon = document.createElement('span');
+        ribbon.className = 'featured-ribbon';
+        ribbon.textContent = '★ ' + (currentLang === 'ar' ? 'مميز' : 'featured');
+        thumb.appendChild(ribbon);
+    }
+    card.appendChild(thumb);
+
+    const body = document.createElement('div');
+    body.className = 'project-body';
+
+    const name = document.createElement('div');
+    name.className = 'project-name';
+    name.textContent = p.name;
+    body.appendChild(name);
+
+    const desc = document.createElement('div');
+    desc.className = 'project-desc';
+    desc.textContent = p.desc[currentLang];
+    body.appendChild(desc);
+
+    const tags = document.createElement('div');
+    tags.className = 'project-tags';
+    const tag = document.createElement('span');
+    tag.className = 'project-lang';
+    tag.textContent = p.lang;
+    tags.appendChild(tag);
+    body.appendChild(tags);
+
+    card.appendChild(body);
+
+    const links = document.createElement('div');
+    links.className = 'project-links';
+
+    if (p.demo) {
+        links.appendChild(miniLink(p.demo, '<i class="fa-solid fa-arrow-up-right-from-square"></i> ' + (currentLang === 'ar' ? 'تجربة حيّة' : 'Live demo'), true));
+    }
+    if (p.code) {
+        links.appendChild(miniLink(p.code, '<i class="fa-brands fa-github"></i> ' + (currentLang === 'ar' ? 'الكود' : 'Source'), false));
+    }
+    if (p.id) {
+        links.appendChild(miniLink(p.page || 'project.html?id=' + encodeURIComponent(p.id), '<i class="fa-solid fa-circle-info"></i> ' + (currentLang === 'ar' ? 'التفاصيل' : 'Details'), true));
+    }
+    if (links.childNodes.length === 0) {
+        const none = document.createElement('span');
+        none.className = 'mini-btn';
+        none.style.cursor = 'default';
+        none.textContent = currentLang === 'ar' ? 'الرابط قادم' : 'links coming soon';
+        links.appendChild(none);
+    }
+    card.appendChild(links);
+
+    return card;
+}
+
+function miniLink(href, html, accent) {
+    const a = document.createElement('a');
+    a.className = 'mini-btn' + (accent ? ' accent' : '');
+    a.href = href;
+    if (href.startsWith('http')) {
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+    }
+    a.innerHTML = html;
+    return a;
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+        renderProjects();
+    });
+});
+
+// ============================================================
+// QUOTES DATABASE — 200+ real quotes
+// ============================================================
+const QUOTES = [
+  // === GAME DEVELOPERS ===
+  { text: "A delayed game is eventually good, but a rushed game is forever bad.", author: "Shigeru Miyamoto", source: "Nintendo" },
+  { text: "The goal is not to make games that everyone likes, but to make games that someone loves.", author: "Hideo Kojima", source: "Kojima Productions" },
+  { text: "Video games are bad for you? That's what they said about rock and roll.", author: "Shigeru Miyamoto", source: "Nintendo" },
+  { text: "Games give you a chance to excel, and if you're playing in good company you don't even mind if you lose because you had the enjoyment of the company during the course of the game.", author: "Gary Gygax", source: "D&D Creator" },
+  { text: "I always wanted to be an explorer, but I realized I'll never be an astronaut. So I made the next best thing: video games.", author: "Shigeru Miyamoto", source: "Nintendo" },
+  { text: "Making games is one of the most difficult creative endeavors there is.", author: "Ken Levine", source: "Irrational Games" },
+  { text: "The idea of just wandering into the woods, seeing a cave, and thinking 'I wonder what's in there' — that was what we were trying to replicate.", author: "Hidetaka Miyazaki", source: "FromSoftware" },
+  { text: "A game is a series of interesting choices.", author: "Sid Meier", source: "Firaxis Games" },
+  { text: "We want to give players something that is genuinely special, that they couldn't find anywhere else.", author: "Amy Hennig", source: "Naughty Dog" },
+  { text: "The best games are the ones where the player feels in control of the story.", author: "Neil Druckmann", source: "Naughty Dog" },
+  { text: "We're not making art, we're making products. But products can have art in them.", author: "Cliff Bleszinski", source: "Epic Games" },
+  { text: "If you're not embarrassed by the first version of your product, you've launched too late.", author: "Reid Hoffman", source: "LinkedIn" },
+  { text: "Do what you love. Know your own bone; gnaw at it, bury it, unearth it, and gnaw it still.", author: "Tim Schafer", source: "Double Fine" },
+  { text: "Games are literature. They have characters, they have story, they have environment.", author: "Warren Spector", source: "Ion Storm" },
+  { text: "I think video games are a genuine art form, in the same way that films are.", author: "Hideo Kojima", source: "Kojima Productions" },
+  { text: "The joy of creation is the best feeling in the world.", author: "Will Wright", source: "Maxis" },
+  { text: "The most powerful person in the world is the storyteller.", author: "Steve Jobs", source: "Apple" },
+  { text: "Players are not passive consumers. They are active participants in our worlds.", author: "Hidetaka Miyazaki", source: "FromSoftware" },
+  { text: "We make games for one reason: because we love them.", author: "Gabe Newell", source: "Valve" },
+  { text: "If you can dream it, you can do it.", author: "Walt Disney", source: "Disney" },
+  { text: "Polish is the difference between a good game and a great one.", author: "Shigeru Miyamoto", source: "Nintendo" },
+  { text: "Constraints are the mother of creativity.", author: "Mark Cerny", source: "PlayStation" },
+  { text: "The player is always right, even when they're wrong.", author: "Peter Molyneux", source: "Lionhead Studios" },
+  { text: "Every game is a new opportunity to change someone's life.", author: "Jenova Chen", source: "thatgamecompany" },
+  { text: "The best level design tells a story without a single word.", author: "Jordan Thomas", source: "Irrational Games" },
+
+  // === GAME CHARACTERS & GAMES ===
+  { text: "Praise the Sun!", author: "Solaire of Astora", source: "Dark Souls" },
+  { text: "The flow of time is always cruel... its speed seems different for each person, but no one can change it.", author: "Sheik", source: "The Legend of Zelda: Ocarina of Time" },
+  { text: "It's dangerous to go alone! Take this.", author: "Old Man", source: "The Legend of Zelda (1986)" },
+  { text: "Despite everything, it's still you.", author: "Narrator", source: "Undertale" },
+  { text: "Do you wanna have a bad time?", author: "Sans", source: "Undertale" },
+  { text: "War. War never changes.", author: "Ron Perlman", source: "Fallout series" },
+  { text: "What is a man? A miserable little pile of secrets!", author: "Dracula", source: "Castlevania: Symphony of the Night" },
+  { text: "Stay a while and listen!", author: "Deckard Cain", source: "Diablo series" },
+  { text: "You were almost a Jill sandwich!", author: "Barry Burton", source: "Resident Evil" },
+  { text: "The cake is a lie.", author: "GLaDOS (via graffiti)", source: "Portal" },
+  { text: "We're here, we're queer, get used to it.", author: "Strong Bad", source: "Homestar Runner" },
+  { text: "Do you feel in control?", author: "The Antagonist", source: "Spec Ops: The Line" },
+  { text: "A man chooses. A slave obeys.", author: "Andrew Ryan", source: "BioShock" },
+  { text: "Who are you, so wise in the ways of science?", author: "GLaDOS", source: "Portal 2" },
+  { text: "I used to be an adventurer like you, then I took an arrow in the knee.", author: "Guard", source: "The Elder Scrolls V: Skyrim" },
+  { text: "It's not about the destination, it's about the journey.", author: "Ezio Auditore", source: "Assassin's Creed" },
+  { text: "Nothing is true, everything is permitted.", author: "Altaïr Ibn-La'Ahad", source: "Assassin's Creed" },
+  { text: "The night is darkest just before the dawn.", author: "Harvey Dent", source: "Batman: Arkham City" },
+  { text: "I am Error.", author: "Error", source: "Zelda II: The Adventure of Link" },
+  { text: "In the end, does it matter who wins? The struggle itself is the meaning.", author: "The Narrator", source: "Disco Elysium" },
+  { text: "Some trees flourish, others die. Some cattle grow strong, others are taken by wolves. Some men are born rich enough and dumb enough to enjoy their lives. Ain't nothing fair.", author: "John Marston", source: "Red Dead Redemption" },
+  { text: "Endure and survive.", author: "Joel Miller", source: "The Last of Us" },
+  { text: "If you want to make enemies, try to change something.", author: "Solid Snake", source: "Metal Gear Solid" },
+  { text: "We're not tools of the government, or anyone else. Fighting was the only thing... the only thing I was good at. But at least I always fought for what I believed in.", author: "Gray Fox", source: "Metal Gear Solid" },
+  { text: "Kept you waiting, huh?", author: "Big Boss", source: "Metal Gear Solid 3" },
+  { text: "The truth is, video games are the future of storytelling.", author: "Hideo Kojima", source: "Kojima Productions" },
+  { text: "You cannot kill me in a way that matters.", author: "The Transcendent One", source: "Planescape: Torment" },
+  { text: "No matter how dark the night, morning always comes, and our journey begins anew.", author: "Lulu", source: "Final Fantasy X" },
+  { text: "Even if the morrow is barren of promises, nothing shall forestall my return.", author: "Caius Ballad", source: "Final Fantasy XIII-2" },
+  { text: "There is no real ending. It's just the place where you stop the story.", author: "Frank Herbert", source: "Dune (cited in gaming)" },
+  { text: "To be forgotten is worse than death.", author: "Freya Crescent", source: "Final Fantasy IX" },
+  { text: "The more personal something is, the more universal it is.", author: "Undertale Theme", source: "Undertale (Toby Fox)" },
+  { text: "In this world, it's kill or be killed.", author: "Flowey", source: "Undertale" },
+  { text: "Don't give up! I believe in you!", author: "Papyrus", source: "Undertale" },
+  { text: "Your power is that of emotion.", author: "Nier", source: "NieR:Automata" },
+  { text: "Even if we forget the faces of our friends, we will never forget the bonds that were carved into our souls.", author: "2B", source: "NieR:Automata" },
+  { text: "Fascinating. So much passion, so much ego.", author: "Adam", source: "NieR:Automata" },
+  { text: "Everything that lives is designed to end.", author: "2B", source: "NieR:Automata" },
+  { text: "The mind is everything. What you think, you become.", author: "The Knight", source: "Hollow Knight" },
+  { text: "I will be king of this world.", author: "The Radiance", source: "Hollow Knight" },
+  { text: "Together, we shall learn from this dark place what we could not learn in the light.", author: "The Seer", source: "Hollow Knight" },
+  { text: "No more running. I belong here.", author: "Ori", source: "Ori and the Blind Forest" },
+  { text: "When you have eliminated the impossible, whatever remains, however improbable, must be the truth.", author: "Quote", source: "Cave Story" },
+  { text: "I'd rather be hated for who I am than loved for who I'm not.", author: "The Narrator", source: "Disco Elysium" },
+  { text: "Capitalism has brought us to this.", author: "Harry Du Bois", source: "Disco Elysium" },
+  { text: "You have died of dysentery.", author: "Game", source: "The Oregon Trail" },
+  { text: "Stay a while and listen.", author: "Deckard Cain", source: "Diablo II" },
+  { text: "The Covenant will follow Halo to the ends of the universe.", author: "Master Chief", source: "Halo" },
+  { text: "There is nothing noble in being superior to your fellow man; true nobility is being superior to your former self.", author: "Ernest Hemingway", source: "Referenced in Metal Gear" },
+  { text: "All your base are belong to us.", author: "CATS", source: "Zero Wing" },
+  { text: "You can't handle the truth!", author: "NPC", source: "Call of Duty: Black Ops" },
+
+  // === HACKERS & SECURITY ===
+  { text: "The quieter you become, the more you are able to hear.", author: "Kali Linux", source: "Kali Linux motto" },
+  { text: "Hacking is not a crime. It's a skill.", author: "Kevin Mitnick", source: "Security researcher" },
+  { text: "The Internet is the world's largest library. It's just that all the books are on the floor.", author: "John Allen Paulos", source: "Mathematician" },
+  { text: "Security is always excessive until it's not enough.", author: "Robbie Sinclair", source: "Security maxim" },
+  { text: "Think like an attacker to defend like a defender.", author: "Bruce Schneier", source: "Cryptographer" },
+  { text: "The only truly secure system is one that is powered off, cast in a block of concrete, and sealed in a lead-lined room.", author: "Gene Spafford", source: "Purdue University" },
+  { text: "Given enough eyeballs, all bugs are shallow.", author: "Linus Torvalds", source: "Linux creator" },
+  { text: "Free software is a matter of liberty, not price.", author: "Richard Stallman", source: "GNU Project" },
+  { text: "When in doubt, encrypt.", author: "Phil Zimmermann", source: "PGP creator" },
+  { text: "Privacy is not an option, and it shouldn't be the price we accept for just getting on the internet.", author: "Gary Kovacs", source: "Mozilla" },
+  { text: "The real danger is not that computers will begin to think like men, but that men will begin to think like computers.", author: "Sydney J. Harris", source: "Journalist" },
+  { text: "Complexity is the enemy of security.", author: "Bruce Schneier", source: "Cryptographer" },
+  { text: "The hacker mindset doesn't actually see what happens at the other end, to the other person.", author: "Clifford Stoll", source: "Astronomer & Author" },
+  { text: "Information is not knowledge. Knowledge is not wisdom. Wisdom is not truth.", author: "Frank Zappa", source: "Musician (tech quote)" },
+  { text: "To err is human, but to really foul things up you need a computer.", author: "Paul Ehrlich", source: "Biologist" },
+  { text: "The computer was born to solve problems that did not exist before.", author: "Bill Gates", source: "Microsoft" },
+  { text: "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.", author: "Bill Gates", source: "Microsoft" },
+  { text: "The best way to get a project done faster is to start sooner.", author: "Jim Highsmith", source: "Agile" },
+  { text: "It's not about ideas. It's about making ideas happen.", author: "Scott Belsky", source: "Behance" },
+  { text: "Software is like entropy: It is difficult to grasp, weighs nothing, and obeys the Second Law of Thermodynamics; i.e., it always increases.", author: "Norman Augustine", source: "Aerospace engineer" },
+  { text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler", source: "Software developer" },
+  { text: "Everybody in this country should learn how to program a computer... because it teaches you how to think.", author: "Steve Jobs", source: "Apple" },
+  { text: "Programs must be written for people to read, and only incidentally for machines to execute.", author: "Harold Abelson", source: "SICP" },
+  { text: "Premature optimization is the root of all evil.", author: "Donald Knuth", source: "Computer scientist" },
+  { text: "The most disastrous thing that you can ever learn is your first programming language.", author: "Alan Kay", source: "Xerox PARC" },
+  { text: "Talk is cheap. Show me the code.", author: "Linus Torvalds", source: "Linux kernel creator" },
+  { text: "The Internet is the first thing that humanity has built that humanity doesn't understand.", author: "Eric Schmidt", source: "Google" },
+  { text: "One machine can do the work of fifty ordinary men. No machine can do the work of one extraordinary man.", author: "Elbert Hubbard", source: "Author" },
+  { text: "The most dangerous phrase in the language is 'We've always done it this way.'", author: "Grace Hopper", source: "Mathematician & Admiral" },
+  { text: "I'm not a great programmer; I'm just a good programmer with great habits.", author: "Kent Beck", source: "Extreme Programming" },
+  { text: "Don't comment bad code — rewrite it.", author: "Brian W. Kernighan", source: "UNIX co-creator" },
+  { text: "A good programmer looks both ways before crossing a one-way street.", author: "Doug Linder", source: "Developer maxim" },
+  { text: "Testing leads to failure, and failure leads to understanding.", author: "Burt Rutan", source: "Aerospace engineer" },
+  { text: "If debugging is the process of removing software bugs, then programming must be the process of putting them in.", author: "Edsger Dijkstra", source: "Computer scientist" },
+  { text: "The best code is no code at all.", author: "Jeff Atwood", source: "Stack Overflow" },
+  { text: "Make it work, make it right, make it fast.", author: "Kent Beck", source: "Extreme Programming" },
+  { text: "First, solve the problem. Then, write the code.", author: "John Johnson", source: "Programming maxim" },
+  { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci", source: "Referenced in tech" },
+  { text: "The function of good software is to make the complex appear simple.", author: "Grady Booch", source: "Software engineer" },
+  { text: "In software, we rarely have meaningful requirements. Even if we do, the only measure of success that matters is whether our solution solves the customer's shifting idea of what they need.", author: "Jeff Atwood", source: "Coding Horror" },
+
+  // === ANIME CHARACTERS ===
+  { text: "A person who can't feel pain can never know true strength.", author: "Naruto Uzumaki", source: "Naruto" },
+  { text: "It's not the face that makes someone a monster; it's the choices they make with their lives.", author: "Naruto Uzumaki", source: "Naruto" },
+  { text: "When you give up, that's when the game ends.", author: "Mitsuyoshi Anzai", source: "Slam Dunk" },
+  { text: "Power comes in response to a need, not a desire. You have to create that need.", author: "Goku", source: "Dragon Ball Z" },
+  { text: "It's not about how hard you can hit. It's about how hard you can get hit and keep moving forward.", author: "Makunouchi Ippo", source: "Hajime no Ippo" },
+  { text: "A lesson without pain is meaningless. That's because no one can gain without sacrificing something.", author: "Edward Elric", source: "Fullmetal Alchemist: Brotherhood" },
+  { text: "There is no such thing as coincidence in this world — there is only the inevitable.", author: "Yuuko Ichihara", source: "xxxHolic" },
+  { text: "People's lives don't end when they die. It ends when they lose faith.", author: "Itachi Uchiha", source: "Naruto" },
+  { text: "If you don't take risks, you can't create a future.", author: "Monkey D. Luffy", source: "One Piece" },
+  { text: "Forgetting is like a wound. The wound may heal, but it has already left a scar.", author: "Monkey D. Luffy", source: "One Piece" },
+  { text: "The world isn't perfect. But it's there for us, doing the best it can.", author: "Roy Mustang", source: "Fullmetal Alchemist" },
+  { text: "The thing I wished for destroyed my whole family. I brought all this on myself. I know I don't deserve your forgiveness, but I also know that I've done all I could to make things right.", author: "Greed", source: "Fullmetal Alchemist: Brotherhood" },
+  { text: "Courage is not the absence of fear. It is acting in spite of it.", author: "Mark Twain", source: "Referenced in Attack on Titan" },
+  { text: "The world will move forward even if you don't.", author: "Reiner Braun", source: "Attack on Titan" },
+  { text: "On that day, mankind received a grim reminder.", author: "Narrator", source: "Attack on Titan" },
+  { text: "If you win, you live. If you lose, you die. If you don't fight, you can't win!", author: "Eren Yeager", source: "Attack on Titan" },
+  { text: "Everyone had their own story. And in each story, no one thought of themselves as the villain.", author: "Armin Arlert", source: "Attack on Titan" },
+  { text: "The future is something that you make yourself. You have to fight for it.", author: "Okabe Rintarou", source: "Steins;Gate" },
+  { text: "Time is the only currency that matters. Spend it wisely.", author: "Okabe Rintarou", source: "Steins;Gate" },
+  { text: "El Psy Kongroo.", author: "Okabe Rintarou", source: "Steins;Gate" },
+  { text: "A person who abandons their beliefs is not a man worthy of calling themselves such.", author: "Lelouch vi Britannia", source: "Code Geass" },
+  { text: "If the king doesn't lead, how can he expect his subordinates to follow?", author: "Lelouch vi Britannia", source: "Code Geass" },
+  { text: "I, Lelouch vi Britannia, command you — obey me, subjects! Obey me, world!", author: "Lelouch vi Britannia", source: "Code Geass" },
+  { text: "All humans are equal in death.", author: "Light Yagami", source: "Death Note" },
+  { text: "I am justice! I protect the innocent and those who fear evil.", author: "Light Yagami", source: "Death Note" },
+  { text: "I'll take a potato chip... and eat it!", author: "Light Yagami", source: "Death Note" },
+  { text: "All according to plan.", author: "Light Yagami", source: "Death Note" },
+  { text: "The thing I hate most in this world is wasting my potential.", author: "Hisoka Morow", source: "Hunter x Hunter" },
+  { text: "Gon, you are light. And sometimes, light can illuminate the darkest of places.", author: "Killua Zoldyck", source: "Hunter x Hunter" },
+  { text: "If you want to be a Ninja, you can't just imitate someone. You have to make your own way.", author: "Killua Zoldyck", source: "Hunter x Hunter" },
+  { text: "The most important thing is to find your own path.", author: "Gon Freecss", source: "Hunter x Hunter" },
+  { text: "Even in this world, there's something worth protecting.", author: "Kirito", source: "Sword Art Online" },
+  { text: "Sword skills aren't just about swinging a sword. They're about putting your heart into every strike.", author: "Kirito", source: "Sword Art Online" },
+  { text: "In this world, the strong devour the weak.", author: "Ryo Yamada", source: "Elfen Lied" },
+  { text: "I'll become stronger, stronger than anyone, so that no one has to suffer anymore.", author: "Erza Scarlet", source: "Fairy Tail" },
+  { text: "Weaklings will stay weak forever. But weakness is not evil, since human beings are weak creatures to begin with.", author: "Mavis Vermillion", source: "Fairy Tail" },
+  { text: "No matter what path you chose, just move forward.", author: "Natsu Dragneel", source: "Fairy Tail" },
+  { text: "The best way to find out if you can trust somebody is to trust them.", author: "Gray Fullbuster", source: "Fairy Tail" },
+  { text: "Do not be sad that it is over, smile that it happened.", author: "Jiraiya", source: "Naruto" },
+  { text: "In my hand, I'll keep the promise to find my way back to you.", author: "Kamina", source: "Gurren Lagann" },
+  { text: "Believe in yourself. Not in the you who believes in me, not the me who believes in you. Believe in the you who believes in yourself!", author: "Kamina", source: "Gurren Lagann" },
+  { text: "Row row, fight the power!", author: "Kamina", source: "Gurren Lagann" },
+  { text: "The past is the past. We cannot indulge ourselves in memories and destroy the present.", author: "Byakuya Kuchiki", source: "Bleach" },
+  { text: "Even if I lose this feeling, I'm sure I'll just fall in love with you all over again.", author: "Ichigo Kurosaki", source: "Bleach" },
+  { text: "If fate is a millstone, then we are the grist. There is nothing we can do. So I wish for strength.", author: "Ichigo Kurosaki", source: "Bleach" },
+  { text: "I have a dream. I want to be a hero.", author: "Izuku Midoriya", source: "My Hero Academia" },
+  { text: "A true hero always smiles in the face of adversity. That is the symbol of peace.", author: "All Might", source: "My Hero Academia" },
+  { text: "Plus Ultra!", author: "U.A. High School motto", source: "My Hero Academia" },
+  { text: "Even the mightiest heroes go through very hard times. Have faith in yourself and there will come a day when others have faith in you.", author: "All Might", source: "My Hero Academia" },
+  { text: "Fear is not evil. It tells you what your weakness is. And once you know your weakness, you can become stronger as well as kinder.", author: "Gildarts Clive", source: "Fairy Tail" },
+  { text: "Those who do not know what real loss is will never understand true valor.", author: "Vegeta", source: "Dragon Ball Z" },
+  { text: "You can fly… if you just remove everything unnecessary.", author: "Motoko Kusanagi", source: "Ghost in the Shell" },
+  { text: "A cyberbrain could be hacked. Even your memories can be falsified.", author: "Motoko Kusanagi", source: "Ghost in the Shell" },
+  { text: "There are as many different worlds as there are people.", author: "Dio Brando", source: "JoJo's Bizarre Adventure" },
+  { text: "Your next line is...", author: "Dio Brando", source: "JoJo's Bizarre Adventure" },
+  { text: "WRYYYYYYY!", author: "Dio Brando", source: "JoJo's Bizarre Adventure" },
+  { text: "It was me, Dio!", author: "Dio Brando", source: "JoJo's Bizarre Adventure" },
+  { text: "Oi! Josuke! I've got a nose bleed!", author: "Okuyasu Nijimura", source: "JoJo's Bizarre Adventure" },
+  { text: "The real power of a shinobi is not something you can measure by raw strength. It comes from something deeper, a will that can't be broken.", author: "Minato Namikaze", source: "Naruto" },
+  { text: "In this world, there exist people who bear the stigma of their background.", author: "Trafalgar D. Water Law", source: "One Piece" },
+  { text: "The sea is the world of pirates. And there's a treasure there that makes you king.", author: "Monkey D. Luffy", source: "One Piece" },
+  { text: "Living is a constant battle.", author: "Roronoa Zoro", source: "One Piece" },
+  { text: "Zoro, lost again.", author: "Nami", source: "One Piece (running gag)" },
+  { text: "I don't want to conquer anything. I just think the guy with the most freedom in this whole ocean is the Pirate King!", author: "Monkey D. Luffy", source: "One Piece" },
+  { text: "If you hurt somebody, or if somebody hurts you, the same blood runs through both your hands.", author: "Rem", source: "Re:Zero" },
+  { text: "I can't do this alone. I need you. I want you to be by my side.", author: "Subaru Natsuki", source: "Re:Zero" },
+  { text: "Even if no one in the world believes in you, I will believe in you.", author: "Zero Two", source: "Darling in the FranXX" },
+  { text: "Love is war.", author: "Kaguya-sama wa Kokurasetai", source: "Kaguya-sama: Love is War" },
+  { text: "Life is about getting back up after being knocked down.", author: "Yusuke Urameshi", source: "Yu Yu Hakusho" },
+  { text: "Is there a difference between a human without memories and someone who never existed?", author: "Ai Haibara", source: "Detective Conan" },
+  { text: "There is only one truth!", author: "Conan Edogawa", source: "Detective Conan" },
+  { text: "Even if you're weak, you can become strong through effort.", author: "Rock Lee", source: "Naruto" },
+  { text: "If you don't like your destiny, don't accept it. Instead, have the courage to change it the way you want it to be.", author: "Naruto Uzumaki", source: "Naruto" },
+  { text: "Hatred is born to protect love.", author: "Pain/Nagato", source: "Naruto" },
+  { text: "Before I became a shinobi, I was still a citizen of Konoha. I'm not fighting for the village. I'm fighting for the people I love.", author: "Gaara", source: "Naruto" },
+  { text: "An eye for an eye makes the whole world blind.", author: "Mahatma Gandhi", source: "Referenced in Naruto" },
+  { text: "The circumstances of one's birth are irrelevant. It is what you do with the gift of life that determines who you are.", author: "Mewtwo", source: "Pokémon: The First Movie" },
+  { text: "Gotta catch 'em all.", author: "Series tagline", source: "Pokémon" },
+  { text: "Your story isn't over yet. There's still a new page to write.", author: "Angel Beats!", source: "Angel Beats!" },
+  { text: "The moment people come to know love, they run the risk of carrying hate.", author: "Obito Uchiha", source: "Naruto Shippuden" },
+  { text: "Those who break the rules are trash, but those who abandon their comrades are worse than trash.", author: "Kakashi Hatake", source: "Naruto" },
+  { text: "You've got guts. That's rare these days.", author: "Spike Spiegel", source: "Cowboy Bebop" },
+  { text: "Whatever happens, happens.", author: "Spike Spiegel", source: "Cowboy Bebop" },
+  { text: "I'm just a wolf, running in the darkness.", author: "Spike Spiegel", source: "Cowboy Bebop" },
+  { text: "See you, Space Cowboy.", author: "Narrator", source: "Cowboy Bebop" },
+  { text: "Three, two, one, let's jam!", author: "Opening", source: "Cowboy Bebop" },
+
+  // === EXTRA HACKER / PHILOSOPHY ===
+  { text: "Access the mind, control the world.", author: "Mr. Robot", source: "Mr. Robot (TV)" },
+  { text: "We are all just IP addresses to them.", author: "Elliot Alderson", source: "Mr. Robot" },
+  { text: "We live in a kingdom of bullshit.", author: "Elliot Alderson", source: "Mr. Robot" },
+  { text: "Hello, friend. Hello, friend? That's lame.", author: "Elliot Alderson", source: "Mr. Robot" },
+  { text: "Control is an illusion.", author: "Elliot Alderson", source: "Mr. Robot" },
+  { text: "I've always believed that hacking is about finding beautiful, elegant solutions to complex problems.", author: "Anonymous", source: "Hacker culture" },
+  { text: "Information wants to be free.", author: "Stewart Brand", source: "Hacker's Conference, 1984" },
+  { text: "In the beginning there was ARPANET. And it was void.", author: "Internet folklore", source: "Hacker culture" },
+  { text: "The Internet is just a world passing notes in a classroom.", author: "Jon Stewart", source: "The Daily Show" },
+  { text: "Root is not just a user. It's a state of mind.", author: "Anonymous", source: "Linux culture" },
+  { text: "sudo make me a sandwich", author: "XKCD #149", source: "XKCD (Randall Munroe)" },
+  { text: "There are only two hard things in computer science: cache invalidation and naming things.", author: "Phil Karlton", source: "Netscape engineer" },
+  { text: "Beware of bugs in the above code; I have only proved it correct, not tried it.", author: "Donald Knuth", source: "Computer scientist" },
+  { text: "Software and cathedrals are much the same — first we build them, then we pray.", author: "Sam Redwine", source: "4th International Software Process Workshop" },
+  { text: "Nine people can't make a baby in a month.", author: "Fred Brooks", source: "The Mythical Man-Month" },
+  { text: "A ship in port is safe, but that's not what ships are for.", author: "Grace Hopper", source: "Mathematician & Admiral" },
+  { text: "The question of whether a computer can think is no more interesting than the question of whether a submarine can swim.", author: "Edsger Dijkstra", source: "Computer scientist" },
+  { text: "If you think you understand quantum mechanics, you don't understand quantum mechanics.", author: "Richard Feynman", source: "Physicist" },
+  { text: "Everything should be made as simple as possible, but not simpler.", author: "Albert Einstein", source: "Physicist" },
+  { text: "The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times.", author: "Donald Knuth", source: "Computer scientist" },
+  { text: "You can't out-Amazon Amazon.", author: "Jeff Bezos", source: "Amazon" },
+  { text: "Move fast and break things.", author: "Mark Zuckerberg", source: "Facebook" },
+  { text: "Build things that don't scale.", author: "Paul Graham", source: "Y Combinator" },
+  { text: "Real artists ship.", author: "Steve Jobs", source: "Apple" },
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs", source: "Apple" },
+  { text: "Stay hungry. Stay foolish.", author: "Steve Jobs", source: "Stanford Commencement 2005" },
+  { text: "An investment in knowledge pays the best interest.", author: "Benjamin Franklin", source: "Founding Father" },
+  { text: "Education is not the filling of a pail, but the lighting of a fire.", author: "W.B. Yeats", source: "Poet" },
+  { text: "The expert in anything was once a beginner.", author: "Helen Hayes", source: "Actress" },
+  { text: "You don't have to be great to start, but you have to start to be great.", author: "Zig Ziglar", source: "Author" },
+  { text: "Code is like poetry — it requires thought, iteration, and a willingness to throw away something beautiful if it doesn't serve the whole.", author: "Anonymous developer", source: "Dev community" },
+  { text: "I'm always right, I'm just not always correct.", author: "StackOverflow regulars", source: "Developer humor" },
+  { text: "It works on my machine.", author: "Every developer", source: "Universal dev truth" },
+];
+
+// ============================================================
+// TICKER — fill with shuffled quotes, faster scroll
+// ============================================================
+function buildTicker() {
+    const ticker = document.getElementById('ticker');
+    if (!ticker) return;
+    const shuffled = [...QUOTES].sort(() => Math.random() - 0.5).slice(0, 24);
+    const doubled = [...shuffled, ...shuffled];
+    ticker.innerHTML = doubled.map(q =>
+        `<span class="ticker-item">"${q.text.slice(0, 70)}${q.text.length > 70 ? '…' : ''}" — ${q.author}</span>`
+    ).join('');
+}
+
+// ============================================================
+// QUOTE ROTATOR
+// ============================================================
+let quoteInterval;
+let quoteHistory = [];
+let quoteHistoryPos = -1;
+
+function randomIndexExcluding(exclude) {
+    let idx;
+    do { idx = Math.floor(Math.random() * QUOTES.length); } while (idx === exclude && QUOTES.length > 1);
+    return idx;
+}
+
+function showQuote(i) {
+    const q = QUOTES[i];
+    const textEl = document.getElementById('quote-text');
+    const authorEl = document.getElementById('quote-author');
+    const sourceEl = document.getElementById('quote-source');
+    const counterEl = document.getElementById('quote-counter');
+    if (!textEl) return;
+    textEl.style.opacity = '0';
+    setTimeout(() => {
+        textEl.textContent = q.text;
+        authorEl.textContent = '— ' + q.author;
+        sourceEl.textContent = q.source;
+        counterEl.textContent = '#' + (i + 1);
+        textEl.style.opacity = '1';
+    }, 300);
+}
+
+function nextQuote() {
+    const currentIdx = quoteHistory[quoteHistoryPos] ?? -1;
+    if (quoteHistoryPos < quoteHistory.length - 1) {
+        quoteHistoryPos++;
+    } else {
+        const next = randomIndexExcluding(currentIdx);
+        quoteHistory.push(next);
+        if (quoteHistory.length > 100) quoteHistory.shift();
+        quoteHistoryPos = quoteHistory.length - 1;
+    }
+    showQuote(quoteHistory[quoteHistoryPos]);
+    resetInterval();
+}
+
+function prevQuote() {
+    if (quoteHistoryPos > 0) {
+        quoteHistoryPos--;
+        showQuote(quoteHistory[quoteHistoryPos]);
+    }
+    resetInterval();
+}
+
+function resetInterval() {
+    clearInterval(quoteInterval);
+    quoteInterval = setInterval(() => {
+        if (!document.hidden) nextQuote();
+    }, 8000);
+}
+
+// ============================================================
+// HERO TYPING EFFECT
+// ============================================================
+const SUBTITLES = {
+    en: [
+        'Engineering Student & <span class="hl1">Game Developer</span>',
+        '<span class="hl2">Minia University</span> · Egypt',
+        '<span class="hl1">Cybersecurity</span> Enthusiast',
+        'Builder · Breaker · <span class="hl2">Learner</span>',
+        'Unity · Python · Raspberry Pi'
+    ],
+    ar: [
+        'طالب هندسة و<span class="hl1">مطوّر ألعاب</span>',
+        '<span class="hl2">جامعة المنيا</span> · مصر',
+        'مهتم <span class="hl1">بالأمن السيبراني</span>',
+        'منشئ · مخترق · <span class="hl2">متعلّم</span>',
+        'Unity · Python · Raspberry Pi'
+    ]
+};
+let subtitleIndex = 0;
+
+function cycleSubtitle(force) {
+    const el = document.getElementById('hero-subtitle');
+    if (!el) return;
+    if (force) {
+        el.innerHTML = SUBTITLES[currentLang][subtitleIndex % SUBTITLES[currentLang].length];
+        return;
+    }
+    el.style.opacity = '0';
+    setTimeout(() => {
+        el.innerHTML = SUBTITLES[currentLang][subtitleIndex % SUBTITLES[currentLang].length];
+        el.style.opacity = '1';
+        subtitleIndex++;
+    }, 400);
+}
+document.getElementById('hero-subtitle').style.transition = 'opacity 0.4s';
+
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+function getStoredTheme() {
+    return localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+}
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    localStorage.setItem('theme', theme);
+}
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// ============================================================
+// MOBILE MENU
+// ============================================================
+const mobileBtn = document.getElementById('mobile-btn');
+const mobileDrawer = document.getElementById('mobile-drawer');
+const drawerClose = document.getElementById('drawer-close');
+const drawerOverlay = document.getElementById('drawer-overlay');
+
+let drawerReturnFocus = null;
+
+function setDrawer(open) {
+    mobileDrawer.classList.toggle('open', open);
+    mobileBtn.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('no-scroll', open);
+    if (open) {
+        drawerReturnFocus = document.activeElement;
+        drawerClose.focus();
+    } else if (drawerReturnFocus) {
+        drawerReturnFocus.focus();
+        drawerReturnFocus = null;
+    }
+}
+
+mobileBtn.addEventListener('click', () => setDrawer(true));
+drawerClose.addEventListener('click', () => setDrawer(false));
+drawerOverlay.addEventListener('click', () => setDrawer(false));
+mobileDrawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setDrawer(false));
+});
+document.addEventListener('keydown', e => {
+    if (!mobileDrawer.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+        setDrawer(false);
+        return;
+    }
+    if (e.key !== 'Tab') return;
+    const focusable = mobileDrawer.querySelectorAll('a[href], button:not([disabled])');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+    }
+});
+
+// ============================================================
+// SMOOTH SCROLL + ACTIVE NAV + BACK TO TOP
+// ============================================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+const backToTop = document.getElementById('back-to-top');
+const progressBar = document.getElementById('progress-bar');
+function updateScrollUI() {
+    const scrolled = window.scrollY;
+    backToTop.classList.toggle('visible', scrolled > 600);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progressBar && max > 0) progressBar.style.width = (scrolled / max) * 100 + '%';
+}
+window.addEventListener('scroll', updateScrollUI, { passive: true });
+window.addEventListener('resize', updateScrollUI);
+updateScrollUI();
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const sectionIds = ['about', 'projects', 'skills', 'achievements', 'more', 'contact'];
+const navSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+            });
+        }
+    });
+}, { rootMargin: '-45% 0px -50% 0px' });
+sectionIds.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) navSpy.observe(section);
+});
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => revealObserver.observe(el));
+
+// ============================================================
+// POETRY PLAYER
+// ============================================================
+const POEMS = [
+    { file: "Nasheed - fataat al khair (HQ) [yd7dRroTj5o].m4a", title: "fataat al khair", poet: "Nasheed" },
+    { file: "أراك عصي الدمع -لأبي فراس الحمداني بصوت أسامة الواعظ [zbB2x1afhYU].m4a", title: "أراك عصي الدمع", poet: "أبو فراس الحمداني · إلقاء أسامة الواعظ" },
+    { file: "أرق على أرق ومثلي يأرق ｜ أداء ： عبدالرحمن إبراهيم ｜ الشاعر ： المتنبي ｜ بدون موسيقى [WuIFXCKEDn8].m4a", title: "أرق على أرق ومثلي يأرق", poet: "المتنبي · أداء عبدالرحمن إبراهيم" },
+    { file: "ألا كل ماشية الخيزلى ｜ للمتنبي ｜ إلقاء： أسامة الواعظ [9c1IrQwfYFM].m4a", title: "ألا كل ماشية الخيزلى", poet: "المتنبي · إلقاء أسامة الواعظ" },
+    { file: "اسلمي يا مصر - السلام الوطنى المصرى القديم [Mhob6S1kwfA].m4a", title: "اسلمي يا مصر", poet: "السلام الوطني المصري القديم" },
+    { file: "بم التعلل؟ قصيدة للمتنبي بصوت： أسامة الواعظ [4P8B3jUlMRg].m4a", title: "بم التعلل؟", poet: "المتنبي · إلقاء أسامة الواعظ" },
+    { file: "قسماً - النشيد الوطني الجزائري [wzHM3HPxvbM].m4a", title: "قسماً", poet: "النشيد الوطني الجزائري · مفدي زكريا" },
+    { file: "ألا لا تلوماني [KzQI9MLobtM].m4a", title: "ألا لا تلوماني", poet: "عبد يغوث الحارثي · إلقاء أسامة الواعظ" },
+    { file: "نظم مثلث قطرب للبهنسي مع شرحه لابن زريق - إلقاء： أسامة الواعظ [_qXLo4wTk9E].m4a", title: "نظم مثلث قطرب للبهنسي", poet: "البهنسي · شرح ابن زريق · إلقاء أسامة الواعظ" }
+];
+
+function poemTitle(file) {
+    let t = file
+        .replace(/\.(opus|m4a|mp3|wav|ogg|flac)$/i, '')
+        .replace(/\s*\[[^\]]*\]\s*/g, ' ')
+        .replace(/[｜|]/g, ' - ')
+        .replace(/[：:]/g, ' - ');
+    const parts = t.split(/\s*[-–—]\s*/).map(x => x.trim()).filter(Boolean);
+    if (parts.length > 1 && /^nasheed$/i.test(parts[0])) parts.shift();
+    t = parts[0] || t;
+    t = t.replace(/\([^)]*\)/g, ' ');
+    const markers = ['بصوت', 'إلقاء', 'أداء', 'الشاعر', 'شرحه', 'مع شرحه', 'بدون موسيقى', 'قصيدة ل', 'لأبي', 'للمتنبي'];
+    let cut = t.length;
+    markers.forEach(m => {
+        const i = t.indexOf(m);
+        if (i > -1 && i < cut) cut = i;
+    });
+    t = t.slice(0, cut).replace(/[\s\-–—:：|｜]+$/g, '').replace(/\s{2,}/g, ' ').trim();
+    return t || file.replace(/\.[^.]+$/, '');
+}
+
+const poemAudio = document.getElementById('poem-audio');
+const poemPlay = document.getElementById('poem-play');
+const poemPrev = document.getElementById('poem-prev');
+const poemNext = document.getElementById('poem-next');
+const poemSeek = document.getElementById('poem-seek');
+const poemCur = document.getElementById('poem-cur');
+const poemDur = document.getElementById('poem-dur');
+const poemTitleEl = document.getElementById('poem-title');
+const poemPoetEl = document.getElementById('poem-poet');
+const poemIndexEl = document.getElementById('poem-index');
+const cdEl = document.getElementById('cd');
+const cdLabel = document.getElementById('cd-label');
+const poemList = document.getElementById('poem-list');
+const poemListToggle = document.getElementById('poem-list-toggle');
+const poemListCount = document.getElementById('poem-list-count');
+const poemShuffleBtn = document.getElementById('poem-shuffle');
+const poemRepeatBtn = document.getElementById('poem-repeat');
+const poemShareBtn = document.getElementById('poem-share');
+let poemIdx = 0;
+let poemSeeking = false;
+let poemShuffle = false;
+let poemRepeat = 0;
+let poemShareTimer = null;
+
+function fmtTime(sec) {
+    if (!isFinite(sec) || sec < 0) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return m + ':' + String(s).padStart(2, '0');
+}
+
+function poemUrl(i) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('poem', String(i + 1));
+    url.hash = 'poems';
+    return url.href;
+}
+
+function randomPoemIndex() {
+    if (POEMS.length < 2) return poemIdx;
+    let n;
+    do { n = Math.floor(Math.random() * POEMS.length); } while (n === poemIdx);
+    return n;
+}
+
+function renderPoemList() {
+    if (!poemList) return;
+    poemList.innerHTML = '';
+    POEMS.forEach((poem, i) => {
+        const title = poem.title || poemTitle(poem.file);
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'poem-list-item' + (i === poemIdx ? ' active' : '');
+        if (i === poemIdx) btn.setAttribute('aria-current', 'true');
+        btn.innerHTML = '<span class="poem-list-num">' + String(i + 1).padStart(2, '0') + '</span><span class="poem-list-title"></span>';
+        btn.querySelector('.poem-list-title').textContent = title;
+        btn.title = title + (poem.poet ? ' — ' + poem.poet : '');
+        btn.addEventListener('click', () => loadPoem(i, true, true));
+        li.appendChild(btn);
+        poemList.appendChild(li);
+    });
+    if (poemListCount) poemListCount.textContent = (poemIdx + 1) + ' / ' + POEMS.length;
+}
+
+function loadPoem(i, autoplay, updateUrl) {
+    poemIdx = ((i % POEMS.length) + POEMS.length) % POEMS.length;
+    const poem = POEMS[poemIdx];
+    const title = poem.title || poemTitle(poem.file);
+    poemAudio.src = 'poems/' + encodeURIComponent(poem.file);
+    poemTitleEl.textContent = title;
+    poemTitleEl.title = title;
+    if (poemPoetEl) poemPoetEl.textContent = poem.poet || '';
+    cdLabel.textContent = title;
+    cdLabel.title = title;
+    poemIndexEl.textContent = (poemIdx + 1) + ' / ' + POEMS.length;
+    poemCur.textContent = '0:00';
+    poemDur.textContent = '0:00';
+    poemSeek.value = 0;
+    poemSeek.style.setProperty('--progress', '0%');
+    renderPoemList();
+    if (updateUrl !== false) {
+        try { window.history.replaceState(null, '', poemUrl(poemIdx)); } catch (e) {}
+    }
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: title, artist: 'Mohamed Abdelaziz', album: 'Poetry' });
+    }
+    if (autoplay) poemAudio.play().catch(() => {});
+}
+
+function setPlaying(playing) {
+    cdEl.classList.toggle('playing', playing);
+    poemPlay.innerHTML = playing
+        ? '<i class="fa-solid fa-pause"></i>'
+        : '<i class="fa-solid fa-play"></i>';
+    poemPlay.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = playing ? 'playing' : 'paused';
+    }
+}
+
+function flashShareState() {
+    if (!poemShareBtn) return;
+    poemShareBtn.classList.add('poem-share-done');
+    clearTimeout(poemShareTimer);
+    poemShareTimer = setTimeout(() => poemShareBtn.classList.remove('poem-share-done'), 1400);
+}
+
+function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+    }
+    return new Promise((resolve, reject) => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy') ? resolve() : reject(); }
+        catch (e) { reject(e); }
+        finally { ta.remove(); }
+    });
+}
+
+function sharePoem() {
+    const title = poemTitleEl.textContent;
+    const url = poemUrl(poemIdx);
+    if (navigator.share) {
+        navigator.share({ title: title, text: title, url: url }).catch(() => {});
+        return;
+    }
+    copyText(url).then(flashShareState).catch(() => {});
+}
+
+if (poemAudio) {
+    const params = new URLSearchParams(window.location.search);
+    const deep = parseInt(params.get('poem'), 10);
+    const deepValid = Number.isInteger(deep) && deep >= 1 && deep <= POEMS.length;
+    loadPoem(deepValid ? deep - 1 : 0, false, deepValid);
+
+    poemPlay.addEventListener('click', () => {
+        if (poemAudio.paused) poemAudio.play().catch(() => {});
+        else poemAudio.pause();
+    });
+    poemPrev.addEventListener('click', () => loadPoem(poemIdx - 1, true, true));
+    poemNext.addEventListener('click', () => loadPoem(poemShuffle ? randomPoemIndex() : poemIdx + 1, true, true));
+
+    poemShuffleBtn.addEventListener('click', () => {
+        poemShuffle = !poemShuffle;
+        poemShuffleBtn.classList.toggle('active', poemShuffle);
+        poemShuffleBtn.setAttribute('aria-pressed', String(poemShuffle));
+        poemShuffleBtn.setAttribute('aria-label', 'Shuffle: ' + (poemShuffle ? 'on' : 'off'));
+    });
+
+    const repeatLabels = ['off', 'all', 'one'];
+    poemRepeatBtn.addEventListener('click', () => {
+        poemRepeat = (poemRepeat + 1) % 3;
+        poemRepeatBtn.classList.toggle('active', poemRepeat !== 0);
+        poemRepeatBtn.classList.toggle('repeat-one', poemRepeat === 2);
+        poemRepeatBtn.setAttribute('aria-pressed', String(poemRepeat !== 0));
+        poemRepeatBtn.setAttribute('aria-label', 'Repeat: ' + repeatLabels[poemRepeat]);
+    });
+
+    poemShareBtn.addEventListener('click', sharePoem);
+
+    poemListToggle.addEventListener('click', () => {
+        const open = poemListToggle.getAttribute('aria-expanded') === 'true';
+        poemListToggle.setAttribute('aria-expanded', String(!open));
+        poemList.hidden = open;
+    });
+
+    poemAudio.addEventListener('play', () => setPlaying(true));
+    poemAudio.addEventListener('pause', () => setPlaying(false));
+    poemAudio.addEventListener('loadedmetadata', () => {
+        poemDur.textContent = fmtTime(poemAudio.duration);
+    });
+    poemAudio.addEventListener('timeupdate', () => {
+        if (poemSeeking || !poemAudio.duration) return;
+        const pct = (poemAudio.currentTime / poemAudio.duration) * 100;
+        poemSeek.value = pct;
+        poemSeek.style.setProperty('--progress', pct + '%');
+        poemCur.textContent = fmtTime(poemAudio.currentTime);
+    });
+    poemAudio.addEventListener('ended', () => {
+        if (poemRepeat === 2) {
+            poemAudio.currentTime = 0;
+            poemAudio.play().catch(() => {});
+            return;
+        }
+        if (poemShuffle) { loadPoem(randomPoemIndex(), true, true); return; }
+        if (poemIdx < POEMS.length - 1) { loadPoem(poemIdx + 1, true, true); return; }
+        if (poemRepeat === 1) { loadPoem(0, true, true); return; }
+        setPlaying(false);
+    });
+    poemAudio.addEventListener('error', () => {
+        setPlaying(false);
+        poemTitleEl.textContent = currentLang === 'ar' ? 'تعذّر تشغيل هذا الملف' : 'Could not play this file';
+    });
+
+    poemSeek.addEventListener('input', () => {
+        poemSeeking = true;
+        if (poemAudio.duration) {
+            poemCur.textContent = fmtTime((poemSeek.value / 100) * poemAudio.duration);
+        }
+        poemSeek.style.setProperty('--progress', poemSeek.value + '%');
+    });
+    poemSeek.addEventListener('change', () => {
+        if (poemAudio.duration) {
+            poemAudio.currentTime = (poemSeek.value / 100) * poemAudio.duration;
+        }
+        poemSeeking = false;
+    });
+
+    if ('mediaSession' in navigator) {
+        try {
+            navigator.mediaSession.setActionHandler('previoustrack', () => loadPoem(poemIdx - 1, true, true));
+            navigator.mediaSession.setActionHandler('nexttrack', () => loadPoem(poemShuffle ? randomPoemIndex() : poemIdx + 1, true, true));
+        } catch (e) {}
+    }
+
+    if (deepValid) {
+        setTimeout(() => {
+            const el = document.getElementById('poems');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+    }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+applyTheme(getStoredTheme());
+buildTicker();
+applyLang(currentLang);
+
+const firstQuote = Math.floor(Math.random() * QUOTES.length);
+quoteHistory.push(firstQuote);
+quoteHistoryPos = 0;
+showQuote(firstQuote);
+resetInterval();
+
+document.getElementById('quote-next').addEventListener('click', nextQuote);
+document.getElementById('quote-prev').addEventListener('click', prevQuote);
+
+setInterval(() => {
+    if (!document.hidden) cycleSubtitle(false);
+}, 4000);
+
+// ============================================================
+// UNDERTALE EASTER EGG
+// ============================================================
+const UT_LINES = {
+    en: [
+        { text: "* heya. i'm sans. sans the skeleton.", mood: 'normal' },
+        { text: "* you turn around and shake his hand.\n* ...whoopee cushion. classic.", mood: 'normal', sfx: 'whoopee' },
+        { text: "* i'm supposed to be on watch for humans right now.\n* but... i'm kinda lazy.", mood: 'normal' },
+        { text: "* it's a beautiful day outside.\n* birds are singing, flowers are blooming...", mood: 'normal' },
+        { text: "* on days like these, kids like you...\n* should really finish that project.", mood: 'bad' },
+        { text: "* you're gonna have a good time.\n* probably.", mood: 'normal' },
+        { text: "* i've got a skele-ton of work to do.\n* i'm not doing it.", mood: 'normal' },
+        { text: "* tibia honest, this portfolio is pretty cool.", mood: 'normal' },
+        { text: "* i'm humerus. at least, that's what papyrus says.", mood: 'normal' },
+        { text: "* don't be a numbskull. check the console sometime.\n* type dsmans().", mood: 'normal' },
+        { text: "* knock knock.\n* ...who's there?\n* ...bones.\n* ...bones who?\n* ...bones don't need a reason to say hi.", mood: 'normal' },
+        { text: "* my brother papyrus says i need to be more ambitious.\n* heh. maybe after my nap.", mood: 'normal' },
+        { text: "* i'm not lazy. i'm just conserving energy for the boss fight.", mood: 'normal' },
+        { text: "* you feel your sins crawling on your back.\n* ...just kidding. probably.", mood: 'bad' },
+        { text: "* do you wanna have a bad time?\n* ...or do you wanna see my portfolio?", mood: 'bad' },
+        { text: "* you feel like you're going to have a bad time.\n* ...in a good way. maybe.", mood: 'bad' },
+        { text: "* welp. i'm going to grillby's.\n* want a hot dog?", mood: 'normal' },
+        { text: "* if you're reading this, you're probably procrastinating.\n* same.", mood: 'normal' },
+        { text: "* there's a shortcut. it's just... a lot of walking.", mood: 'normal' },
+        { text: "* i've got a bone to pick with you.\n* ...it's about your sleep schedule.", mood: 'normal' },
+        { text: "* despite everything, it's still you.\n* ...nice jacket, by the way.", mood: 'normal' },
+        { text: "* (he's watching you scroll. no pressure.)", mood: 'normal' },
+        { text: "* this is the part where you pretend you didn't see me.", mood: 'normal' },
+        { text: "* hey. take care of yourself, kid.", mood: 'normal' },
+        { text: "* heh heh heh.\n* see ya around.", mood: 'normal' },
+        { text: `* i'm a skeleton, not a magician. ...but i can make your bugs disappear. ...by deleting the code.`, mood: 'normal' },
+        { text: `* i'm a full-stack skeleton. ...front-end, back-end, and... ...nap-end.`, mood: 'normal' },
+        { text: `* my code is clean. ...my room is not. ...we don't talk about my room.`, mood: 'normal' },
+        { text: `* you should hire me. ...i'm reliable. ...i'm also a skeleton. ...but i'm reliable.`, mood: 'normal' },
+        { text: `* my projects are like my jokes. ...some of them land. ...some of them are bones.`, mood: 'normal' },
+        { text: `* i can build websites. ...i can also build bone castles. ...one of these is on my portfolio.`, mood: 'normal' },
+        { text: `* i'm proficient in HTML, CSS, JavaScript, and... ...napScript. ...it's a real language. ...probably.`, mood: 'normal' },
+        { text: `* i'm not a doctor, but i can fix your code. ...probably. ...don't quote me.`, mood: 'normal' },
+        { text: `* i'm a skeleton of my word. ...i don't have a word. ...i have a bone.`, mood: 'normal' },
+        { text: `* i'm a skeleton with a dream. ...the dream is a nap. ...i'm living the dream.`, mood: 'normal' },
+        { text: `* why did the skeleton cross the road? ...to get to the other side. ...i don't know, i'm not a chicken.`, mood: 'normal' },
+        { text: `* what do you call a skeleton who won't work? ...lazy bones. ...that's me. i'm lazy bones.`, mood: 'normal' },
+        { text: `* what's a skeleton's favorite instrument? ...a trom-bone. ...i'll be here all week.`, mood: 'normal' },
+        { text: `* why don't skeletons fight each other? ...they don't have the guts. ...i do. ...wait.`, mood: 'normal' },
+        { text: `* what's a skeleton's favorite food? ...spare ribs. ...i'm not hungry. i don't have a stomach.`, mood: 'normal' },
+        { text: `* why did the skeleton go to the party alone? ...he had no body to go with. ...i'm fine. really.`, mood: 'normal' },
+        { text: `* what's a skeleton's favorite movie? ...the bone identity. ...i haven't seen it. i was asleep.`, mood: 'normal' },
+        { text: `* what do you call a skeleton in a suit? ...a bone fide gentleman. ...i don't wear suits. i'm a skeleton.`, mood: 'normal' },
+        { text: `* why did the skeleton break up with the ghost? ...he had no body to love. ...i'm okay. ...i'm not okay.`, mood: 'normal' },
+        { text: `* what's a skeleton's favorite game? ...hide and shriek. ...i'm not scary. i'm just bones.`, mood: 'normal' },
+        { text: `* why do skeletons make good comedians? ...they're humerus. ...i've used that one already. ...i'm a skeleton of repetition.`, mood: 'normal' },
+        { text: `* what do you call a skeleton who's always late? ...a dead-beat. ...i'm not late. i'm just lazy.`, mood: 'normal' },
+        { text: `* what's a skeleton's favorite drink? ...anything with calcium. ...i don't drink. i'm a skeleton.`, mood: 'normal' },
+        { text: `* why don't skeletons ever go trick-or-treating? ...they're too lazy. ...also, they're already skeletons.`, mood: 'normal' },
+        { text: `* what's a skeleton's favorite holiday? ...halloween. ...every day is halloween for me.`, mood: 'normal' },
+        { text: `* keep clicking. ...i'll tell you a secret at the end. ...it's about you.`, mood: 'normal' },
+        { text: `* i know everything. ...well, almost everything. ...i don't know why you're still awake.`, mood: 'normal' }
+    ],
+    ar: [
+        { text: "* أهلاً. أنا سانس. سانس الهيكل العظمي.", mood: 'normal' },
+        { text: "* استدرت وصافحته.\n* ...وسادة صوتية. كلاسيكي.", mood: 'normal', sfx: 'whoopee' },
+        { text: "* المفروض أكون في الحراسة دلوقتي.\n* بس... أنا كسول شوية.", mood: 'normal' },
+        { text: "* الجو جميل بره النهارده.\n* العصافير بتغني والورد بيزهر...", mood: 'normal' },
+        { text: "* في يوم زي ده، أطفال زيك...\n* المفروض يخلصوا المشروع بتاعهم.", mood: 'bad' },
+        { text: "* هتقضي وقت حلو.\n* غالبًا.", mood: 'normal' },
+        { text: "* عندي شغل كتير جدًا.\n* ومش ناويه أعمله.", mood: 'normal' },
+        { text: "* بصراحة، البورتفوليو ده حلو.", mood: 'normal' },
+        { text: "* أنا مضحك. على الأقل ده اللي بيقوله بابيروس.", mood: 'normal' },
+        { text: "* متبقاش جمجمة فاضية. بص في الكونسول.\n* اكتب dsmans().", mood: 'normal' },
+        { text: "* خبط خبط.\n* ...مين؟\n* ...عظام.\n* ...عظام مين؟\n* ...العظام مش محتاجة سبب تقول أهلًا.", mood: 'normal' },
+        { text: "* أخويا بابيروس بيقولي لازم أكون طموح أكتر.\n* هه. بعد القيلولة يمكن.", mood: 'normal' },
+        { text: "* أنا مش كسول. أنا بوفر طاقة لمعركة الزعيم.", mood: 'normal' },
+        { text: "* حاسس إن ذنوبك بتزحف على ضهرك.\n* ...بمزح. غالبًا.", mood: 'bad' },
+        { text: "* عايز تقضي وقت سيئ؟\n* ...ولا عايز تشوف البورتفوليو؟", mood: 'bad' },
+        { text: "* حاسس إنك هتقضي وقت سيئ.\n* ...بالمعنى الحلو. يمكن.", mood: 'bad' },
+        { text: "* يلا. أنا رايح لجريلبي.\n* عايز هوت دوج؟", mood: 'normal' },
+        { text: "* لو بتقرأ ده، غالبًا بتأجل حاجة.\n* وأنا كمان.", mood: 'normal' },
+        { text: "* فيه طريق مختصر. بس... مشي كتير.", mood: 'normal' },
+        { text: "* عندي عظمة أحاسبك عليها.\n* ...موضوع نومك.", mood: 'normal' },
+        { text: "* رغم كل حاجة، لسه ده انت.\n* ...الجاكيت حلوة بالمناسبة.", mood: 'normal' },
+        { text: "* (بيراقبك وانت بتعمل سكرول. مفيش ضغط.)", mood: 'normal' },
+        { text: "* ده الجزء اللي تتظاهر إنك مشفتنيش فيه.", mood: 'normal' },
+        { text: "* خد بالك من نفسك يا صاحبي.", mood: 'normal' },
+        { text: "* هه هه هه.\n* أشوفك بعدين.", mood: 'normal' },
+        { text: `* أنا هيكل عظمي مش ساحر. ...بس أقدر أخلي البجز يختفي. ...بحذف الكود.`, mood: 'normal' },
+        { text: `* أنا مطور full-stack. ...فرونت إند، باك إند، و... ...ناب إند.`, mood: 'normal' },
+        { text: `* الكود بتاعي نضيف. ...أوضتي مش نضيفة. ...مش بنتكلم عن أوضتي.`, mood: 'normal' },
+        { text: `* لازم توظفني. ...أنا معتمد. ...وأنا هيكل عظمي. ...بس معتمد.`, mood: 'normal' },
+        { text: `* مشاريعي زي نكتي. ...بعضها بيوصل. ...وبعضها عظام.`, mood: 'normal' },
+        { text: `* أنا أعرف أبني مواقع. ...وأعرف أبني قلاع عظام. ...واحدة منهم في البورتفوليو.`, mood: 'normal' },
+        { text: `* أنا محترف HTML وCSS وJavaScript و... ...napScript. ...لغة حقيقية. ...غالبًا.`, mood: 'normal' },
+        { text: `* أنا مش دكتور، بس أقدر أصلح الكود بتاعك. ...غالبًا. ...متنقلش عني.`, mood: 'normal' },
+        { text: `* أنا هيكل عظمي عندي كلمة. ...معنديش كلمة. ...عندي عظمة.`, mood: 'normal' },
+        { text: `* أنا هيكل عظمي عنده حلم. ...الحلم هو قيلولة. ...أنا عايش الحلم.`, mood: 'normal' },
+        { text: `* ليه الهيكل العظمي عدّى الشارع؟ ...عشان يوصل الناحية التانية. ...مش عارف، أنا مش فرخة.`, mood: 'normal' },
+        { text: `* بتسمي الهيكل العظمي اللي مش بيشتغل إيه؟ ...lazy bones. ...ده أنا. أنا lazy bones.`, mood: 'normal' },
+        { text: `* الآلة الموسيقية المفضلة للهيكل العظمي؟ ...trom-bone. ...هفضل هنا الأسبوع كله.`, mood: 'normal' },
+        { text: `* ليه العظام مش بيتخانقوا؟ ...عشان معندهمش guts. ...أنا عندي. ...استنى.`, mood: 'normal' },
+        { text: `* الأكل المفضل للهيكل العظمي؟ ...spare ribs. ...أنا مش جعان. معنديش معدة.`, mood: 'normal' },
+        { text: `* ليه الهيكل العظمي راح الحفلة لوحده؟ ...عشان مكنش عنده body يروح معاه. ...أنا كويس. بجد.`, mood: 'normal' },
+        { text: `* فيلم الهيكل العظمي المفضل؟ ...the bone identity. ...مشفتوش. كنت نايم.`, mood: 'normal' },
+        { text: `* بتسمي الهيكل العظمي اللي لابس بدلة إيه؟ ...a bone fide gentleman. ...أنا مش بلبس بدل. أنا هيكل عظمي.`, mood: 'normal' },
+        { text: `* ليه الهيكل العظمي انفصل عن الشبح؟ ...عشان مكنش عنده body يحبها. ...أنا كويس. ...أنا مش كويس.`, mood: 'normal' },
+        { text: `* لعبة الهيكل العظمي المفضلة؟ ...hide and shriek. ...أنا مش مخيف. أنا عظام.`, mood: 'normal' },
+        { text: `* ليه العظام كوميديانز حلوين؟ ...عشان humerus. ...استخدمتها قبل كده. ...أنا هيكل عظمي بيتكرر.`, mood: 'normal' },
+        { text: `* بتسمي الهيكل العظمي اللي دايمًا متأخر إيه؟ ...a dead-beat. ...أنا مش متأخر. أنا كسول.`, mood: 'normal' },
+        { text: `* مشروب الهيكل العظمي المفضل؟ ...أي حاجة فيها كالسيوم. ...أنا مش بشرب. أنا هيكل عظمي.`, mood: 'normal' },
+        { text: `* ليه العظام مش بيعملوا trick-or-treat؟ ...كسولين. ...وأصلًا هما عظام.`, mood: 'normal' },
+        { text: `* عيد الهيكل العظمي المفضل؟ ...halloween. ...كل يوم عندي halloween.`, mood: 'normal' },
+        { text: `* كمّل ضغط. ...هقولك سر في الآخر. ...عنك.`, mood: 'normal' },
+        { text: `* أنا عارف كل حاجة. ...تقريبًا. ...مش عارف ليه لسه صاحي.`, mood: 'normal' }
+    ]
+};
+
+const utMeta = {
+    ip: 'still loading...',
+    place: 'somewhere on Earth',
+    isp: 'a mysterious provider',
+    device: 'a mysterious device',
+    os: 'a mysterious OS',
+    browser: 'a mysterious browser',
+    screen: 'an unknown size',
+    viewport: 'an unknown size',
+    dpr: '?',
+    language: 'unknown',
+    timezone: 'an unknown timezone',
+    localTime: 'some time',
+    gpu: 'a mysterious GPU',
+    cores: 'some',
+    memory: 'some',
+    connection: 'a mysterious connection',
+    battery: 'unknown (maybe it is shy)',
+    storage: 'unknown (probably enough)',
+    referrer: 'nowhere (direct)',
+    page: location.pathname,
+    theme: 'unknown',
+    motion: 'unknown',
+    touch: 'unknown touch support',
+    orientation: 'unknown orientation',
+    cookies: 'unknown',
+    dnt: 'unknown',
+    online: 'online',
+    webdriver: 'probably not',
+    loaded: false
+};
+
+function utShort(value, max) {
+    const text = String(value || '');
+    return text.length > max ? text.slice(0, max - 1) + '…' : text;
+}
+
+function utBrowserName(ua) {
+    if (/Edg\//.test(ua)) return 'Edge';
+    if (/OPR\//.test(ua)) return 'Opera';
+    if (/Firefox\//.test(ua)) return 'Firefox';
+    if (/Chrome\//.test(ua)) return 'Chrome';
+    if (/Safari\//.test(ua)) return 'Safari';
+    return 'a mysterious browser';
+}
+
+function utOSName(ua) {
+    if (/Windows NT 10/.test(ua)) return 'Windows 10/11';
+    if (/Windows NT/.test(ua)) return 'Windows';
+    if (/Android/.test(ua)) return 'Android';
+    if (/iPhone|iPad|iPod/.test(ua)) return 'iOS';
+    if (/Mac OS X/.test(ua)) return 'macOS';
+    if (/Linux/.test(ua)) return 'Linux';
+    return 'a mysterious OS';
+}
+
+function utDeviceName(ua) {
+    if (/iPad|Tablet|PlayBook|Silk/.test(ua) || (/Android/.test(ua) && !/Mobile/.test(ua))) return 'a tablet';
+    if (/Mobi|iPhone|iPod|Android/.test(ua)) return 'a phone';
+    return 'a computer';
+}
+
+function utGPUName() {
+    try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (!gl) return 'a shy GPU';
+        const ext = gl.getExtension('WEBGL_debug_renderer_info');
+        const name = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+        return utShort(name || 'a mysterious GPU', 58);
+    } catch (e) {
+        return 'a shy GPU';
+    }
+}
+
+function utDetectMeta() {
+    const ua = navigator.userAgent || '';
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    utMeta.device = utDeviceName(ua);
+    utMeta.os = utOSName(ua);
+    utMeta.browser = utBrowserName(ua);
+    utMeta.screen = `${screen.width}×${screen.height}`;
+    utMeta.viewport = `${window.innerWidth}×${window.innerHeight}`;
+    utMeta.dpr = (window.devicePixelRatio || 1).toFixed(1) + 'x';
+    utMeta.language = navigator.language || 'unknown';
+    utMeta.timezone = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'an unknown timezone';
+    utMeta.localTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    utMeta.gpu = utGPUName();
+    utMeta.cores = navigator.hardwareConcurrency || utMeta.cores;
+    utMeta.memory = navigator.deviceMemory ? navigator.deviceMemory + ' GB' : utMeta.memory;
+    utMeta.connection = conn ? (conn.effectiveType || 'unknown') : utMeta.connection;
+    if (conn && typeof conn.downlink === 'number') utMeta.connection += `, ~${conn.downlink} Mbps`;
+    utMeta.cookies = navigator.cookieEnabled ? 'enabled' : 'disabled';
+    utMeta.dnt = (navigator.doNotTrack === '1' || window.doNotTrack === '1') ? 'on' : 'off';
+    utMeta.online = navigator.onLine === false ? 'offline (how are you reading this?)' : 'online';
+    utMeta.webdriver = navigator.webdriver ? 'yes (are you a robot?)' : 'probably not';
+    utMeta.touch = navigator.maxTouchPoints > 0 ? `a touchscreen (${navigator.maxTouchPoints} points)` : 'no touchscreen';
+    utMeta.orientation = (screen.orientation && screen.orientation.type) || 'an unknown orientation';
+    utMeta.theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    utMeta.motion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduced' : 'full';
+    if (document.referrer) {
+        try { utMeta.referrer = utShort(new URL(document.referrer).hostname, 42); }
+        catch (e) { utMeta.referrer = utShort(document.referrer, 42); }
+    }
+    utMeta.page = utShort(location.pathname || '/', 42);
+    if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+            utMeta.battery = `${Math.round((battery.level || 0) * 100)}% ${battery.charging ? '(charging)' : '(on battery)'}`;
+        }).catch(() => {});
+    }
+    if (navigator.storage && navigator.storage.estimate) {
+        navigator.storage.estimate().then(estimate => {
+            if (estimate.quota) utMeta.storage = (estimate.quota / (1024 ** 3)).toFixed(1) + ' GB';
+        }).catch(() => {});
+    }
+}
+
+function utFetchJson(url, ms) {
+    return new Promise((resolve, reject) => {
+        let settled = false;
+        const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        const timer = setTimeout(() => {
+            if (settled) return;
+            settled = true;
+            if (ctrl) ctrl.abort();
+            reject(new Error('timeout'));
+        }, ms);
+        fetch(url, { cache: 'no-store', signal: ctrl ? ctrl.signal : undefined })
+            .then(response => response.ok ? response.json() : Promise.reject(new Error('http ' + response.status)))
+            .then(data => {
+                if (settled) return;
+                settled = true;
+                clearTimeout(timer);
+                resolve(data);
+            })
+            .catch(error => {
+                if (settled) return;
+                settled = true;
+                clearTimeout(timer);
+                reject(error);
+            });
+    });
+}
+
+function utLoadMeta() {
+    if (utMeta.loaded) return;
+    utMeta.loaded = true;
+    utDetectMeta();
+    utFetchJson('https://ipwho.is/', 4500).then(data => {
+        if (!data || data.success === false) throw new Error('ipwho');
+        if (data.ip) utMeta.ip = data.ip;
+        if (data.city || data.country) utMeta.place = [data.city, data.country].filter(Boolean).join(', ');
+        if (data.connection && data.connection.isp) utMeta.isp = data.connection.isp;
+        if (data.timezone && data.timezone.id) utMeta.timezone = data.timezone.id;
+    }).catch(() => {
+        utFetchJson('https://api.ipify.org?format=json', 3500).then(data => {
+            if (data && data.ip) utMeta.ip = data.ip;
+        }).catch(() => {
+            utMeta.ip = 'hidden (nice try)';
+        });
+    });
+}
+
+function utMetaLines(lang) {
+    const m = utMeta;
+    if (lang === 'ar') {
+        return [
+            { text: `* الـ IP بتاعك هو ${m.ip}. ...سألت API عام. ...قالي. ...متقلقش، مش خزنته. ...أنا معنديش جيوب.`, mood: 'bad' },
+            { text: `* انت على ${m.device} بنظام ${m.os}، وبتستخدم ${m.browser}. ...تجهيزة حلوة. ...لبشري.`, mood: 'bad' },
+            { text: `* شاشتك ${m.screen} بدقة ${m.dpr}. ...أنا شايف البكسلات من هنا. ...حلوة.`, mood: 'bad' },
+            { text: `* نافذتك ${m.viewport}. ...أنا شايف اللي بتبص عليه. ...ده أنا.`, mood: 'bad' },
+            { text: `* لغتك ${m.language}. ...أنا بتكلم كل اللغات. ...حتى اللي انت مش بتعرفها.`, mood: 'bad' },
+            { text: `* الساعة عندك ${m.localTime} في ${m.timezone}. ...روح نام. ...أنا مش مامتك. ...أنا هيكل عظمي.`, mood: 'bad' },
+            { text: `* كارت الشاشة بتاعك ${m.gpu}. ...أنا مش فاهم ده إيه. ...بس شكله غالي.`, mood: 'bad' },
+            { text: `* عندك ${m.cores} أنوية معالج و${m.memory} رام. ...لسه مش كفاية تهرب من مسؤولياتك.`, mood: 'bad' },
+            { text: `* اتصالك ${m.connection}. ...شفت أسرع. ...وشفت أبطأ. ...معظمهم أبطأ.`, mood: 'bad' },
+            { text: `* بطارية جهازك ${m.battery}. ...اشحن جدول نومك كمان.`, mood: 'bad' },
+            { text: `* مساحة التخزين المتاحة ${m.storage}. ...كفاية لكل مشاريعك اللي مش خلصتها. ...أنا حسبتها.`, mood: 'bad' },
+            { text: `* انت جاي من ${m.referrer}. ...غامض. ...عجبني.`, mood: 'bad' },
+            { text: `* انت على ${m.page}. ...أنا أعرف الصفحة دي. ...أنا عايش هنا.`, mood: 'bad' },
+            { text: `* الثيم بتاعك ${m.theme}، والحركة ${m.motion}. ...أنا شايف تفضيلاتك. ...أنا ماليش تفضيلات. ...أنا عظام.`, mood: 'bad' },
+            { text: `* ${m.touch}، ${m.orientation}. ...أنا معنديش موبايل. ...عندي عظمة. ...مش نفس الحاجة.`, mood: 'bad' },
+            { text: `* الكوكيز: ${m.cookies}. عدم التتبع: ${m.dnt}. ...لطيف. ...هتبعك برضه. ...بمزح. ...غالبًا.`, mood: 'bad' },
+            { text: `* انت ${m.online}. ...الأتمتة: ${m.webdriver}. ...انت روبوت؟ ...ارمش مرتين.`, mood: 'bad' },
+            { text: `* انت في ${m.place}. ...أنا عارف انت فين. ...وعارف إنك لسه بتقرأ.`, mood: 'bad' },
+            { text: `* مزود الخدمة بتاعك ${m.isp}. ...مش عارف أعمل بالمعلومة دي إيه. ...بس أنا عارفها.`, mood: 'bad' },
+            { text: `* أنا عارف الـ IP، الجهاز، الشاشة، التوقيت... ...أنا عارف كل حاجة. ...ما عدا الباسورد بتاعك. ...مش عايزه. ...غالبًا.`, mood: 'bad' }
+        ];
+    }
+    return [
+        { text: `* your IP is ${m.ip}. ...i asked a public API. ...it told me. ...relax, i didn't save it. i don't have pockets.`, mood: 'bad' },
+        { text: `* you're on ${m.device} running ${m.os}, using ${m.browser}. ...nice setup. ...for a human.`, mood: 'bad' },
+        { text: `* your screen is ${m.screen} at ${m.dpr}. ...i can see the pixels from here. ...they're lovely.`, mood: 'bad' },
+        { text: `* your window is ${m.viewport}. ...i can see what you're looking at. ...it's me.`, mood: 'bad' },
+        { text: `* your language is ${m.language}. ...i speak every language. ...even the ones you don't.`, mood: 'bad' },
+        { text: `* it's ${m.localTime} in ${m.timezone}. ...go to sleep. ...i'm not your mom. ...i'm a skeleton.`, mood: 'bad' },
+        { text: `* your GPU is ${m.gpu}. ...i don't know what that means. ...but it sounds expensive.`, mood: 'bad' },
+        { text: `* you have ${m.cores} CPU cores and ${m.memory} of RAM. ...still not enough to run from your responsibilities.`, mood: 'bad' },
+        { text: `* your connection is ${m.connection}. ...i've seen faster. ...i've also seen slower. ...mostly slower.`, mood: 'bad' },
+        { text: `* your battery is ${m.battery}. ...maybe charge your sleep schedule too.`, mood: 'bad' },
+        { text: `* your storage quota is ${m.storage}. ...enough for all your unfinished projects. ...i counted.`, mood: 'bad' },
+        { text: `* you came from ${m.referrer}. ...mysterious. ...i like it.`, mood: 'bad' },
+        { text: `* you're on ${m.page}. ...i know this page. ...i live here.`, mood: 'bad' },
+        { text: `* your theme is ${m.theme}, motion is ${m.motion}. ...i can see your preferences. ...i have no preferences. ...i'm bones.`, mood: 'bad' },
+        { text: `* ${m.touch}, ${m.orientation}. ...i don't have a phone. ...i have a bone. ...it's not the same.`, mood: 'bad' },
+        { text: `* cookies: ${m.cookies}. do not track: ${m.dnt}. ...cute. ...i'll track you anyway. ...just kidding. ...mostly.`, mood: 'bad' },
+        { text: `* you're ${m.online}. ...automation: ${m.webdriver}. ...are you a robot? ...blink twice.`, mood: 'bad' },
+        { text: `* you're in ${m.place}. ...i know where you are. ...i also know you're still reading.`, mood: 'bad' },
+        { text: `* your ISP is ${m.isp}. ...i don't know what to do with that information. ...but i know it.`, mood: 'bad' },
+        { text: `* i know your IP, your device, your screen, your timezone... ...i know everything. ...except your password. ...i don't want it. ...probably.`, mood: 'bad' }
+    ];
+}
+
+const utDialog = document.getElementById('ut-dialog');
+const utText = document.getElementById('ut-text');
+const utHeart = document.getElementById('ut-heart');
+const utCloseBtn = document.getElementById('ut-close');
+const utNextBtn = document.getElementById('ut-next');
+const utMuteBtn = document.getElementById('ut-mute');
+let utIndex = 0;
+let utTimer = null;
+let utReturnFocus = null;
+let utTyping = false;
+let utFull = '';
+let utAudioCtx = null;
+let utLastBlip = 0;
+let utMuted = false;
+try { utMuted = localStorage.getItem('ut-muted') === '1'; } catch (e) {}
+
+function utEnsureAudio() {
+    if (!utAudioCtx) {
+        const AudioCtor = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtor) utAudioCtx = new AudioCtor();
+    }
+    if (utAudioCtx && utAudioCtx.state === 'suspended') utAudioCtx.resume();
+}
+
+const utVoiceEl = document.getElementById('ut-voice');
+let utVoiceFailed = false;
+
+if (utVoiceEl) {
+    utVoiceEl.addEventListener('error', () => { utVoiceFailed = true; });
+}
+
+function utSynthBlip() {
+    const t = utAudioCtx.currentTime;
+    const osc = utAudioCtx.createOscillator();
+    const gain = utAudioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(132 + Math.random() * 34, t);
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.03, t + 0.004);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+    osc.connect(gain);
+    gain.connect(utAudioCtx.destination);
+    osc.start(t);
+    osc.stop(t + 0.055);
+}
+
+function utStopVoice() {
+    if (!utVoiceEl) return;
+    try { utVoiceEl.pause(); } catch (e) {}
+}
+
+function utPlayLineVoice() {
+    if (!utVoiceEl || utMuted) return;
+    utVoiceFailed = false;
+    try {
+        utVoiceEl.currentTime = 0.2;
+        utVoiceEl.volume = 0.55;
+        const playback = utVoiceEl.play();
+        if (playback && typeof playback.catch === 'function') {
+            playback.catch(() => { utVoiceFailed = true; });
+        }
+    } catch (e) {
+        utVoiceFailed = true;
+    }
+}
+
+function utBlip() {
+    if (utMuted || !utAudioCtx || !utVoiceFailed) return;
+    const now = performance.now();
+    if (now - utLastBlip < 85) return;
+    utLastBlip = now;
+    utSynthBlip();
+}
+
+function utWhoopee() {
+    if (utMuted || !utAudioCtx) return;
+    const t = utAudioCtx.currentTime;
+    const osc = utAudioCtx.createOscillator();
+    const lfo = utAudioCtx.createOscillator();
+    const lfoGain = utAudioCtx.createGain();
+    const gain = utAudioCtx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(270, t);
+    osc.frequency.exponentialRampToValueAtTime(72, t + 0.55);
+    lfo.type = 'sine';
+    lfo.frequency.setValueAtTime(26, t);
+    lfoGain.gain.setValueAtTime(42, t);
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.045, t + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.62);
+    lfo.connect(lfoGain);
+    lfoGain.connect(osc.frequency);
+    osc.connect(gain);
+    gain.connect(utAudioCtx.destination);
+    osc.start(t);
+    lfo.start(t);
+    osc.stop(t + 0.64);
+    lfo.stop(t + 0.64);
+}
+
+function utUpdateMute() {
+    utMuted = !!utMuted;
+    utMuteBtn.setAttribute('aria-pressed', utMuted ? 'true' : 'false');
+    utMuteBtn.setAttribute('aria-label', utMuted ? 'Unmute Sans voice' : 'Mute Sans voice');
+    utMuteBtn.innerHTML = utMuted
+        ? '<i class="fa-solid fa-volume-xmark" aria-hidden="true"></i>'
+        : '<i class="fa-solid fa-volume-high" aria-hidden="true"></i>';
+    try { localStorage.setItem('ut-muted', utMuted ? '1' : '0'); } catch (e) {}
+}
+
+function utRender() {
+    const baseLines = UT_LINES[currentLang] || UT_LINES.en;
+    const lines = baseLines.concat(utMetaLines(currentLang));
+    const index = utIndex % lines.length;
+    const line = lines[index];
+    const isMeta = index >= baseLines.length;
+    utFull = line.text;
+    utDialog.classList.remove('badtime', 'shake');
+    if (line.mood === 'bad') {
+        utDialog.classList.add('badtime');
+        if (!isMeta || index === baseLines.length) {
+            void utDialog.offsetWidth;
+            utDialog.classList.add('shake');
+            setTimeout(() => utDialog.classList.remove('shake'), 500);
+        }
+    }
+    if (line.sfx === 'whoopee') setTimeout(utWhoopee, 220);
+    utText.textContent = '';
+    utTyping = true;
+    utPlayLineVoice();
+    let i = 0;
+    clearInterval(utTimer);
+    utTimer = setInterval(() => {
+        if (i >= utFull.length) {
+            clearInterval(utTimer);
+            utTyping = false;
+            utStopVoice();
+            return;
+        }
+        if (utFull[i] !== ' ' && utFull[i] !== '\n') utBlip();
+        utText.textContent = utFull.slice(0, ++i);
+    }, 28);
+}
+
+function utOpen() {
+    utLoadMeta();
+    utEnsureAudio();
+    utReturnFocus = document.activeElement;
+    utDialog.classList.add('open');
+    utRender();
+    utNextBtn.focus();
+}
+
+function utClose() {
+    utDialog.classList.remove('open', 'badtime', 'shake');
+    clearInterval(utTimer);
+    utTyping = false;
+    utStopVoice();
+    if (utReturnFocus) { utReturnFocus.focus(); utReturnFocus = null; }
+}
+
+function utAdvance() {
+    if (utTyping) {
+        clearInterval(utTimer);
+        utText.textContent = utFull;
+        utTyping = false;
+        utStopVoice();
+    } else {
+        utIndex++;
+        utRender();
+    }
+}
+
+utHeart.addEventListener('click', utOpen);
+utCloseBtn.addEventListener('click', utClose);
+utNextBtn.addEventListener('click', utAdvance);
+utMuteBtn.addEventListener('click', () => {
+    utMuted = !utMuted;
+    utUpdateMute();
+    if (utMuted) {
+        utStopVoice();
+    } else {
+        utEnsureAudio();
+        if (utDialog.classList.contains('open') && utTyping) utPlayLineVoice();
+    }
+});
+utDialog.addEventListener('click', e => { if (e.target === utDialog) utClose(); });
+document.addEventListener('keydown', e => {
+    if (!utDialog.classList.contains('open')) return;
+    if (e.key === 'Escape') { utClose(); return; }
+    if (e.key !== 'Tab') return;
+    const focusable = utDialog.querySelectorAll('button');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+window.utRefreshLang = function () {
+    if (utDialog.classList.contains('open')) utRender();
+};
+utUpdateMute();
+setTimeout(() => utHeart.classList.add('pulse'), 6000);
+
+// ============================================================
+// KONAMI CODE — heart rain
+// ============================================================
+const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiPos = 0;
+
+function heartRain(count) {
+    const wrap = document.createElement('div');
+    wrap.className = 'heart-rain';
+    wrap.setAttribute('aria-hidden', 'true');
+    for (let i = 0; i < count; i++) {
+        const h = document.createElement('span');
+        h.textContent = Math.random() < 0.8 ? '♥' : '★';
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.fontSize = (12 + Math.random() * 20) + 'px';
+        h.style.animationDuration = (2.4 + Math.random() * 2.6) + 's';
+        h.style.animationDelay = (Math.random() * 1.2) + 's';
+        wrap.appendChild(h);
+    }
+    document.body.appendChild(wrap);
+    setTimeout(() => wrap.remove(), 7000);
+}
+
+document.addEventListener('keydown', e => {
+    const tag = (e.target && e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable)) return;
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if (key === KONAMI[konamiPos]) {
+        konamiPos++;
+        if (konamiPos === KONAMI.length) {
+            konamiPos = 0;
+            heartRain(56);
+            if (!utDialog.classList.contains('open')) utOpen();
+        }
+    } else {
+        konamiPos = key === KONAMI[0] ? 1 : 0;
+    }
+});
+
+// ============================================================
+// EASTER EGG (open the console, then type  dsmans() )
+// ============================================================
+setTimeout(() => {
+    console.log('%c~> welcome to the machine. Type  dsmans()  if you dare.',
+        'color:#39ff14;font-family:monospace;font-size:12px');
+}, 800);
+
+window.dsmans = function () {
+    console.log('%c\n   ██████╗ ███████╗███╗   ███╗ █████╗ ███╗   ██╗███████╗\n   ██╔══██╗██╔════╝████╗ ████║██╔══██╗████╗  ██║██╔════╝\n   ██║  ██║███████╗██╔████╔██║███████║██╔██╗ ██║███████╗\n   ██║  ██║╚════██║██║╚██╔╝██║██╔══██║██║╚██╗██║╚════██║\n   ██████╔╝███████║██║ ╚═╝ ██║██║  ██║██║ ╚████║███████║\n   ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝\n\n   You found the backdoor. +1 hacker credit. Welcome, DsMans.\n', 'color:#39ff14;font-family:monospace');
+    return 'root@dsmans0021:~$ access granted';
+};
+</script>
+</body>
+</html>

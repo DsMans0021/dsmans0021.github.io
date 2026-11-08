@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram RAT Demo — Mohamed Abdelaziz</title>
+    <meta name="description" content="A learning prototype — not a weapon.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#080808">
+    <link rel="canonical" href="https://dsmans0021.me/project-telegram-rat.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <script>
+    (function () {
+        try {
+            var t = localStorage.getItem('theme');
+            if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+    })();
+    </script>
+
+    <meta property="og:title" content="Telegram RAT Demo — Mohamed Abdelaziz">
+    <meta property="og:description" content="A learning prototype — not a weapon.">
+    <meta property="og:image" content="https://dsmans0021.me/assets/projects/telegram-rat.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Telegram RAT Demo — project by Mohamed Abdelaziz">
+    <meta property="og:url" content="https://dsmans0021.me/project-telegram-rat.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DsMans0021">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_EG">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Telegram RAT Demo — Mohamed Abdelaziz">
+    <meta name="twitter:description" content="A learning prototype — not a weapon.">
+    <meta name="twitter:image" content="https://dsmans0021.me/assets/projects/telegram-rat.png">
+
+    <script type="application/ld+json" id="project-schema">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Telegram RAT Demo", "description": "A learning prototype — not a weapon.", "image": "https://dsmans0021.me/assets/projects/telegram-rat.png", "url": "https://dsmans0021.me/project-telegram-rat.html", "applicationCategory": "SecurityApplication", "author": {"@type": "Person", "name": "Mohamed Abdelaziz", "url": "https://dsmans0021.me/"}, "sameAs": ["https://github.com/DsMans0021/Telegrojan"]}</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@500;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        [data-theme="dark"] {
+            --bg: #080808; --bg2: #0f0f0f; --surface: #111111; --surface2: #181818;
+            --border: #1e1e1e; --border2: #2a2a2a; --text: #c8c8c8; --text-strong: #f0f0f0;
+            --text-muted: #9a9a9a; --text-dim: #8a8a8a; --accent: #39ff14;
+            --accent-dim: rgba(57,255,20,0.08); --accent-border: rgba(57,255,20,0.25);
+            --accent2: #ff6500; --shadow: rgba(0,0,0,0.5);
+        }
+        [data-theme="light"] {
+            --bg: #fafafa; --bg2: #f3f3f3; --surface: #ffffff; --surface2: #f7f7f7;
+            --border: #e4e4e4; --border2: #d0d0d0; --text: #3a3a3a; --text-strong: #111111;
+            --text-muted: #5c5c5c; --text-dim: #6a6a6a; --accent: #16a305;
+            --accent-dim: rgba(22,163,5,0.07); --accent-border: rgba(22,163,5,0.2);
+            --accent2: #d45200; --shadow: rgba(0,0,0,0.1);
+        }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Cairo", "Inter", cursive, sans-serif;
+            font-size: 15px;
+            line-height: 1.75;
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        html[lang="ar"] body { letter-spacing: 0; }
+        html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3,
+        html[lang="ar"] .brand, html[lang="ar"] .section-heading {
+            font-family: "Reem Kufi", "Cairo", "Comic Sans MS", sans-serif;
+        }
+        a { color: var(--accent); }
+        img { max-width: 100%; height: auto; }
+        ::selection { background: var(--accent); color: #000; }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            background: var(--bg);
+            background: color-mix(in srgb, var(--bg) 86%, transparent);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .topbar-inner {
+            max-width: 1040px; margin: 0 auto; padding: 12px 24px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .brand {
+            display: inline-flex; align-items: center; gap: 10px;
+            color: var(--text-strong); text-decoration: none; font-weight: 700; font-size: 14px;
+        }
+        .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); flex-shrink: 0; }
+        .topbar-actions { margin-inline-start: auto; display: flex; align-items: center; gap: 8px; }
+        .icon-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            min-width: 38px; height: 38px; padding: 0 12px;
+            border: 1px solid var(--border2); background: var(--surface); color: var(--text-muted);
+            font: inherit; font-size: 11px; cursor: pointer; text-decoration: none;
+            transition: color 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .icon-btn:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+        .back-link { color: var(--text-muted); text-decoration: none; font-size: 11px; display: inline-flex; align-items: center; gap: 8px; }
+        .back-link:hover { color: var(--accent); }
+
+        .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 24px 80px; }
+        .hero { animation: rise 0.6s ease both; }
+        .hero-media {
+            position: relative; border: 1px solid var(--border); overflow: hidden;
+            background: var(--surface); aspect-ratio: 1200 / 630;
+        }
+        .hero-media picture { display: contents; }
+        .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .hero-media::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.55) 100%);
+            pointer-events: none;
+        }
+        .hero-overlay {
+            position: absolute; inset: auto 0 0 0; z-index: 1;
+            display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+            padding: 22px 24px;
+            flex-wrap: wrap;
+        }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 5px 11px; border: 1px solid rgba(255,255,255,0.28);
+            background: rgba(0,0,0,0.55); color: #fff; font-size: 10px;
+            letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .chip-accent { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+
+        .hero-copy { padding: 30px 0 0; }
+        .hero-title { font-size: clamp(30px, 5vw, 46px); line-height: 1.1; color: var(--text-strong); letter-spacing: -0.02em; margin-bottom: 12px; }
+        html[lang="ar"] .hero-title { letter-spacing: 0; }
+        .hero-sub { font-size: clamp(15px, 2.2vw, 18px); color: var(--text-muted); max-width: 760px; margin-bottom: 22px; }
+        .meta-row { display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--text-dim); font-size: 11px; }
+        .meta-row span { display: inline-flex; align-items: center; gap: 7px; }
+        .meta-row i { color: var(--accent); }
+
+        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 11px 18px; border: 1px solid var(--border2);
+            background: var(--surface); color: var(--text-strong);
+            font-size: 12px; text-decoration: none;
+            transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+        }
+        .btn:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+        .btn-accent { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+        .btn-accent:hover { color: #000; box-shadow: 0 10px 28px var(--accent-dim); }
+
+        .grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 44px; margin-top: 50px; align-items: start; }
+        .section { margin-bottom: 38px; }
+        .section-heading {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--text-dim); margin-bottom: 14px;
+        }
+        .section-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+        .section p { color: var(--text-muted); font-size: 14px; line-height: 1.9; }
+        .section p + p { margin-top: 12px; }
+
+        .list { list-style: none; display: grid; gap: 9px; }
+        .list li {
+            position: relative; padding-inline-start: 22px;
+            color: var(--text-muted); font-size: 13px; line-height: 1.7;
+        }
+        .list li::before { content: '▸'; position: absolute; inset-inline-start: 0; color: var(--accent); font-size: 12px; }
+
+        .learned {
+            border-inline-start: 2px solid var(--accent);
+            background: var(--accent-dim);
+            padding: 16px 18px;
+            color: var(--text-strong); font-size: 14px; line-height: 1.85;
+        }
+
+        .side-card { border: 1px solid var(--border); background: var(--surface); padding: 20px; margin-bottom: 16px; }
+        .side-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+        .tech-list { display: flex; flex-wrap: wrap; gap: 7px; }
+        .tech-tag { border: 1px solid var(--border2); padding: 4px 10px; font-size: 11px; color: var(--text-muted); }
+        .side-row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 11px; }
+        .side-row:last-child { border-bottom: 0; }
+        .side-row span:first-child { color: var(--text-dim); }
+        .side-row span:last-child { color: var(--text-strong); text-align: end; }
+
+        .project-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 56px; }
+        .project-nav a {
+            display: flex; flex-direction: column; gap: 5px; padding: 18px 20px;
+            background: var(--surface); color: var(--text-muted); text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .project-nav a:hover { background: var(--surface2); color: var(--accent); }
+        .project-nav a.next { text-align: end; align-items: flex-end; }
+        .project-nav small { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+        .project-nav strong { font-size: 14px; color: var(--text-strong); }
+
+        .not-found { text-align: center; padding: 90px 20px; }
+        .not-found h1 { font-size: clamp(28px, 5vw, 44px); color: var(--text-strong); margin-bottom: 12px; }
+        .not-found p { color: var(--text-muted); margin-bottom: 26px; }
+
+        .footer {
+            border-top: 1px solid var(--border); padding: 26px 24px;
+            text-align: center; color: var(--text-dim); font-size: 10px;
+        }
+        .footer a { color: var(--text-muted); text-decoration: none; }
+        .footer a:hover { color: var(--accent); }
+
+        @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+        @media (max-width: 820px) {
+            .grid { grid-template-columns: 1fr; gap: 30px; }
+            .hero-overlay { padding: 16px; }
+            .hero-copy { padding-top: 24px; }
+            .topbar-inner { padding: 10px 16px; }
+            .wrap { padding: 26px 16px 60px; }
+        }
+        @media (max-width: 520px) {
+            .brand span.brand-text { display: none; }
+            .project-nav { grid-template-columns: 1fr; }
+            .project-nav a.next { text-align: start; align-items: flex-start; }
+            .actions .btn { flex: 1 1 100%; justify-content: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .hero { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span class="brand-text">DsMans0021</span></a>
+            <a class="back-link" href="index.html#projects"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span data-i18n="back">All projects</span></a>
+            <div class="topbar-actions">
+                <button class="icon-btn" id="lang-toggle" type="button" aria-label="Switch language"><span id="lang-label">العربية</span></button>
+                <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme"><i class="fa-solid fa-sun" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap" id="app">
+        <article class="hero" aria-busy="true">
+            <div class="hero-media">
+                <picture>
+                    <source id="p-img-webp" type="image/webp">
+                    <img id="p-img" src="assets/og-image.png" alt="" width="1200" height="630">
+                </picture>
+            </div>
+            <div class="hero-copy">
+                <h1 class="hero-title" id="p-title">Loading…</h1>
+                <p class="hero-sub" id="p-sub">Loading project…</p>
+                <div class="meta-row" id="p-meta"></div>
+                <div class="actions" id="p-actions"></div>
+            </div>
+        </article>
+        <div class="grid">
+            <div>
+                <section class="section">
+                    <h2 class="section-heading" data-i18n="overview">Overview</h2>
+                    <p id="p-overview"></p>
+                </section>
+                <section class="section">
+                    <h2 class="section-heading" data-i18n="features">What it does</h2>
+                    <ul class="list" id="p-features"></ul>
+                </section>
+                <section class="section">
+                    <h2 class="section-heading" data-i18n="challenges">Challenges</h2>
+                    <ul class="list" id="p-challenges"></ul>
+                </section>
+                <section class="section">
+                    <h2 class="section-heading" data-i18n="learned">What I learned</h2>
+                    <div class="learned" id="p-learned"></div>
+                </section>
+            </div>
+            <aside>
+                <div class="side-card">
+                    <div class="side-label" data-i18n="tech">Tech stack</div>
+                    <div class="tech-list" id="p-tech"></div>
+                </div>
+                <div class="side-card">
+                    <div class="side-label" data-i18n="details">Details</div>
+                    <div class="side-row"><span data-i18n="year">Year</span><span id="p-year">—</span></div>
+                    <div class="side-row"><span data-i18n="role">Role</span><span id="p-role">—</span></div>
+                    <div class="side-row"><span data-i18n="status">Status</span><span id="p-status">—</span></div>
+                    <div class="side-row"><span data-i18n="category">Category</span><span id="p-cat">—</span></div>
+                </div>
+            </aside>
+        </div>
+        <nav class="project-nav" id="p-nav" aria-label="Project navigation"></nav>
+    </main>
+
+    <footer class="footer">
+        <span data-i18n="footer">© 2026 Mohamed Abdelaziz · DsMans0021</span> · <a href="index.html">dsmans0021.me</a>
+    </footer>
+
+    <script>window.PROJECT_ID = "telegram-rat";</script>
+    <script src="projects-data.js"></script>
+    <script>
+    const I18N = {
+        en: {
+            back: 'All projects', overview: 'Overview', features: 'What it does', challenges: 'Challenges',
+            learned: 'What I learned', tech: 'Tech stack', details: 'Details', year: 'Year', role: 'Role',
+            status: 'Status', category: 'Category', demo: 'Live demo', source: 'Source code',
+            case: 'Full case study', prev: 'Previous project', next: 'Next project',
+            notFound: 'Project not found', notFoundText: 'That project does not exist or was moved. Browse all projects instead.',
+            'cat.games': 'Game', 'cat.apps': 'App', 'cat.security': 'Security', 'cat.networking': 'Networking',
+            'status.completed': 'Completed', 'status.inprogress': 'In progress', 'status.archived': 'Archived',
+            footer: '© 2026 Mohamed Abdelaziz · DsMans0021'
+        },
+        ar: {
+            back: 'كل المشاريع', overview: 'نظرة عامة', features: 'ما تفعله', challenges: 'التحديات',
+            learned: 'ما تعلمته', tech: 'التقنيات', details: 'التفاصيل', year: 'السنة', role: 'الدور',
+            status: 'الحالة', category: 'التصنيف', demo: 'تجربة حيّة', source: 'الكود المصدري',
+            case: 'دراسة الحالة الكاملة', prev: 'المشروع السابق', next: 'المشروع التالي',
+            notFound: 'المشروع غير موجود', notFoundText: 'هذا المشروع غير موجود أو تم نقله. تصفّح كل المشاريع بدلًا من ذلك.',
+            'cat.games': 'لعبة', 'cat.apps': 'تطبيق', 'cat.security': 'أمان', 'cat.networking': 'شبكات',
+            'status.completed': 'مكتمل', 'status.inprogress': 'قيد التطوير', 'status.archived': 'مؤرشف',
+            footer: '© 2026 محمد عبدالعزيز · DsMans0021'
+        }
+    };
+
+    let lang = 'en';
+    try { lang = localStorage.getItem('lang') || 'en'; } catch (e) {}
+    if (lang !== 'ar') lang = 'en';
+
+    const APP_CATEGORY = {
+        games: 'GameApplication',
+        apps: 'DesignApplication',
+        security: 'SecurityApplication',
+        networking: 'SecurityApplication'
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get('id') || window.PROJECT_ID || null;
+    const isStatic = !params.get('id') && !!window.PROJECT_ID;
+    const list = (typeof PROJECTS !== 'undefined' && Array.isArray(PROJECTS)) ? PROJECTS : [];
+    const project = list.find(p => p.id === projectId) || null;
+    const index = project ? list.indexOf(project) : -1;
+
+    function projectHref(id) {
+        return isStatic ? 'project-' + id + '.html' : 'project.html?id=' + encodeURIComponent(id);
+    }
+
+    function t(key) { return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key; }
+    function esc(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, c => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[c]));
+    }
+    function isExternal(url) { return /^https?:\/\//i.test(url || ''); }
+
+    function getTheme() {
+        try {
+            return localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        } catch (e) { return 'dark'; }
+    }
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+        const btn = document.getElementById('theme-toggle');
+        if (btn) btn.innerHTML = theme === 'dark'
+            ? '<i class="fa-solid fa-sun" aria-hidden="true"></i>'
+            : '<i class="fa-solid fa-moon" aria-hidden="true"></i>';
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#080808' : '#fafafa');
+    }
+
+    function setMeta(selector, attr, value) {
+        const el = document.querySelector(selector);
+        if (el && value) el.setAttribute(attr, value);
+    }
+
+    function updateMeta() {
+        if (!project) return;
+        const d = project.details[lang] || project.details.en;
+        const desc = d.subtitle || project.desc[lang] || project.desc.en;
+        const image = 'https://dsmans0021.me/' + project.image;
+        const url = isStatic
+            ? window.location.origin + window.location.pathname
+            : 'https://dsmans0021.me/project.html?id=' + encodeURIComponent(project.id);
+        document.title = project.name + ' — Mohamed Abdelaziz';
+        setMeta('meta[name="description"]', 'content', desc);
+        setMeta('meta[property="og:title"]', 'content', project.name + ' — Mohamed Abdelaziz');
+        setMeta('meta[property="og:description"]', 'content', desc);
+        setMeta('meta[property="og:image"]', 'content', image);
+        setMeta('meta[property="og:image:alt"]', 'content', project.name + ' — project by Mohamed Abdelaziz');
+        setMeta('meta[property="og:url"]', 'content', url);
+        setMeta('meta[name="twitter:title"]', 'content', project.name + ' — Mohamed Abdelaziz');
+        setMeta('meta[name="twitter:description"]', 'content', desc);
+        setMeta('meta[name="twitter:image"]', 'content', image);
+        setMeta('link[rel="canonical"]', 'href', url);
+        const schema = document.getElementById('project-schema');
+        if (schema) {
+            schema.textContent = JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: project.name,
+                description: desc,
+                image: image,
+                url: url,
+                applicationCategory: APP_CATEGORY[project.category] || 'SoftwareApplication',
+                author: { '@type': 'Person', name: 'Mohamed Abdelaziz', url: 'https://dsmans0021.me/' },
+                sameAs: [project.code, project.demo].filter(Boolean)
+            });
+        }
+    }
+
+    function renderNotFound() {
+        document.title = t('notFound') + ' — DsMans0021';
+        document.getElementById('app').innerHTML = '<div class="not-found"><h1>' + esc(t('notFound')) + '</h1><p>' + esc(t('notFoundText')) + '</p><a class="btn btn-accent" href="index.html#projects"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' + esc(t('back')) + '</a></div>';
+        document.getElementById('p-nav')?.remove();
+    }
+
+    function render() {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('lang-label').textContent = lang === 'ar' ? 'EN' : 'العربية';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const value = t(el.dataset.i18n);
+            if (value && value !== el.dataset.i18n) el.textContent = value;
+        });
+
+        if (!project) { renderNotFound(); return; }
+        const d = project.details[lang] || project.details.en;
+        const role = project.role ? project.role[lang] || project.role.en : '';
+        const desc = d.subtitle || project.desc[lang] || project.desc.en;
+        const catLabel = t('cat.' + project.category);
+        const statusLabel = t('status.' + project.status);
+
+        const img = document.getElementById('p-img');
+        if (img) { img.src = project.image; img.alt = project.name; }
+        const imgWebp = document.getElementById('p-img-webp');
+        if (imgWebp && project.webp) imgWebp.srcset = project.webp;
+        document.getElementById('p-title').textContent = project.name;
+        document.getElementById('p-sub').textContent = desc;
+        document.getElementById('p-overview').textContent = d.overview;
+        document.getElementById('p-learned').textContent = d.learned;
+        document.getElementById('p-year').textContent = project.year || '—';
+        document.getElementById('p-role').textContent = role || '—';
+        document.getElementById('p-status').textContent = statusLabel;
+        document.getElementById('p-cat').textContent = catLabel;
+
+        const meta = document.getElementById('p-meta');
+        meta.innerHTML =
+            '<span><i class="fa-solid fa-calendar" aria-hidden="true"></i> ' + esc(project.year || '') + '</span>' +
+            '<span><i class="fa-solid fa-user-gear" aria-hidden="true"></i> ' + esc(role) + '</span>' +
+            '<span><i class="fa-solid fa-code" aria-hidden="true"></i> ' + esc(project.lang) + '</span>';
+
+        const chips = document.querySelector('.chips') || document.createElement('div');
+        chips.className = 'chips';
+        chips.innerHTML = '<span class="chip chip-accent">' + esc(catLabel) + '</span>' +
+            '<span class="chip"><i class="fa-solid fa-circle" aria-hidden="true" style="font-size:6px"></i> ' + esc(statusLabel) + '</span>';
+        document.querySelector('.hero-media').appendChild(chips);
+
+        const features = document.getElementById('p-features');
+        features.innerHTML = (d.features || []).map(f => '<li>' + esc(f) + '</li>').join('');
+        const challenges = document.getElementById('p-challenges');
+        challenges.innerHTML = (d.challenges || []).map(c => '<li>' + esc(c) + '</li>').join('');
+
+        const tech = document.getElementById('p-tech');
+        const techItems = (project.lang || '').split('·').map(x => x.trim()).filter(Boolean);
+        tech.innerHTML = techItems.map(x => '<span class="tech-tag">' + esc(x) + '</span>').join('');
+
+        const actions = document.getElementById('p-actions');
+        actions.innerHTML = '';
+        if (project.demo) {
+            actions.insertAdjacentHTML('beforeend', '<a class="btn btn-accent" href="' + esc(project.demo) + '" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> ' + esc(t('demo')) + '</a>');
+        }
+        if (project.code) {
+            actions.insertAdjacentHTML('beforeend', '<a class="btn" href="' + esc(project.code) + '" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i> ' + esc(t('source')) + '</a>');
+        }
+        if (project.case && !project.case.startsWith('project.html')) {
+            actions.insertAdjacentHTML('beforeend', '<a class="btn" href="' + esc(project.case) + '"><i class="fa-solid fa-book-open" aria-hidden="true"></i> ' + esc(t('case')) + '</a>');
+        }
+        actions.insertAdjacentHTML('beforeend', '<a class="btn" href="index.html#projects"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' + esc(t('back')) + '</a>');
+
+        const nav = document.getElementById('p-nav');
+        if (nav && list.length > 1) {
+            const prev = list[(index - 1 + list.length) % list.length];
+            const next = list[(index + 1) % list.length];
+            nav.innerHTML =
+                '<a href="' + esc(projectHref(prev.id)) + '"><small>' + esc(t('prev')) + '</small><strong>' + esc(prev.name) + '</strong></a>' +
+                '<a class="next" href="' + esc(projectHref(next.id)) + '"><small>' + esc(t('next')) + '</small><strong>' + esc(next.name) + '</strong></a>';
+        }
+
+        document.querySelector('.hero').setAttribute('aria-busy', 'false');
+        updateMeta();
+    }
+
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+        lang = lang === 'ar' ? 'en' : 'ar';
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+        const chips = document.querySelector('.chips');
+        if (chips) chips.remove();
+        render();
+    });
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    applyTheme(getTheme());
+    render();
+    </script>
+</body>
+</html>
